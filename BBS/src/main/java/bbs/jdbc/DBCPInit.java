@@ -38,8 +38,8 @@ public class DBCPInit extends HttpServlet {
     
     private void initConnectionPool() {
 		try {
-			String url = "jdbc:mariadb://220.70.33.29:3306/whdtud";
-			String id = "whdtud";
+			String url = "jdbc:mariadb://220.70.33.29:3306/d";
+			String id = "d";
 			String pw = "01234567";
 			
 			ConnectionFactory connFactory = new DriverManagerConnectionFactory(url, id, pw);
