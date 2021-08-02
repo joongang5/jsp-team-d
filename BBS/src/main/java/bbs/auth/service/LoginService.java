@@ -9,9 +9,10 @@ import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
 
 public class LoginService {
+
+	private MemberDao memberDao = new MemberDao();
 	
 	public User login(String id, String password) {
-		MemberDao memberDao = new MemberDao();
 		
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			Member member = memberDao.selectById(conn, id);
