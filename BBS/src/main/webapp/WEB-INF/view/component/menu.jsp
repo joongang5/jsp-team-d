@@ -6,6 +6,6 @@
 <div id="menuItem" onclick="menuClick('myPage')">마이 페이지</div>
 <div id="menuItem" onclick="menuClick('notice')">공지사항</div>
 <div id="menuItem" onclick="menuClick('search')">영화팟 찾기</div>
-<div id="menuItem" onclick="menuClick('review')">영화 토론/리뷰</div>
+<div id="menuItem" onclick="menuClick('review/list')">영화 토론/리뷰</div>
 
 <script type="text/javascript" src="/BBS/js/menu.js"></script>
