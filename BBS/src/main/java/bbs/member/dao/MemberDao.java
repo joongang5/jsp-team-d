@@ -26,7 +26,7 @@ public class MemberDao {
 						rs.getString("name"),
 						rs.getString("password"),
 						rs.getString("email"),
-						toDate(rs.getTimestamp("regdate")));
+						toDate(rs.getTimestamp("reg_date")));
 				return member;
 			}
 		} catch (SQLException e) {

@@ -13,8 +13,8 @@
 		<param-name>poolConfig</param-name>
 		<param-value>
 			jdbcdriver=org.mariadb.jdbc.Driver
-			jdbcUrl=jdbc:mariadb://220.70.33.29:3306/whdtud?characterEncoding=utf8
-			dbUser=whdtud
+			jdbcUrl=jdbc:mariadb://220.70.33.29:3306/d?characterEncoding=utf8
+			dbUser=d
 			dbPass=01234567
 			validationQuery=select 1
 			minIdle=3
