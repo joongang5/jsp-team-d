@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
 	<display-name>BBS</display-name>
 	<welcome-file-list>
-		<welcome-file>index</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
 	<listener>
@@ -13,8 +13,8 @@
 		<param-name>poolConfig</param-name>
 		<param-value>
 			jdbcdriver=org.mariadb.jdbc.Driver
-			jdbcUrl=jdbc:mariadb://220.70.33.29:3306/whdtud?characterEncoding=utf8
-			dbUser=whdtud
+			jdbcUrl=jdbc:mariadb://220.70.33.29:3306/d?characterEncoding=utf8
+			dbUser=d
 			dbPass=01234567
 			validationQuery=select 1
 			minIdle=3
