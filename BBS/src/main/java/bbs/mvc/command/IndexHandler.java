@@ -26,14 +26,6 @@ public class IndexHandler extends CommandHandler {
 	}
 
 	private String processGetOrPost(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		String pageNoVal = req.getParameter("pageNo");
-		int pageNo = 1;
-		if (pageNoVal != null) {
-			pageNo = Integer.parseInt(pageNoVal);
-		}
-		
-		ArticlePage articlePage = listService.getArticlePage(pageNo);
-		req.setAttribute("articlePage", articlePage);
 		return getFormViewName();
 	}
 }
