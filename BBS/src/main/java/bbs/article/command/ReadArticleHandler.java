@@ -15,7 +15,7 @@ public class ReadArticleHandler extends CommandHandler {
 	
 	@Override
 	protected String getFormViewName() {
-		return null;
+		return "/WEB-INF/view/readArticle.jsp";
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class ReadArticleHandler extends CommandHandler {
 		try {
 			ArticleData articleData = readService.getArticle(articleNo, true);
 			req.setAttribute("articleData", articleData);
-			return "/WEB-INF/view/readArticle.jsp";
+			return getFormViewName();
 		} catch (ArticleNotFoundException | ArticleContentNotFoundException e) {
 			req.getServletContext().log("no article", e);
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
