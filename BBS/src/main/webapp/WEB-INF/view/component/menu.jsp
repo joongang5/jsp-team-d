@@ -4,7 +4,7 @@
 <div id="menuItem" onclick="menuClick('index')">영화 홈</div>
 <div id="menuItem" onclick="menuClick('login')">로그인 페이지</div>
 <div id="menuItem" onclick="menuClick('myPage')">마이 페이지</div>
-<div id="menuItem" onclick="menuClick('notice')">공지사항</div>
+<div id="menuItem" onclick="menuClick('notice/list')">공지사항</div>
 <div id="menuItem" onclick="menuClick('offmeet/list')">영화팟 찾기</div>
 <div id="menuItem" onclick="menuClick('review/list')">영화 토론/리뷰</div>
 
