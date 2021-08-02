@@ -1,7 +1,10 @@
 package bbs.member.command;
 
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import bbs.member.model.Member;
 import bbs.member.service.MemberNotFoundException;
@@ -44,14 +47,23 @@ public class MyPageHandler extends CommandHandler {
 	// myPage.jsp에서 수정하기 form의 action을 post방식으로 처리
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
-		req.getParameter("password");
-		req.getParameter("email");
+		//20210803
 		
 		ModifyRequest modifyReq = new ModifyRequest();
 		
-		modifyService.modify(modifyReq);
+		modifyReq.setPassword(req.getParameter("password"));
+	//	modifyReq.setEmail(req.getParameter("email"));
 		
-		return null;
+
+		//밤이니 비밀번호 required만 시켜놓고,, 일단
+
+		
+		try {
+			//modifyService.modify(modifyReq);
+			return "/WEB-INF/view/myInfoModifySuccess.jsp";
+		} catch (Exception e) {
+			System.out.println("수정 실패");
+			return getFormViewName();
+		}
 	}
 }

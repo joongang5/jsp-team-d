@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,18 @@
 <title>마이페이지</title>
 </head>
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+body{
+	background-color: #0f0f0f;
+	color: #faeef0;	
+	font-family: 'Nanum Myeongjo', serif;
+}
+img{
+ margin: 0 auto;
+ margin-left :19%;
+ width: 200px;
+ height: 200px;
+}
 #myPageList{
 	float:left;
 }
@@ -16,30 +29,39 @@
 #myInfo > ul {
 	list-style:none;
 }
-body{
-	background-color: #0f0f0f;
-	color: #faeef0;	
-}
+
 #myInfo{
 	margin: 0 auto;
-	margin-left :20%;
+	margin-left :35%;
 	width: 70%;
 	height: 40%;
 }
 #myPic{
 	margin:0 auto;
-	width: 35%;
-	height: 50%;
+	box-sizing:border-box;
+	padding:5px;
+	width: 30%;
+	height: 55%;
 	border: 1px solid #faeef0 ;
 }
-img{
- margin: 0 auto;
- margin-left :20%;
- width: 200px;
- height: 200px;
+#title{
+	float: right;
+	margin-top: 70px;
+	padding-left: 20px;
+	padding-bottom: 70px;
+	font-size: 72pt;
+	-webkit-transform: rotate(90deg);	
+	-ms-transform:roate(90deg);
+	transform:rotate(90deg);
+	box-sizing:border-box;
+	
 }
 </style>
 <body>
+<div id="title">
+My <br>
+Favorits
+</div>
 <div id="myPageList">
 <ul>
 	<li>My Page</li>
@@ -59,18 +81,24 @@ img{
 </div> 
 <br>
  <div id="myInfo">
+ <form action="" method="post" id="myInfoModify">
  <ul>
-	<li>${member.id} </li>
-	<li>${member.name }</li>
-	<li>${member.password }</li>
-	<li>${member.email }</li>
-	<li>${member.regDate }</li>
+	<li>아이디 : ${member.id} </li>
+	<br>
+	<li>이름 : ${member.name }</li>
+	<br>
+	<li>비밀번호 : <input type="password" placeholder="비밀번호 수정하기" required></input> <button type="submit" form="myInfoModify">수정</button> </button></li>
+	<br>
+	<li>이메일 : ${member.email }</li>
+	<br>
+	<li>가입일시 : <fmt:formatDate value="${member.regDate }" pattern="yyyy-MM-dd" /></li>
 </ul>		
+</form>
 </div>
 
 
 
-</div>
+
 	
 </body>
 </html>
