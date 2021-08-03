@@ -28,6 +28,7 @@ public class JoinHandler extends CommandHandler {
 		joinReq.setPassword(req.getParameter("password"));
 		joinReq.setConfirmPassword(req.getParameter("confirmPassword"));
 		joinReq.setEmail(req.getParameter("email"));
+		joinReq.setBirthDate(req.getParameter("birth_date"));
 		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);

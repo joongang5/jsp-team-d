@@ -11,6 +11,7 @@ public class JoinRequest {
 	private String password;
 	private String confirmPassword;
 	private String email;
+	private String birth_date;
 
 	public String getId() {
 		return id;
@@ -51,6 +52,14 @@ public class JoinRequest {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getBirthDate() {
+		return birth_date;
+	}
+	
+	public void setBirthDate(String birth_date) {
+		this.birth_date = birth_date;
+	}
 
 	public void validate(Map<String, Boolean> errors) {
 		ErrorUtil.checkEmpty(errors, id, "id");
@@ -58,6 +67,7 @@ public class JoinRequest {
 		ErrorUtil.checkEmpty(errors, password, "password");
 		ErrorUtil.checkEmpty(errors, confirmPassword, "confirmPassword");
 		ErrorUtil.checkEmpty(errors, email, "email");
+		ErrorUtil.checkEmpty(errors, birth_date, "birth_date");
 		
 		if (errors.containsKey("confirmPassword") == false) {
 			if (isPasswordEqualToConfirm() == false) {
@@ -69,4 +79,6 @@ public class JoinRequest {
 	private boolean isPasswordEqualToConfirm() {
 		return password != null && password.equals(confirmPassword);
 	}
+
+	
 }

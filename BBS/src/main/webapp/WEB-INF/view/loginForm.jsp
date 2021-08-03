@@ -1,27 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ë¡œê·¸ì¸</title>
+<meta charset="EUC-KR">
+<title>Login</title>
 </head>
 <body>
-	<form action="login.do" method="post">
-		<c:if test="${errors.idOrPwNotMatch }">
-		ì•„ì´ë””ì™€ ì•”í˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
-		</c:if>
-		<p>
-			ì•„ì´ë””:<br /> <input type="text" name="id" value="${param.id }">
-			<c:if test="${errors.id }">IDë¥¼ ìž…ë ¥í•˜ì„¸ìš”.</c:if>
-		</p>
-		<p>
-			ì•”í˜¸:<br /> <input type="password" name="password">
-			<c:if test="${errors.password }">ì•”í˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš”.</c:if>
-		</p>
-		<input type="submit" value="ë¡œê·¸ì¸">
-	</form>
+	<h1>·Î±×ÀÎ ÇØÁÖ¼¼¿ä</h1>
+	<div id="loginBox">
+		<form action="login.do" method="post" onsubmit="">
+			<span id="inputId"> ID : <input type="text"
+				placeholder="¾ÆÀÌµð¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä" name="id" value="${param.id }">
+				<c:if test="${errors.id }">ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä.</c:if><br>
+			</span>
+			<span id="inputPw"> PW : <input type="password"
+				name="password" placeholder="ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä">
+				<c:if test="${errors.password }">¾ÏÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.</c:if><br>
+			</span>
+				<c:if test="${errors.idOrPwNotMatch }">
+				¾ÆÀÌµð¿Í ¾ÏÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.<br></c:if>
+			<button type="submit">·Î±×ÀÎ</button><br>
+			<a href="./find">ID³ª ºñ¹Ð¹øÈ£¸¦ ÀÒ¾î¹ö¸®¼Ì³ª¿ä?</a>
+			<a href="join.do">È¸¿ø°¡ÀÔ</a>
+		</form>
+	</div>
 </body>
 </html>
