@@ -26,6 +26,7 @@ public class MemberDao {
 						rs.getString("name"),
 						rs.getString("password"),
 						rs.getString("email"),
+						rs.getString("birth_date"),
 						toDate(rs.getTimestamp("reg_date")));
 				return member;
 			}
@@ -43,12 +44,13 @@ public class MemberDao {
 	}
 	
 	public void insert(Connection conn, Member mem) throws SQLException {
-		try (PreparedStatement pstmt = conn.prepareStatement("INSERT INTO member values(?,?,?,?,?)")) {
+		try (PreparedStatement pstmt = conn.prepareStatement("INSERT INTO member (id, name, password, email, birth_date, reg_date) VALUES (?, ?, ?, ?, ?, ?)")) {
 			pstmt.setString(1, mem.getId());
 			pstmt.setString(2, mem.getName());
 			pstmt.setString(3, mem.getPassword());
 			pstmt.setString(4, mem.getEmail());
-			pstmt.setTimestamp(5, new Timestamp(mem.getRegDate().getTime()));
+			pstmt.setString(5, mem.getBirthDate());
+			pstmt.setTimestamp(6, new Timestamp(mem.getRegDate().getTime()));
 			pstmt.executeUpdate();
 		}
 	}

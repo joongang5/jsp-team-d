@@ -32,6 +32,11 @@
 			이메일:<br/> <input type="email" name="email">
 			<c:if test="${errors.email }">이메일을 입력하세요</c:if>
 		</p>
+		<p>
+			생일:<br/> <input type="date" name="birth_date">
+			<c:if test="${errors.birth_date }">생일을 입력하세요</c:if>
+		</p>
+		
 		<input type="submit" value="가입">
 	</form>
 </body>
