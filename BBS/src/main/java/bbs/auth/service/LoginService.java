@@ -22,7 +22,7 @@ public class LoginService {
 			if (member.matchPassword(password) == false) {
 				throw new LoginFailException();
 			}
-			return new User(member.getId(), member.getName());
+			return new User(member.getId(), member.getName(), member.getEmail());
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
