@@ -1,30 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<meta charset="UTF-8">
 <title>Login</title>
 </head>
 <body>
-	<h1>�α��� ���ּ���</h1>
+	<h1>로그인 해주세요</h1>
 	<div id="loginBox">
 		<form action="login.do" method="post" onsubmit="">
 			<span id="inputId"> ID : <input type="text"
-				placeholder="���̵� �Է����ּ���" name="id" value="${param.id }">
-				<c:if test="${errors.id }">ID�� �Է��ϼ���.</c:if><br>
+				placeholder="아이디를 입력해주세요" name="id" value="${param.id }">
+				<c:if test="${errors.id }">ID를 입력하세요.</c:if><br>
 			</span>
 			<span id="inputPw"> PW : <input type="password"
-				name="password" placeholder="��й�ȣ�� �Է����ּ���">
-				<c:if test="${errors.password }">��ȣ�� �Է��ϼ���.</c:if><br>
+				name="password" placeholder="비밀번호를 입력해주세요">
+				<c:if test="${errors.password }">암호를 입력하세요.</c:if><br>
 			</span>
 				<c:if test="${errors.idOrPwNotMatch }">
-				���̵�� ��ȣ�� ��ġ���� �ʽ��ϴ�.<br></c:if>
-			<button type="submit">�α���</button><br>
-			<a href="./find">ID�� ��й�ȣ�� �Ҿ�����̳���?</a>
-			<a href="join.do">ȸ������</a>
+				아이디와 암호가 일치하지 않습니다.<br></c:if>
+			<button type="submit">로그인</button><br>
+			<a href="./find">ID나 비밀번호를 잃어버리셨나요?</a>
+			<a href="join.do">회원가입</a>
 		</form>
 	</div>
 </body>

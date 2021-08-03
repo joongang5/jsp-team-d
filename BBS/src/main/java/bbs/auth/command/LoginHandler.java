@@ -22,6 +22,12 @@ public class LoginHandler extends CommandHandler {
 	}
 
 	@Override
+	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		 
+		return getFormViewName();
+	}
+	
+	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String id = trim(req.getParameter("id"));
 		String password = trim(req.getParameter("password"));
