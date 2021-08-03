@@ -3,9 +3,13 @@ package bbs.review.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bbs.review.service.ListReviewService;
+import bbs.review.service.ReviewPage;
 import bbs.mvc.command.CommandHandler;
 
 public class ListReviewHandler extends CommandHandler {
+
+	private ListReviewService listService = new ListReviewService();
 
 	@Override
 	protected String getFormViewName() {
@@ -13,9 +17,31 @@ public class ListReviewHandler extends CommandHandler {
 	}
 
 	@Override
+	public String process(HttpServletRequest req, HttpServletResponse res)
+		throws Exception{
+		String pageNoVal = req.getParameter("pageNo");
+		int pageNo = 1;
+		if(pageNoVal != null){
+			pageNo = Integer.parseInt(pageNoVal);
+		}
+		ReviewPage reviewPage = listService.getReviewPage(pageNo);
+		req.setAttribute("reviewPage", reviewPage);
+		return getFormViewName();
+	}
+	
+	// get 호출
+	@Override
+	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		return null;
+	}
+	
+	// post 호출
+	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	 
+	
 }
