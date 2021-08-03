@@ -8,5 +8,6 @@
 </head>
 <body>
 	암호를 변경했습니다.
+	<a href="index.do">홈으로</a>
 </body>
 </html>

@@ -1,5 +1,51 @@
 package bbs.review.model;
 
-public class Review {
+import java.util.Date;
 
+public class Review {
+	
+	private Integer number;
+	private Writer writer;
+	private String title;
+	private Date regDate;
+	private Date modifiedDate;
+	private int readCount;
+	
+	public Review(Integer number, Writer writer, String title, Date regDate, Date modifiedDate, int readCount) {
+		this.number = number;
+		this.writer = writer;
+		this.title = title;
+		this.regDate = regDate;
+		this.modifiedDate = modifiedDate;
+		this.readCount = readCount;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+
+	public Writer getWriter() {
+		return writer;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public int getReadCount() {
+		return readCount;
+	}
+
+	
+	
+	
 }
