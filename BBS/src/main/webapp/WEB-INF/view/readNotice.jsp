@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -12,68 +12,77 @@
 body{
 	margin: 0 auto;
 	padding: 0;
+	width:auto;
+	height: auto;
+	min-height: auto;
 	background-color: black;
 }
+#head{
+	font-size: 50px;
+	font-weight: bolder;
+	text-align: center;
+	color: white;
+}
 #container{
-	width: 1000px;
+	height: 90px;
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
+}
+#content{
 	height: auto;
 	min-height: 500px;
-	margin: 0 auto;
-	padding: 0;
-}
-#head{
-	font-weight: bold;
-	font-size: 50px;
-	text-align: center; 
-	color: white;
-}
-#title, #writer, #daycount{ 
-	height: 30px;
 	text-align: center;
-	color: white;
-} 
-#content{
-	height: 100%;
-	min-height: 410px;
-	background-color: yellow;
-	text-align: center;
-	color: white;
-	background-color: silver;
+	border-bottom: 1px solid gray;
 }
-
- 
+#backlist{
+	float: right;
+	margin-top: 10px;
+}
+#backlist button{
+	border-radius: 10px; 
+	height: 50px;
+	width: 100px; 
+	color: white; 
+	background-color: gray;
+}
+#backlist button:hover{
+	color: white;
+	background-color: red;
+}
 </style>
 </head>
 <body>
-	<table id=container>
+	
+	<table id=container style="width: 100%;">
 		<h1 id=head>Notice</h1>
+		
 		<tr id=title>
-			<td style="width: 10%">제목</td>
-			<td>${notice.ntitle }</td>
+			<td style="width: 10%; height: 30px; text-align: center; color: white;">제목</td>
+			<td style="color: white;">${noticeData.notice.ntitle }</td>
 		</tr>
 		<tr id=writer>
-			<td style="width: 10%">작성자</td>
-			<td>${notice.id }</td>
+			<td style="width: 10%; height: 30px; text-align: center; color: white;">작성자</td>
+			<td style="color: white;">${noticeData.notice.id }</td>
 		</tr>
-		<tr id=daycount>
-			<td style="width: 10%">날짜</td>
-			<td>${notice.ndate }</td>
-			<td style="width: 10%">조회수</td>
-			<td>${notice.ncount }</td>
+		<tr id=daycount style=" height: 30px;">
+			<td style="width: 10%; text-align: center; color: white;">날짜</td>
+			<td style="width: 70%; color: white;">${noticeData.notice.ndate }</td>
+			<td style="width: 10%; text-align: center; color: white;">조회수</td>
+			<td style="width: 10%; text-align: center; color: white;">${noticeData.notice.ncount }</td>
 		</tr>
-		<tr>	
-			<td id=content style="width: 1000px;">${notice.ncontent }내용</td>
-		</tr>
+	</table>	
 		
-<%-- 		<tr>
-			<td colspan="2">
-			<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }"/>
-				<c:if test="${authUser.id ==noticeData.notice.id }">
-					<a href="modify.do?no=${noticeData.notice.nno }">[게시글수정]</a>
-					<a href="delete.do?no=${noticeData.notice.nno }">[게시글삭제]</a>
-				</c:if>
-			</td>
-		</tr> --%>
+	<table id=content style="width: 100%; color: white;">
+		<tr>	
+			<td>${noticeData.notice.ncontent }</td>
+		</tr>
 	</table>
+
+	
+	<div id=backlist>
+		<a href='/BBS/notice/list.do'><button>목록으로</button></a>
+		<a href='/BBS/notice/modify.do'><button>수정하기</button></a>
+	</div>
+
 </body>
 </html>

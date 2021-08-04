@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,13 @@ body{
 	height: 1000px;
 	background-color: black;
 }
+#head{
+	color:white;
+	font-size: 50px;
+	font-weight: bolder;
+	text-align: center;
+}
+
 #title{
 	font-weight:bolder;
 	background-color: gray;
@@ -35,6 +42,7 @@ table, tr{
 </style>
 </head>
 <body>
+	<h1 id=head>Notice</h1>
 	<table id=table>
 		<tr id=title style="height: 9%">
 			<td style="width: 5%">번호</td>
@@ -44,7 +52,7 @@ table, tr{
 			<td style="width: 7%">조회수</td>
 		</tr>
 	<c:forEach var="notice" items="${list }">
-			<tr id=content style="height: 91%">
+			<tr id=content style="">
 				<td>${notice.nno }</td>
 				<td><a href="./read.do?nno=${notice.nno }">${notice.ntitle }</a></td>
 				<td>${notice.name} (${notice.id })</td>
