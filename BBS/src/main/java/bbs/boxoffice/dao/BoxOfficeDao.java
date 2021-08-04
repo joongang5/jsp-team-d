@@ -9,23 +9,34 @@ import java.util.List;
 
 import bbs.boxoffice.model.BoxOffice;
 import bbs.jdbc.JdbcUtil;
-import bbs.logic.dao.Dao;
+import bbs.logic.dao.BasePagingDao;
 
-public class BoxOfficeDao<T extends BoxOffice> extends Dao<T> {
+public class BoxOfficeDao<T extends BoxOffice> implements BasePagingDao<T> {
 
+	@Override
+	public List<T> select(Connection conn, int startRow, int size) throws SQLException {
+		return null;
+	}
+	
 	@Override
 	public int selectCount(Connection conn) throws SQLException {
 		return 0;
 	}
-
+	
 	@Override
 	public int selectCount(Connection conn, String condition) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-			String sql = String.format("SELECT count(*) FROM box_office WHERE %s", condition);
-			pstmt = conn.prepareStatement(sql);
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT count(*) FROM box_office");
+			if (condition != null) {
+				sb.append(" WHERE ");
+				sb.append(condition);
+			}
+			
+			pstmt = conn.prepareStatement(sb.toString());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);
@@ -37,19 +48,22 @@ public class BoxOfficeDao<T extends BoxOffice> extends Dao<T> {
 		}
 	}
 	
-	@Override
-	public List<T> select(Connection conn, int startRow, int size) throws SQLException {
-		return null;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> select(Connection conn, int startRow, int size, String condition) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 		try {
-			String sql = String.format("SELECT * FROM box_office WHERE %s ORDER BY rank ASC limit ?,?", condition);
-			pstmt = conn.prepareStatement(sql);
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT * FROM box_office");
+			if (condition != null) {
+				sb.append(" WHERE ");
+				sb.append(condition);
+			}
+			sb.append(" ORDER BY rank ASC limit ?,?");
+			
+			pstmt = conn.prepareStatement(sb.toString());
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
