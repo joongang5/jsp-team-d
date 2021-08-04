@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/boxOffice.css" rel="stylesheet">
+
 </head>
 <body>
 	<div id="container">
@@ -15,7 +17,7 @@
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-			<h1>BoardList</h1>
+			<h1>박스오피스</h1>
 			<div id="mainWrapper">
 				<ul id="ulTable">
 					<li>

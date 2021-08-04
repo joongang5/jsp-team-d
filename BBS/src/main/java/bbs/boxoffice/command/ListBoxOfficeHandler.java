@@ -26,7 +26,11 @@ public class ListBoxOfficeHandler extends CommandHandler {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
 		
-		Page<BoxOffice> page = listService.getPage(pageNo);
+		String targetDt = req.getParameter("targetDt");
+		if (targetDt == null)
+			targetDt = "20210801";
+		
+		Page<BoxOffice> page = listService.getPage(pageNo, String.format("target_dt=%s", targetDt));
 		req.setAttribute("page", page);
 		
 		return getFormViewName();

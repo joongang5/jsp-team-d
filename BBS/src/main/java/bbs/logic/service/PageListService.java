@@ -29,4 +29,16 @@ public class PageListService<T> {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public Page<T> getPage(int pageNum, String condition) {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			int total = dao.selectCount(conn, condition);
+			List<T> content = dao.select(conn, (pageNum - 1) * size, size, condition);
+			Page<T> page = new Page<T>(total, pageNum, size, content);
+			
+			return page;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

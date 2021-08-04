@@ -6,7 +6,7 @@
 
 <c:set var="pageSize" value="${page.endPage - page.startPage + 1 }"/>
 
-<button onclick="location.href='${command}?page=1'">맨앞으로</button>
+<button onclick="location.href='${command}?pageNo=1'">맨앞으로</button>
 <c:if test="${page.currentPage le pageSize}">
 	<button disabled="disabled">이전</button>
 </c:if>
