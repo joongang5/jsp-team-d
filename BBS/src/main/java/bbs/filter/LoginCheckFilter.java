@@ -29,7 +29,7 @@ public class LoginCheckFilter implements Filter {
 			chain.doFilter(req, res);
 		} else {
 			HttpServletResponse response = (HttpServletResponse)res;
-			response.sendRedirect(request.getContextPath() + "./login.do");
+			response.sendRedirect(request.getContextPath() + "/login.do");
 		}
 	}
 
