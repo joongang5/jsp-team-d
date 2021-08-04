@@ -18,26 +18,34 @@ import bbs.boxoffice.dao.BoxOfficeDao;
 import bbs.boxoffice.model.BoxOffice;
 import bbs.jdbc.ConnectionProvider;
 import bbs.jdbc.JdbcUtil;
+import bbs.member.service.DuplicateIdException;
 
 public class RegisterBoxOfficeService {
 
 	private BoxOfficeDao<BoxOffice> dao = new BoxOfficeDao<BoxOffice>(); 
 
-	public boolean register(String date) {
+	public void register(String date) {
 		ArrayList<BoxOffice> list = requestBoxOffice(date);
 		if (list == null)
-			return false;
+			return;
 		
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
-
+			conn.setAutoCommit(false);
+			
+			int count = dao.selectCountByTargetDt(conn, date);
+			if (count > 0) {
+				JdbcUtil.rollBack(conn);
+				throw new DuplicateIdException();
+			}
 			for (BoxOffice boxOffice : list) {
 				boxOffice.setTargetDt(date);
 				dao.insert(conn, boxOffice);
 			}
-			return true;
+			conn.commit();
 		} catch (SQLException e) {
+			JdbcUtil.rollBack(conn);
 			throw new RuntimeException(e);
 		} finally {
 			JdbcUtil.close(conn);

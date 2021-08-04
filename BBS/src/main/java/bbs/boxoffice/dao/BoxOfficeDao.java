@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bbs.article.model.Article;
 import bbs.boxoffice.model.BoxOffice;
 import bbs.jdbc.JdbcUtil;
 import bbs.logic.dao.Dao;
@@ -48,6 +47,23 @@ public class BoxOfficeDao<T extends BoxOffice> extends Dao<T> {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(resultPstmt);
 			JdbcUtil.close(insertPstmt);
+		}
+	}
+	
+	public int selectCountByTargetDt(Connection conn, String target_dt) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("SELECT count(*) FROM box_office WHERE target_dt=?");
+			pstmt.setString(1, target_dt);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
 		}
 	}
 	
