@@ -24,15 +24,56 @@ public class ModifyNoticeHandler extends CommandHandler {
 
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws IOException {
-	
-			return null;
-		}
-	
-	
-	@Override
-	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
+		try {
+			String noVal = req.getParameter("no");
+			int no = Integer.parseInt(noVal);
+			
+			ArticleData noticeData = readService.getNotice(no, false);
+			User authUser = (User)req.getSession().getAttribute("authUser");
+			if (PermissionChecker.canModify(authUser.getId(), noticeData.getNotice()) == false) {
+				res.sendError(HttpServletResponse.SC_FORBIDDEN);
+				return null;
+			}
+			
+			ModifyRequest modReq = new ModifyRequest(authUser.getId(), no, 
+					articleData.getArticle().getTitle(),
+					articleData.getContent().getContent());
+			
+			req.setAttribute("modReq", modReq);
+			return getFormViewName();
+		} catch (ArticleNotFoundException e) {
+			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
 	}
-
+	
+	@Override
+	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		User authUser = (User)req.getSession().getAttribute("authUser");
+		String noVal = req.getParameter("no");
+		int no = Integer.parseInt(noVal);
+		
+		ModifyRequest modReq = new ModifyRequest(authUser.getId(), no, 
+				req.getParameter("title"), req.getParameter("content"));
+		req.setAttribute("modReq", modReq);
+		
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+		req.setAttribute("errors", errors);
+		
+		modReq.validate(errors);
+		if (errors.isEmpty() == false) {
+			return getFormViewName();
+		}
+		
+		try {
+			modifyService.modify(modReq);
+			return "/WEB-INF/view/modifySuccess.jsp";
+		} catch (ArticleNotFoundException e) {
+			res.sendError(HttpServletResponse.SC_NOT_FOUND);
+			return null;
+		} catch (PermissionDeniedException e) {
+			res.sendError(HttpServletResponse.SC_FORBIDDEN);
+			return null;
+		}
+	}
+}
