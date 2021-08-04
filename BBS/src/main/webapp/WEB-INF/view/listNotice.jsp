@@ -39,6 +39,23 @@ table, tr{
 #content{
 	
 }
+#gowrite{
+	float: right;
+	margin-top: 10px;
+	
+}
+#gowrite button{
+	border-radius: 10px; 
+	height: 50px;
+	width: 100px; 
+	color: white; 
+	background-color: gray;
+	font-size: 20px;
+}
+#gowrite button:hover{
+	color: white;
+	background-color: black; 
+}
 </style>
 </head>
 <body>
@@ -60,7 +77,9 @@ table, tr{
 				<td>${notice.ncount }</td>
 			</tr>
 		</c:forEach>
-
 	</table>
+	<div id=gowrite>
+		<a href='/BBS/notice/write.do'><button>글쓰기</button></a>
+	</div>
 </body>
 </html>
