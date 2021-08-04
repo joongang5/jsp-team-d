@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="./lib/kakao.min.js"></script>
 <title>Document</title>
 </head>
 <body>
@@ -18,21 +17,24 @@
 	<button id="kakaoLogin" onclick="kakaoLogin()">kakaoLogin</button>
 	<button id="kakaoLogout" onclick="kakaoLogout()">kakaoLogout</button>
 
+	<a href="javascript:kakaoLogin();">카톡 로그인 (a tag)</a>
 
 
 	<script>
-      Kakao.init('2d52ddc31775dc1f031f8163183ae794')
-      console.log(Kakao.isInitialized())
+      window.Kakao.init('2d52ddc31775dc1f031f8163183ae794')
+      
       
       
       function kakaoLogin() {
     //로그인하고
-    Kakao.Auth.login({
-      success: function (response) {
-        //사용자 정보 가져오기
-        Kakao.API.request({
-          url: '/v2/user/me', //계정 정보를 가져오는 request url
-          success: function (response) {
+    	window.Kakao.Auth.login({
+    		scope:'profile, account_email',
+      		success: function (authObj) {
+      			console.log(authObj);
+      			window.Kakao.API.request({
+          			url: '/v2/user/me', //계정 정보를 가져오는 request url
+          			success: success: res => {
+          			const kakao_account = res.kakao_account;
             let user = response.kakao_account //카카오 계정 정보
             //console.log(user)
             user.host = 'kakao' //다른 로그인 서비스와 구분하기 위해서 개인적으로 추가했음
