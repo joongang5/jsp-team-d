@@ -6,15 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰수정</title>
-<style type="text/css">
-body{
-	background: black;
-	color: white;	
-	font-family: 'Nanum Myeongjo', serif;
-}  
-</style>
+<link href="../css/main.css" rel="stylesheet">
+<link href="../css/menu.css" rel="stylesheet">
+<link href="../css/articleWrite.css" rel="stylesheet">
 </head>
 <body>
+	<div id="container">
+		<div id="menu">
+			<c:import url="/WEB-INF/view/component/menu.jsp" />
+		</div>
 	<form action="modify.do" method="post">
 		<input type="hidden" name="no" value="${modReq.reviewNumber}">
 		<p>

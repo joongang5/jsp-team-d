@@ -14,7 +14,7 @@ public class ReviewContentDao {
 		PreparedStatement pstmt = null;
 
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO review_content" + "(review_no, content) VALUES (?,?)");
+			pstmt = conn.prepareStatement("INSERT INTO review_content (review_no, content) VALUES (?,?)");
 			pstmt.setLong(1, content.getNumber());
 			pstmt.setString(2, content.getContent());
 			int insertedCount = pstmt.executeUpdate();
@@ -49,7 +49,6 @@ public class ReviewContentDao {
 		}
 
 	}
-
 	public int update(Connection conn, int no, String content) throws SQLException {
 		try (PreparedStatement pstmt = conn
 				.prepareStatement("update review_content set content = ? "
@@ -58,5 +57,6 @@ public class ReviewContentDao {
 			pstmt.setInt(2, no);
 			return pstmt.executeUpdate();
 		}
-	}
+	}	
+
 }

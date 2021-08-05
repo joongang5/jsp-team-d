@@ -5,7 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰수정</title>
-
+<style type="text/css">
+body{
+	background: black;
+	color: white;	
+	font-family: 'Nanum Myeongjo', serif;
+}  
+</style>
 </head>
 <body>
 	리뷰 수정완료

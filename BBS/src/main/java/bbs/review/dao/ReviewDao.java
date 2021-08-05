@@ -22,8 +22,7 @@ public class ReviewDao {
 		ResultSet rs = null;
 
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO review"
-					+ "(writer_id, writer_name, title, regdate, moddate, read_cnt" + "values(?,?,?,?,?,0)");
+			pstmt = conn.prepareStatement("INSERT INTO review (writer_id, writer_name, title, regdate, moddate, read_cnt) values(?,?,?,?,?,0)");
 
 			pstmt.setString(1, review.getWriter().getId());
 			pstmt.setString(2, review.getWriter().getName());
@@ -79,7 +78,7 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from review " + "order by review_no desc limit ?,?");
+			pstmt = conn.prepareStatement("select * from review order by review_no desc limit ?,?");
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -141,5 +140,19 @@ public class ReviewDao {
 			return pstmt.executeUpdate();
 		}
 	}
-
+	
+	//하단 delete 코드 추가
+	
+	public int delete(Connection conn, int no) throws SQLException {
+		try(PreparedStatement pstmt =
+				conn.prepareStatement("delete from review where review_no = ?")){
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	//여기까지 delete 코드
 }

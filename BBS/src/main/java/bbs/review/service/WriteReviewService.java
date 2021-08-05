@@ -32,7 +32,7 @@ public class WriteReviewService {
 					req.getContent());
 			ReviewContent savedContent = contentDao.insert(conn, content);
 			if(savedContent == null) {
-				throw new RuntimeException("fail to insert article_content");
+				throw new RuntimeException("fail to insert review_content");
 				
 			}
 			conn.commit();
