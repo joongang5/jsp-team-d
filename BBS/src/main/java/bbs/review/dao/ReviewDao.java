@@ -92,7 +92,7 @@ public class ReviewDao {
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
-		} 
+		}
 	}
 
 	private Review convertReview(ResultSet rs) throws SQLException {
@@ -105,16 +105,15 @@ public class ReviewDao {
 		return new Date(timestamp.getTime());
 	}
 
-	public Review selectById(Connection conn, int no) throws SQLException{
+	public Review selectById(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement(
-					"SELECT * FROM review WHERE review_no = ?");
+			pstmt = conn.prepareStatement("SELECT * FROM review WHERE review_no = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			Review review = null;
-			if(rs.next()) {
+			if (rs.next()) {
 				review = convertReview(rs);
 			}
 			return review;
@@ -123,18 +122,24 @@ public class ReviewDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	
+
 	public void increaseReadCount(Connection conn, int no) throws SQLException {
-		try(PreparedStatement pstmt = 
-				conn.prepareStatement(
-						"UPDATE review set read_cnt = read_cnt + 1 "+
-						"WHERE review_no = ?")){
+		try (PreparedStatement pstmt = conn
+				.prepareStatement("UPDATE review set read_cnt = read_cnt + 1 " + "WHERE review_no = ?")) {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
 		}
 	}
-	
-	
-	
-	
+
+	public int update(Connection conn, int no, String title) throws SQLException {
+		try (PreparedStatement pstmt = 
+				conn.prepareStatement(
+						"update review set title = ?, moddate = now()" +
+						"where review_no = ?")) {
+			pstmt.setString(1, title);
+			pstmt.setInt(2, no);
+			return pstmt.executeUpdate();
+		}
+	}
+
 }

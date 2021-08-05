@@ -6,8 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 목록</title>
+<style type="text/css">
 
+body{
+	background: black;
+	color: white;	
+	font-family: 'Nanum Myeongjo', serif;
+}
 
+</style>
 </head>
 <body>
 
@@ -54,5 +61,6 @@
 					</tr>
 		</c:if>
 	</table>
+			<a href="../boxoffice/list.do">[영화홈으로]</a>
 </body>
 </html>

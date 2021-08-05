@@ -10,7 +10,7 @@
 </head>
 <body>
 	<form action="modify.do" method="post">
-		<input type="hidden" name="no" value="${modReq.articleNo }">
+		<input type="hidden" name="no" value="${modReq.articleNo}">
 		<p>
 			번호<br/>${modReq.articleNo }
 		</p>

@@ -42,8 +42,8 @@ body{
 			<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}"/>
 			<a href="list.do?pageNo=${pageNo}">[목록]</a>
 				<c:if test="${authUser.id == reviewData.review.writer.id}">
-					<a href="modify.do?no=${reviewData.review.number}">[게시글수정]</a>
-					<a href="delete.do?no=${reviewData.review.number}">[게시글삭제]</a>
+					<a href="modify.do?no=${reviewData.review.number}">[리뷰수정]</a>
+					<a href="delete.do?no=${reviewData.review.number}">[리뷰삭제]</a>
 				</c:if>
 			</td>
 		</tr>
