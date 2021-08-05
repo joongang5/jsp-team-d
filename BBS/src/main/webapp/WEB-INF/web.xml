@@ -9,6 +9,10 @@
 		<listener-class>bbs.jdbc.DBCPInitListener</listener-class>
 	</listener>
 
+	<listener>
+		<listener-class>bbs.util.api.APIHelper</listener-class>
+	</listener>
+	
 	<context-param>
 		<param-name>poolConfig</param-name>
 		<param-value>
@@ -19,6 +23,24 @@
 			validationQuery=select 1
 			minIdle=3
 			maxTotal=30
+		</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>kobisMovie</param-name>
+		<param-value>
+			boxOfficeUrl=http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json
+			movieListUrl=http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json
+			key=e2d60f300b52b6c426228f8f7da7d521
+		</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>naverMovie</param-name>
+		<param-value>
+			searchMovieUrl=https://openapi.naver.com/v1/search/movie.json
+			clientId=Yc5xC2qElAu38c7C9V_6
+			clientSecret=f22vPIBL1B
 		</param-value>
 	</context-param>
 	

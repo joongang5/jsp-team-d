@@ -1,9 +1,5 @@
 package bbs.boxoffice.service;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,13 +16,12 @@ import bbs.jdbc.ConnectionProvider;
 import bbs.jdbc.JdbcUtil;
 import bbs.member.service.DuplicateIdException;
 import bbs.util.HttpURLConnUtil;
+import bbs.util.api.APIHelper;
 
 public class RegisterBoxOfficeService {
 
 	private BoxOfficeDao<BoxOffice> dao = new BoxOfficeDao<BoxOffice>(); 
 
-	private final String SEARCH_BOX_OFFICE_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
-	
 	public void register(String date) {
 		ArrayList<BoxOffice> list = requestBoxOffice(date);
 		if (list == null)
@@ -55,14 +50,12 @@ public class RegisterBoxOfficeService {
 		}
 	}
 
-	private ArrayList<BoxOffice> requestBoxOffice(String date) {
-		String params = String.format("key=%s&targetDt=%s", HttpURLConnUtil.KOBIS_KEY, date);
-		
-		String response = HttpURLConnUtil.request(SEARCH_BOX_OFFICE_URL, params);
+	private ArrayList<BoxOffice> requestBoxOffice(String targetDt) {
+		String url = APIHelper.kobis.generateBoxOfficeUrl(targetDt);
+		String response = HttpURLConnUtil.request(url);
 		if (response == null) {
 			return null;
 		}
-
 		return parseJson(response.toString());
 	}
 	

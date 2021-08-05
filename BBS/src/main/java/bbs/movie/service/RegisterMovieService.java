@@ -16,12 +16,11 @@ import bbs.member.service.DuplicateIdException;
 import bbs.movie.dao.MovieDao;
 import bbs.movie.model.Movie;
 import bbs.util.HttpURLConnUtil;
+import bbs.util.api.APIHelper;
 
 public class RegisterMovieService {
 	private MovieDao<Movie> dao = new MovieDao<Movie>(); 
 
-	private final String SEARCH_MOVIE_LIST_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json";
-	
 	public void register(String date) {
 		ArrayList<Movie> list = requestMovies(date);
 		if (list == null)
@@ -49,14 +48,12 @@ public class RegisterMovieService {
 		}
 	}
 
-	private ArrayList<Movie> requestMovies(String date) {
-		String params = String.format("key=%s&openStartDt=%s&itemPerPage=100", HttpURLConnUtil.KOBIS_KEY, date);
-		
-		String response = HttpURLConnUtil.request(SEARCH_MOVIE_LIST_URL, params);
+	private ArrayList<Movie> requestMovies(String openStartDt) {
+		String url = APIHelper.kobis.generateMovieListUrl(openStartDt);
+		String response = HttpURLConnUtil.request(url);
 		if (response == null) {
 			return null;
 		}
-			
 		return parseJson(response.toString());
 	}
 	

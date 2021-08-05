@@ -7,16 +7,11 @@ import java.net.URL;
 
 public class HttpURLConnUtil {
 
-	public static final String KOBIS_KEY = "e2d60f300b52b6c426228f8f7da7d521";
-	
-	public static String request(String url, String params) {
+	public static String request(String url) {
 		try {
-			String apiUrl = String.format("%s?%s", url, params);
-			URL reqUrl = new URL(apiUrl);
+			URL reqUrl = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) reqUrl.openConnection();
 			con.setRequestMethod("GET");
-			// post request
-			con.setDoOutput(true);
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
 			if (responseCode == 200) { // 정상 호출
