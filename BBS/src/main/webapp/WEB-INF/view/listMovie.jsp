@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/boxOffice.css" rel="stylesheet">
-
 </head>
 <body>
 	<div id="container">
@@ -17,24 +16,24 @@
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-			<h1>박스오피스</h1>
+			<h1>최신 영화 100</h1>
 			<div id="mainWrapper">
 				<ul id="ulTable">
 					<li>
 						<ul>
-							<li>순위</li>
+							<li>제작국가</li>
 							<li>제목</li>
+							<li>장르</li>
 							<li>개봉일</li>
-							<li>관객수</li>
 						</ul>
 					</li>
-					<c:forEach var="boxOffice" items="${page.content }">
+					<c:forEach var="movie" items="${page.content }">
 					<li>
 						<ul>
-							<li>${boxOffice.rank }</li>
-							<li>${boxOffice.movieNm }</li>
-							<li>${boxOffice.openDt }</li>
-							<li>${boxOffice.audiAcc }</li>
+							<li>${movie.nationAlt }</li>
+							<li>${movie.movieNm }</li>
+							<li>${movie.genreAlt }</li>
+							<li>${movie.openDt }</li>
 						</ul>
 					</li>						
 					</c:forEach>

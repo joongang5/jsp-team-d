@@ -14,16 +14,6 @@ import bbs.logic.dao.BasePagingDao;
 public class BoxOfficeDao<T extends BoxOffice> implements BasePagingDao<T> {
 
 	@Override
-	public List<T> select(Connection conn, int startRow, int size) throws SQLException {
-		return null;
-	}
-	
-	@Override
-	public int selectCount(Connection conn) throws SQLException {
-		return 0;
-	}
-	
-	@Override
 	public int selectCount(Connection conn, String condition) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
