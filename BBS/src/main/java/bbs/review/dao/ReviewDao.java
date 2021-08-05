@@ -22,7 +22,7 @@ public class ReviewDao {
 		ResultSet rs = null;
 
 		try {
-			pstmt = conn.prepareStatement("insert into review"
+			pstmt = conn.prepareStatement("INSERT INTO review"
 					+ "(writer_id, writer_name, title, regdate, moddate, read_cnt" + "values(?,?,?,?,?,0)");
 
 			pstmt.setString(1, review.getWriter().getId());
@@ -34,7 +34,7 @@ public class ReviewDao {
 
 			if (insertedCount > 0) {
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery("select last_insert_id() from review");
+				rs = stmt.executeQuery("SELECT last_insert_id() from review");
 				if (rs.next()) {
 					Integer newNum = rs.getInt(1);
 					return new Review(newNum, review.getWriter(), review.getTitle(), review.getRegDate(),
@@ -61,7 +61,7 @@ public class ReviewDao {
 
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from review");
+			rs = stmt.executeQuery("SELECT count(*) FROM review");
 			if (rs.next()) {
 				return rs.getInt(1);
 			}
@@ -72,7 +72,7 @@ public class ReviewDao {
 		}
 	}
 
-	// selectcount()메소드는 article 테이블의 전체 레코드수를 리턴한다.
+	// selectcount()메소드는 review 테이블의 전체 레코드수를 리턴한다.
 	// 지정한 범위의 게시글을 읽어오기 위한 select()메서드는 아래와 같이 구현한다.
 
 	public List<Review> select(Connection conn, int startRow, int size) throws SQLException {
@@ -105,4 +105,36 @@ public class ReviewDao {
 		return new Date(timestamp.getTime());
 	}
 
+	public Review selectById(Connection conn, int no) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(
+					"SELECT * FROM review WHERE review_no = ?");
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			Review review = null;
+			if(rs.next()) {
+				review = convertReview(rs);
+			}
+			return review;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public void increaseReadCount(Connection conn, int no) throws SQLException {
+		try(PreparedStatement pstmt = 
+				conn.prepareStatement(
+						"UPDATE review set read_cnt = read_cnt + 1 "+
+						"WHERE review_no = ?")){
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}
+	}
+	
+	
+	
+	
 }

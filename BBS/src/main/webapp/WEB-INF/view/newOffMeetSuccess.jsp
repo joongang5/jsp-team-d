@@ -11,6 +11,6 @@
 	<br>
 	${ctxPath = pageContext.request.contextPath }
 	<a href="${ctxPath }/offmeet/list.do">[게시글목록보기]</a>
-	<a href="${ctxPath }/offmeet/read.do?no=${newArticleNo }">[게시글내용보기]</a>
+	<a href="${ctxPath }/offmeet/read.do?no=${newOffMeetNo }">[게시글내용보기]</a>
 </body>
 </html>
