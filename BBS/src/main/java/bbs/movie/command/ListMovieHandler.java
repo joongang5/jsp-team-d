@@ -3,8 +3,6 @@ package bbs.movie.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bbs.boxoffice.dao.BoxOfficeDao;
-import bbs.boxoffice.model.BoxOffice;
 import bbs.logic.page.Page;
 import bbs.logic.service.PageListService;
 import bbs.movie.dao.MovieDao;

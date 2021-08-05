@@ -20,7 +20,7 @@ import bbs.util.HttpURLConnUtil;
 public class RegisterMovieService {
 	private MovieDao<Movie> dao = new MovieDao<Movie>(); 
 
-	public final String SEARCH_MOVIE_LIST_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json";
+	private final String SEARCH_MOVIE_LIST_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json";
 	
 	public void register(String date) {
 		ArrayList<Movie> list = requestMovies(date);
