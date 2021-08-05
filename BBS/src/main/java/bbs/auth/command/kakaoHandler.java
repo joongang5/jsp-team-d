@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
@@ -12,6 +14,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 
 @WebServlet("/kakaoHandler")
@@ -36,6 +43,7 @@ public class kakaoHandler extends HttpServlet {
 	    OutputStreamWriter writer = null;
 	    BufferedReader reader = null;
 	    InputStreamReader isr= null;
+	    HttpSession session = null;
 
 	    try {
 	      final String params = String.format("grant_type=authorization_code&client_id=%s&redirect_uri=%s&code=%s",
@@ -65,7 +73,22 @@ public class kakaoHandler extends HttpServlet {
 	      }
 	     
 	      System.out.println(buffer.toString());
-	      System.out.println(buffer);
+	      
+	      JsonParser parser = new JsonParser();
+          JsonElement element = parser.parse(buffer.toString());
+          
+          String access_Token = element.getAsJsonObject().get("access_token").getAsString();
+          String refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
+          
+          System.out.println("access_token : " + access_Token);
+          System.out.println("refresh_token : " + refresh_Token);
+          
+          
+          HashMap<String, Object> userInfo = getUserInfo(access_Token);
+          
+          System.out.println(userInfo);
+          
+          
 
 	    } catch (IOException e) {
 	      e.printStackTrace();
@@ -91,11 +114,64 @@ public class kakaoHandler extends HttpServlet {
 	         }
 	    }
 		
-		response.sendRedirect("login.do");
+		response.sendRedirect("index.do?login=kakao");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 
+	public HashMap<String, Object> getUserInfo (String access_Token) {
+	    
+	    //    요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
+	    HashMap<String, Object> userInfo = new HashMap<>();
+	    String reqURL = "https://kapi.kakao.com/v2/user/me";
+	    try {
+	        URL url = new URL(reqURL);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	        conn.setRequestMethod("POST");
+	        
+	        //    요청에 필요한 Header에 포함될 내용
+	        conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+	        
+	        int responseCode = conn.getResponseCode();
+	        System.out.println("responseCode : " + responseCode);
+	        
+	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	        
+	        String line = "";
+	        String result = "";
+	        
+	        while ((line = br.readLine()) != null) {
+	            result += line;
+	        }
+	        System.out.println("response body : " + result);
+	        
+	        JsonParser parser = new JsonParser();
+	        JsonElement element = parser.parse(result);
+	        
+	        JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+	        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+	        
+	        String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+	        String email = kakao_account.getAsJsonObject().get("email").getAsString();
+	        
+	        
+	        userInfo.put("nickname", nickname);
+	        userInfo.put("email", email);
+	        
+	    } catch (IOException e) {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+	    }
+	    
+	    
+	    System.out.println(userInfo);
+	    return userInfo;
+	}
+	
+	
+	
+	
+	
 }
