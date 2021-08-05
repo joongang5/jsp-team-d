@@ -64,7 +64,9 @@ tr:hover {
 				</tr>
 
 			</table>
+			<a href="write.do">
 			<button>글쓰기</button>
+			</a>
 		</div>
 
 	</div>
