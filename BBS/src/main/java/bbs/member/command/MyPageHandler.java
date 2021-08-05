@@ -1,18 +1,16 @@
 package bbs.member.command;
 
 
-
-
-
-
 import java.util.Properties;
 import java.util.Random;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -22,18 +20,20 @@ import javax.servlet.http.HttpSession;
 import bbs.auth.model.User;
 
 import bbs.member.model.Member;
-
+import bbs.member.service.ChangeEmailService;
 import bbs.member.service.MemberNotFoundException;
-
-
+import bbs.member.service.ModifyRequest;
 import bbs.member.service.ReadMyPageService;
+import bbs.member.service.ValidEmailService;
+import bbs.member.service.YesOrNoRequest;
+import bbs.member.service.YesOrNoService;
 import bbs.mvc.command.CommandHandler;
 
 
 public class MyPageHandler extends CommandHandler {
 
 	private ReadMyPageService readService = new ReadMyPageService();
-
+	private ValidEmailService validService = new ValidEmailService();
 
 	@Override
 	protected String getFormViewName() {
@@ -69,78 +69,27 @@ public class MyPageHandler extends CommandHandler {
 	// myPage.jsp에서 수정하기 form의 action을 post방식으로 처리
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	
 		
+		//메일 인증 후 수정 구현
 		
 		User user = (User) req.getSession().getAttribute("authUser");
 		String userId = user.getId(); 	
 		
-		//mail server 설정
-		String host = "smtp.naver.com";
-		String admin = "elites3";
-		String password = "Sanggi0214*";
-		
-		Member member = readService.getMember(userId);
 		
 		String to = req.getParameter("newEmail"); //메일 받을 주소
+		//System.out.println(to); 잘 들어옴
 		
-		//SMTP 서버 정보
-		Properties props = new Properties();
-		props.put("mail.smtp.host", host);
-		props.put("mail.smtp.port", 465);
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.ssl.enable", "true");
+	 //  validService.validEmailService(to) = 이메일 인증번호 보내는 서비스 
 		
-		//인증 번호 생성기
-		StringBuffer temp = new StringBuffer();
-		Random random = new Random();
-		for (int i = 0; i < 10; i++) {
-			int randomIndex = random.nextInt(3);
-			switch(randomIndex) {
-			case 0:
-				temp.append((char) ((int) (random.nextInt(26))+97));
-				 break;
-            case 1:
-                // A-Z
-                temp.append((char) ((int) (random.nextInt(26)) + 65));
-                break;
-            case 2:
-                // 0-9
-                temp.append((random.nextInt(10)));
-                break;
-			}
-		}
-         String key = temp.toString(); //인증키
-         System.out.println(key);
+
+		HttpSession keyWasSaved = req.getSession(); //세션에 저장
+        keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); //이름 지정
+        keyWasSaved.setAttribute("newEmail2", to);
          
-         Session session = Session.getDefaultInstance(props, new Authenticator() {
-             protected PasswordAuthentication getPasswordAuthentication() {
-                 return new PasswordAuthentication(admin,password);
-             }
-         });
-         
-         //email 전송
-         try {
-             MimeMessage msg = new MimeMessage(session);
-             msg.setFrom(new InternetAddress(admin, "My Favorits"));
-             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to)); 
-             
-             //메일 제목
-             msg.setSubject("영화를 사랑하는 사람들의 모임, My Favorits 이메일 변경 인증 메일입니다.");
-             //메일 내용
-             msg.setText("인증 번호는 :"+temp);
-             
-             Transport.send(msg);
-             System.out.println("이메일 전송");
-           
-             
-         }catch (Exception e) {
-             e.printStackTrace();
-             System.out.println("이메일 전송 실패");
-         }
-         HttpSession keyWasSaved = req.getSession();
-         keyWasSaved.setAttribute("AuthenticationKey", key);
-         
-         return getFormViewName();
+		
+		         
+         return  getFormViewName();
         
 			}
 		

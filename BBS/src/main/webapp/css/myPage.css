@@ -18,7 +18,7 @@ img{
 #myPageList > ul {
 	list-style:none;
 }
-#myInfo > ul {
+#myInfo > ul > li {
 	list-style:none;
 }
 
