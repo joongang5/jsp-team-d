@@ -13,7 +13,7 @@
 
 	<table border="1">
 		<tr>
-			<td colspan="4"><a href="write.do">[게시글쓰기]</a></td>
+			<td colspan="4"><a href="write.do">[리뷰쓰기]</a></td>
 		</tr>
 		<tr>
 			<td>번호</td>
