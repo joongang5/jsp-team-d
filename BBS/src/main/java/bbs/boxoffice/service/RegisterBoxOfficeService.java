@@ -19,11 +19,14 @@ import bbs.boxoffice.model.BoxOffice;
 import bbs.jdbc.ConnectionProvider;
 import bbs.jdbc.JdbcUtil;
 import bbs.member.service.DuplicateIdException;
+import bbs.util.HttpURLConnUtil;
 
 public class RegisterBoxOfficeService {
 
 	private BoxOfficeDao<BoxOffice> dao = new BoxOfficeDao<BoxOffice>(); 
 
+	private final String SEARCH_BOX_OFFICE_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
+	
 	public void register(String date) {
 		ArrayList<BoxOffice> list = requestBoxOffice(date);
 		if (list == null)
@@ -53,37 +56,14 @@ public class RegisterBoxOfficeService {
 	}
 
 	private ArrayList<BoxOffice> requestBoxOffice(String date) {
-		String key = "e2d60f300b52b6c426228f8f7da7d521";
-		String targetDt = date;
-
-		try {
-			String apiURL = String.format(
-					"http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=%s&targetDt=%s",
-					key, targetDt);
-			URL url = new URL(apiURL);
-			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			con.setRequestMethod("GET");
-			// post request
-			con.setDoOutput(true);
-			int responseCode = con.getResponseCode();
-			BufferedReader br;
-			if (responseCode == 200) { // 정상 호출
-				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			} else { // 에러 발생
-				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-			}
-			String inputLine;
-			StringBuffer response = new StringBuffer();
-			while ((inputLine = br.readLine()) != null) {
-				response.append(inputLine);
-			}
-			br.close();
-			
-			return parseJson(response.toString());
-		} catch (Exception e) {
-			System.out.println(e);
+		String params = String.format("key=%s&targetDt=%s", HttpURLConnUtil.KOBIS_KEY, date);
+		
+		String response = HttpURLConnUtil.request(SEARCH_BOX_OFFICE_URL, params);
+		if (response == null) {
+			return null;
 		}
-		return null;
+
+		return parseJson(response.toString());
 	}
 	
 	@SuppressWarnings("unchecked")

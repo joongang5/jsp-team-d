@@ -23,15 +23,16 @@ public class WriteOffMeetService {
 			conn.setAutoCommit(false);
 			
 			OffMeet offmeet = toOffmeet(req);
-			OffMeet savedOffMeet = offMeetDao.insert(conn, offmeet);
+			System.out.println(req.getContent());
+			OffMeet savedOffMeet = offMeetDao.insert(conn, offmeet, req.getContent());
 			if(savedOffMeet == null) {
 				throw new RuntimeException("fail to insert offmeet");
 			}
-			OffMeetContent content = new OffMeetContent(savedOffMeet.getNumber(),req.getContent());
-			OffMeetContent savedContent = contentDao.insert(conn, content);
-			if(savedContent == null) {
-				throw new RuntimeException("fail to insert offmeet_content");
-			}
+//			OffMeetContent content = new OffMeetContent(savedOffMeet.getNumber(),req.getContent());
+//			OffMeetContent savedContent = contentDao.insert(conn, content);
+//			if(savedContent == null) {
+//				throw new RuntimeException("fail to insert offmeet_content");
+//			}
 			
 			conn.commit();
 			

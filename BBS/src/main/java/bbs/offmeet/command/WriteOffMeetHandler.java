@@ -10,7 +10,6 @@ import bbs.mvc.command.CommandHandler;
 import bbs.offmeet.service.WriteOffMeetService;
 import bbs.offmeet.service.WriteRequest;
 import bbs.offmeet.model.Writer;
-import bbs.offmeet.service.WriteOffMeetService;
 import bbs.auth.model.User;
 
 public class WriteOffMeetHandler extends CommandHandler {

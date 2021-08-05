@@ -1,29 +1,39 @@
 package bbs.member.command;
 
 
+import java.util.Properties;
+import java.util.Random;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import bbs.auth.model.User;
 
 import bbs.member.model.Member;
-
+import bbs.member.service.ChangeEmailService;
 import bbs.member.service.MemberNotFoundException;
-
-
+import bbs.member.service.ModifyRequest;
 import bbs.member.service.ReadMyPageService;
+import bbs.member.service.ValidEmailService;
+import bbs.member.service.YesOrNoRequest;
+import bbs.member.service.YesOrNoService;
 import bbs.mvc.command.CommandHandler;
 
 
 public class MyPageHandler extends CommandHandler {
 
 	private ReadMyPageService readService = new ReadMyPageService();
-
+	private ValidEmailService validService = new ValidEmailService();
 
 	@Override
 	protected String getFormViewName() {
@@ -59,12 +69,32 @@ public class MyPageHandler extends CommandHandler {
 	// myPage.jsp에서 수정하기 form의 action을 post방식으로 처리
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	
+		
+		//메일 인증 후 수정 구현
+		
+		User user = (User) req.getSession().getAttribute("authUser");
+		String userId = user.getId(); 	
 		
 		
+		String to = req.getParameter("newEmail"); //메일 받을 주소
+		//System.out.println(to); 잘 들어옴
 		
+	 //  validService.validEmailService(to) = 이메일 인증번호 보내는 서비스 
+		
+
+		HttpSession keyWasSaved = req.getSession(); //세션에 저장
+        keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); //이름 지정
+        keyWasSaved.setAttribute("newEmail2", to);
+         
+		
+		         
+         return  getFormViewName();
+        
+			}
 		
 
 		
-	return null;
+	
 	}
-}
+

@@ -14,8 +14,8 @@
 	<div id="loginBox">
 		<form action="login.do" method="post" onsubmit="">
 			<span id="inputId"> ID : <input type="text"
-				placeholder="아이디를 입력해주세요" name="id" value="${param.id }">
-				<c:if test="${errors.id }">ID를 입력하세요.</c:if><br>
+				placeholder="아이디나 이메일을 입력해주세요" name="id" value="${param.id }">
+				<c:if test="${errors.id }">ID나 email을 입력하세요.</c:if><br>
 			</span>
 			<span id="inputPw"> PW : <input type="password"
 				name="password" placeholder="비밀번호를 입력해주세요">

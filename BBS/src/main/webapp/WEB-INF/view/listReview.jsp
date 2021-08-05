@@ -6,14 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 목록</title>
-
-
+<link href="../css/main.css" rel="stylesheet">
+<link href="../css/menu.css" rel="stylesheet">
+<link href="../css/articleWrite.css" rel="stylesheet">
 </head>
 <body>
-
+	<div id="container">
+		<div id="menu">
+			<c:import url="/WEB-INF/view/component/menu.jsp" />
+		</div>
+	<br>제목을 클릭하면 내용을 볼 수 있습니다.
 	<table border="1">
 		<tr>
-			<td colspan="4"><a href="write.do">[리뷰쓰기]</a></td>
+			<td colspan="4"><a href="../review/write.do">[리뷰쓰기]</a></td>
+			
 		</tr>
 		<tr>
 			<td>번호</td>
@@ -54,5 +60,6 @@
 					</tr>
 		</c:if>
 	</table>
+			<a href="../boxoffice/list.do">[영화홈으로]</a>
 </body>
 </html>
