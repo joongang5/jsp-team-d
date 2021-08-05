@@ -2,7 +2,6 @@ package bbs.notice.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import bbs.jdbc.JdbcUtil;
@@ -10,23 +9,26 @@ import bbs.notice.model.NoticeContent;
 
 public class NoticeContentDao {
 
-	public NoticeContent selectById(Connection conn, int noticeNno) throws SQLException {
+	public NoticeContent insert(Connection conn, NoticeContent content) throws SQLException{
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		try {
-			String sql = "SELECT * FROM noticeview WHERE nno=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, noticeNno);
-			rs = pstmt.executeQuery();
-			NoticeContent content = null;
-			if (rs.next()) {
-				content = new NoticeContent();
+			pstmt = conn.prepareStatement("INSERT INTO notice_content" + "(notice_no, content) VALUES (?,?)");
+			pstmt.setLong(1, content.getNumber());
+			pstmt.setString(2, content.getContent());
+			int insertedCount = pstmt.executeUpdate();
+			if(insertedCount > 0) {
+				return content;
+			} else {
+				return null;				
 			}
-			return content;
-		} finally {
-			JdbcUtil.close(rs);
+		}finally {
 			JdbcUtil.close(pstmt);
 		}
+		
+	}
 
-}
+	public NoticeContent selectById(Connection conn, int noticeNno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

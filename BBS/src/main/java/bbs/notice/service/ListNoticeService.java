@@ -4,22 +4,24 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import bbs.jdbc.ConnectionProvider;
 import bbs.notice.dao.NoticeDao;
 import bbs.notice.model.Notice;
+import bbs.jdbc.ConnectionProvider;
 
 public class ListNoticeService {
 
-	public List<Notice> getNotice() {
-		NoticeDao dao = new NoticeDao();
-		List<Notice> list = null;
-		try {
-			Connection conn = ConnectionProvider.getConnection();
-			list = dao.selectList(conn);
-			
+	private NoticeDao noticeDao = new NoticeDao();
+	private int size = 10;
+
+	public NoticePage getNoticePage(int pageNum) {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			int total = noticeDao.selectCount(conn);
+			List<Notice> content = noticeDao.select(conn, (pageNum - 1) * size, size);
+			return new NoticePage(total, pageNum, size, content);
+
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return list;
 	}
+
 }
