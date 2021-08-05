@@ -31,6 +31,7 @@
 		<url-pattern>/changePwd.do</url-pattern>
 		<url-pattern>/review/write.do</url-pattern>
 		<url-pattern>/review/modify.do</url-pattern>
+		<url-pattern>/myPage.do</url-pattern>
 	</filter-mapping>
 	
 	<filter>

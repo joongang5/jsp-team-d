@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <title>마이페이지</title>
 <link href="./css/myPage.css" rel="stylesheet">
 <script type="text/javascript" src="/BBS/js/menu.js"></script>
+<script type="text/javascript" src="/BBS/js/myPage.js"></script>
 </head>
 <body>
 <div id="title">
@@ -32,7 +34,7 @@ Favorits
 </div> 
 <br>
  <div id="myInfo">
-
+<form action ="myPage.do" method="post">
  <ul>
 	<li>아이디 : ${member.id} </li>
 	<br>
@@ -41,11 +43,15 @@ Favorits
 	<li>비밀번호 : <button onclick="menuClick('changePw')">수정하기</button></li>
 				 	
 	<br>	
-	<li>이메일 : ${member.email } <input type="email" placeholder="바꿀 이메일을 입력하세요" /><button type="submit" form="myInfo">수정하기</button> </li>
+	<li>이메일 : ${member.email }
 	<br>
+	 	
+	 <input type="text" id="newEmail" name="newEmail" placeholder="새로운 이메일주소를 입력해주세요">
+	 <input type="submit" id="emailBtn" value="인증 메일 보내기"> </li>		
 	<li>가입일시 : <fmt:formatDate value="${member.regDate }" pattern="yyyy-MM-dd" /></li>
 </ul>	
-
+</form>	
+<div id="menuItem" onclick="menuClick('index')">home</div>
 </div>
 
 
