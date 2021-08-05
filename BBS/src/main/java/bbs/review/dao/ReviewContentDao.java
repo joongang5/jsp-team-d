@@ -2,6 +2,7 @@ package bbs.review.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import bbs.jdbc.JdbcUtil;
@@ -13,7 +14,7 @@ public class ReviewContentDao {
 		PreparedStatement pstmt = null;
 
 		try {
-			pstmt = conn.prepareStatement("insert into review_content" + "(review_no, content) values (?,?)");
+			pstmt = conn.prepareStatement("INSERT INTO review_content" + "(review_no, content) VALUES (?,?)");
 			pstmt.setLong(1, content.getNumber());
 			pstmt.setString(2, content.getContent());
 			int insertedCount = pstmt.executeUpdate();
@@ -26,4 +27,29 @@ public class ReviewContentDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
+
+	public ReviewContent selectById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(
+					"SELECT * FROM review_content WHERE review_no = ?");
+			
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			ReviewContent content = null;
+			if (rs.next()) {
+				content = new ReviewContent(
+						rs.getInt("review_no"), rs.getString("content"));
+			}
+			return content;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+
+	}
+
 }

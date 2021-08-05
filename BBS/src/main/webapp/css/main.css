@@ -38,7 +38,6 @@ body {
 	margin: 0 auto;
 	width: 700px;
 	height: 100%;
-	overflow: scroll;
 }
 
 a:link, a:visited, a:hover, a:active {
