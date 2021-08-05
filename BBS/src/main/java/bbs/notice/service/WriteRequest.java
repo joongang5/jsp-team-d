@@ -6,30 +6,32 @@ import bbs.notice.model.Writer;
 
 public class WriteRequest {
 	private Writer wirter;
-	private String ntitle;
-	private String ncontent;
+	private String title;
+	private String content;
 	
-	public WriteRequest(Writer writer, String ntitle, String ncontent) {
+	public WriteRequest(Writer writer, String title, String content) {
 		this.wirter = writer;
-		this.ntitle = ntitle;
-		this.ncontent = ncontent;
+		this.title = title;
+		this.content = content;
 	}
+		
 	
 	public Writer getWirter() {
 		return wirter;
 	}
 
-	public String getNtitle() {
-		return ntitle;
+	public String getTitle() {
+		return title;
 	}
 
-	public String getNcontent() {
-		return ncontent;
+	public String getContent() {
+		return content;
 	}
+
 	
 	public void validate(Map<String, Boolean> errors) {
-		if(ntitle == null || ntitle.trim().isEmpty()) {
-			errors.put("ntitle", Boolean.TRUE);
+		if(title == null || title.trim().isEmpty()) {
+			errors.put("title", Boolean.TRUE);
 		}
 	}
 }

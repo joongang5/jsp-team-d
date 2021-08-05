@@ -1,99 +1,124 @@
 package bbs.notice.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import bbs.article.model.Article;
-import bbs.article.model.Writer;
 import bbs.jdbc.JdbcUtil;
 import bbs.notice.model.Notice;
-import bbs.notice.model.NoticeContent;
-import bbs.review.model.Review;
+import bbs.notice.model.Writer;
 
 public class NoticeDao {
-	public List<Notice> selectList(Connection conn) throws SQLException {
+	
+	public Notice insert(Connection conn, Notice notice) throws SQLException{
 		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
-		List<Notice> list = null;
+		
 		try {
-			String sql = "SELECT * FROM noticeview";
-			pstmt = conn.prepareStatement(sql);
-
-			// pstmt.setInt(1, startRow);
-			// pstmt.setInt(2, size);
-			rs = pstmt.executeQuery();
-			list = new ArrayList<Notice>();
-			if (rs != null) {
-				while (rs.next()) {
-					/* log_no log_ip log_date log_target log_id log_etc */
-					// HashMap<String, Object> map = new HashMap<String, Object>();
-					// totalcount�� ������ view�� ������ּ���.
-					Notice notice = new Notice();
-					notice.setNno(rs.getInt("nno"));
-					notice.setId(rs.getString("id"));
-					notice.setName(rs.getString("name"));
-					notice.setNtitle(rs.getString("ntitle"));
-					notice.setNcontent(rs.getString("ncontent"));
-					notice.setNdate(rs.getString("ndate"));
-					notice.setNcount(rs.getInt("ncount"));
-
-					list.add(notice);
+			pstmt = conn.prepareStatement("INSERT INTO notice "
+					+ "(writer_id, writer_name, title, regdate, moddate, read_cnt)" + "values(?,?,?,?,?,0)");
+			
+			pstmt.setString(1, notice.getWriter().getId());
+			pstmt.setString(2, notice.getWriter().getName());
+			pstmt.setString(3, notice.getTitle());
+			pstmt.setTimestamp(4, toTimeStamp(notice.getRegDate()));
+			pstmt.setTimestamp(5, toTimeStamp(notice.getModifiedDate()));
+			int insertedCount = pstmt.executeUpdate();
+			
+			if(insertedCount > 0 ) {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery("SELECT last_insert_id() from notice");
+				if(rs.next()) {
+					Integer newNum = rs.getInt(1);
+					return new Notice(newNum, notice.getWriter(), notice.getTitle(), notice.getRegDate(),
+							notice.getModifiedDate(), 0);
 				}
 			}
-			return list;
-
+			return null;
+			
 		} finally {
 			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
 			JdbcUtil.close(pstmt);
+			
 		}
+		
+				
 	}
 
-	public static Notice selectById(Connection conn, int noticeNno) throws SQLException {
+	private Timestamp toTimeStamp(Date date) {
+		
+		return new Timestamp(date.getTime());
+	}
+
+	public int selectCount(Connection conn) throws SQLException{
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT count(*) FROM notice");
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
+		}
+	}
+	
+	public List<Notice> select(Connection conn, int startRow, int size) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT * FROM noticeview where nno=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, noticeNno);
+			pstmt = conn.prepareStatement("select * from notice " + "order by notice_no desc limit ?,?");
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
-			Notice notice = null;
-			if (rs.next()) {
-				notice = convertNotice(rs);
+			List<Notice> result = new ArrayList<>();
+			while (rs.next()) {
+				result.add(convertNotice(rs));
 			}
-			return notice;
+			return result;
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
 	}
 
+	private Notice convertNotice(ResultSet rs) throws SQLException{
+		return new Notice(rs.getInt("notice_no"),
+				new Writer(
+						rs.getString("writer_id"),
+						rs.getString("writer_name")),
+				rs.getString("title"),
+				toDate(rs.getTimestamp("regdate")),
+				toDate(rs.getTimestamp("moddate")),
+				rs.getInt("read_cnt"));
+	}
 
-	private static Notice convertNotice(ResultSet rs) throws SQLException {
-		Notice notice = new Notice();
-		notice.setNno(rs.getInt("nno"));
-		notice.setId(rs.getString("id"));
-		notice.setName(rs.getString("name"));
-		notice.setNcontent(rs.getString("ncontent"));
-		notice.setNtitle(rs.getString("ntitle"));
-		notice.setNdate(rs.getString("ndate"));
-		notice.setNcount(rs.getInt("ncount"));
-		return notice;
+	private Date toDate(Timestamp timestamp) {
+		
+		return new Date(timestamp.getTime());
+	}
+
+	public static Notice selectById(Connection conn, int noticeNno) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public void increaseReadCount(Connection conn, int noticeNno) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-
 
 	
 }

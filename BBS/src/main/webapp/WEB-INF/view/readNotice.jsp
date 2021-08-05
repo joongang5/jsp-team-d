@@ -49,10 +49,17 @@ body{
 	color: white;
 	background-color: black;
 }
+#menu{
+	width: 120px;
+	height: auto;
+	background-color: white;
+}
 </style>
 </head>
 <body>
-	
+<div id="menu">
+	<c:import url="component/menu.jsp"/>
+</div>
 	<table id=container style="width: 100%;">
 		<h1 id=head>Notice</h1>
 		

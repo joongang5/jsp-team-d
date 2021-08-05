@@ -30,6 +30,7 @@
 		<filter-name>LoginCheckFilter</filter-name>
 		<url-pattern>/changePwd.do</url-pattern>
 		<url-pattern>/review/write.do</url-pattern>
+		<url-pattern>/notice/write.do</url-pattern>
 		<url-pattern>/review/modify.do</url-pattern>
 	</filter-mapping>
 	
