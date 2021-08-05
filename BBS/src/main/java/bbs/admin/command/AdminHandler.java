@@ -10,6 +10,7 @@ import bbs.boxoffice.service.RegisterBoxOfficeService;
 import bbs.member.service.DuplicateIdException;
 import bbs.movie.service.RegisterMovieService;
 import bbs.mvc.command.CommandHandler;
+import bbs.util.api.APIHelper;
 
 public class AdminHandler extends CommandHandler {
 
@@ -25,6 +26,7 @@ public class AdminHandler extends CommandHandler {
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String targetDt = req.getParameter("targetDt");
 		String openStartDt = req.getParameter("openStartDt");
+		String query = req.getParameter("query");
 		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
@@ -38,6 +40,11 @@ public class AdminHandler extends CommandHandler {
 			if (openStartDt != null && openStartDt.isEmpty() == false) {
 				regMovieService.register(openStartDt);
 				req.setAttribute("registerSuccess", true);
+			}
+			
+			if (query != null && query.isEmpty() == false) {
+				APIHelper.naver.requestMovieList(query);
+				req.setAttribute("searchSuccess", true);
 			}
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateTargetDt", Boolean.TRUE);

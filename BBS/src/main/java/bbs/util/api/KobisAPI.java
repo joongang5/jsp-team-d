@@ -16,18 +16,6 @@ public class KobisAPI {
 	public String boxOfficeUrl;
 	public String movieListUrl;
 	public String key;
-	
-	private String generateBoxOfficeUrl(String targetDt) {
-		String params = String.format("key=%s&targetDt=%s", key, targetDt);
-
-		return String.format("%s?%s", boxOfficeUrl, params);
-	}
-	
-	private String generateMovieListUrl(String openStartDt) {
-		String params = String.format("key=%s&openStartDt=%s&itemPerPage=100", key, openStartDt);
-
-		return String.format("%s?%s", movieListUrl, params);
-	}
 
 	public ArrayList<BoxOffice> requestBoxOffice(String targetDt) {
 		String url = generateBoxOfficeUrl(targetDt);
@@ -48,6 +36,18 @@ public class KobisAPI {
 		return parseMovieListJson(response.toString());
 	}
 	
+	private String generateBoxOfficeUrl(String targetDt) {
+		String params = String.format("key=%s&targetDt=%s", key, targetDt);
+
+		return String.format("%s?%s", boxOfficeUrl, params);
+	}
+	
+	private String generateMovieListUrl(String openStartDt) {
+		String params = String.format("key=%s&openStartDt=%s&itemPerPage=100", key, openStartDt);
+
+		return String.format("%s?%s", movieListUrl, params);
+	}
+
 	@SuppressWarnings("unchecked")
 	private ArrayList<BoxOffice> parseBoxOfficeJson(String json) {
 		ArrayList<BoxOffice> list = new ArrayList<BoxOffice>();
