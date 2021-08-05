@@ -22,8 +22,7 @@ public class ReviewDao {
 		ResultSet rs = null;
 
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO review"
-					+ "(writer_id, writer_name, title, regdate, moddate, read_cnt" + "values(?,?,?,?,?,0)");
+			pstmt = conn.prepareStatement("INSERT INTO review (writer_id, writer_name, title, regdate, moddate, read_cnt) values(?,?,?,?,?,0)");
 
 			pstmt.setString(1, review.getWriter().getId());
 			pstmt.setString(2, review.getWriter().getName());
@@ -79,7 +78,7 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from review " + "order by review_no desc limit ?,?");
+			pstmt = conn.prepareStatement("select * from review order by review_no desc limit ?,?");
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -92,7 +91,7 @@ public class ReviewDao {
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
-		} 
+		}
 	}
 
 	private Review convertReview(ResultSet rs) throws SQLException {
@@ -105,16 +104,15 @@ public class ReviewDao {
 		return new Date(timestamp.getTime());
 	}
 
-	public Review selectById(Connection conn, int no) throws SQLException{
+	public Review selectById(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement(
-					"SELECT * FROM review WHERE review_no = ?");
+			pstmt = conn.prepareStatement("SELECT * FROM review WHERE review_no = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			Review review = null;
-			if(rs.next()) {
+			if (rs.next()) {
 				review = convertReview(rs);
 			}
 			return review;
@@ -123,18 +121,38 @@ public class ReviewDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	
+
 	public void increaseReadCount(Connection conn, int no) throws SQLException {
-		try(PreparedStatement pstmt = 
-				conn.prepareStatement(
-						"UPDATE review set read_cnt = read_cnt + 1 "+
-						"WHERE review_no = ?")){
+		try (PreparedStatement pstmt = conn
+				.prepareStatement("UPDATE review set read_cnt = read_cnt + 1 " + "WHERE review_no = ?")) {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
 		}
 	}
+
+	public int update(Connection conn, int no, String title) throws SQLException {
+		try (PreparedStatement pstmt = 
+				conn.prepareStatement(
+						"update review set title = ?, moddate = now()" +
+						"where review_no = ?")) {
+			pstmt.setString(1, title);
+			pstmt.setInt(2, no);
+			return pstmt.executeUpdate();
+		}
+	}
 	
+	//하단 delete 코드 추가
 	
+	public int delete(Connection conn, int no) throws SQLException {
+		try(PreparedStatement pstmt =
+				conn.prepareStatement("delete from review where review_no = ?")){
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	
-	
+	//여기까지 delete 코드
 }

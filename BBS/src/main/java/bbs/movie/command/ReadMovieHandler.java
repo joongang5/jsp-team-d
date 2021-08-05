@@ -1,15 +1,15 @@
-package bbs.auth.command;
+package bbs.movie.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bbs.mvc.command.CommandHandler;
 
-public class KakaoLoginHandler extends CommandHandler {
+public class ReadMovieHandler extends CommandHandler {
 
 	@Override
 	protected String getFormViewName() {
-		return "/WEB-INF/view/kakaoLogin.jsp";
+		return "/WEB-INF/view/readMovie.jsp";
 	}
 
 	@Override
@@ -17,5 +17,4 @@ public class KakaoLoginHandler extends CommandHandler {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

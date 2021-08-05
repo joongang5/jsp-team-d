@@ -31,11 +31,16 @@ public class LoginHandler extends CommandHandler {
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String id = trim(req.getParameter("id"));
 		String password = trim(req.getParameter("password"));
+		//String email = trim(req.getParameter("email"));
+		//String token = trim(req.getParameter("token"));
 		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
 		
-		ErrorUtil.checkEmpty(errors, id, "id");
+		if(id.contains("@") == false) {
+			ErrorUtil.checkEmpty(errors, id, "id");
+		} 
+		
 		ErrorUtil.checkEmpty(errors, password, "password");
 		
 		if (errors.isEmpty() == false)	
@@ -51,6 +56,8 @@ public class LoginHandler extends CommandHandler {
 			return getFormViewName();
 		}
 	}
+	
+	
 
 	private String trim(String str) {
 		return str == null ? null : str.trim();

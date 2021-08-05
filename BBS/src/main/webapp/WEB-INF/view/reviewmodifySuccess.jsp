@@ -4,13 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 등록</title>
+<title>리뷰수정</title>
+
 </head>
 <body>
-	리뷰를 등록했습니다.
+	리뷰 수정완료
 	<br>
-	<!-- ${ctxPath = pageContext.request.contextPath }  -->
+	<!-- ${ctxPath = pageContext.request.contextPath} -->
 	<a href="${ctxPath }/review/list.do">[리뷰목록보기]</a>
-	<a href="${ctxPath }/review/read.do?no=${newReviewNo}">[리뷰내용보기]</a>
+	<a href="${ctxPath }/review/read.do?no=${modReq.reviewNumber}">
+	[리뷰내용보기]</a>
 </body>
 </html>

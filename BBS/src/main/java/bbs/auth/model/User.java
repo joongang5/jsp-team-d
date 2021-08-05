@@ -3,7 +3,8 @@ package bbs.auth.model;
 public class User {
 
 	private String id;
-	private String name,user;
+	private String name;
+	private String user;
 
 	public User(String id, String name, String user) {
 		this.id = id;
