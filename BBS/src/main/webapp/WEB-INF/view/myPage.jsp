@@ -30,7 +30,11 @@ Favorits
 </ul>
 </div>
 <div id="myPic">
- 	 프로필사진
+ 	 <label>
+     <img id="imageUpload" src="./img/user2.png">
+     <!-- input창 안보이게 하고, 아이콘 클릭하면 연결되게 하기-->
+     <input id="inputFile" style="display:none;" type="file" accept="image/*"  >
+</label>
 </div> 
 <br>
 

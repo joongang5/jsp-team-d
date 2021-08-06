@@ -32,9 +32,18 @@ img{
 	margin:0 auto;
 	box-sizing:border-box;
 	padding:5px;
-	width: 30%;
-	height: 55%;
+	width: 200px;
+	height: 200px;
 	border: 1px solid #faeef0 ;
+	border-radius: 100px 100px 100px 100px;
+	
+}
+#imageUpload{
+	
+	width:170px;
+	height: 170px;
+	margin-left: 7.5px;
+	margin-top: 8px;
 }
 #title{
 	float: right;
