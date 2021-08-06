@@ -14,6 +14,7 @@ import java.util.List;
 import bbs.jdbc.JdbcUtil;
 import bbs.notice.model.Notice;
 import bbs.notice.model.Writer;
+import bbs.review.model.Review;
 
 public class NoticeDao {
 	
@@ -23,8 +24,7 @@ public class NoticeDao {
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO notice "
-					+ "(writer_id, writer_name, title, regdate, moddate, read_cnt)" + "values(?,?,?,?,?,0)");
+			pstmt = conn.prepareStatement("INSERT INTO notice (writer_id, writer_name, title, regdate, moddate, read_cnt) values(?,?,?,?,?,0)");
 			
 			pstmt.setString(1, notice.getWriter().getId());
 			pstmt.setString(2, notice.getWriter().getName());
@@ -79,7 +79,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from notice " + "order by notice_no desc limit ?,?");
+			pstmt = conn.prepareStatement("SELECT * FROM notice " + "ORDER BY notice_no desc limit ?,?");
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -95,12 +95,9 @@ public class NoticeDao {
 	}
 
 	private Notice convertNotice(ResultSet rs) throws SQLException{
-		return new Notice(rs.getInt("notice_no"),
-				new Writer(
-						rs.getString("writer_id"),
-						rs.getString("writer_name")),
-				rs.getString("title"),
-				toDate(rs.getTimestamp("regdate")),
+		return new Notice(rs.getInt("notice_no"), 
+				new Writer(rs.getString("writer_id"), rs.getString("writer_name")),
+				rs.getString("title"), toDate(rs.getTimestamp("regdate")), 
 				toDate(rs.getTimestamp("moddate")),
 				rs.getInt("read_cnt"));
 	}
@@ -110,14 +107,29 @@ public class NoticeDao {
 		return new Date(timestamp.getTime());
 	}
 
-	public static Notice selectById(Connection conn, int noticeNno) {
-		// TODO Auto-generated method stub
-		return null;
+	public Notice selectById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("SELECT * FROM notice WHERE notice_no = ?");
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			Notice notice = null;
+			if (rs.next()) {
+				notice = convertNotice(rs);
+			}
+			return notice;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
 	}
 
-	public void increaseReadCount(Connection conn, int noticeNno) {
-		// TODO Auto-generated method stub
-		
+	public void increaseReadCount(Connection conn, int no) throws SQLException{
+		try (PreparedStatement pstmt = conn.prepareStatement("UPDATE notice set read_cnt = read_cnt + 1 " + "WHERE notice_no=?")){
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}
 	}
 
 	
