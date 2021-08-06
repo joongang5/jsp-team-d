@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import bbs.jdbc.JdbcUtil;
+import bbs.member.model.Member;
 import bbs.review.model.Review;
 import bbs.review.model.Writer;
 
@@ -121,6 +122,45 @@ public class ReviewDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	
+	
+	//이현아가 추가
+	public  Review selectByIdReall(Connection conn, String id) throws SQLException {
+	
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("SELECT * FROM integrate_review_view WHERE writer_id = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Review myReview = new Review(
+						rs.getInt("review_no"),
+						rs.getString("writer_id"),
+						rs.getString("writer_name"),
+						rs.getString("title"),
+						rs.getString("content"),
+						toDate(rs.getTimestamp("regdate")),
+						toDate(rs.getTimestamp("moddate"))
+						
+						);
+						
+				return myReview;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
 
 	public void increaseReadCount(Connection conn, int no) throws SQLException {
 		try (PreparedStatement pstmt = conn
