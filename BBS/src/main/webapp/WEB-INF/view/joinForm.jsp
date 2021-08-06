@@ -7,8 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>가입</title>
+<link href="./css/main.css" rel="stylesheet">
 </head>
 <body>
+	<div id="menu">
+		<c:import url="/WEB-INF/view/component/menu.jsp" />
+	</div>
+	
 	<form action="join.do" method="post">
 		<p>
 			아이디:<br /> <input type="text" name="id" value="${param.id}">

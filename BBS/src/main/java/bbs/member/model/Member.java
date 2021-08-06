@@ -51,11 +51,11 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getBirthDate() {
 		return birth_date;
 	}
-	
+
 	public void setBirthDate(String birth_date) {
 		this.birth_date = birth_date;
 	}
@@ -67,17 +67,18 @@ public class Member {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	
+
 	public boolean matchPassword(String password) {
 		return this.password.equals(password);
 	}
-	
+
 	public void changePassword(String newPassword) {
 		this.password = newPassword;
 	}
 
 	public void changeEmail(String newEmail) {
 		this.email = newEmail;
-		
+
 	}
+
 }

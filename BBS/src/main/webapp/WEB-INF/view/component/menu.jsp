@@ -10,4 +10,15 @@
 <div id="menuItem" onclick="menuClick('review/list')">영화 토론/리뷰</div>
 <div id="menuItem" onclick="menuClick('admin')">관리자</div>
 
+<div id="menuLoginBox">
+<br>
+<c:if test="${! empty authUser}">
+			
+			${authUser.name}님<br>
+			<a href="logout.do"><button>로그아웃</button></a>
+			<a href="myPage.do"><button>마이페이지</button></a>
+			
+		</c:if>
+</div>
+
 <script type="text/javascript" src="/BBS/js/menu.js"></script>

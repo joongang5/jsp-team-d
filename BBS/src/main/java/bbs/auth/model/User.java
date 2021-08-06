@@ -7,6 +7,7 @@ public class User {
 	private String user;
 	private String email;
 	private String access_token;
+	
 
 	public User(String id, String name, String user) {
 		this.id = id;

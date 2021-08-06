@@ -3,7 +3,6 @@ package bbs.auth.command;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -44,19 +43,23 @@ public class LoginHandler extends CommandHandler {
 		HttpSession session = req.getSession();
 		// 4. 이미 가입된 회원이라면 그냥 로그인 처리
 		if (member != null) {
-			String id =  email;
+			// String id = email;
+
+			User user = new User(member.getId(), member.getName(), access_token);
+			String snsUser = "kakao";
 			
-			User user = new User(member.getId(), member.getName(), null);
 			session.setAttribute("authUser", user);
+			session.setAttribute("snsAuthUser", snsUser);
+			
+			
 			
 			return "index.do";
-		// 3.2 존재하지 않는다면 카카오 계정을 기반으로 회원가입 시켜야함
+			// 3.2 존재하지 않는다면 카카오 계정을 기반으로 회원가입 시켜야함
 		} else {
 			// 3.2.1 name필드에 닉네임을 입력하도록 유도
 			// 3.2.2 id 필드에 email주소를 입력
 			User user = new User(email, access_token);
 			session.setAttribute("snsUser", user);
-
 			return "/WEB-INF/view/snsJoinForm.jsp?login=kakao";
 
 			// 카카오 간단 회원가입 폼 이동
@@ -69,9 +72,6 @@ public class LoginHandler extends CommandHandler {
 
 		String id = trim(req.getParameter("id"));
 		String password = trim(req.getParameter("password"));
-
-		// String email = trim(req.getParameter("email"));
-		// String token = trim(req.getParameter("token"));
 
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
@@ -87,6 +87,7 @@ public class LoginHandler extends CommandHandler {
 
 		try {
 			User user = loginService.login(id, password);
+
 			req.getSession().setAttribute("authUser", user);
 			res.sendRedirect(req.getContextPath() + "/index.jsp");
 			return null;

@@ -20,7 +20,7 @@ import bbs.jdbc.ConnectionProvider;
 import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
 
-public class KakaoLoginService {
+public class NaverLoginService {
 
 	private MemberDao memberDao = new MemberDao();
 
@@ -28,10 +28,10 @@ public class KakaoLoginService {
 
 //		System.out.println("code : " + code);
 
-		final String AUTH_HOST = "https://kauth.kakao.com";
+		final String AUTH_HOST = "https://nid.naver.com/oauth2.0/authorize";
 		final String tokenRequestUrl = AUTH_HOST + "/oauth/token";
 
-		String CLIENT_ID = "188766d70b45863a165fa74d7d8a455b"; // 해당 앱의 REST API KEY 정보. 개발자 웹사이트의 대쉬보드에서 확인 가능
+		String CLIENT_ID = "VfCwqUa5lKfCKuP2aXV4"; // 해당 앱의 REST API KEY 정보. 개발자 웹사이트의 대쉬보드에서 확인 가능
 		String REDIRECT_URI = "http://localhost:8080/BBS/login.do"; // 해당 앱의 설정된 uri. 개발자 웹사이트의 대쉬보드에서 확인 및 설정 가능
 
 		HttpsURLConnection conn = null;
