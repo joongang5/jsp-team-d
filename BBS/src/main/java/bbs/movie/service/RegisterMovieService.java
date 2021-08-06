@@ -6,16 +6,16 @@ import java.util.ArrayList;
 
 import bbs.jdbc.ConnectionProvider;
 import bbs.jdbc.JdbcUtil;
-import bbs.member.service.DuplicateIdException;
 import bbs.movie.dao.MovieDao;
 import bbs.movie.model.Movie;
 import bbs.util.api.APIHelper;
 
 public class RegisterMovieService {
-	private MovieDao<Movie> dao = new MovieDao<Movie>(); 
-
-	public void register(String date) {
-		ArrayList<Movie> list = APIHelper.kobis.requestMovieList(date);
+	
+	private MovieDao<Movie> movieDao = new MovieDao<Movie>(); 
+	
+	public void register(String openStartDt) {
+		ArrayList<Movie> list = APIHelper.kobis.requestMovieList(openStartDt);
 		if (list == null)
 			return;
 		
@@ -24,15 +24,15 @@ public class RegisterMovieService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			int count = dao.selectCountByMovieCd(conn, date);
-			if (count > 0) {
-				JdbcUtil.rollBack(conn);
-				throw new DuplicateIdException();
-			}
 			for (Movie movie : list) {
-				dao.insert(conn, movie);
+				int count = movieDao.selectCountByMovieCd(conn, movie.getMovieCd());
+				if (count > 0) {
+					JdbcUtil.rollBack(conn);
+					continue;
+				}
+				movieDao.insert(conn, movie);
+				conn.commit();
 			}
-			conn.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollBack(conn);
 			throw new RuntimeException(e);

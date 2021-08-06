@@ -1,13 +1,16 @@
 package bbs.admin.command;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bbs.boxoffice.model.BoxOffice;
 import bbs.boxoffice.service.RegisterBoxOfficeService;
 import bbs.member.service.DuplicateIdException;
+import bbs.movie.service.RegisterMoviePosterService;
 import bbs.movie.service.RegisterMovieService;
 import bbs.mvc.command.CommandHandler;
 import bbs.util.api.APIHelper;
@@ -16,6 +19,7 @@ public class AdminHandler extends CommandHandler {
 
 	private RegisterBoxOfficeService regBoxOfficeService = new RegisterBoxOfficeService();
 	private RegisterMovieService regMovieService = new RegisterMovieService();
+	private RegisterMoviePosterService regMoviePosterService = new RegisterMoviePosterService();  
 	
 	@Override
 	protected String getFormViewName() {
@@ -33,7 +37,10 @@ public class AdminHandler extends CommandHandler {
 
 		try {
 			if (targetDt != null && targetDt.isEmpty() == false) {
-				regBoxOfficeService.register(targetDt);
+				ArrayList<BoxOffice> boxOfficeList = regBoxOfficeService.register(targetDt);
+				
+				regMoviePosterService.registerPoster(boxOfficeList);
+				
 				req.setAttribute("registerSuccess", true);	
 			}
 			

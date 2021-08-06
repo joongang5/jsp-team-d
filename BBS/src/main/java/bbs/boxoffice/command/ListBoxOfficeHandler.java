@@ -3,16 +3,16 @@ package bbs.boxoffice.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bbs.boxoffice.dao.BoxOfficeDao;
-import bbs.boxoffice.model.BoxOffice;
+import bbs.boxoffice.dao.BoxOfficeViewDao;
+import bbs.boxoffice.model.BoxOfficeView;
 import bbs.logic.page.Page;
 import bbs.logic.service.PageListService;
 import bbs.mvc.command.CommandHandler;
 
 public class ListBoxOfficeHandler extends CommandHandler {
 
-	private PageListService<BoxOffice> listService = new PageListService<BoxOffice>(new BoxOfficeDao<BoxOffice>());
-		
+	private PageListService<BoxOfficeView> listService = new PageListService<BoxOfficeView>(new BoxOfficeViewDao<BoxOfficeView>());
+	
 	@Override
 	protected String getFormViewName() {
 		return "/WEB-INF/view/listBoxOffice.jsp";
@@ -30,7 +30,7 @@ public class ListBoxOfficeHandler extends CommandHandler {
 		if (targetDt == null)
 			targetDt = "20210801";
 		
-		Page<BoxOffice> page = listService.getPage(pageNo, String.format("target_dt=%s", targetDt));
+		Page<BoxOfficeView> page = listService.getPage(pageNo, String.format("target_dt=%s", targetDt));
 		req.setAttribute("page", page);
 		
 		return getFormViewName();

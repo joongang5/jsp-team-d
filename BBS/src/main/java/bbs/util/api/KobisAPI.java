@@ -13,9 +13,15 @@ import bbs.movie.model.Movie;
 import bbs.util.HttpURLConnUtil;
 
 public class KobisAPI {
-	public String boxOfficeUrl;
-	public String movieListUrl;
-	public String key;
+	private String boxOfficeUrl;
+	private String movieListUrl;
+	private String key;
+
+	public KobisAPI(String boxOfficeUrl, String movieListUrl, String key) {
+		this.boxOfficeUrl = boxOfficeUrl;
+		this.movieListUrl = movieListUrl;
+		this.key = key;
+	}
 
 	public ArrayList<BoxOffice> requestBoxOffice(String targetDt) {
 		String url = generateBoxOfficeUrl(targetDt);

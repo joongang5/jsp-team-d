@@ -13,17 +13,18 @@ public class APIHelper implements ServletContextListener {
 	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		kobis = new KobisAPI();
-		Properties kobisProp = loadProperty(sce, "kobisMovie");
-		kobis.boxOfficeUrl = kobisProp.getProperty("boxOfficeUrl");
-		kobis.movieListUrl = kobisProp.getProperty("movieListUrl");
-		kobis.key = kobisProp.getProperty("key");
 		
-		naver = new NaverAPI();
+		Properties kobisProp = loadProperty(sce, "kobisMovie");
+		kobis = new KobisAPI(
+				kobisProp.getProperty("boxOfficeUrl"),
+				kobisProp.getProperty("movieListUrl"),
+				kobisProp.getProperty("key"));
+		
 		Properties naverProp = loadProperty(sce, "naverMovie");
-		naver.searchMovieUrl = naverProp.getProperty("searchMovieUrl");
-		naver.clientId = naverProp.getProperty("clientId");
-		naver.clientSecret = naverProp.getProperty("clientSecret");
+		naver = new NaverAPI(
+				naverProp.getProperty("searchMovieUrl"),
+				naverProp.getProperty("clientId"),
+				naverProp.getProperty("clientSecret"));
 	}
 
 	private Properties loadProperty(ServletContextEvent sce, String paramName) {
