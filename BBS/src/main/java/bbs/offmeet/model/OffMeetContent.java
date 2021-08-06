@@ -5,7 +5,8 @@ public class OffMeetContent {
 	private Integer number;
 	private String content;
 
-	public OffMeetContent(Integer number, String content) {
+
+public OffMeetContent(Integer number, String content) {
 		this.number = number;
 		this.content = content;
 	}

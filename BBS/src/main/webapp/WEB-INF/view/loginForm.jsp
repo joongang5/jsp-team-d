@@ -14,11 +14,12 @@
 	<div id="loginBox">
 		<form action="login.do" method="post" onsubmit="">
 			<span id="inputId"> ID : <input type="text"
-				placeholder="아이디를 입력해주세요" name="id" value="${param.id }">
+				<%-- placeholder="아이디를 입력해주세요" name="id" value="${param.id }"> --%>
+				placeholder="아이디를 입력해주세요" name="id" value="junghee">
 				<c:if test="${errors.id }">ID를 입력하세요.</c:if><br>
 			</span>
 			<span id="inputPw"> PW : <input type="password"
-				name="password" placeholder="비밀번호를 입력해주세요">
+				name="password" placeholder="비밀번호를 입력해주세요" value="12345">
 				<c:if test="${errors.password }">암호를 입력하세요.</c:if><br>
 			</span>
 				<c:if test="${errors.idOrPwNotMatch }">

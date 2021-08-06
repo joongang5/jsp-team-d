@@ -62,7 +62,39 @@ tr:hover {
 					<th>날짜</th>
 					<th>조회수</th>
 				</tr>
-
+				<c:if test="${offmeetPage.hasNoOffMeet()}">
+				<tr>
+					<td colspan="4"> 게시글이 없습니다.</td>
+				</tr>
+				</c:if>
+				<c:forEach var="offmeet" items="${offmeetPage.content }">
+				<tr>
+					<td>${offmeet.number }</td>
+					<td>
+					<a href="read.do?no=${offmeet.number}&pageNo=${offmeetPage.currentPage }">
+					<c:out value="${offmeet.title }"/>
+					</a>
+					</td>
+					<td>${offmeet.writer.name }</td>
+					<td>${offmeet.modifiedDate }</td>
+					<td>${offmeet.readCount }</td>
+				</c:forEach>
+				<c:if test="${offmeetPage.hasOffMeet() }">
+					<tr>
+						<td colspan="4">
+							<c:if test="${offmeetPage.startPage >5 }">
+							<a href="list.do?pageNo=${offmeetPage.startPage-5 }">[이전]</a>
+							</c:if>
+							<c:forEach var="pNo" begin= "${offmeetPage.startPage }" end="${offmeetPage.endPage }">
+							<a href="list.do?pageNo=${pNo }">[${pNo }]</a>
+							</c:forEach>
+							<c:if test="${offmeetPage.endPage < offmeetPage.totalPages }">
+							<a href="list.do?pageNo=${offmeetPage.startPage +5 }">[다음]</a>
+							</c:if>
+						</td>
+					</tr>
+							
+				</c:if>
 			</table>
 			<a href="write.do">
 			<button>글쓰기</button>

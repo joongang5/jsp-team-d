@@ -51,6 +51,6 @@ public class WriteOffMeetService {
 
 	private OffMeet toOffmeet(WriteRequest req) {
 		Date now = new Date();
-		return new OffMeet(null, req.getWriter(), req.getTitle(), now, now, 0);
+		return new OffMeet(null, req.getContent(), req.getWriter(), req.getTitle(), now, now, 0);
 	}
 }

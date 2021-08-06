@@ -2,6 +2,7 @@ package bbs.offmeet.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import bbs.jdbc.JdbcUtil;
@@ -27,5 +28,23 @@ public class OffMeetContentDao {
 		}
 		
 		
+	}
+	
+	public OffMeetContent selectById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("select * from offmeet_content where offmeet_no = ?");
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			OffMeetContent content = null;
+			if(rs.next()) {
+				content = new OffMeetContent(rs.getInt("offmeet_no"), rs.getString("content"));
+			}
+			return content;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
 	}
 }

@@ -6,53 +6,142 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import bbs.jdbc.JdbcUtil;
 import bbs.offmeet.model.OffMeet;
-import bbs.offmeet.model.OffMeetContent;
+import bbs.offmeet.model.Writer;
 
 public class OffMeetDao {
-	public OffMeet insert(Connection conn, OffMeet offmeet, String content) throws SQLException{
+	public OffMeet insert(Connection conn, OffMeet offmeet, String content) throws SQLException {
 		PreparedStatement pstmt = null;
 		Statement stmt = null;
-		String sql = "insert into offmeet (offmeet_content, writer_id, writer_name, title, regdate, moddate, read_cnt) values (?, ?,?,?,?,?,0)";
+		String sql = "insert into offmeet (offmeet_content, writer_id, writer_name, title, regdate, moddate, read_cnt) values (?,?,?,?,?,?,0)";
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, content);
-			pstmt.setString(2, offmeet.getWriter().getId());			
+			pstmt.setString(2, offmeet.getWriter().getId());
 			pstmt.setString(3, offmeet.getWriter().getName());
 			pstmt.setString(4, offmeet.getTitle());
 			pstmt.setTimestamp(5, toTimestamp(offmeet.getRegDate()));
 			pstmt.setTimestamp(6, toTimestamp(offmeet.getModifiedDate()));
 			int insertedCount = pstmt.executeUpdate();
 			System.out.println(insertedCount);
-			
-			if(insertedCount >0) {
+
+			if (insertedCount > 0) {
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery("select last_insert_id() from offmeet");
-				
-				if(rs.next()) {
+
+				if (rs.next()) {
 					Integer newNum = rs.getInt(1);
-					return new OffMeet(newNum,
-							offmeet.getWriter(),
-							offmeet.getTitle(), 
-							offmeet.getRegDate(),
+					return new OffMeet(newNum, offmeet.getContent(), offmeet.getWriter(), offmeet.getTitle(), offmeet.getRegDate(),
 							offmeet.getModifiedDate(), 0);
-					}
 				}
-			 
-		return null;
-		
-		
-	}finally{
-		JdbcUtil.close(rs);
-		JdbcUtil.close(stmt);
-		JdbcUtil.close(pstmt);
+			}
+
+			return null;
+
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
+			JdbcUtil.close(pstmt);
+		}
 	}
-	}
+
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());
+	}
+
+	public int selectCount(Connection conn) throws SQLException {
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("select count(*) from offmeet");
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
+		}
+
+	}
+
+	public List<OffMeet> select(Connection conn, int startRow, int size) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("select * from offmeet order by offmeet_no desc limit ?,?");
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, size);
+			rs = pstmt.executeQuery();
+			List<OffMeet> result = new ArrayList<>();
+			while (rs.next()) {
+				result.add(converOffmeet(rs));
+			}
+			return result;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+
+		}
+	}
+
+	private OffMeet converOffmeet(ResultSet rs) throws SQLException {
+		return new OffMeet(rs.getInt("offmeet_no"), 
+				rs.getString("offmeet_content"),
+				new Writer(rs.getString("writer_id"),
+				rs.getString("writer_name")),
+				rs.getString("title"), 
+				toDate(rs.getTimestamp("regdate")), 
+				toDate(rs.getTimestamp("moddate")),
+				rs.getInt("read_cnt"));
+	}
+
+	private Date toDate(Timestamp timestamp) {
+		return new Date(timestamp.getTime());
+	}
+
+	public OffMeet selectById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("select * from offmeet where offmeet_no=?");
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			OffMeet offmeet = null;
+			if(rs.next()) {
+				offmeet = converOffmeet(rs);
+			}
+			return offmeet;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public void increaseReadCount(Connection conn, int no) throws SQLException {
+		try (PreparedStatement pstmt =conn.prepareStatement(
+				"update offmeet set read_cnt = read_cnt + 1 where offmeet_no = ?" )){
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}
+			
+		
+	}
+	
+	public int update(Connection conn, int no, String title, String content) throws SQLException {
+		try (PreparedStatement pstmt = conn.prepareStatement("update offmeet set title = ?"
+				+ " moddate = now () where offmeet_no = ?"
+				+ " offmeet_content set content = ?")) {
+			pstmt.setString(1, title);
+			pstmt.setInt(2, no);
+			pstmt.setString(3, content);
+			return pstmt.executeUpdate();
+		}
 	}
 }

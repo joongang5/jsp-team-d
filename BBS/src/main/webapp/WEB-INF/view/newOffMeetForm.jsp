@@ -25,8 +25,8 @@
 						<input type="file" name="file1">
 						<button type="submit">글쓰기</button>
 					</form>
-					<br />
-					<p onclick="location.href='/BBS/index.do'">게시판으로</p>
+					<br>
+					<p onclick="location.href='/BBS/offmeet/list.do'">게시판으로</p>
 				</div>
 			</div>
 		</div>

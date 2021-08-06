@@ -5,14 +5,16 @@ import java.util.Date;
 public class OffMeet {
 	
 	private Integer number;
+	private String content;
 	private Writer writer;
 	private String title;
 	private Date regDate;
 	private Date modifiedDate;
 	private int readCount;
 	
-	public OffMeet(Integer number, Writer writer, String title, Date regDate, Date modifiedDate, int readCount) {
+	public OffMeet(Integer number, String content, Writer writer, String title, Date regDate, Date modifiedDate, int readCount) {
 	this.number = number;
+	this.content = content;
 	this.writer = writer;
 	this.title = title;
 	this.regDate = regDate;
@@ -26,6 +28,14 @@ public class OffMeet {
 
 	public void setNumber(Integer number) {
 		this.number = number;
+	}
+	
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public Writer getWriter() {
