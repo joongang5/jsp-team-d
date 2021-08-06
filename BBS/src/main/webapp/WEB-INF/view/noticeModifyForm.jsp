@@ -7,8 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 수정</title>
+<link href="../css/main.css" rel="stylesheet">
 </head>
 <body>
+		<div id="menu">
+			<c:import url="/WEB-INF/view/component/menu.jsp" />
+		</div>
 	<form action="modify.do" method="post">
 		<input type="hidden" name="no" value="${modReq.noticeNumber}">
 		<p>
