@@ -1,4 +1,4 @@
-package bbs.auth.command;
+package bbs.auth.service;
 
 public class KakaoUserInfo {
 

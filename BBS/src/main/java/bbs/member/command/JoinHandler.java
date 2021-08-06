@@ -47,4 +47,28 @@ public class JoinHandler extends CommandHandler {
 			return getFormViewName();
 		}
 	}
+//	
+//	protected String snsProcessSubmit(HttpServletRequest req, HttpServletResponse res) {
+//		JoinRequest joinReq = new JoinRequest();
+//		joinReq.setName(req.getParameter("name"));
+//		joinReq.setEmail(req.getParameter("email"));
+//		
+//		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+//		req.setAttribute("errors", errors);
+//
+//		joinReq.validate(errors);
+//		
+//		if (errors.isEmpty() == false) {
+//			return getFormViewName();
+//		}
+//		
+//		try {
+//			joinService.join(joinReq);
+//			return "/WEB-INF/view/joinSuccess.jsp";
+//		} catch (DuplicateIdException e) {
+//			errors.put("duplicateId", Boolean.TRUE);
+//			return getFormViewName();
+//		}
+//	}
+	
 }

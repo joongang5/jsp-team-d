@@ -39,6 +39,34 @@ public class MemberDao {
 		return null;
 	}
 	
+	public Member selectByEmail(Connection conn, String email) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("SELECT * FROM member where email = ?");
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Member member = new Member(
+						rs.getString("id"),
+						rs.getString("name"),
+						rs.getString("password"),
+						rs.getString("email"),
+						rs.getString("birth_date"),
+						toDate(rs.getTimestamp("reg_date")));
+				return member;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return null;
+	}
+	
 	private Date toDate(Timestamp date) {
 		return date == null ? null : new Date(date.getTime());
 	}
@@ -65,6 +93,7 @@ public class MemberDao {
 			pstmt.executeUpdate();
 		}
 	}
+
 
 	
 	

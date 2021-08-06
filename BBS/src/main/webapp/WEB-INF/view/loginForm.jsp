@@ -27,6 +27,28 @@
 			<a href="./find">ID나 비밀번호를 잃어버리셨나요?</a>
 			<a href="join.do">회원가입</a>
 		</form>
+			
+			<!-- 로그인, 로그아웃 관련 기능 / 이강민 -->
+			<c:if test="${! empty authUser}">
+				<a href="logout.do"><button>로그아웃</button></a>
+				<a href="changePw.do"><button>암호변경</button></a>
+			</c:if>
+			<c:if test="${empty authUser}">
+
+				<c:set var="clientId" value="188766d70b45863a165fa74d7d8a455b"/>
+				<c:set var="redirectUri" value="http://localhost:8080/BBS/login.do"/>
+				<c:set var="logout_redirectUri" value="http://localhost:8080/BBS/index.do?logout=kakao"/>
+				<br>
+				<a href="https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code">
+					<button type="submit">카카오 로그인</button>
+				</a>
+				<br>
+				<a href="https://kauth.kakao.com/oauth/logout?client_id=${clientId}&logout_redirect_uri=${logout_redirectUri}">
+					<button type="submit">카카오 로그아웃</button>
+				</a>
+			</c:if>
+			
+			
 	</div>
 </body>
 </html>
