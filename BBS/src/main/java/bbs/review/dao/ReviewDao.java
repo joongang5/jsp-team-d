@@ -141,18 +141,11 @@ public class ReviewDao {
 		}
 	}
 	
-	//하단 delete 코드 추가
-	
-	public int delete(Connection conn, int no) throws SQLException {
-		try(PreparedStatement pstmt =
-				conn.prepareStatement("delete from review where review_no = ?")){
-			pstmt.setInt(1, no);
-			return pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return -1;
-	}
-	
-	//여기까지 delete 코드
+	/*
+	 * public int delete(Connection conn, int no) throws SQLException{ try
+	 * (PreparedStatement pstmt = conn.prepareStatement(
+	 * "update review set noAvailable where review_no = ?")) { pstmt.setInt(1, no);
+	 * return pstmt.executeUpdate(); } }
+	 */
+
 }
