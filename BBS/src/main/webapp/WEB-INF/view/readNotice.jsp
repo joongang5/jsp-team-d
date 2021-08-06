@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><c:out value="${noticeData.content}" /></td>
+				<td><c:out value='${noticeData.content}' /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><c:set var="pageNo"

@@ -16,8 +16,8 @@ public class NoticeData {
 		return notice;
 	}
 
-	public NoticeContent getContent() {
-		return content;
+	public String getContent() {
+		return content.getContent();
 	}
 	
 	

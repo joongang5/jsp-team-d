@@ -1,7 +1,6 @@
 package bbs.notice.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +13,6 @@ import java.util.List;
 import bbs.jdbc.JdbcUtil;
 import bbs.notice.model.Notice;
 import bbs.notice.model.Writer;
-import bbs.review.model.Review;
 
 public class NoticeDao {
 	
@@ -132,5 +130,15 @@ public class NoticeDao {
 		}
 	}
 
+	public int update (Connection conn, int no, String title)throws SQLException{
+		try(PreparedStatement pstmt =
+				conn.prepareStatement(
+						"UPDATE notice SET title = ?, moddate = now() "+
+						"WHERE notice_no=?")){
+			pstmt.setString(1, title);
+			pstmt.setInt(2, no);
+			return pstmt.executeUpdate();
+		}
+	}
 	
 }
