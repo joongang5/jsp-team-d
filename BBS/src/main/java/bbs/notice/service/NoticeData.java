@@ -6,16 +6,20 @@ import bbs.notice.model.NoticeContent;
 public class NoticeData {
 	private Notice notice;
 	private NoticeContent content;
-
+	
 	public NoticeData(Notice notice, NoticeContent content) {
 		this.notice = notice;
 		this.content = content;
 	}
 
 	public Notice getNotice() {
-		return notice;		
+		return notice;
 	}
-	public NoticeContent getContent() {
-		return content;
+
+	public String getContent() {
+		return content.getContent();
 	}
+	
+	
+	
 }

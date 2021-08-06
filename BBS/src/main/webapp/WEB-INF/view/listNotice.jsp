@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공지사항 목록</title>
+<link href="../css/main.css" rel="stylesheet">
 <style type="text/css">
 
 </style>
 </head>
 <body>
-
+		<div id="menu">
+			<c:import url="/WEB-INF/view/component/menu.jsp" />
+		</div>
 	<table border="1">
 		<tr>
 			<td colspan="4"><a href="write.do">[공지사항 쓰기]</a></td>
@@ -20,6 +24,7 @@
 			<td>번호</td>
 			<td>제목</td>
 			<td>작성자</td>
+			<td>날짜</td>
 			<td>조회수</td>
 		</tr>
 		
@@ -38,6 +43,7 @@
 				</a>
 				</td>
 				<td>${notice.writer.name}</td>
+				<td><fmt:formatDate value="${notice.modifiedDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 				<td>${notice.readCount}</td>
 			</tr>
 		</c:forEach>

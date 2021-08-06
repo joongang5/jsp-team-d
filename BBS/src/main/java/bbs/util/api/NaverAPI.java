@@ -17,9 +17,15 @@ import org.json.simple.parser.ParseException;
 import bbs.movie.service.NaverMovie;
 
 public class NaverAPI {
-	public String searchMovieUrl;
-	public String clientId;
-	public String clientSecret;
+	private String searchMovieUrl;
+	private String clientId;
+	private String clientSecret;
+
+	public NaverAPI(String searchMovieUrl, String clientId, String clientSecret) {
+		this.searchMovieUrl = searchMovieUrl;
+		this.clientId = clientId;
+		this.clientSecret = clientSecret;
+	}
 
 	public ArrayList<NaverMovie> requestMovieList(String query) {
 		String response = requestSearchMovie(query);
@@ -92,6 +98,6 @@ public class NaverAPI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return list;
 	}
 }

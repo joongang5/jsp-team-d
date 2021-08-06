@@ -24,17 +24,15 @@
 						<ul>
 							<li>순위</li>
 							<li>제목</li>
-							<li>개봉일</li>
-							<li>관객수</li>
+							<li>포스터</li>
 						</ul>
 					</li>
-					<c:forEach var="boxOffice" items="${page.content }">
+					<c:forEach var="boxOfficeView" items="${page.content }">
 					<li>
 						<ul>
-							<li>${boxOffice.rank }</li>
-							<li>${boxOffice.movieNm }</li>
-							<li>${boxOffice.openDt }</li>
-							<li>${boxOffice.audiAcc }</li>
+							<li>${boxOfficeView.rank }</li>
+							<li>${boxOfficeView.movieNm }</li>
+							<li><img SRC="${boxOfficeView.image }" width="100" height="100"></li>
 						</ul>
 					</li>						
 					</c:forEach>
