@@ -14,19 +14,18 @@ public class ReadNoticeService {
 	private NoticeDao noticeDao = new NoticeDao();
 	private NoticeContentDao contentDao = new NoticeContentDao();
 	
-	public NoticeData getNotice(int noticeNum, boolean increaseReadCount) {
+	public NoticeData getNotice(int noticeNno, boolean increaseReadCount) throws NoticeNotFoundException {
 	try(Connection conn = ConnectionProvider.getConnection()){	
-		
-		Notice notice = noticeDao.selectById(conn, noticeNum);
+		Notice notice = NoticeDao.selectById(conn, noticeNno);
 		if(notice == null) {
 			throw new NoticeNotFoundException();
 		}
-		NoticeContent content = contentDao.selectById(conn, noticeNum);
+		NoticeContent content = contentDao.selectById(conn, noticeNno);
 		if(content == null) {
 			throw new NoticeContentNotFoundException();
 		}
 		if(increaseReadCount) {
-			noticeDao.increaseReadCount(conn, noticeNum);
+			noticeDao.increaseReadCount(conn, noticeNno);
 		}
 		return new NoticeData(notice, content);
 	}catch(SQLException e) {
