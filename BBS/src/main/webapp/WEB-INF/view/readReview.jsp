@@ -17,7 +17,8 @@
 		<div id="menu">
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
-	리뷰게시판입니다.
+	<br>
+	[리뷰게시판입니다.]
 	<table border="1" width= auto;>
 		<tr>
 			<td>번호</td>
@@ -46,5 +47,10 @@
 			</td>
 		</tr>
 	</table>
+	<br>
+	[리뷰 코멘트]
+		<div id="message">
+			<c:import url="/WEB-INF/view/messagelist.jsp" />
+		</div>
 </body>
 </html>
