@@ -20,14 +20,20 @@
 			<div id="mainWrapper">
 				<div id="write">
 					<form action="write.do" method="post">
-						<input type="text" name="title" required="required" placeholder="제목을 적어주세요">
-						<c:if test="${errors.title }">제목을 입력하세요.</c:if>
+					<br>
+						<input type="text" name="title" required="required" placeholder="리뷰제목을 적어주세요">
+						<c:if test="${errors.title }">제목을 입력하세요</c:if>
+						<br>
+						<br>
 						<textarea name="content" required="required"></textarea>
+						<br>
 						<input type="file" name="file1">
-						<button type="submit">글쓰기</button>
+						<br>
+						<br>
+						<button type="submit">리뷰등록</button>
 					</form>
 					<br />
-					<p onclick="location.href='/BBS/index.do'">게시판으로</p>
+					<p onclick="location.href='/BBS/review/list.do'">리뷰 목록으로</p>
 				</div>
 			</div>
 		</div>

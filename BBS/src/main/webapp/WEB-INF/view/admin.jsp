@@ -17,6 +17,18 @@
 			<div>
 				<input type="submit" value="박스오피스 등록">
 			</div>
+			<div>
+				<input type="date" name="openStartDt" value="2021">
+			</div>
+			<div>
+				<input type="submit" value="최신영화 100 등록">
+			</div>
+			<div>
+				<input type="text" name="query" value="spiderman">
+			</div>
+			<div>
+				<input type="submit" value="검색">
+			</div>
 		</form>
 		<c:if test="${registerSuccess }">
 			등록에 성공했습니다.

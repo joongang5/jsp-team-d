@@ -1,13 +1,11 @@
 package bbs.notice.command;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bbs.mvc.command.CommandHandler;
-import bbs.notice.model.Notice;
 import bbs.notice.service.ListNoticeService;
+import bbs.notice.service.NoticePage;
 
 public class ListNoticeHandler extends CommandHandler {
 
@@ -15,35 +13,31 @@ public class ListNoticeHandler extends CommandHandler {
 	
 	@Override
 	protected String getFormViewName() {
-		return null;
+		return "/WEB-INF/view/listNotice.jsp";
 	}
 
-	// ¿©±â¼­ get¿äÃ»À» Ã³¸®ÇÑ´Ù (º¸ÅëÀº)
+	// ï¿½ï¿½ï¿½â¼­ getï¿½ï¿½Ã»ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		return null;
 	}
 	
-	// ¿©±â¼­ post¿äÃ»À» Ã³¸®ÇÑ´Ù
+	// ï¿½ï¿½ï¿½â¼­ postï¿½ï¿½Ã»ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		return null;
 	}
 
-	//±×·±µ¥ ±»ÀÌ get°ú post¸¦ ±¸ºÐÇÒ ÇÊ¿ä°¡ ¾ø´Ù¸é
+	//ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ getï¿½ï¿½ postï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½Ù¸ï¿½
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		// ¿©±â¿¡¼­ °øÅëÀûÀ¸·Î Ã³¸®ÇÑ´Ù.
-		
-		// ¾ê´Â ¿©±â¼­ ÀÛ¾÷ÇØ¾ßÇÔ
 		String pageNoVal = req.getParameter("pageNo");
 		int pageNo = 1;
-		if (pageNoVal != null) {
+		if(pageNoVal != null){
 			pageNo = Integer.parseInt(pageNoVal);
 		}
-		
-		List<Notice> list = listService.getNotice();
-		req.setAttribute("list", list);
-		return "/WEB-INF/view/listNotice.jsp";
+		NoticePage noticePage = listService.getNoticePage(pageNo);
+		req.setAttribute("noticePage", noticePage);
+		return getFormViewName();
 	}
 }

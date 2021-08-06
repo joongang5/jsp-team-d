@@ -7,20 +7,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 읽기</title>
-<link href="./css/review.css" rel="stylesheet">
-<style type="text/css">
-body{
-	background: black;
-	color: white;	
-	font-family: 'Nanum Myeongjo', serif;
-}
-
-</style>
+<title>리뷰내용 읽기</title>
+<link href="../css/main.css" rel="stylesheet">
+<link href="../css/menu.css" rel="stylesheet">
+<link href="../css/articleWrite.css" rel="stylesheet">
 </head>
 <body>
-	[리뷰게시판]
-	<table border="1" width="100%">
+	<div id="container">
+		<div id="menu">
+			<c:import url="/WEB-INF/view/component/menu.jsp" />
+		</div>
+	리뷰게시판입니다.
+	<table border="1" width= auto;>
 		<tr>
 			<td>번호</td>
 			<td>${reviewData.review.number}</td>
@@ -42,8 +40,8 @@ body{
 			<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}"/>
 			<a href="list.do?pageNo=${pageNo}">[목록]</a>
 				<c:if test="${authUser.id == reviewData.review.writer.id}">
-					<a href="modify.do?no=${reviewData.review.number}">[게시글수정]</a>
-					<a href="delete.do?no=${reviewData.review.number}">[게시글삭제]</a>
+					<a href="modify.do?no=${reviewData.review.number}">[리뷰수정]</a>
+					<a href="delete.do?no=${reviewData.review.number}">[리뷰삭제]</a>
 				</c:if>
 			</td>
 		</tr>

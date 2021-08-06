@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
 <div id="menuItem" onclick="menuClick('boxoffice/list')">영화 홈</div>
+<div id="menuItem" onclick="menuClick('movie/list')">최신 영화 100</div>
 <div id="menuItem" onclick="menuClick('login')">로그인 페이지</div>
 <div id="menuItem" onclick="menuClick('myPage')">마이 페이지</div>
 <div id="menuItem" onclick="menuClick('notice/list')">공지사항</div>

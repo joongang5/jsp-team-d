@@ -44,9 +44,6 @@
 					<c:set var="command" value="list.do" scope="request" />
 					<c:import url="/WEB-INF/view/component/paging.jsp" />
 				</div>
-				<c:if test="${sessionScope.authUser ne null }">
-					<a href="write.do">글쓰기</a>
-				</c:if>
 			</div>
 		</div>
 	</div>

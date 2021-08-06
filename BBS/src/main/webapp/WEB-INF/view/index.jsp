@@ -29,12 +29,15 @@
 				<a href="login.do"><button>로그인</button></a>
 
 				<c:set var="clientId" value="188766d70b45863a165fa74d7d8a455b"/>
-				<c:set var="redirectUri" value="http://localhost:8080/BBS/kakaoRedirectForm.jsp"/>
+				<c:set var="redirectUri" value="http://localhost:8080/BBS/kakaoHandler"/>
+				<c:set var="logout_redirectUri" value="http://localhost:8080/BBS/index.do?logout=kakao"/>
 				
 				<a href="https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code">
 					<button type="submit">카카오 로그인</button>
 				</a>
-				
+				<a href="https://kauth.kakao.com/oauth/logout?client_id=${clientId}&logout_redirect_uri=${logout_redirectUri}">
+					<button type="submit">카카오 로그아웃</button>
+				</a>
 			</c:if>
 			
 		</div>
