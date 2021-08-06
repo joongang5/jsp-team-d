@@ -16,6 +16,15 @@
 <link href="../css/main.css" rel="stylesheet">
 <style type="text/css">
 </style>
+<script type= "text/javascript">
+function del(no){
+	//alert("삭제 "+bno+"번 글");
+	if(confirm("삭제하시겠습니까?")){
+		alert("삭제합니다.")
+		location.href="./delete.do?no="+no;
+	}
+}
+</script>
 </head>
 <body>
 	<div id="menu">
@@ -50,7 +59,8 @@
 						<a href="list.do?pageNo=${pageNo}">[목록]</a> 
 							<c:if test="${authUser.id == noticeData.notice.writer.id }">
 						<a href="modify.do?no=${noticeData.notice.number }">[게시글수정]</a>
-						<a href="delete.do?no=${noticeData.notice.number }">[게시글삭제]</a>
+						
+						<a onclick="return del(${noticeData.notice.number})" >[게시글삭제]</a>
 							</c:if></td>
 			</tr>
 		</table>
