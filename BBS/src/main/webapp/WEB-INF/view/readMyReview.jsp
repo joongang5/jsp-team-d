@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>내가 쓴 리뷰</title>
 </head>
 <body>
 		<div id="myReview">
-	리뷰게시판입니다.
+	내가 쓴 리뷰
 	<table >
 		<tr>
 			<td>번호</td>
