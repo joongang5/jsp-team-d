@@ -19,9 +19,19 @@ input[id*="menu"] {
 	cursor: pointer;
 }
 
+.menuItem:hover {
+	color: gray;
+}
+
 .menuItemSub {
 	display: block;
-	padding: 5px;
+	padding: 5px 10px;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.menuItemSub:hover {
+	color: gray;
 }
 </style>
 
@@ -52,9 +62,9 @@ $(function() {
 	<label for="menu02" class="menuItem" onclick="menuClick('movie/list')">상영작·예정작</label>
 	<div class="naviSub" id="movie">
 		<input type="radio" name="naviSub01" id="menuSub01">
-		<label for="menuSub01" class="menuItemSub" onclick="menuClick('movie/list')">현재 상영영화</label>
+		<label for="menuSub01" class="menuItemSub" onclick="menuClick('movie/list')">▷ 현재 상영영화</label>
 		<input type="radio" name="naviSub01" id="menuSub02">
-		<label for="menuSub02" class="menuItemSub" onclick="menuClick('movie/list')">개봉 예정영화</label>
+		<label for="menuSub02" class="menuItemSub" onclick="menuClick('movie/list')">▷ 개봉 예정영화</label>
 	</div>
 	
 	<input type="radio" name="navi" id="menu03">
