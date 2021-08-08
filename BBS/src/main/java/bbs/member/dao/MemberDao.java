@@ -27,7 +27,10 @@ public class MemberDao {
 						rs.getString("password"),
 						rs.getString("email"),
 						rs.getString("birth_date"),
-						toDate(rs.getTimestamp("reg_date")));
+						toDate(rs.getTimestamp("reg_date"))
+						
+						);
+					
 				return member;
 			}
 		} catch (SQLException e) {
@@ -38,6 +41,67 @@ public class MemberDao {
 		}
 		return null;
 	}
+	
+	public Member selectByIdPlusImg(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("SELECT * FROM member where id = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Member member = new Member(
+						rs.getString("id"),
+						rs.getString("name"),
+						rs.getString("password"),
+						rs.getString("email"),
+						rs.getString("birth_date"),
+						toDate(rs.getTimestamp("reg_date")),
+						rs.getString("img")
+						);
+					
+				return member;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	public Member whereMyImg(Connection conn,String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("SELECT id,img FROM member where id = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Member member = new Member(
+						rs.getString("id"),
+						rs.getString("img"));
+					
+				return member;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return null;
+	}
+	
 	
 	public Member selectByEmail(Connection conn, String email) {
 		
@@ -55,7 +119,9 @@ public class MemberDao {
 						rs.getString("password"),
 						rs.getString("email"),
 						rs.getString("birth_date"),
-						toDate(rs.getTimestamp("reg_date")));
+						toDate(rs.getTimestamp("reg_date"))
+					
+						);
 				return member;
 			}
 		} catch (SQLException e) {
@@ -90,6 +156,15 @@ public class MemberDao {
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getEmail());
 			pstmt.setString(4, member.getId());
+			pstmt.executeUpdate();
+		}
+	}
+	
+	public void updateProfile(Connection conn, Member member) throws SQLException{
+		String sql = "UPDATE member SET img=? where id=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, member.getImgName());
+			pstmt.setString(2, member.getId());
 			pstmt.executeUpdate();
 		}
 	}
