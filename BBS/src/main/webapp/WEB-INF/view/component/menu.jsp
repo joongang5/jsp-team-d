@@ -39,11 +39,7 @@ $(function() {
 	if (referrer.indexOf(curPath) > 0) {
 		$(naviSubId).css('display', 'block');
 	} else {
-		var paths = curPath.split('/');
-		if (paths.length > 2) {
-			var naviSubId = "#" + paths[2];
-			$(naviSubId).slideDown('fast');
-		}
+		$(naviSubId).slideDown('fast');
 	}
 });
 </script>
