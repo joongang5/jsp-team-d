@@ -53,12 +53,13 @@ Favorits
 
 <div id="myInfo">
  <ul>
+		<li>Level : <br><li>
 		
 		<li>이름 : ${member.name }<br></li>		
 		
 		<li>이메일 : ${member.email }<br>	
 		
-			<!-- sns 로그인 사용자들만 암호변경 사용불가 -->
+			<!-- sns 로그인 사용자들만 암호변경 사용불가 by 강민--> 
 	<c:if test="${empty snsAuthUser}">
 			
 		<li>아이디 : ${member.id}<br> </li>
