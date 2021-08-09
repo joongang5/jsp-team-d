@@ -13,7 +13,7 @@ public class ReadMyPageService {
 
 	public Member getMember(String id) { // 아이디로 멤버 정보 얻기
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			Member member = memberDao.selectById(conn, id); // 입력 id 관련 정보 가져오기
+			Member member = memberDao.selectByIdPlusImg(conn, id); // 입력 id 관련 정보 가져오기
 
 			if (member == null) { // 멤버 없을 경우
 				throw new MemberNotFoundException();

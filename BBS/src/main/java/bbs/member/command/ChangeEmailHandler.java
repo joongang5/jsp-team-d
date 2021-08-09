@@ -9,7 +9,7 @@ import bbs.member.service.ModifyRequest;
 import bbs.member.service.YesOrNoService;
 import bbs.mvc.command.CommandHandler;
 
-public class ChangeEmailHandler extends CommandHandler { //유저가 등록한 인증키가 들어왔다 나가는 곳,,
+public class ChangeEmailHandler extends CommandHandler { //유저가 등록한 인증키가 들어왔다 나가는 곳,, by 현아
 
 	@Override
 	protected String getFormViewName() {
@@ -24,7 +24,6 @@ public class ChangeEmailHandler extends CommandHandler { //유저가 등록한 인증키�
 		String	userKey = req.getParameter("emailChangeKey");
 		req.getSession().setAttribute("userKey",userKey);
 		
-		String userKey2 = (String)req.getSession().getAttribute("userKey");
 		
 		String adminKey = (String)req.getSession().getAttribute("AuthenticationKey");
 		String answer = fin.IsSame(adminKey, userKey);
