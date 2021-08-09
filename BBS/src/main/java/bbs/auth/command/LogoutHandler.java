@@ -19,6 +19,13 @@ public class LogoutHandler extends CommandHandler {
 		if (session != null)
 			session.invalidate();
 		
+//		카카오 로그아웃
+//		String clientId = "188766d70b45863a165fa74d7d8a455b";
+//		String logout_redirectUri = "http://localhost:8080/BBS/index.do?logout=kakao";
+//		String logoutUrl= "https://kauth.kakao.com/oauth/logout?client_id="+clientId+"&logout_redirect_uri="+logout_redirectUri;
+//		res.sendRedirect(logoutUrl);
+		
+		
 		res.sendRedirect(req.getContextPath() + "/index.jsp");
 		return null;
 	}

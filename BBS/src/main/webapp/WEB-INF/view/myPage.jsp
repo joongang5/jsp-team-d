@@ -9,6 +9,7 @@
 <title>마이페이지</title>
 <link href="./css/myPage.css" rel="stylesheet">
 <script type="text/javascript" src="/BBS/js/menu.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/BBS/js/myPage.js"></script>
 </head>
 <body>
@@ -30,7 +31,23 @@ Favorits
 </ul>
 </div>
 <div id="myPic">
- 	 프로필사진
+ 	 <div id= "profilPreview">
+ 	 <c:if test="${member.imgName ne null }">						
+     <img id="imageProfil" src = "./upload/${member.imgName} " > 
+     </c:if>
+    </div>
+    <div id = "cameraIcon">
+
+ 	 <label>
+ 	 	<img id="imageUpload" src="./img/camera.png">
+     <!-- input창 안보이게 하고, 아이콘 클릭하면 연결되게 하기-->
+     <form action="myPage/profil.do" method ="POST" enctype="multipart/form-data" id="uploadForm">	
+     <input id="inputFile" name= "inputFile" style="display:none;" type="file" accept="image/*"  >
+    </label>
+    <input type="submit" id="profilModi" value="프로필사진 수정하기" >
+     </form>
+    
+    </div>
 </div> 
 <br>
 

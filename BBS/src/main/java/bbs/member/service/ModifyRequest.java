@@ -5,7 +5,7 @@ public class ModifyRequest {  //20210803
 
 	private String email;
 	private String id;
-	
+	private String imgName;
 	
 	public ModifyRequest(String id) {
 		this.setId(id);
@@ -21,6 +21,12 @@ public class ModifyRequest {  //20210803
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getImgName() {
+		return imgName;
+	}
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
 	}
 
 }

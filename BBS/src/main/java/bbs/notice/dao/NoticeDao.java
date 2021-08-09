@@ -141,4 +141,28 @@ public class NoticeDao {
 		}
 	}
 	
+	public int delete(Connection conn, int no, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		//ResultSet rs = null;
+		
+		try {
+			String sql = "DELETE FROM notice WHERE notice_no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			//pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+			System.out.println(result + "    !!!!!");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 }

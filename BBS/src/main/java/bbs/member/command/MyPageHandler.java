@@ -46,6 +46,8 @@ public class MyPageHandler extends CommandHandler {
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
+	
+	
 		// 20210802
 		
 		

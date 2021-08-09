@@ -10,6 +10,7 @@ public class Member {
 	private String email;
 	private String birth_date;
 	private Date regDate;
+	private String imgName;
 
 	public Member(String id, String name, String password, String email, String birth_date, Date regDate) {
 		this.id = id;
@@ -18,8 +19,24 @@ public class Member {
 		this.email = email;
 		this.birth_date = birth_date;
 		this.regDate = regDate;
+		
 	}
 
+	public Member(String id, String name, String password, String email, String birth_date, Date regDate,String imgName) {
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+		this.birth_date = birth_date;
+		this.regDate = regDate;
+		this.imgName = imgName;
+	}
+	
+	public Member(String id, String imgName) {
+		this.id = id;
+		this.imgName = imgName;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -51,11 +68,11 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getBirthDate() {
 		return birth_date;
 	}
-	
+
 	public void setBirthDate(String birth_date) {
 		this.birth_date = birth_date;
 	}
@@ -67,17 +84,28 @@ public class Member {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	
+
 	public boolean matchPassword(String password) {
 		return this.password.equals(password);
 	}
-	
+
 	public void changePassword(String newPassword) {
 		this.password = newPassword;
 	}
 
 	public void changeEmail(String newEmail) {
 		this.email = newEmail;
-		
+
 	}
+
+
+	public String getImgName() {
+		return imgName;
+	}
+
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+
 }

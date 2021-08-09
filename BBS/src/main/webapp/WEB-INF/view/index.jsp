@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>index</title>
 <link href="./css/main.css" rel="stylesheet">
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
 	<div id="container">
@@ -18,27 +17,7 @@
 		<div id="main">
 			<h1>Home</h1>
 
-			<!-- 로그인, 로그아웃 관련 기능 / 이강민 -->
-			<c:if test="${! empty authUser}">
-				<a href="logout.do"><button>로그아웃</button></a>
-				<a href="http://developers.kakao.com/logout">카카오 로그아웃</a>
-				<a href="changePw.do"><button>암호변경</button></a>
-			</c:if>
-			<c:if test="${empty authUser}">
-				<a href="join.do"><button>회원가입</button></a>
-				<a href="login.do"><button>로그인</button></a>
-
-				<c:set var="clientId" value="188766d70b45863a165fa74d7d8a455b"/>
-				<c:set var="redirectUri" value="http://localhost:8080/BBS/kakaoHandler"/>
-				<c:set var="logout_redirectUri" value="http://localhost:8080/BBS/index.do?logout=kakao"/>
-				
-				<a href="https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code">
-					<button type="submit">카카오 로그인</button>
-				</a>
-				<a href="https://kauth.kakao.com/oauth/logout?client_id=${clientId}&logout_redirect_uri=${logout_redirectUri}">
-					<button type="submit">카카오 로그아웃</button>
-				</a>
-			</c:if>
+		
 			
 		</div>
 	</div>

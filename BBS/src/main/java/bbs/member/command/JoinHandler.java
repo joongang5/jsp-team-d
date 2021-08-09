@@ -22,13 +22,26 @@ public class JoinHandler extends CommandHandler {
 
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+		
+		String id = req.getParameter("id");
+		String name = req.getParameter("name");
+		String password = req.getParameter("password");
+		String confirmPassword = req.getParameter("confirmPassword");
+		String email = req.getParameter("email");
+		String birth_date = req.getParameter("birth_date");
+		
+
+//		name = name.replaceAll("<", "&lt;");
+//		name = name.replaceAll(">", "&gt;");
+//		name = name.replaceAll("/", "&#47;");
+		
 		JoinRequest joinReq = new JoinRequest();
-		joinReq.setId(req.getParameter("id"));
-		joinReq.setName(req.getParameter("name"));
-		joinReq.setPassword(req.getParameter("password"));
-		joinReq.setConfirmPassword(req.getParameter("confirmPassword"));
-		joinReq.setEmail(req.getParameter("email"));
-		joinReq.setBirthDate(req.getParameter("birth_date"));
+		joinReq.setId(id);
+		joinReq.setName(name);
+		joinReq.setPassword(password);
+		joinReq.setConfirmPassword(confirmPassword);
+		joinReq.setEmail(email);
+		joinReq.setBirthDate(birth_date);
 		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
@@ -46,5 +59,34 @@ public class JoinHandler extends CommandHandler {
 			errors.put("duplicateId", Boolean.TRUE);
 			return getFormViewName();
 		}
+		
 	}
+	
+	
+	
+
+//	
+//	protected String snsProcessSubmit(HttpServletRequest req, HttpServletResponse res) {
+//		JoinRequest joinReq = new JoinRequest();
+//		joinReq.setName(req.getParameter("name"));
+//		joinReq.setEmail(req.getParameter("email"));
+//		
+//		Map<String, Boolean> errors = new HashMap<String, Boolean>();
+//		req.setAttribute("errors", errors);
+//
+//		joinReq.validate(errors);
+//		
+//		if (errors.isEmpty() == false) {
+//			return getFormViewName();
+//		}
+//		
+//		try {
+//			joinService.join(joinReq);
+//			return "/WEB-INF/view/joinSuccess.jsp";
+//		} catch (DuplicateIdException e) {
+//			errors.put("duplicateId", Boolean.TRUE);
+//			return getFormViewName();
+//		}
+//	}
+	
 }
