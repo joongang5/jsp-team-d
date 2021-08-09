@@ -11,22 +11,22 @@ public class Member {
 	private String birth_date;
 	private Date regDate;
 	private String imgName;
-	private String level;
-	private String myPoint;
+	private int level;
+	private int myPoint;
 	
-	public String getLevel() {
+	public int getLevel() {
 		return level;
 	}
 
-	public void setLevel(String level) {
+	public void setLevel(int level) {
 		this.level = level;
 	}
 
-	public String getMyPoint() {
+	public int getMyPoint() {
 		return myPoint;
 	}
 
-	public void setMyPoint(String myPoint) {
+	public void setMyPoint(int myPoint) {
 		this.myPoint = myPoint;
 	}
 
@@ -40,7 +40,7 @@ public class Member {
 		
 	}
 
-	public Member(String id, String name, String password, String email, String birth_date, Date regDate,String imgName, String level, String myPoint ) {
+	public Member(String id, String name, String password, String email, String birth_date, Date regDate,String imgName, int level, int myPoint ) {
 		this.id = id;
 		this.name = name;
 		this.password = password;

@@ -60,8 +60,8 @@ public class MemberDao {
 						rs.getString("birth_date"),
 						toDate(rs.getTimestamp("reg_date")),
 						rs.getString("img"),
-						rs.getString("grade"),
-						rs.getString("point")
+						rs.getInt("grade"),
+						rs.getInt("point")
 						);
 					
 				return member;
@@ -168,6 +168,16 @@ public class MemberDao {
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setString(1, member.getImgName());
 			pstmt.setString(2, member.getId());
+			pstmt.executeUpdate();
+		}
+	}
+	
+	public void updatePointAndLevel(Connection conn, Member member) throws SQLException{
+		String sql = "UPDATE member SET point=?, grade=? where id=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, member.getMyPoint() + 5);
+			pstmt.setInt(2, member.getLevel());
+			pstmt.setString(3, member.getId());
 			pstmt.executeUpdate();
 		}
 	}

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bbs.auth.model.User;
+import bbs.member.service.MyPointService;
 import bbs.mvc.command.CommandHandler;
 import bbs.review.model.Writer;
 import bbs.review.service.WriteRequest;
@@ -15,7 +16,10 @@ import bbs.review.service.WriteReviewService;
 
 
 public class WriteReviewHandler extends CommandHandler {
-
+	//이현아 추가
+	private MyPointService myPointS = new MyPointService();
+	////////////////////////////////
+	
 	
 	@Override
 	protected String getFormViewName() {
@@ -35,6 +39,9 @@ public class WriteReviewHandler extends CommandHandler {
 		WriteRequest writeReq = createWriteRequest(user, req);
 		writeReq.validate(errors);
 		
+		//이현아가 아이디 변수 추가
+		String userId = user.getId();
+		
 		
 		//에러가 존재하면 폼을 다시 보여준다.
 		if(errors.isEmpty() == false)
@@ -46,6 +53,10 @@ public class WriteReviewHandler extends CommandHandler {
 		WriteReviewService writeService = new WriteReviewService();
 		int newReviewNo = writeService.write(writeReq);
 		req.setAttribute("newReviewNo", newReviewNo);
+		
+		//이현아 추가 - 글 쓰기 완료 했으니 포인트 추가
+		myPointS.upgradeMyPoint(userId); 
+		/////////////////////////////////////
 		
 		return"/WEB-INF/view/newReviewSuccess.jsp";
 		
