@@ -21,7 +21,7 @@ Favorits
 <ul>
 	<li>My Page <hr></li>
 	
-	<li>내 정보<hr></li>
+	<li><div id="menuItem" onclick="menuClick('myPage')">내 정보</div><hr></li>
 	
 	<li><div id="menuItem" onclick="menuClick('myPage/readReview')">내 리뷰</div><hr></li>
 	
@@ -34,6 +34,9 @@ Favorits
  	 <div id= "profilPreview">
  	 <c:if test="${member.imgName ne null }">						
      <img id="imageProfil" src = "./upload/${member.imgName} " > 
+     </c:if>
+     <c:if test="${member.imgName eq null }">
+     <img id="imageProfil" src ="./img/user2.png">		
      </c:if>
     </div>
     <div id = "cameraIcon">

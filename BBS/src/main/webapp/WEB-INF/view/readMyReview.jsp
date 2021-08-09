@@ -7,6 +7,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>내가 쓴 리뷰</title>
+<script type="text/javascript" src="/BBS/js/menu.js"></script>
 </head>
 <body>
 		<div id="myReview">
@@ -31,7 +32,6 @@
 		<tr>
 			<td colspan="2">
 			<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}"/>
-			<a href="myPage/readReview.do?pageNo=${pageNo}">[목록]</a>
 				<c:if test="${authUser.id == myReview.id}">
 					<a href="../review/modify.do?no=${myReview.number}">[리뷰수정]</a>
 					<a href="../review/delete.do?no=${myReview.number}">[리뷰삭제]</a>
@@ -39,6 +39,7 @@
 			</td>
 		</tr>
 		</table>
+       <div id="menuItem" onclick="menuClick('myPage')">My Page 로 돌아가기</div>
 		</div>
 </body>
 </html>

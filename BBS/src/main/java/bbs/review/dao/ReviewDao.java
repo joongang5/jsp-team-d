@@ -157,8 +157,14 @@ public class ReviewDao {
 		return null;
 	}
 	
-	
-	
+	//이현아가 추가 - 삭제 기능
+	public void DeleteReview(Connection conn, int reviewNo) throws SQLException{
+		String sql = "DELETE FROM r, rc USING review r LEFT JOIN review_content rc ON r.review_no = rc.review_no WHERE rc.review_no = ?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, reviewNo);
+			pstmt.executeUpdate();
+		}
+	}
 	
 	
 
