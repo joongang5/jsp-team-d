@@ -14,8 +14,8 @@ input[id*="menu"] {
 
 .menuItem {
 	display: block;
-	padding: 5px;
-	border: 1px solid gray;
+	padding: 5px 10px;
+	border: 1px solid #2b2b2b;
 	cursor: pointer;
 }
 
@@ -25,7 +25,7 @@ input[id*="menu"] {
 
 .menuItemSub {
 	display: block;
-	padding: 5px 10px;
+	padding: 5px 20px;
 	font-size: 12px;
 	cursor: pointer;
 }

@@ -1,56 +1,55 @@
 @charset "UTF-8";
 
-ul, li{
-	padding: 0;
-	margin: 0;
-	list-style: none;
-	text-align: center;
+#movieMain {
+	position: absolute;
+	width: 700px;
+	height: 100%;
 }
 
-#ulTable{
-	/* margin-top: 10px; */
-	margin: 10px;
-	height: auto;
-}
-
-#ulTable > li:first-child > ul > li{
-	background-color: #c9c9c9;
+#movieMain > div {
+	position: absolute;
+	top: 10px;
+	left: 50%;
+	transform: translate(-50%, 30px);
+	color: white;
 	font-weight: bold;
+	text-decoration: underline;
+}
+
+table#row01 {
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	transform: translate(-50%, 30px);
+	border-collapse: collapse;
+}
+
+table#row02 {
+	position: absolute;
+	top: 210px;
+	left: 50%;
+	transform: translate(-50%, 30px);
+	border-collapse: collapse;
+}
+
+td.imageTd {
+	margin: 0;
+	padding: 0 5px;
+	width: 100px;
+	height: 130px;
+	line-height: 0;
+}
+
+td.labelTd {
+	margin: 0;
+	padding: 0 5px;
+	width: 100px;
+	height: 20px;
+	color: white;
+}
+
+td.labelTd > div {
+	border: 1px solid black;
+	background-color: black;
 	text-align: center;
-}
-
-#ulTable > li > ul{
-	clear: both;
-	padding: 0 auto;
-	position: relative;
-	min-width: 40px;
-}
-
-#ulTable > li > ul > li{
-	float: left;
-	font-size: 10pt;
-	border-bottom: 1px solid white;
-	height: 25px;
-	line-height: 25px;
-}
-
-#ulTable > li > ul > li:first-child{
-	width: 10%;
-}
-
-#ulTable > li > ul > li:first-child +li{
-	width: 45%;
-	text-align: left;
-}
-
-#ulTable > li > ul > li:first-child +li + li{
-	width: 20%;
-}
-
-#ulTable > li > ul > li:first-child +li + li + li{
-	width: 15%;
-}
-
-#ulTable > li > ul > li:first-child +li + li + li + li{
-	width: 10%;
 }

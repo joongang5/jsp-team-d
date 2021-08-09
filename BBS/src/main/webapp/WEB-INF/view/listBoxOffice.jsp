@@ -13,34 +13,40 @@
 </head>
 <body>
 	<div id="container">
+		<div id="header">
+			<c:import url="/WEB-INF/view/component/header.jsp" />
+		</div>
 		<div id="menu">
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-			<h1>박스오피스</h1>
 			<div id="mainWrapper">
-				<ul id="ulTable">
-					<li>
-						<ul>
-							<li>순위</li>
-							<li>제목</li>
-							<li>포스터</li>
-						</ul>
-					</li>
-					<c:forEach var="boxOfficeView" items="${page.content }">
-					<li>
-						<ul>
-							<li>${boxOfficeView.rank }</li>
-							<li>${boxOfficeView.movieNm }</li>
-							<li><img SRC="${boxOfficeView.image }" width="100" height="100"></li>
-						</ul>
-					</li>						
-					</c:forEach>
-				</ul>
-				<br />
-				<div id="paging">
-					<c:set var="command" value="list.do" scope="request" />
-					<c:import url="/WEB-INF/view/component/paging.jsp" />
+				<div id="movieMain">
+					<div>박스오피스</div>
+					<table id="row01">
+						<tr>
+							<c:forEach var="boxOfficeView" items="${page.content }" begin="0" end="4" step="1">
+								<td class="imageTd"><img SRC="${boxOfficeView.image }" width="100" height="130"></td>
+							</c:forEach>
+						</tr>
+						<tr>
+							<c:forEach var="boxOfficeView" items="${page.content }" begin="0" end="4" step="1">
+								<td class="labelTd"><div>${boxOfficeView.rank }위</div></td>
+							</c:forEach>
+						</tr>
+					</table>
+					<table id="row02">
+						<tr>
+							<c:forEach var="boxOfficeView" items="${page.content }" begin="5" end="9" step="1">
+								<td class="imageTd"><img SRC="${boxOfficeView.image }" width="100" height="130"></td>
+							</c:forEach>
+						</tr>
+						<tr>
+							<c:forEach var="boxOfficeView" items="${page.content }" begin="5" end="9" step="1">
+								<td class="labelTd"><div>${boxOfficeView.rank }위</div></td>
+							</c:forEach>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>

@@ -8,15 +8,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/css/boxOffice.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/movieList.css" rel="stylesheet">
 </head>
 <body>
 	<div id="container">
+		<div id="header">
+			<c:import url="/WEB-INF/view/component/header.jsp" />
+		</div>
 		<div id="menu">
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-			<h1>최신 영화 100</h1>
 			<div id="mainWrapper">
 				<ul id="ulTable">
 					<li>
