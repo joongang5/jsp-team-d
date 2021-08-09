@@ -59,7 +59,9 @@ public class MemberDao {
 						rs.getString("email"),
 						rs.getString("birth_date"),
 						toDate(rs.getTimestamp("reg_date")),
-						rs.getString("img")
+						rs.getString("img"),
+						rs.getString("grade"),
+						rs.getString("point")
 						);
 					
 				return member;

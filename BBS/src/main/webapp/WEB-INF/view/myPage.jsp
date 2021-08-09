@@ -53,7 +53,9 @@ Favorits
 
 <div id="myInfo">
  <ul>
-		<li>Level : <br><li>
+		<li>Level : ${member.level} <br><li>
+		
+		<li>MyPoint : ${member.myPoint} <br></li>
 		
 		<li>이름 : ${member.name }<br></li>		
 		
@@ -61,7 +63,7 @@ Favorits
 		
 			<!-- sns 로그인 사용자들만 암호변경 사용불가 by 강민--> 
 	<c:if test="${empty snsAuthUser}">
-			
+			<!--  -->
 		<li>아이디 : ${member.id}<br> </li>
 
 		<li>비밀번호 : <button onclick="menuClick('changePw')">수정하기</button><br></li>

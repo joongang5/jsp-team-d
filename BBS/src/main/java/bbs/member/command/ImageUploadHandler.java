@@ -14,7 +14,7 @@ import bbs.member.service.ModifyRequest;
 import bbs.member.service.SaveImgDBService;
 import bbs.mvc.command.CommandHandler;
 
-public class ImageUploadHandler extends CommandHandler {
+public class ImageUploadHandler extends CommandHandler { //Çö
 
 	FileUploadService fileUpload = new FileUploadService();
 	

@@ -1,18 +1,8 @@
 package bbs.member.command;
 
 
-import java.util.Properties;
-import java.util.Random;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,17 +10,16 @@ import javax.servlet.http.HttpSession;
 import bbs.auth.model.User;
 
 import bbs.member.model.Member;
-import bbs.member.service.ChangeEmailService;
+
 import bbs.member.service.MemberNotFoundException;
-import bbs.member.service.ModifyRequest;
+
 import bbs.member.service.ReadMyPageService;
 import bbs.member.service.ValidEmailService;
-import bbs.member.service.YesOrNoRequest;
-import bbs.member.service.YesOrNoService;
+
 import bbs.mvc.command.CommandHandler;
 
 
-public class MyPageHandler extends CommandHandler {
+public class MyPageHandler extends CommandHandler { //Çö
 
 	private ReadMyPageService readService = new ReadMyPageService();
 	private ValidEmailService validService = new ValidEmailService();

@@ -8,7 +8,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class FileUploadService {
-	public MultipartRequest fileUpload(HttpServletRequest req) {
+	public MultipartRequest fileUpload(HttpServletRequest req) { //20210808 Çö
 	
 	int sizeLimit = 10*1024*1024;
 	String savePath = req.getServletContext().getRealPath("upload");

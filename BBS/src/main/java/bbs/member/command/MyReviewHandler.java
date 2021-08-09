@@ -24,9 +24,9 @@ import bbs.mvc.command.CommandHandler;
 import bbs.review.model.Review;
 
 
-//테스트
+//내 리뷰 보기 
 
-public class MyReviewHandler extends CommandHandler {
+public class MyReviewHandler extends CommandHandler { //현
 
 	private ReadMyReviewService service = new ReadMyReviewService();
 
@@ -36,9 +36,7 @@ public class MyReviewHandler extends CommandHandler {
 		return "/WEB-INF/view/readMyReview.jsp";
 	}
 
-	// 마이페이지에 진입했을 때 보여줄 데이터에 대한 처리를 합니다.
-	// ReadArticleHandler의 process(HttpServletRequest req, HttpServletResponse res)
-	// 함수 참조
+
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 

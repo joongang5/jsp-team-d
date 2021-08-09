@@ -9,7 +9,7 @@ import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
 
 public class SaveImgDBService {
-	public static Member modify(ModifyRequest modiReq) {
+	public static Member modify(ModifyRequest modiReq) { //20210808 Çö
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();

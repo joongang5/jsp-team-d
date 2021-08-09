@@ -10,7 +10,7 @@ import bbs.member.model.Member;
 
 public class ChangeEmailService {
 
-	public static void modify(ModifyRequest modiReq) {
+	public static void modify(ModifyRequest modiReq) { //Çö
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
