@@ -15,6 +15,15 @@
 <title>공지사항 읽기</title>
 <link href="../css/main.css" rel="stylesheet">
 <style type="text/css">
+body{
+	margin: 0 auto;
+	padding: 0;
+}
+#head{
+ 	font-size: 50px;
+}
+
+
 </style>
 <script type= "text/javascript">
 function del(no){
@@ -31,6 +40,7 @@ function del(no){
 		<c:import url="/WEB-INF/view/component/menu.jsp" />
 	</div>
 	<div id="main">
+		<h1 id=head>Notice</h1>
 		<table border="1" width="100%">
 			<tr>
 				<td>제목</td>
