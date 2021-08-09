@@ -9,6 +9,8 @@
 <link href="../css/main.css" rel="stylesheet">
 <link href="../css/menu.css" rel="stylesheet">
 <link href="../css/articleWrite.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/custom.min.css">
+
 </head>
 <body>
 	<div id="container">

@@ -1,4 +1,4 @@
-package bbs.point.command;
+package bbs.rating.command;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,12 +14,12 @@ import bbs.review.service.WriteReviewService;
 
 
 
-public class PointHandler extends CommandHandler {
+public class RatingHandler extends CommandHandler {
 
 	
 	@Override
 	protected String getFormViewName() {
-		return "/WEB-INF/view/point.jsp";
+		return "/WEB-INF/view/rating.jsp";
 	}
 
 	@Override

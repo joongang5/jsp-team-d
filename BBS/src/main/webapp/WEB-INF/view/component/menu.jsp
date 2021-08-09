@@ -80,12 +80,12 @@ $(function() {
 	<label for="menu06" class="menuItem" onclick="menuClick('offmeet/list')">영화팟 찾기</label>
 	
 	<input type="radio" name="navi" id="menu07">
-	<label for="menu07" class="menuItem" onclick="menuClick('review/list')">영화 토론/리뷰</label>
+	<label for="menu07" class="menuItem" onclick="menuClick('review/list')">영화 리뷰/평가</label>
 	<div class="naviSub" id="review">
-		<input type="radio" name="naviSub07" id="menuSub01">
-		<label for="menuSub01" class="menuItemSub" onclick="menuClick('review/discussion')">토론</label>
 		<input type="radio" name="naviSub07" id="menuSub02">
-		<label for="menuSub02" class="menuItemSub" onclick="menuClick('review/review')">리뷰</label>
+		<label for="menuSub02" class="menuItemSub" onclick="menuClick('review/list')">리뷰</label>
+		<input type="radio" name="naviSub07" id="menuSub01">
+		<label for="menuSub01" class="menuItemSub" onclick="menuClick('rating/rating')">평가 라운지</label>
 	</div>
 	
 	<input type="radio" name="navi" id="menu08">
