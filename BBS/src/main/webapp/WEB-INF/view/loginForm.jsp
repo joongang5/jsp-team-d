@@ -41,14 +41,15 @@
 				</span>
 					<c:if test="${errors.idOrPwNotMatch }"> 아이디와 암호가 일치하지 않습니다.</c:if><br>
 				<button type="submit">로그인</button><br>
-					<a href="./find">ID나 비밀번호를 잃어버리셨나요?</a> <a href="join.do">회원가입</a>
 			</form>
+					<a href="./find"><button>ID/PW</button></a>
+					<a href="join.do"><button>회원가입</button></a>
 			
 				<c:set var="clientId" value="188766d70b45863a165fa74d7d8a455b" />
 				<c:set var="redirectUri" value="http://localhost:8080/BBS/login.do" />
 			<br>
 				<a href="https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code">
-					<button type="submit">카카오 로그인</button>
+					<button type="submit"><img src="./img/kakao_login.png"></button>
 				</a>
 			<br>
 	

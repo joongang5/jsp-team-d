@@ -115,7 +115,7 @@ $(function() {
 				<button type="submit">로그인</button>
 			</form>
 					<a href="./find"><button>ID/PW</button></a>
-					<a href="join.do">회원가입</a>
+					<a href="join.do"><button>회원가입</button></a>
 			
 				<c:set var="clientId" value="188766d70b45863a165fa74d7d8a455b" />
 				<c:set var="redirectUri" value="http://localhost:8080/BBS/login.do" />
