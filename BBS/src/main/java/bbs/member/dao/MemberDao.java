@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import bbs.jdbc.ConnectionProvider;
 import bbs.jdbc.JdbcUtil;
 import bbs.member.model.Member;
 
@@ -170,7 +171,77 @@ public class MemberDao {
 	}
 
 
+	public int idCheck(String id) {
+		int result = 1;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) FROM member WHERE id=?";
+
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+
+		return result;
+	}
 	
+	public int nameCheck(String name) {
+		int result = 1;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) FROM member WHERE name=?";
+		
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int emailCheck(String email) {
+		int result = 1;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) FROM member WHERE email=?";
+
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+
+		return result;
+	}
 	
 	
 
