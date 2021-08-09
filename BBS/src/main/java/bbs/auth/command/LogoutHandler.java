@@ -16,20 +16,27 @@ public class LogoutHandler extends CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		HttpSession session = req.getSession(false);
-		if (session != null)
+		if (session.getAttribute("snsAuthUser") != null) {
+
 			session.invalidate();
-		
-//		카카오 로그아웃
-//		String clientId = "188766d70b45863a165fa74d7d8a455b";
-//		String logout_redirectUri = "http://localhost:8080/BBS/index.do?logout=kakao";
-//		String logoutUrl= "https://kauth.kakao.com/oauth/logout?client_id="+clientId+"&logout_redirect_uri="+logout_redirectUri;
-//		res.sendRedirect(logoutUrl);
-		
-		
-		res.sendRedirect(req.getContextPath() + "/index.jsp");
+
+			// 카카오 로그아웃
+			String clientId = "188766d70b45863a165fa74d7d8a455b";
+			String logout_redirectUri = "http://localhost:8080/BBS/index.do?logout=kakao";
+			String logoutUrl = "https://kauth.kakao.com/oauth/logout?client_id=" + clientId + "&logout_redirect_uri="
+					+ logout_redirectUri;
+			res.sendRedirect(logoutUrl);
+
+		} else {
+
+			session.invalidate();
+			res.sendRedirect(req.getContextPath() + "/index.do?logout=auth");
+
+		}
+
 		return null;
 	}
-	
+
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		return null;

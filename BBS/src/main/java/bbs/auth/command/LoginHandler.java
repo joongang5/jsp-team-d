@@ -53,7 +53,7 @@ public class LoginHandler extends CommandHandler {
 			
 			
 			
-			return "index.do";
+			return "index.do?login=kakao";
 			// 3.2 존재하지 않는다면 카카오 계정을 기반으로 회원가입 시켜야함
 		} else {
 			// 3.2.1 name필드에 닉네임을 입력하도록 유도
