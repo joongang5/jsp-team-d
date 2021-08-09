@@ -4,10 +4,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <style type="text/css">
-input[id*="menu"] {
-	display: none;
-}
-
 .naviSub {
 	display: none;
 }
@@ -39,57 +35,41 @@ input[id*="menu"] {
 $(function() {
 	var curPath = $(location).attr('pathname');
 	var referrer = document.referrer;
-	var naviSubId;
+	var naviId;
 
 	var paths = curPath.split('/');
 	if (paths.length > 2) {
-		naviSubId = '#' + paths[2];
+		naviId = '#' + paths[2];
 	}
 	
 	if (referrer.indexOf(curPath) > 0) {
-		$(naviSubId).css('display', 'block');
+		$(naviId).next('.naviSub').css('display', 'block');
 	} else {
-		$(naviSubId).slideDown('fast');
+		$(naviId).next('.naviSub').slideDown('fast');
 	}
+	
+	$(naviId).css('border', '1px solid white');
 });
 </script>
 
 <div class="navi">
-	<input type="radio" name="navi" id="menu01">
-	<label for="menu01" class="menuItem" onclick="menuClick('boxOffice/list')">영화 홈</label>
-	
-	<input type="radio" name="navi" id="menu02">
-	<label for="menu02" class="menuItem" onclick="menuClick('movie/list')">상영작·예정작</label>
-	<div class="naviSub" id="movie">
-		<input type="radio" name="naviSub01" id="menuSub01">
-		<label for="menuSub01" class="menuItemSub" onclick="menuClick('movie/list')">▷ 현재 상영영화</label>
-		<input type="radio" name="naviSub01" id="menuSub02">
-		<label for="menuSub02" class="menuItemSub" onclick="menuClick('movie/list')">▷ 개봉 예정영화</label>
+	<div class="menuItem" id="boxOffice" onclick="menuClick('boxOffice/list')">영화 홈</div>
+	<div class="menuItem" id="movie" onclick="menuClick('movie/list')">상영작·예정작</div>
+	<div class="naviSub">
+		<div class="menuItemSub" onclick="menuClick('movie/list')">▷ 현재 상영영화</div>
+		<div class="menuItemSub" onclick="menuClick('movie/list')">▷ 개봉 예정영화</div>
+	</div>
+	<div class="menuItem" id="login" onclick="menuClick('login')">로그인 페이지</div>
+	<div class="menuItem" id="myPage" onclick="menuClick('myPage')">마이 페이지</div>
+	<div class="menuItem" id="notice" onclick="menuClick('notice/list')">공지사항</div>
+	<div class="menuItem" id="offmeet" onclick="menuClick('offmeet/list')">영화팟 찾기</div>
+	<div class="menuItem" id="review" onclick="menuClick('review/list')">영화 리뷰/평가</div>
+	<div class="naviSub">
+		<div class="menuItemSub" onclick="menuClick('review/list')">리뷰</div>
+		<div class="menuItemSub" onclick="menuClick('rating/rating')">평가 라운지</div>
 	</div>
 	
-	<input type="radio" name="navi" id="menu03">
-	<label for="menu03" class="menuItem" onclick="menuClick('login')">로그인 페이지</label>
-	
-	<input type="radio" name="navi" id="menu04">	
-	<label for="menu04" class="menuItem" onclick="menuClick('myPage')">마이 페이지</label>
-	
-	<input type="radio" name="navi" id="menu05">
-	<label for="menu05" class="menuItem" onclick="menuClick('notice/list')">공지사항</label>
-	
-	<input type="radio" name="navi" id="menu06">
-	<label for="menu06" class="menuItem" onclick="menuClick('offmeet/list')">영화팟 찾기</label>
-	
-	<input type="radio" name="navi" id="menu07">
-	<label for="menu07" class="menuItem" onclick="menuClick('review/list')">영화 리뷰/평가</label>
-	<div class="naviSub" id="review">
-		<input type="radio" name="naviSub07" id="menuSub02">
-		<label for="menuSub02" class="menuItemSub" onclick="menuClick('review/list')">리뷰</label>
-		<input type="radio" name="naviSub07" id="menuSub01">
-		<label for="menuSub01" class="menuItemSub" onclick="menuClick('rating/rating')">평가 라운지</label>
-	</div>
-	
-	<input type="radio" name="navi" id="menu08">
-	<label for="menu08" class="menuItem" onclick="menuClick('admin')">관리자</label>
+	<div class="menuItem" onclick="menuClick('admin')">관리자</div>
 </div>
 
 <div id="menuLoginBox">

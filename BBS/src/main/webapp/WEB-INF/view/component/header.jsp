@@ -5,7 +5,7 @@
 .home {
 	position: absolute;
 	width: 146px;
-	height: 30px;
+	height: 29px;
 	border: 2px solid #2b2b2b;
 	font-weight: bold;
 	color: white;
@@ -13,7 +13,7 @@
 	cursor: pointer;
 }
 
-.home > label {
+.home > div {
 	position: absolute;
 	top: 50%;
 	left: 45%;
@@ -23,5 +23,5 @@
 </style>
     
 <div class="home">
-	<label>D'Movie</label>
+	<div>D'Movie</div>
 </div>
