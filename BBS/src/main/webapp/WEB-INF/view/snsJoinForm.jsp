@@ -9,17 +9,18 @@
 <head>
 <meta charset="UTF-8">
 <title>가입</title>
+<link href="./css/joinForm.css" rel="stylesheet">
 <link href="./css/main.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 
 function checkName(){
-	//var id = $(선택자).명령();
 	var name = $("#name").val();
-	if(name == "" || name.length < 2){
+	if(name == ""){
 		$("#joinNameConfirm").css("color", "red");
-		$("#joinNameConfirm").text("닉네임을 두글자 이상 작성해주세요.");
+		$("#joinNameConfirm").text("닉네임을 작성해주세요.");
 		$("#name").focus();
+		$("#joinSubmit").prop("disabled", true);
 		return false;
 	}
 	$.ajax({
@@ -29,14 +30,14 @@ function checkName(){
 		url: './joinCheck',
 		success: function(rData, textStatus, xhr){
 			if(rData == 1){
-				//$("#joinSubmit").prop("disabled", true);//비활성화
 				$("#joinNameConfirm").css("color", "red");
 				$("#joinNameConfirm").text("닉네임 " + name + "는 이미 등록되어 있습니다.");
-				
+				$("#joinSubmit").prop("disabled", true);
 			}else{
-				//$("#joinSubmit").prop("disabled", false);//활성화
 				$("#joinNameConfirm").css("color", "blue");
 				$("#joinNameConfirm").text("닉네임");
+				$("#joinSubmit").prop("disabled", false);
+				return true;
 			}
 		},
 		error: function(xhr, status, e){
@@ -44,6 +45,26 @@ function checkName(){
 		}
 	});
 }
+
+function checkBirth() {
+	var birth = $("#birth_date").val();
+	var bc = document.getElementById('birthConfirm');
+    
+	if(birth.include('-') != 2 && birth.length() != 10){
+    	bc.innerHTML='생년월일을 다시 확인해주세요.';
+        bc.style.color='red';
+        $("#joinSubmit").prop("disabled", true);
+        return false;
+    } else {
+    	$("#joinSubmit").prop("disabled", false);
+    	$("#joinSubmit").css("color", "black");
+    	bc.innerHTML='생일';
+        bc.style.color='blue';
+        return true;
+    }
+}
+
+
 
 function handleOnInput(e)  {
 	  e.value = e.value.replace(/[^ㄱ-힣a-zA-Z0-9]/ig, '')
@@ -64,9 +85,8 @@ function handleOnEmail(e)  {
 	<form action="join.do" method="post">
 		<br/> 
 				<div>
-					<span id="joinNameConfirm">닉네임</span>
-					<br>
-					<input type="text" id="name" name="name" required="required" onchange="checkName()" oninput="handleOnInput(this)">
+					<span id="joinNameConfirm">닉네임</span><span id="joinNameInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
+					<br><input type="text" id="name" name="name" required="required" onchange="checkName()" oninput="handleOnInput(this)">
 				</div>
 					<input type="hidden" name="id" value="${snsUser.email}">
 					<input type="hidden" type="password" name="password" value="${snsUser.access_token }">
@@ -74,9 +94,8 @@ function handleOnEmail(e)  {
 				
 					<input type="hidden" name="email" value="${snsUser.email}">
 				<div>
-					생일
-					<br>
-					<input type="date" name="birth_date" required="required">
+					<span id="birthConfirm">생일</span><span id="joinBirthInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
+					<br><input type="date" id="birth_date" name="birth_date" value="2000-01-01" required="required" onchange="checkBirth()">
 				</div>
 		
 	

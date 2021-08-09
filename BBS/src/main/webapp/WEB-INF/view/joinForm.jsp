@@ -18,19 +18,21 @@ $(function(){
 });
 
 
+//$("#id, #name, #password, #confirmPassword, #email, #birth").prop("readonly", true);
 
 function checkID(){
 	var id = $("#id").val();
 	var email = $("#email").val();
 	if(id == "" || id.length < 4){
 		$("#joinIdConfirm").css("color", "red");
-		$("#joinIdConfirm").text("아이디를 네글자 이상 작성해주세요.");
+		$("#joinIdConfirm").text("아이디를 4자 이상 작성해주세요.");
 		$("#id").focus();
 		$("#joinSubmit").prop("disabled", true);
 		return false;
 	}
 	if(id.includes('@') == 1 && id.includes('.') == true){
-		$('#email').val($("#id").val());
+		$("#email").val($("#id").val());
+		$("#email").prop("readonly", true);
 	}
 	$.ajax({
 		type:'post',
@@ -60,9 +62,9 @@ function checkID(){
 
 function checkName(){
 	var name = $("#name").val();
-	if(name == "" || name.length < 2){
+	if(name == ""){
 		$("#joinNameConfirm").css("color", "red");
-		$("#joinNameConfirm").text("닉네임을 두글자 이상 작성해주세요.");
+		$("#joinNameConfirm").text("닉네임을 작성해주세요.");
 		$("#name").focus();
 		$("#joinSubmit").prop("disabled", true);
 		return false;
@@ -99,7 +101,7 @@ function isSame() {
 	var leng = document.getElementById('pwLength');
     
 	if(pw1.length < 6){
-    		leng.innerHTML='비밀번호를 6자리 이상 입력해주세요.';
+    		leng.innerHTML='비밀번호를 6자 이상 입력해주세요.';
             leng.style.color='red';
             $("#joinSubmit").prop("disabled", true);
             return false;
@@ -107,13 +109,8 @@ function isSame() {
 	if(pw1.length > 5){
     		leng.innerHTML='비밀번호';
     		leng.style.color='blue';
-    	if(pw1 == pw2) {
+    	if(pw1 == pw2 && pw2 == pw1) {
         	same.innerHTML='비밀번호';
-            same.style.color='blue';
-            $("#joinSubmit").prop("disabled", false);
-            return true;
-        } else if(pw2 == pw1) {
-       		same.innerHTML='비밀번호';
             same.style.color='blue';
             $("#joinSubmit").prop("disabled", false);
             return true;
@@ -138,23 +135,8 @@ function checkEmail(){
 		$("#joinEmailConfirm").text("이메일을 다시 확인해주세요.");
 		$("#email").focus();
 		$("#joinSubmit").prop("disabled", true);
-	}
-	if(id.includes('@') == 1 && id.includes('.') == true){
-		if(id != email){
-			$("#joinEmailConfirm").css("color", "red");
-			$("#joinEmailConfirm").text("이메일로 아이디를 사용할 경우 아이디와 이메일이 같아야 합니다.");
-			$("#id").focus();
-			$("#joinSubmit").prop("disabled", true);
-			return false;
 		}
-		if(email != id){
-			$("#joinEmailConfirm").css("color", "red");
-			$("#joinEmailConfirm").text("이메일로 아이디를 사용할 경우 아이디와 이메일이 같아야 합니다.");
-			$("#id").focus();
-			$("#joinSubmit").prop("disabled", true);
-			return false;
-		}
-	}
+	
 	$.ajax({
 		type:'post',
 		dataType:'text',
@@ -238,10 +220,10 @@ function checkBirth() {
         $("#joinSubmit").prop("disabled", true);
         return false;
     } else {
+    	$("#joinSubmit").prop("disabled", false);
     	$("#joinSubmit").css("color", "black");
     	bc.innerHTML='생일';
         bc.style.color='blue';
-        $("#joinSubmit").prop("disabled", false);
         return true;
     }
 }
@@ -254,7 +236,7 @@ function handleOnInput(e)  {
 	}
 
 function handleOnEmail(e)  {
-	  e.value = e.value.replace(/[^a-z0-9@.]/ig, '')
+	  e.value = e.value.replace(/[^a-z0-9@.-_]/ig, '')
 	}
 
 	
@@ -284,13 +266,13 @@ function handleOnEmail(e)  {
 			<br><input type="password" id="confirmPassword" name="confirmPassword" required="required" onchange="isSame()">
 	
 		</div>
-		<div>
+		<div id="joinEmailConfirmBox">
 			<span id="joinEmailConfirm">이메일</span><span id="joinEmailInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
 			<br><input type="email" id="email" name="email" required="required" style="text-transform: lowercase" onchange="checkEmail()" onchange="checkConfirmEmail()" oninput="handleOnEmail(this)">
 		</div>
 		<div>
 			<span id="birthConfirm">생일</span><span id="joinBirthInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><input type="date" id="birth_date" name="birth_date" required="required" onchange="checkBirth()">
+			<br><input type="date" id="birth_date" name="birth_date" value="2000-01-01" required="required" onchange="checkBirth()">
 		</div>
 		<div></div>
 		
