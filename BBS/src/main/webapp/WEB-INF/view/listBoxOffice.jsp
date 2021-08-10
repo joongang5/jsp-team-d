@@ -26,24 +26,40 @@
 					<table id="row01">
 						<tr>
 							<c:forEach var="boxOfficeView" items="${page.content }" begin="0" end="4" step="1">
-								<td class="imageTd"><img SRC="${boxOfficeView.image }" width="100" height="130"></td>
+								<td class="imageTd">
+									<img SRC="${boxOfficeView.image }" width="100" height="130">
+									<div>${boxOfficeView.rank }</div>
+								</td>
 							</c:forEach>
 						</tr>
 						<tr>
 							<c:forEach var="boxOfficeView" items="${page.content }" begin="0" end="4" step="1">
-								<td class="labelTd"><div>${boxOfficeView.rank }위</div></td>
+								<td class="labelTd">
+									<div>
+										<label>누적관객</label>
+										<label>${boxOfficeView.audiAcc }명</label>
+									</div>
+								</td>
 							</c:forEach>
 						</tr>
 					</table>
 					<table id="row02">
 						<tr>
 							<c:forEach var="boxOfficeView" items="${page.content }" begin="5" end="9" step="1">
-								<td class="imageTd"><img SRC="${boxOfficeView.image }" width="100" height="130"></td>
+								<td class="imageTd">
+									<img SRC="${boxOfficeView.image }" width="100" height="130">
+									<div>${boxOfficeView.rank }</div>
+								</td>
 							</c:forEach>
 						</tr>
 						<tr>
 							<c:forEach var="boxOfficeView" items="${page.content }" begin="5" end="9" step="1">
-								<td class="labelTd"><div>${boxOfficeView.rank }위</div></td>
+								<td class="labelTd">
+									<div>
+										<label>누적관객</label>
+										<label>${boxOfficeView.audiAcc }명</label>
+									</div>
+								</td>
 							</c:forEach>
 						</tr>
 					</table>

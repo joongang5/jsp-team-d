@@ -33,15 +33,16 @@ $(function() {
 	var referrer = document.referrer;
 	var naviId;
 	var paths = curPath.split('/');
-	if (paths.length > 2) {
+	if (paths.length > 2)
 		naviId = '#' + paths[2];
-	}
+
+	if (naviId == '#')
+		naviId = '#boxOffice'; 
 	
-	if (referrer.indexOf(curPath) > 0) {
+	if (referrer.indexOf(curPath) > 0)
 		$(naviId).next('.naviSub').css('display', 'block');
-	} else {
+	else
 		$(naviId).next('.naviSub').slideDown('fast');
-	}
 	
 	$(naviId).css('border', '1px solid white');
 });

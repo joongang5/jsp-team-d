@@ -18,6 +18,7 @@ public class BoxOfficeViewDao<T extends BoxOfficeView> extends BasePagingDao<T> 
 		BoxOfficeView boxOfficeView = new BoxOfficeView(
 				rs.getString("movie_nm"),
 				rs.getInt("rank"),
+				rs.getInt("audi_acc"),
 				rs.getString("image"));
 		
 		return (T)boxOfficeView;

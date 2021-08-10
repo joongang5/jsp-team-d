@@ -38,6 +38,22 @@ td.imageTd {
 	width: 100px;
 	height: 130px;
 	line-height: 0;
+	position: relative;
+}
+
+td.imageTd > img {
+	z-index: 1;
+}
+
+td.imageTd > img + div {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 2;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 1px 1px 0px black;
 }
 
 td.labelTd {
@@ -51,5 +67,16 @@ td.labelTd {
 td.labelTd > div {
 	border: 1px solid black;
 	background-color: black;
-	text-align: center;
+}
+
+td.labelTd > div > label {
+	color: white;
+	text-align: left;
+	font-size: 11px;
+}
+
+td.labelTd > div > label + label {
+	color: red;
+	text-align: right;
+	font-size: 11px;
 }
