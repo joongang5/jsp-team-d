@@ -14,9 +14,6 @@
 <body>
 	<div id="container">
 	<div id="loginBox">
-		<div id="menu">
-			<c:import url="/WEB-INF/view/component/menu.jsp" />
-		</div>
 		<!-- 로그인, 로그아웃 관련 기능 / 이강민 -->
 		<c:if test="${! empty authUser}">
 			
@@ -42,7 +39,7 @@
 					<c:if test="${errors.idOrPwNotMatch }"> 아이디와 암호가 일치하지 않습니다.</c:if><br>
 				<button type="submit">로그인</button><br>
 			</form>
-					<a href="./find"><button>ID/PW</button></a>
+					<a href="forgot.do"><button>ID/PW</button></a>
 					<a href="join.do"><button>회원가입</button></a>
 			
 				<c:set var="clientId" value="188766d70b45863a165fa74d7d8a455b" />

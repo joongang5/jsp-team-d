@@ -19,7 +19,7 @@ import bbs.member.service.ValidEmailService;
 import bbs.mvc.command.CommandHandler;
 
 
-public class MyPageHandler extends CommandHandler { //Çö
+public class MyPageHandler extends CommandHandler { //ï¿½ï¿½
 
 	private ReadMyPageService readService = new ReadMyPageService();
 	private ValidEmailService validService = new ValidEmailService();
@@ -29,9 +29,9 @@ public class MyPageHandler extends CommandHandler { //Çö
 		return "/WEB-INF/view/myPage.jsp";
 	}
 
-	// ¸¶ÀÌÆäÀÌÁö¿¡ ÁøÀÔÇßÀ» ¶§ º¸¿©ÁÙ µ¥ÀÌÅÍ¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÕ´Ï´Ù.
-	// ReadArticleHandlerÀÇ process(HttpServletRequest req, HttpServletResponse res)
-	// ÇÔ¼ö ÂüÁ¶
+	// ë§ˆì´í˜ì´ì§€ì— ì§„ì…í–ˆì„ ë•Œ ë³´ì—¬ì¤„ ë°ì´í„°ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•©ë‹ˆë‹¤.
+	// ReadArticleHandlerì˜ process(HttpServletRequest req, HttpServletResponse res)
+	// í•¨ìˆ˜ ì°¸ì¡°
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
@@ -56,26 +56,26 @@ public class MyPageHandler extends CommandHandler { //Çö
 		}
 	}
 
-	// Á¤º¸ ¼öÁ¤ÇÏ±â¿Í °°Àº Ã³¸®¸¦ ÇÕ´Ï´Ù.
-	// myPage.jsp¿¡¼­ ¼öÁ¤ÇÏ±â formÀÇ actionÀ» post¹æ½ÄÀ¸·Î Ã³¸®
+	// ì •ë³´ ìˆ˜ì •í•˜ê¸°ì™€ ê°™ì€ ì²˜ë¦¬ë¥¼ í•©ë‹ˆë‹¤.
+	// myPage.jspì—ì„œ ìˆ˜ì •í•˜ê¸° formì˜ actionì„ postë°©ì‹ìœ¼ë¡œ ì²˜ë¦¬
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 	
 		
-		//¸ŞÀÏ ÀÎÁõ ÈÄ ¼öÁ¤ ±¸Çö
+		//ë©”ì¼ ì¸ì¦ í›„ ìˆ˜ì • êµ¬í˜„
 		
 		User user = (User) req.getSession().getAttribute("authUser");
 		String userId = user.getId(); 	
 		
 		
-		String to = req.getParameter("newEmail"); //¸ŞÀÏ ¹ŞÀ» ÁÖ¼Ò
-		//System.out.println(to); Àß µé¾î¿È
+		String to = req.getParameter("newEmail"); //ë©”ì¼ ë°›ì„ ì£¼ì†Œ
+		//System.out.println(to); ì˜ ë“¤ì–´ì˜´
 		
-	 //  validService.validEmailService(to) = ÀÌ¸ŞÀÏ ÀÎÁõ¹øÈ£ º¸³»´Â ¼­ºñ½º 
+	 //  validService.validEmailService(to) = ì´ë©”ì¼ ì¸ì¦ë²ˆí˜¸ ë³´ë‚´ëŠ” ì„œë¹„ìŠ¤ 
 		
 
-		HttpSession keyWasSaved = req.getSession(); //¼¼¼Ç¿¡ ÀúÀå
-        keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); //ÀÌ¸§ ÁöÁ¤
+		HttpSession keyWasSaved = req.getSession(); //ì„¸ì…˜ì— ì €ì¥
+        keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); //ì´ë¦„ ì§€ì •
         keyWasSaved.setAttribute("newEmail2", to);
          
 		
