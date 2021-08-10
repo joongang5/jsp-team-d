@@ -56,7 +56,7 @@ public class BoxOfficeDao<T extends BoxOffice> extends BasePagingDao<T> {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT count(*) FROM box_office WHERE target_dt=?");
+			pstmt = conn.prepareStatement("SELECT count(*) FROM box_office_view WHERE target_dt=?");
 			pstmt.setString(1, target_dt);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
