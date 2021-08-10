@@ -36,11 +36,11 @@ table{
 	<table border="1"> 
 		
 		<tr id="titleN" style="text-align: center;">
-			<td style="width: 7%;">번호</td>
-			<td style="width: 44%">제목</td>
-			<td style="width: 11%;">작성자</td>
-			<td style="width: 29%;">날짜</td>
-			<td style="width: 9%;">조회수</td>
+			<th style="width: 7%;">번호</th>
+			<th style="width: 44%">제목</th>
+			<th style="width: 11%;">작성자</th>
+			<th style="width: 29%;">날짜</th>
+			<th style="width: 9%;">조회수</th>
 		</tr>
 		
 		<c:if test="${noticePage.hasNoNotices()}">
