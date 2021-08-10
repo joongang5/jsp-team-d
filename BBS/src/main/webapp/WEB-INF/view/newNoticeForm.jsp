@@ -8,6 +8,9 @@
 <title>게시글 쓰기</title>
 <link href="../css/main.css" rel="stylesheet">
 <style type="text/css">
+body{
+	background-color: #2b2b2b; 
+}
 #write{
 	text-align: center;
 
@@ -28,11 +31,11 @@
 	<form action="write.do" method="post">
 	
 	<div id="write">
-	<p>
+	<p style="color: white;">
 		제목:<br/><input type="text" id="title" name="title" value="${param.title }">
 		<c:if test="${errors.title }">제목을 입력하세요.</c:if>
 	</p>
-	<p>
+	<p style="color: white;">
 		내용:<br/>
 		<textarea id="content" name="content" rows="10" ></textarea>
 	</p>

@@ -9,6 +9,9 @@
 <title>게시글 수정</title>
 <link href="../css/main.css" rel="stylesheet">
 <style type="text/css">
+body{
+	background-color: #2b2b2b; 
+}
 #write{
 	text-align: center;
 
@@ -29,13 +32,13 @@
 		<input type="hidden" name="no" value="${modReq.noticeNumber}">
 		
 		<div id="write">
-		<p>
+		<p style="color: white;">
 			번호 : ${modReq.noticeNumber }번글<br>
 	
 			제목:<br/><input type="text" id="title" name="title" value="${modReq.title }">
 			<c:if test="${errors.title }">제목을 입력하세요.</c:if>
 		</p>
-		<p>
+		<p style="color: white;">
 			내용:<br/>
 			<textarea id="content" name="content" rows="10" >${modReq.content }</textarea>
 		</p>
