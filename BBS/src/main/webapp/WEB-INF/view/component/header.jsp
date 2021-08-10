@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
+
 <style type="text/css">
+#headerMain {
+	position: absolute;
+	width: 100%;
+	height: 33px;
+}
+
 .home {
 	position: absolute;
 	width: 146px;
@@ -20,8 +26,38 @@
 	transform: translate(-50%, -50%);
 	cursor: pointer;
 }
+
+#headerButtons > button {
+	position: absolute;
+	top: 50%;
+	left: 750px;
+	transform: translate(-50%, -50%);
+}
+
+#headerButtons > button+button {
+	position: absolute;
+	top: 50%;
+	left: 820px;
+	transform: translate(-50%, -50%);
+}
 </style>
-    
-<div class="home">
-	<div>D'Movie</div>
+
+<script>
+	function onLoginClick() {
+		location.href = '/BBS/login.do';
+	}
+
+	function onMyPageClick() {
+		location.href = '/BBS/myPage.do';
+	}
+</script>
+
+<div id="headerMain">
+	<div class="home">
+		<div>D'Movie</div>
+	</div>
+	<div id="headerButtons">
+		<button onclick="onLoginClick();">로그인</button>
+		<button onclick="onMyPageClick();">마이페이지</button>
+	</div>
 </div>
