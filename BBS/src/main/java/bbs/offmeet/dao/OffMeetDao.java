@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import bbs.jdbc.JdbcUtil;
+import bbs.member.model.Member;
 import bbs.offmeet.model.OffMeet;
 import bbs.offmeet.model.Writer;
 
@@ -144,4 +145,41 @@ public class OffMeetDao {
 			return pstmt.executeUpdate();
 		}
 	}
+	
+	
+	//20210810 이현아가 만든거
+	public OffMeet selectById(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("SELECT * FROM offmeet where writer_id = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				OffMeet offMeet = new OffMeet(
+						rs.getInt("offmeet_no"),
+						rs.getString("offmeet_content"),
+						rs.getString("writer_id"),
+						rs.getString("writer_name"),
+						rs.getString("title"),
+						toDate(rs.getTimestamp("regdate")),
+						toDate(rs.getTimestamp("moddate")),
+						rs.getInt("read_cnt"));
+					
+				return offMeet;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
 }

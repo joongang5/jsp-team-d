@@ -27,7 +27,7 @@ Favorits
 	
 	<li>내 댓글 <hr></li>
 	
-	<li>영화 친구</li>
+	<li><div id="menuItem" onclick="menuClick('myPage/readOffMeet')">내 영화팟 글</div></li>
 </ul>
 </div>
 <div id="myPic">
