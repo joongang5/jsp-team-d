@@ -24,14 +24,14 @@
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="index.jsp">메인</a></li>
+					href="../boxOffice/list.do">MAIN PAGE</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="dropdown"
-					data-toggle="dropdown"> 회원 관리 </a>
+					data-toggle="dropdown"> JOIN US (추가 계정필요)</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown">
-						<a class="dropdown-item" href="../login.do">로그인</a> <a
-							class="dropdown-item" href="../join.do">회원가입</a> <a
-							class="dropdown-item" href="../logout.do">로그아웃</a>
+						<a class="dropdown-item" href="ratingUserLogin.jsp">로그인</a> <a
+							class="dropdown-item" href="ratingUserRegister.jsp">회원가입</a> <a
+							class="dropdown-item" href="ratingUserLogout.jsp">로그아웃</a>
 					</div></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
@@ -59,10 +59,122 @@
 			<div class="card-header bg-light">
 				<div class="row">
 					<div class="col-8 text-left">
-						뷰티플마인드&nbsp;<small>이브이</small>
+						더 수어사이드 스쿼드&nbsp;<small>제임스 건</small>
+					</div>
+					<div class="col-4 text-right">
+						종합<span style="color: red;">B</span>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					이번에도 자막 실망임! &nbsp;<small>pika****</small>
+				</h5>
+				<p class="card-text">약빤 척하는게 아니라 제대로 하고싶은대로 한 영화. 참신한 장면들이 많았음에도 역시 대중들에게 이질감이란 방해물이 되기도 하나보다..난 정말 좋았음. 개성있는 캐릭터들에 약간의 주제의식이 첨가되니 액션을 뒷받침하기에 충분하다.절대적인 것이 있을까? 생각해본다. 누구나 목적을 가질 수 있다. </p>
+				<div class="row">
+					<div class="col-9 text-left">
+						몰입도<span style="color: red;">☆★★★★</span> 영상미<span
+							style="color: red;">☆★★★★</span> 메시지<span style="color: red;">☆★★★★</span>
+						<span style="color: green;">(추천: 77)</span>
+					</div>
+					<div class="col-3 text-right">
+						<a onclick="return confirm('추천하시겠습니까?')"
+							href="./likeAction.jsp?ratingID=">추천</a> <a
+							onclick="return confirm('삭제하시겠습니까?')"
+							href="./deleteAction.jsp?ratingID=">삭제</a>
+					</div>
+				</div>
+			</div>
+		</div>
+				<div class="card bg-light mt-3">
+			<div class="card-header bg-light">
+				<div class="row">
+					<div class="col-8 text-left">
+						극장판 도라에몽: 진구의 신공룡&nbsp;<small>이마이 카즈아키</small>
 					</div>
 					<div class="col-4 text-right">
 						종합<span style="color: red;">A</span>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					애들 보여주러 갔다가, 본인이 더 재미지게 보고 왔네요.&nbsp;<small>evee****</small>
+				</h5>
+				<p class="card-text">이번 극장판은 초반과 중반에는 재미가 있고후반에는 감동과 반전이 있었네요~?특히, 「너와 거듭한 독백(君と重ねたモノロ?グ)」이 흘러나오는 부분부터는 노비타(진구)와 큐의 우정 이 더 잘 드러나 가지고 더 감동적으로 봤네요~</p>
+				<div class="row">
+					<div class="col-9 text-left">
+						몰입도<span style="color: red;">★★★★★</span> 영상미<span
+							style="color: red;">★★★★★</span> 메시지<span style="color: red;">★★★★★</span>
+						<span style="color: green;">(추천: 125)</span>
+					</div>
+					<div class="col-3 text-right">
+						<a onclick="return confirm('추천하시겠습니까?')"
+							href="./likeAction.jsp?ratingID=">추천</a> <a
+							onclick="return confirm('삭제하시겠습니까?')"
+							href="./deleteAction.jsp?ratingID=">삭제</a>
+					</div>
+				</div>
+			</div>
+		</div>
+				<div class="card bg-light mt-3">
+			<div class="card-header bg-light">
+				<div class="row">
+					<div class="col-8 text-left">
+						모가디슈&nbsp;<small>류승완</small>
+					</div>
+					<div class="col-4 text-right">
+						종합<span style="color: red;">A</span>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					백기 장면;;;&nbsp;<small>gobu****</small>
+				</h5>
+				<p class="card-text">누구나 예상할 수 있는 전개가 연속되더니 끝나버림...하나 예상못한 사실, 21년도에 북한과의 화합장려 영화가 등장할 줄은.. 예상못함.. </p>
+				<div class="row">
+					<div class="col-9 text-left">
+						몰입도<span style="color: red;">★★★★★</span> 영상미<span
+							style="color: red;">★★★★★</span> 메시지<span style="color: red;">★★★★★</span>
+						<span style="color: green;">(추천: 99)</span>
+					</div>
+					<div class="col-3 text-right">
+						<a onclick="return confirm('추천하시겠습니까?')"
+							href="./likeAction.jsp?ratingID=">추천</a> <a
+							onclick="return confirm('삭제하시겠습니까?')"
+							href="./deleteAction.jsp?ratingID=">삭제</a>
+					</div>
+				</div>
+			</div>
+		</div>
+				<div class="card bg-light mt-3">
+			<div class="card-header bg-light">
+				<div class="row">
+					<div class="col-8 text-left">
+						더 그레이트 샤크&nbsp;<small>마틴 윌슨</small>
+					</div>
+					<div class="col-4 text-right">
+						종합<span style="color: red;">C</span>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					이 영화의 최대 문제는 공포 영화임에도 전혀 무섭지가 않다는 점&nbsp;<small>pair****</small>
+				</h5>
+				<p class="card-text">정말 돈이 아까운 허접영화 비상보트 탈출 표류중 일행중 2명이 상어에게 공격당해 죽었는데 배경이 야간설정이라 어떻게 죽었는지 모두 실루엣으로 처리했고 잘보이는 낮에는 일상대화밀 잔뜩 지루...내돈 내놔~~</p>
+				<div class="row">
+					<div class="col-9 text-left">
+						몰입도<span style="color: red;">☆☆☆★★</span> 영상미<span
+							style="color: red;">☆☆☆★★</span> 메시지<span style="color: red;">☆☆☆★★</span>
+						<span style="color: green;">(추천: 25)</span>
+					</div>
+					<div class="col-3 text-right">
+						<a onclick="return confirm('추천하시겠습니까?')"
+							href="./likeAction.jsp?ratingID=">추천</a> <a
+							onclick="return confirm('삭제하시겠습니까?')"
+							href="./deleteAction.jsp?ratingID=">삭제</a>
 					</div>
 				</div>
 			</div>
@@ -226,6 +338,9 @@
 			</div>
 		</div>
 	</div>
+	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
+		Copyright &copy; 2021 Group_D All Rright Reserved.
+	</footer>
 	<!-- 제이쿼리 자바스크립트 추가하기 -->
 	<script src="../js/jquery.min.js"></script>
 	<!-- Popper 자바스크립트 추가하기 -->
