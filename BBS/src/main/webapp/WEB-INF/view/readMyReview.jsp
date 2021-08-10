@@ -13,22 +13,24 @@
 	<div id="myReview">
 		내가 쓴 리뷰
 		<table border="1" >
+		
 		<tr>
 			<td>번호</td>
-			<td>${myReview.number}</td>
+			<td>${myReview[0].number}</td>
 		</tr>
 		<tr>
 			<td>작성자</td>
-			<td>${myReview.name}</td>
+			<td>${myReview[0].name}</td>
 		</tr>
 		<tr>
 			<td>제목</td>
-			<td><c:out value="${myReview.title}"/></td>
+			<td><c:out value="${myReview[0].title}"/></td>
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><c:out value="${myReview.content}"/></td>
+			<td><c:out value="${myReview[0].content}"/></td>
 		</tr>
+
 	</table>
 	</div>
 </body>

@@ -3,6 +3,9 @@ package bbs.member.command;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +21,7 @@ import bbs.member.service.ReadMyReviewService;
 
 
 import bbs.mvc.command.CommandHandler;
+import bbs.review.model.Review;
 
 
 
@@ -29,7 +33,7 @@ public class MyReviewHandler extends CommandHandler { //Çö
 	
 
 	private ReadMyReviewService service = new ReadMyReviewService();
-
+	private List<Review> review = new ArrayList<Review>();
 
 	@Override
 	protected String getFormViewName() {
@@ -49,7 +53,7 @@ public class MyReviewHandler extends CommandHandler { //Çö
 		
 	
 		try {
-			Object review = service.getMyReview(memberId); 
+			List<Review> review = service.getMyReview(memberId); 
 			req.setAttribute("myReview", review);
 			return getFormViewName();
 		} catch (MemberNotFoundException e) {
