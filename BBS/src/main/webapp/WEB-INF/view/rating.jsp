@@ -16,7 +16,7 @@
 
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="index.jsp">영화평가 라운지</a>
+		<a class="navbar-brand" href="index.jsp">D'movie 영화평가 라운지</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
@@ -29,9 +29,9 @@
 					class="nav-link dropdown-toggle" id="dropdown"
 					data-toggle="dropdown"> JOIN US (추가 계정필요)</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown">
-						<a class="dropdown-item" href="ratingUserLogin.jsp">로그인</a> <a
-							class="dropdown-item" href="ratingUserRegister.jsp">회원가입</a> <a
-							class="dropdown-item" href="ratingUserLogout.jsp">로그아웃</a>
+						<a class="dropdown-item" href="login.do">로그인</a> <a
+							class="dropdown-item" href="join.do">회원가입</a> <a
+							class="dropdown-item" href="logout.do">로그아웃</a>
 					</div></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
@@ -193,14 +193,14 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="./ratingRegisterAction.jsp" method="post">
+					<form action="rating.do" method="post">
 						<div class="form-row">
 							<div class="form-group col-sm-6">
 								<label>영화명</label> <input type="text" name="movieName"
 									class="form-control" maxlength="20">
 							</div>
 							<div class="form-group col-sm-6">
-								<label>영화감독</label> <input type="text" name="movieName"
+								<label>영화감독</label> <input type="text" name="directorName"
 									class="form-control" maxlength="20">
 							</div>
 						</div>
@@ -339,7 +339,7 @@
 		</div>
 	</div>
 	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
-		Copyright &copy; 2021 Group_D All Rright Reserved.
+		Copyright &copy; 2021 D'movie All Right Reserved.
 	</footer>
 	<!-- 제이쿼리 자바스크립트 추가하기 -->
 	<script src="../js/jquery.min.js"></script>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>영화팟</title>
-<link href="../css/main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 
 <style type="text/css">
 * {
@@ -18,7 +18,7 @@
 table {
 	margin: 0 auto;
 	height: 400px;
-	width: 500px;
+	width: 1000px;
 	background-color: yellow;
 	border-collapse: collapse;
 	text-align: center;
@@ -49,7 +49,9 @@ tr:hover {
 </head>
 <body>
 	<div id="container">
-
+    <div id="header">
+         <c:import url="/WEB-INF/view/component/header.jsp" />
+      </div>
 		<div id="menu">
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
@@ -81,7 +83,7 @@ tr:hover {
 				</c:forEach>
 				<c:if test="${offmeetPage.hasOffMeet() }">
 					<tr>
-						<td colspan="4">
+						<td colspan="7">
 							<c:if test="${offmeetPage.startPage >5 }">
 							<a href="list.do?pageNo=${offmeetPage.startPage-5 }">[이전]</a>
 							</c:if>

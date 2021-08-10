@@ -11,7 +11,11 @@ import bbs.jdbc.JdbcUtil;
 import bbs.logic.dao.BasePagingDao;
 import bbs.movie.model.Movie;
 
-public class MovieDao<T extends Movie> implements BasePagingDao<T> {
+public class MovieDao<T extends Movie> extends BasePagingDao<T> {
+
+	public MovieDao(String tableName, String orderRule) {
+		super(tableName, orderRule);
+	}
 
 	@Override
 	public int selectCount(Connection conn, String condition) throws SQLException {
@@ -38,7 +42,6 @@ public class MovieDao<T extends Movie> implements BasePagingDao<T> {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> select(Connection conn, int startRow, int size, String condition) throws SQLException {
 		PreparedStatement pstmt = null;
@@ -117,7 +120,8 @@ public class MovieDao<T extends Movie> implements BasePagingDao<T> {
 		}
 	}
 	
-	private Movie convert(ResultSet rs) throws SQLException {
+	@SuppressWarnings("unchecked")
+	protected T convert(ResultSet rs) throws SQLException {
 		Movie movie = new Movie(
 				rs.getString("movie_cd"),
 				rs.getString("movie_nm"),
@@ -135,6 +139,6 @@ public class MovieDao<T extends Movie> implements BasePagingDao<T> {
 				rs.getString("companys"),
 				rs.getString("company_cd"),
 				rs.getString("company_nm"));
-		return movie;
+		return (T)movie;
 	}
 }

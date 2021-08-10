@@ -1,8 +1,9 @@
 package bbs.review.model;
 
 import java.util.Date;
+import java.util.List;
 
-public class Review {
+public class Review  {
 	
 	private Integer number;
 	private Writer writer;

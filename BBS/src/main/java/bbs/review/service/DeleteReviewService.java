@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import bbs.jdbc.ConnectionProvider;
 import bbs.jdbc.JdbcUtil;
-
 import bbs.review.dao.ReviewDao;
 
 public class DeleteReviewService { //20210809 ÀÌÇö¾Æ
