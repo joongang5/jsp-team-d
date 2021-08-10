@@ -13,7 +13,7 @@ import bbs.util.api.APIHelper;
 
 public class RegisterBoxOfficeService {
 
-	private BoxOfficeDao<BoxOffice> dao = new BoxOfficeDao<BoxOffice>(); 
+	private BoxOfficeDao<BoxOffice> dao = new BoxOfficeDao<BoxOffice>("box_office_view", null); 
 
 	public ArrayList<BoxOffice> register(String targetDt) {
 		ArrayList<BoxOffice> list = APIHelper.kobis.requestBoxOffice(targetDt);

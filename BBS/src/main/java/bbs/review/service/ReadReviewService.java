@@ -33,7 +33,5 @@ public class ReadReviewService {
 			throw new RuntimeException(e);
 
 		}
-
 	}
-
 }

@@ -4,70 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import bbs.boxoffice.model.BoxOffice;
 import bbs.jdbc.JdbcUtil;
 import bbs.logic.dao.BasePagingDao;
 
-public class BoxOfficeDao<T extends BoxOffice> implements BasePagingDao<T> {
+public class BoxOfficeDao<T extends BoxOffice> extends BasePagingDao<T> {
 
-	@Override
-	public int selectCount(Connection conn, String condition) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	public BoxOfficeDao(String tableName, String orderRule) {
+		super(tableName, orderRule);
+	}
 
-		try {
-			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT count(*) FROM box_office");
-			if (condition != null) {
-				sb.append(" WHERE ");
-				sb.append(condition);
-			}
-			
-			pstmt = conn.prepareStatement(sb.toString());
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getInt(1);
-			}
-			return 0;	
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<T> select(Connection conn, int startRow, int size, String condition) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT * FROM box_office");
-			if (condition != null) {
-				sb.append(" WHERE ");
-				sb.append(condition);
-			}
-			sb.append(" ORDER BY rank ASC limit ?,?");
-			
-			pstmt = conn.prepareStatement(sb.toString());
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, size);
-			rs = pstmt.executeQuery();
-			List<T> result = new ArrayList<T>();
-			while (rs.next()) {
-				result.add((T)convert(rs));
-			}
-			return result;	
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
-	
 	public void insert(Connection conn, BoxOffice boxOffice) throws SQLException {
 		PreparedStatement insertPstmt = null;
 		PreparedStatement resultPstmt = null;
@@ -122,7 +69,8 @@ public class BoxOfficeDao<T extends BoxOffice> implements BasePagingDao<T> {
 		}
 	}
 	
-	private BoxOffice convert(ResultSet rs) throws SQLException {
+	@SuppressWarnings("unchecked")
+	protected T convert(ResultSet rs) throws SQLException {
 		
 		BoxOffice boxOffice = new BoxOffice(
 				rs.getString("target_dt"),
@@ -145,6 +93,6 @@ public class BoxOfficeDao<T extends BoxOffice> implements BasePagingDao<T> {
 				rs.getInt("scrn_cnt"),
 				rs.getInt("show_cnt"));
 		
-		return boxOffice;
+		return (T)boxOffice;
 	}
 }

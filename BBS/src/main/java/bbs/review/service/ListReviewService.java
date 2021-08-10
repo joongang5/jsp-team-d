@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import bbs.jdbc.ConnectionProvider;
 import bbs.review.dao.ReviewDao;
 import bbs.review.model.Review;
-import bbs.jdbc.ConnectionProvider;
 
 public class ListReviewService {
 

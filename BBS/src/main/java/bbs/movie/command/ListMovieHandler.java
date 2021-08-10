@@ -11,8 +11,15 @@ import bbs.mvc.command.CommandHandler;
 
 public class ListMovieHandler extends CommandHandler {
 
-	private PageListService<Movie> listService = new PageListService<Movie>(new MovieDao<Movie>());
+	private PageListService<Movie> listService;
+	
+	public ListMovieHandler() {
+		String tableName = "movie";
+		String orderRule = "open_dt DESC";
+		MovieDao<Movie> dao = new MovieDao<Movie>(tableName, orderRule);
 		
+		listService = new PageListService<Movie>(dao);
+	}
 	
 	@Override
 	protected String getFormViewName() {

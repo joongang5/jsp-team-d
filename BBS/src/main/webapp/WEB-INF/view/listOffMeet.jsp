@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>영화팟</title>
-<link href="../css/main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 
 <style type="text/css">
 * {
@@ -49,7 +49,9 @@ tr:hover {
 </head>
 <body>
 	<div id="container">
-
+		<div id="header">
+			<c:import url="/WEB-INF/view/component/header.jsp" />
+		</div>
 		<div id="menu">
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>

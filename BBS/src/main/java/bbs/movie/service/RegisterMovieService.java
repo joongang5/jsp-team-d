@@ -12,7 +12,7 @@ import bbs.util.api.APIHelper;
 
 public class RegisterMovieService {
 	
-	private MovieDao<Movie> movieDao = new MovieDao<Movie>(); 
+	private MovieDao<Movie> movieDao = new MovieDao<Movie>("movie", null); 
 	
 	public void register(String openStartDt) {
 		ArrayList<Movie> list = APIHelper.kobis.requestMovieList(openStartDt);
