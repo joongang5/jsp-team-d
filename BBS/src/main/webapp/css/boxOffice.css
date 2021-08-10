@@ -18,25 +18,25 @@
 
 table#row01 {
 	position: absolute;
-	top: 50px;
+	top: 80px;
 	left: 50%;
-	transform: translate(-50%, 30px);
+	transform: translate(-50%, 0);
 	border-collapse: collapse;
 }
 
 table#row02 {
 	position: absolute;
-	top: 210px;
+	top: 250px;
 	left: 50%;
-	transform: translate(-50%, 30px);
+	transform: translate(-50%, 0);
 	border-collapse: collapse;
 }
 
 td.imageTd {
 	margin: 0;
 	padding: 0 5px;
-	width: 100px;
-	height: 130px;
+	width: 110px;
+	height: 143px;
 	line-height: 0;
 	position: relative;
 }
@@ -71,12 +71,10 @@ td.labelTd > div {
 
 td.labelTd > div > label {
 	color: white;
-	text-align: left;
-	font-size: 11px;
+	font-size: 10px;
 }
 
 td.labelTd > div > label + label {
 	color: red;
-	text-align: right;
 	font-size: 11px;
 }
