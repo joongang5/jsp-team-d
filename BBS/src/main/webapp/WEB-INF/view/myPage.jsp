@@ -27,7 +27,7 @@ Favorits
 	
 	<li>내 댓글 <hr></li>
 	
-	<li><div id="menuItem" onclick="menuClick('myPage/readOffMeet')">내 영화팟 글</div></li>
+	<li><div id="menuItem" onclick="menuClick('myPage/offMeetList')">내 영화팟 글</div></li>
 </ul>
 </div>
 <div id="myPic">
@@ -89,7 +89,7 @@ Favorits
 	 </li>	
 	<li>가입일시 : <fmt:formatDate value="${member.regDate }" pattern="yyyy-MM-dd" /></li>
 </ul>	
-<div id="menuItem" onclick="menuClick('index')">home</div>
+<div id="menuItem" onclick="menuClick('boxOffice/list')">home</div>
 </div>
 
 
