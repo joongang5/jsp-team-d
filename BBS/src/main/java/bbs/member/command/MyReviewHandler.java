@@ -3,17 +3,12 @@ package bbs.member.command;
 
 
 
-
-
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
 
 import bbs.auth.model.User;
-
 
 
 import bbs.member.service.MemberNotFoundException;
@@ -23,12 +18,15 @@ import bbs.member.service.ReadMyReviewService;
 
 
 import bbs.mvc.command.CommandHandler;
-import bbs.review.model.Review;
+
 
 
 //내 리뷰 보기 
 
 public class MyReviewHandler extends CommandHandler { //현
+	
+	
+	
 
 	private ReadMyReviewService service = new ReadMyReviewService();
 
@@ -42,12 +40,12 @@ public class MyReviewHandler extends CommandHandler { //현
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		// 20210806 
-		
+
 
 		Object obj =  req.getSession().getAttribute("authUser");
 		User user = (User)obj; 
 		String memberId = user.getId();
+
 		
 	
 		try {
@@ -66,6 +64,9 @@ public class MyReviewHandler extends CommandHandler { //현
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
 
 
 }

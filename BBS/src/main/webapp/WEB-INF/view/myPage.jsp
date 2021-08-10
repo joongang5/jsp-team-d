@@ -23,7 +23,7 @@ Favorits
 	
 	<li><div id="menuItem" onclick="menuClick('myPage')">내 정보</div><hr></li>
 	
-	<li><div id="menuItem" onclick="menuClick('myPage/readReview')">내 리뷰</div><hr></li>
+	<li><div id="menuItem" onclick="menuClick('myPage/reviewList')">내 리뷰</div><hr></li>
 	
 	<li>내 댓글 <hr></li>
 	

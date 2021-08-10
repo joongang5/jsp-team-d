@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 
 import bbs.jdbc.JdbcUtil;
-import bbs.member.model.Member;
 import bbs.review.model.Review;
 import bbs.review.model.Writer;
 
@@ -186,7 +185,6 @@ public class ReviewDao {
 			return pstmt.executeUpdate();
 		}
 	}
-	
 	/*
 	 * public int delete(Connection conn, int no) throws SQLException{ try
 	 * (PreparedStatement pstmt = conn.prepareStatement(
