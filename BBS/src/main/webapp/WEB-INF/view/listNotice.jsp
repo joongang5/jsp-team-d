@@ -19,14 +19,18 @@ h1 {
 table {
 	margin-left: auto;
 	margin-right: auto;
-	border-top: 3px solid white;
-	border-bottom: 3px solid white;
-	height: 400px;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+	height: auto;
 	min-height: 400px;
-	color: white;
+	boder-collapse: collapse;
 }
 
 #titleN {
+	
+}
+
+#contentN {
 	
 }
 </style>
@@ -52,36 +56,36 @@ table {
 						<td style="width: 9%;">조회수</td>
 					</tr>
 
+					<c:if test="${noticePage.hasNoNotices()}">
+						<tr>
+							<td colspan="4">게시글이 없습니다.</td>
+						</tr>
+					</c:if>
 
-		<c:if test="${noticePage.hasNoNotices()}">
-			<tr>
-				<td colspan="4">게시글이 없습니다.</td>
-			</tr>
-		</c:if>
-		
-		<c:forEach var="notice" items="${noticePage.content}">
-			<tr>
-				<td style="text-align: center;">${notice.number }</td>
-				<td style="color: white;"> 
-					<a href="read.do?no=${notice.number}&pageNo=${noticePage.currentPage}">
-						<c:out value="${notice.title}" />
-					</a>
-				</td>
-				<td style="text-align: center;">${notice.writer.name}</td>
-				<td style="text-align: center;"><fmt:formatDate value="${notice.modifiedDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
-				<td style="text-align: center;">${notice.readCount}</td>
-			</tr>
-		</c:forEach>
-	</table>
-	
-	
-				<div id="paging" style="text-align: center; color: white;"> 
+					<c:forEach var="notice" items="${noticePage.content}">
+						<tr id="contentN">
+							<td style="text-align: center;">${notice.number }</td>
+							<td style="color: white;"><a
+								href="read.do?no=${notice.number}&pageNo=${noticePage.currentPage}">
+									<c:out value="${notice.title}" />
+							</a></td>
+							<td style="text-align: center;">${notice.writer.name}</td>
+							<td style="text-align: center;"><fmt:formatDate
+									value="${notice.modifiedDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+							<td style="text-align: center;">${notice.readCount}</td>
+						</tr>
+					</c:forEach>
+				</table>
+
+
+				<div id="paging" style="text-align: center; color: white;">
 					<c:if test="${noticePage.hasNotices()}">
 						<tr>
 							<c:if test="${noticePage.startPage > 5}">
 								<a href="list.do?pageNo=${noticePage.startPage - 5}">[이전]</a>
 							</c:if>
-							<c:forEach var="pNo" begin="${noticePage.startPage}" end="${noticePage.endPage}">
+							<c:forEach var="pNo" begin="${noticePage.startPage}"
+								end="${noticePage.endPage}">
 								<a href="list.do?pageNo=${pNo}">[${pNo}]</a>
 							</c:forEach>
 
@@ -90,10 +94,10 @@ table {
 							</c:if>
 						</tr>
 					</c:if>
-				</div>
 
-				<div id="writeN" style="float: right; color: white;">
-					<a href="write.do">[공지사항 쓰기]</a>
+					<div id="writeN" style="float: right; color: white;">
+						<a href="write.do">[공지사항 쓰기]</a>
+					</div>
 				</div>
 			</div>
 		</div>

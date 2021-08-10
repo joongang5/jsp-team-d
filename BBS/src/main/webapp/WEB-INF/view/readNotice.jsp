@@ -15,15 +15,25 @@
 <title>공지사항 읽기</title>
 <link href="../css/main.css" rel="stylesheet">
 <style type="text/css">
-body{
-	margin: 0 auto;
-	padding: 0;
+h1{
+	font-size:50px;
+	text-align:center;
 }
-#head{
- 	font-size: 50px;
+table{
+	margin-left: auto; 
+	margin-right: auto;
+	border-top: 3px solid black; 
+	border-bottom: 3px solid black; 
+	height: 400px;
+	min-height: 400px;
+	width:500px;
 }
-
-
+#nButton{
+	text-align: center;
+}
+#cud{
+	float: right;
+}
 </style>
 <script type= "text/javascript">
 function del(no){
@@ -39,41 +49,41 @@ function del(no){
 	<div id="menu">
 		<c:import url="/WEB-INF/view/component/menu.jsp" />
 	</div>
-	<div id="main">
+	<div id="mainWrapper">
 		<h1 id=head>Notice</h1>
-		<table border="1" width="100%">
-			<tr>
+		<table>
+			<tr style="height: 30px">
 				<td>제목</td>
 				<td>${noticeData.notice.number }번글: <c:out value="${noticeData.notice.title }" /></td>
 			</tr>
-			<tr>
+			<tr style="height: 30px">
 				<td>작성자</td>
 				<td>${noticeData.notice.writer.name }</td>
 			</tr>
 			
-			<tr>
+			<tr style="height: 30px">
 				<td>날짜</td>
 				<td><fmt:formatDate value="${noticeData.notice.regDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 			</tr>
 			
 			<tr>
-				<td>내용</td>
-				<td>${fn:replace(noticeData.content, cn, br)}</td>
+				
+				<td colspan="2" style="width: 500px; border-top:3px solid black; text-align: center;">${fn:replace(noticeData.content, cn, br)}</td>
 				
 			</tr>
 			
 			
-			<tr>
-				<td colspan="2">
+		</table>
+				<div id="nButton">
 					<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" /> 
 						<a href="list.do?pageNo=${pageNo}">[목록]</a> 
+				</div>
+				<div id="cud">
 							<c:if test="${authUser.id == noticeData.notice.writer.id }">
 						<a href="modify.do?no=${noticeData.notice.number }">[게시글수정]</a>
-						
 						<a onclick="return del(${noticeData.notice.number})" >[게시글삭제]</a>
-							</c:if></td>
-			</tr>
-		</table>
+							</c:if>
+				</div>
 	</div>
 </body>
 </html>
