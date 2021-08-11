@@ -14,19 +14,17 @@
 			<td>번호</td>
 			<td>작성자</td>
 			<td>제목</td>
-			<td>내용</td>
 		</tr>
 		<c:forEach var="review" items="${page.content }">
 			<tr>
 				<td>${review.number}</td>
+			
+				<td>${review.id }</td>
 				<td>
-					<a href="readReview.do?no=${review.number}&pageNo=${reviewPage.currentPage}">
+					<a href="../review/read.do?no=${review.number}&pageNo=${pageNum}">
 							<c:out value="${review.title}" />
 					</a>
 				</td>
-				<td>${review.id }</td>
-				<td>${review.title }</td>
-				<td>${review.content }</td>
 			</tr>
 		</c:forEach>
 	</table>

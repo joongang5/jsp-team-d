@@ -15,19 +15,16 @@
 			<td>번호</td>
 			<td>작성자</td>
 			<td>제목</td>
-			<td>내용</td>
 		</tr>
 		<c:forEach var="offmeet" items="${page.content }">
 			<tr>
-				<td>${offmeet.number}</td>
+				<td>${offmeet.offmeetNo}</td>
+				<td>${offmeet.writerId }</td>
 				<td>
-					<a href="readOffMeet.do?no=${offmeet.number}&pageNo=${OffMeetPage.currentPage}">
+					<a href="../offmeet/read.do?no=${offmeet.offmeetNo}&pageNo=${pageNum}">
 							<c:out value="${offmeet.title}" />
 					</a>
 				</td>
-				<td>${offmeet.writerId }</td>
-				<td>${offmeet.title }</td>
-				<td>${offmeet.content }</td>
 			</tr>
 		</c:forEach>
 	</table>

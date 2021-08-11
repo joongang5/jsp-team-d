@@ -1,5 +1,6 @@
 package bbs.offmeet.command;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +15,7 @@ public class ListOffMeetHandler extends CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		String pageNoVal = req.getParameter("pageNo");
+		
 		int pageNo = 1;
 		if(pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);

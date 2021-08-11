@@ -17,6 +17,7 @@ public class ReviewData {
 		this.review = review;
 		this.content = content;
 	}
+	
 
 	public Review getReview() {
 		return review;

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bbs.review.service.ListReviewService;
 import bbs.review.service.ReviewPage;
+
 import bbs.mvc.command.CommandHandler;
 
 public class ListReviewHandler extends CommandHandler {
@@ -20,6 +21,9 @@ public class ListReviewHandler extends CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res)
 		throws Exception{
 		String pageNoVal = req.getParameter("pageNo");
+		
+	
+
 		int pageNo = 1;
 		if(pageNoVal != null){
 			pageNo = Integer.parseInt(pageNoVal);
