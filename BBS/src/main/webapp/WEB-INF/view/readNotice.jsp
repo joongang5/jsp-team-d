@@ -16,6 +16,10 @@
 <link href="${pageContext.request.contextPath }/css/main.css"
 	rel="stylesheet">
 <style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+}
 h1{
 	font-size:50px;
 	text-align:center;
@@ -26,10 +30,11 @@ table{
 	margin-right: auto;
 	border-top: 3px solid white; 
 	border-bottom: 3px solid white; 
-	height: 400px;
+	height: auto;
 	min-height: 400px;
-	width:500px;
+	width:auto;
 	color: white;
+	border-collapse: collapse;
 }
 #nButton{
 }
@@ -55,6 +60,7 @@ function del(no){
 	<div id="menu">
 		<c:import url="/WEB-INF/view/component/menu.jsp" />
 	</div>
+	<div id="main">
 	<div id="mainWrapper">
 		<h1 id=head>Notice</h1>
 		<table>
@@ -90,6 +96,7 @@ function del(no){
 							</c:if>
 							</dl>
 				</div>
+	</div>
 	</div>
 	</div>
 </body>

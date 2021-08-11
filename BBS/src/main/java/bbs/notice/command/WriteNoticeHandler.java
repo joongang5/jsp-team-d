@@ -47,6 +47,5 @@ public class WriteNoticeHandler extends CommandHandler {
 				new Writer(user.getId(), user.getName()),
 				req.getParameter("title"),
 				req.getParameter("content"));
-				
 	}
 }
