@@ -1,6 +1,6 @@
 function tag () {
   let progress = document.querySelector('.progressTag')
-  let interval = 5
+  let interval = 0
   let updatesPerSecond = 1000 / 60
   let end = progress.max * 0.8
 
