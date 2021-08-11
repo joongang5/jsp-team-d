@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/boxOffice.css" rel="stylesheet">
-
 </head>
 <body>
 	<div id="container">
@@ -27,7 +26,7 @@
 						<tr>
 							<c:forEach var="boxOfficeView" items="${page.content }" begin="0" end="4" step="1">
 								<td class="imageTd">
-									<img SRC="${boxOfficeView.image }" width="110" height="143">
+									<img SRC="${boxOfficeView.image }">
 									<div>${boxOfficeView.rank }</div>
 								</td>
 							</c:forEach>
@@ -47,7 +46,7 @@
 						<tr>
 							<c:forEach var="boxOfficeView" items="${page.content }" begin="5" end="9" step="1">
 								<td class="imageTd">
-									<img SRC="${boxOfficeView.image }" width="110" height="143">
+									<img SRC="${boxOfficeView.image }">
 									<div>${boxOfficeView.rank }</div>
 								</td>
 							</c:forEach>
