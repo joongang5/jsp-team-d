@@ -38,5 +38,9 @@
 			</td>
 		</tr>
 	</table>
+	<div style="margin-top: 25px; text-align: center;">
+		<textarea style="width: 70%; height: 70px;" name="contents" class="form-control"></textarea>&nbsp;
+		<button type="button" class="btn btn-square-toround btn-bordered-info" style="width: 80px; height: 70px;">댓글</button>
+	</div>
 </body>
 </html>
