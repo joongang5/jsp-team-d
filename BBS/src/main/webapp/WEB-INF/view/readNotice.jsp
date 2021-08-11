@@ -34,6 +34,7 @@ table{
 	min-height: 400px;
 	width:auto;
 	min-width:800px;
+	max-width:800px;
 	color: white;
 	border-collapse: collapse;
 }
@@ -73,18 +74,18 @@ function del(no){
 	<div id="mainWrapper" style="width: 100%; margin:0;">
 		<h1 id=head>Notice</h1>
 		<table>
-			<tr style="height: 30px">
-				<td>제목</td>
-				<td>${noticeData.notice.number }번글&nbsp;:&nbsp;<c:out value="${noticeData.notice.title }" /></td>
+			<tr>
+				<td style="min-height: 30px;">제목</td>
+				<td style="margin-top: 10px; margin-bottom: 10px;">${noticeData.notice.number }번글&nbsp;:&nbsp;<c:out value="${noticeData.notice.title }" /></td>
 			</tr>
-			<tr style="height: 30px">
-				<td>작성자</td>
+			<tr>
+				<td style="min-width: 70px; min-height: 30px; margin-bottom: 10px;">작성자</td>
 				<td>${noticeData.notice.writer.name }</td>
 			</tr>
 			
-			<tr style="height: 30px">
-				<td>날짜</td>
-				<td><fmt:formatDate value="${noticeData.notice.regDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+			<tr>
+				<td style="min-height: 30px; margin-bottom: 10px;">날짜</td>
+				<td><fmt:formatDate value="${noticeData.notice.regDate}" pattern="yyyy-MM-dd hh:mm:ss" />&emsp;&emsp;&emsp;&emsp;&emsp;조회수&emsp;&emsp;${noticeData.notice.readCount}</td>
 			</tr>
 			
 			<tr>

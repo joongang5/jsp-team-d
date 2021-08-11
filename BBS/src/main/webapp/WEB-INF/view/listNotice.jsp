@@ -38,6 +38,7 @@ table {
 
 #titleN th{
 	border-bottom: 3px solid white;
+	max-height: 30px;
 }
 
 </style>
@@ -55,11 +56,11 @@ table {
 				<h1>Notice</h1>
 				<table >
 
-					<tr id="titleN" style="text-align: center;"> 
+					<tr id="titleN" style="text-align: center;	height: 35px;"> 
 						<th style="width: 9%;">번호</th>
-						<th style="width: 42%">제목</th>
+						<th style="width: 46%">제목</th>
 						<th style="width: 11%;">작성자</th>
-						<th style="width: 29%;">날짜</th>
+						<th style="width: 25%;">날짜</th>
 						<th style="width: 9%;">조회수</th>
 					</tr>
 
@@ -73,7 +74,7 @@ table {
 						<tr id="contentN">
 							<td style="text-align: center;">${notice.number }</td>
 							
-							<td style="text-overflow:ellipsis; white-space:nowrap; max-width:330px; overflow:hidden">
+							<td style="text-overflow:ellipsis; white-space:nowrap; max-width:360px; overflow:hidden">
 							<a style="color:white; " href="read.do?no=${notice.number}&pageNo=${noticePage.currentPage}"> ${notice.title } </a>
 							</td>
 							
