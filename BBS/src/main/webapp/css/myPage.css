@@ -22,6 +22,7 @@ img{
 	list-style:none;
 }
 
+
 #myInfo{
 	margin: 0 auto;
 	margin-left :35%;
@@ -86,3 +87,26 @@ img{
 #profilModi{
 	margin-top: 40px;
 }
+.progressTag {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        display: block;
+        width: 150px;
+        height: 20px;
+        border-radius: 7px;
+        color: #35495e;
+      }
+      progress::-webkit-progress-bar {
+        background-color: #eee;
+        border-radius: 8px;
+      }
+      progress::-webkit-progress-value {
+        background-color: #35495e;
+        border-radius: 8px;
+      }
+      progress::-moz-progress-bar {
+        background-color: #eee;
+        border-radius: 8px;
+      }
+

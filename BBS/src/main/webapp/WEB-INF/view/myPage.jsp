@@ -56,7 +56,8 @@ Favorits
  <ul>
 		<li>Level : ${member.level} <br><li>
 		
-		<li>MyPoint : ${member.myPoint} <br></li>
+		<li id=>MyPoint : ${member.myPoint} <br></li>
+		<li> <progress class="progressTag" value="${member.myPoint}" max="100"></progress></li>
 		
 		<li>이름 : ${member.name }<br></li>		
 		
