@@ -31,6 +31,28 @@
 $(function() {
 	var curPath = $(location).attr('pathname');
 	var referrer = document.referrer;
+	var naviId = getSelectedNaviId();
+	
+	if (referrer.indexOf(curPath) > 0)
+		$(naviId).next().css('display', 'block');
+	else
+		$(naviId).next().slideDown('fast');
+	
+	$(naviId).css('border', '1px solid white');
+});
+
+function slideDown(obj) {
+	var naviId = getSelectedNaviId();
+	$(naviId).css('border', 'none');
+	$(naviId).next().slideUp('fast');
+	
+	$(obj).next().slideDown('fast');
+	$(obj).css('border', '1px solid white');
+}
+
+function getSelectedNaviId() {
+	var curPath = $(location).attr('pathname');
+	var referrer = document.referrer;
 	var naviId;
 	var paths = curPath.split('/');
 	if (paths.length > 2)
@@ -39,13 +61,8 @@ $(function() {
 	if (naviId == '#')
 		naviId = '#boxOffice'; 
 	
-	if (referrer.indexOf(curPath) > 0)
-		$(naviId).next('.naviSub').css('display', 'block');
-	else
-		$(naviId).next('.naviSub').slideDown('fast');
-	
-	$(naviId).css('border', '1px solid white');
-});
+	return naviId;
+}
 </script>
 
 <div class="navi">
@@ -61,6 +78,11 @@ $(function() {
 	<div class="naviSub">
 		<div class="menuItemSub" onclick="menuClick('review/list')">리뷰</div>
 		<div class="menuItemSub" onclick="menuClick('rating/rating')">평가 라운지</div>
+	</div>
+	<div class="menuItem" id="test" onclick="slideDown(this)">TEST</div>
+	<div class="naviSub">
+		<div class="menuItemSub" onclick="menuClick('review/list')">TEST</div>
+		<div class="menuItemSub" onclick="menuClick('rating/rating')">TEST</div>
 	</div>
 	
 	<div class="menuItem" onclick="menuClick('admin')">관리자</div>
