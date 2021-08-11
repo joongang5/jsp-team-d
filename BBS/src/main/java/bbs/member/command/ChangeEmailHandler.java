@@ -9,7 +9,7 @@ import bbs.member.service.ModifyRequest;
 import bbs.member.service.YesOrNoService;
 import bbs.mvc.command.CommandHandler;
 
-public class ChangeEmailHandler extends CommandHandler { //À¯Àú°¡ µî·ÏÇÑ ÀÎÁõÅ°°¡ µé¾î¿Ô´Ù ³ª°¡´Â °÷,, by Çö¾Æ
+public class ChangeEmailHandler extends CommandHandler { //ìœ ì €ê°€ ë“±ë¡í•œ ì¸ì¦í‚¤ê°€ ë“¤ì–´ì™”ë‹¤ ë‚˜ê°€ëŠ” ê³³
 
 	@Override
 	protected String getFormViewName() {
@@ -28,13 +28,13 @@ public class ChangeEmailHandler extends CommandHandler { //À¯Àú°¡ µî·ÏÇÑ ÀÎÁõÅ°°
 		String adminKey = (String)req.getSession().getAttribute("AuthenticationKey");
 		String answer = fin.IsSame(adminKey, userKey);
 		         
-		// System.out.println(adminKey); Àßµé¾î¿È
+		// System.out.println(adminKey);ì˜ë“¤ì–´ì˜´
 		
 		User user = (User) req.getSession().getAttribute("authUser");
 		String userId = user.getId(); 	
 		
 		
-		String to = (String) req.getSession().getAttribute("newEmail2"); //¸ŞÀÏ ¹ŞÀ» ÁÖ¼Ò
+		String to = (String) req.getSession().getAttribute("newEmail2"); //ë©”ì¼ ë°›ì„ ì£¼ì†Œ
 		
         if(answer == "yes") {
         ModifyRequest modiReq = new ModifyRequest(userId);
@@ -43,14 +43,14 @@ public class ChangeEmailHandler extends CommandHandler { //À¯Àú°¡ µî·ÏÇÑ ÀÎÁõÅ°°
       	 
       	 try {
       		 ChangeEmailService.modify(modiReq);
-      		 System.out.println("¼öÁ¤ ¼º°ø");
+      		 System.out.println("ìˆ˜ì • ì„±ê³µ");
       		 return "/WEB-INF/view/changeEmailSuccess.jsp";
       	 }catch(Exception e){
-      		 System.out.println("¼öÁ¤ ½ÇÆĞ");
+      		 System.out.println("ìˆ˜ì • ì‹¤íŒ¨");
       	 }
       	
         } else {
-        	System.out.println("ÀÎÁõ¹øÈ£ ºÒÀÏÄ¡");
+        	System.out.println("ì¸ì¦ë²ˆí˜¸ ë¶ˆì¼ì¹˜");
         }
 
 		

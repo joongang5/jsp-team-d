@@ -38,7 +38,7 @@ public class OffMeetDao {
 
 				if (rs.next()) {
 					Integer newNum = rs.getInt(1);
-					return new OffMeet(newNum, offmeet.getContent(), offmeet.getWriter(), offmeet.getTitle(), offmeet.getRegDate(),
+					return new OffMeet(newNum,offmeet.getContent(), offmeet.getWriter(), offmeet.getTitle(), offmeet.getRegDate(),
 							offmeet.getModifiedDate(), 0);
 				}
 			}
@@ -94,7 +94,7 @@ public class OffMeetDao {
 	}
 
 	private OffMeet converOffmeet(ResultSet rs) throws SQLException {
-		return new OffMeet(rs.getInt("offmeet_no"), 
+		return new OffMeet(rs.getInt("offmeet_no"),
 				rs.getString("offmeet_content"),
 				new Writer(rs.getString("writer_id"),
 				rs.getString("writer_name")),
@@ -131,55 +131,70 @@ public class OffMeetDao {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
 		}
-			
-		
 	}
 	
 	public int update(Connection conn, int no, String title, String content) throws SQLException {
-		try (PreparedStatement pstmt = conn.prepareStatement("update offmeet set title = ?"
-				+ " moddate = now () where offmeet_no = ?"
-				+ " offmeet_content set content = ?")) {
+		try (PreparedStatement pstmt = conn.prepareStatement("update offmeet set title = ?, offmeet_content = ?,"
+				+"moddate = NOW()" 
+				+"where offmeet_no = ?")) {
 			pstmt.setString(1, title);
-			pstmt.setInt(2, no);
-			pstmt.setString(3, content);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, no);
 			return pstmt.executeUpdate();
 		}
 	}
-	
-	
-	//20210810 이현아가 만든거
-	public OffMeet selectById(Connection conn, String id) {
+
+	public static int delete(Connection conn, int no, String id) {
+		int result = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		//ResultSet rs = null;
+		
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM offmeet where writer_id = ?");
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
+			String sql = "DELETE FROM offmeet WHERE offmeet_no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			//pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
 			
-			while (rs.next()) {
-				OffMeet offMeet = new OffMeet(
-						rs.getInt("offmeet_no"),
-						rs.getString("offmeet_content"),
-						rs.getString("writer_id"),
-						rs.getString("writer_name"),
-						rs.getString("title"),
-						toDate(rs.getTimestamp("regdate")),
-						toDate(rs.getTimestamp("moddate")),
-						rs.getInt("read_cnt"));
-					
-				return offMeet;
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
+		}finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		return null;
+		return result;
 	}
-	
-	
-	
-	
-	
+
+ public OffMeet selectById(Connection conn, String id) {
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
+      try {
+         pstmt = conn.prepareStatement("SELECT * FROM offmeet where writer_id = ?");
+         pstmt.setString(1, id);     
+         rs = pstmt.executeQuery();
+         
+         while (rs.next()) {
+            OffMeet offMeet = new OffMeet(
+                  rs.getInt("offmeet_no"),
+                  rs.getString("offmeet_content"),
+                  rs.getString("writer_id"),
+                  rs.getString("writer_name"),
+                  rs.getString("title"),
+                  toDate(rs.getTimestamp("regdate")),
+                  toDate(rs.getTimestamp("moddate")),
+                  rs.getInt("read_cnt"));
+               
+            return offMeet;
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         JdbcUtil.close(rs);
+         JdbcUtil.close(pstmt);
+      }
+      return null;
+   }
 }

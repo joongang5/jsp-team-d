@@ -39,7 +39,7 @@
 					<c:if test="${errors.idOrPwNotMatch }"> 아이디와 암호가 일치하지 않습니다.</c:if><br>
 				<button type="submit">로그인</button><br>
 			</form>
-					<a href="./find"><button>ID/PW</button></a>
+					<a href="forgot.do"><button>ID/PW</button></a>
 					<a href="join.do"><button>회원가입</button></a>
 			
 				<c:set var="clientId" value="188766d70b45863a165fa74d7d8a455b" />

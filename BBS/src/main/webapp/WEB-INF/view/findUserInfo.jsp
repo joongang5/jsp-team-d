@@ -9,8 +9,8 @@
 <body>
 
 
-		<form action ="myPage.do" method="post">
-			 <input type="email" id="findEmail" name="findEmail" placeholder="가입하신 이메일주소를 입력해주세요">
+		<form action ="forgot.do" method="get">
+			 <input type="text" id="id" name="id" placeholder="가입하신 아이디나 이메일주소를 입력해주세요">
 	 
 			 <input type="submit" id="emailBtn" name="emailBtn" value="인증 메일 보내기" >	
 		</form>	

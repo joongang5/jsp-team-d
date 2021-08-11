@@ -4,11 +4,13 @@ public class BoxOfficeView {
 
 	private String movieNm;
 	private int rank;
+	private int audiAcc;
 	private String image;
 
-	public BoxOfficeView(String movieNm, int rank, String image) {
+	public BoxOfficeView(String movieNm, int rank, int audiAcc, String image) {
 		this.movieNm = movieNm;
 		this.rank = rank;
+		this.audiAcc = audiAcc;
 		this.image = image;
 	}
 
@@ -18,6 +20,10 @@ public class BoxOfficeView {
 
 	public int getRank() {
 		return rank;
+	}
+
+	public int getAudiAcc() {
+		return audiAcc;
 	}
 
 	public String getImage() {

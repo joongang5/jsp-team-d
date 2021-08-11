@@ -43,6 +43,10 @@
 </style>
 
 <script>
+	function onHomeClick() {
+		location.href = '/BBS/boxOffice/list.do';
+	}
+	
 	function onLoginClick() {
 		location.href = '/BBS/login.do';
 	}
@@ -54,7 +58,7 @@
 
 <div id="headerMain">
 	<div class="home">
-		<div>D'Movie</div>
+		<div onclick="onHomeClick();">D'Movie</div>
 	</div>
 	<div id="headerButtons">
 		<button onclick="onLoginClick();">로그인</button>
