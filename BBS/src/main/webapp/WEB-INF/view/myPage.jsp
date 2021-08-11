@@ -25,8 +25,6 @@ Favorits
 	
 	<li><div id="menuItem" onclick="menuClick('myPage/reviewList')">내 리뷰</div><hr></li>
 	
-	<li>내 댓글 <hr></li>
-	
 	<li><div id="menuItem" onclick="menuClick('myPage/offMeetList')">내 영화팟 글</div></li>
 </ul>
 </div>
