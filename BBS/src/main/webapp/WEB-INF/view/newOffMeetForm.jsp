@@ -25,6 +25,7 @@
 						<textarea name="content" required="required"></textarea>
 						<input type="file" name="file1">
 						<button type="submit">글쓰기</button>
+						<input type="hidden" name="mapResult" value="">
 					</form>
 					<br>					
 					<p onclick="location.href='/BBS/offmeet/list.do'">게시판으로</p>

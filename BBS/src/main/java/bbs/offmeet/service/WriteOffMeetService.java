@@ -24,7 +24,7 @@ public class WriteOffMeetService {
 			
 			OffMeet offmeet = toOffmeet(req);
 			System.out.println(req.getContent());
-			OffMeet savedOffMeet = offMeetDao.insert(conn, offmeet, req.getContent());
+			OffMeet savedOffMeet = offMeetDao.insert(conn, offmeet);
 			if(savedOffMeet == null) {
 				throw new RuntimeException("fail to insert offmeet");
 			}
@@ -51,6 +51,7 @@ public class WriteOffMeetService {
 
 	private OffMeet toOffmeet(WriteRequest req) {
 		Date now = new Date();
-		return new OffMeet(null, req.getContent(), req.getWriter(), req.getTitle(), now, now, 0);
+		String content = req.getContent() + req.getMapResult();
+		return new OffMeet(null, content, req.getWriter(), req.getTitle(), now, now, 0);
 	}
 }

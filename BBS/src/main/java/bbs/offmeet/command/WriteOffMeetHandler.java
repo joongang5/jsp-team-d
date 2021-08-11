@@ -55,7 +55,8 @@ public class WriteOffMeetHandler extends CommandHandler {
 		return new WriteRequest(
 				new Writer(user.getId(), user.getName()),
 				req.getParameter("title"),
-				req.getParameter("content"));
+				req.getParameter("content"),
+				req.getParameter("mapResult"));
 				
 	}
 }
