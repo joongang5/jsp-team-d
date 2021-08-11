@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +9,16 @@
 <body>
 
 
-		<form action ="forgot.do" method="post">
-			 <input type="text" id="id" name="id" placeholder="가입하신 아이디나 이메일주소를 입력해주세요">
-	 
-			 <input type="submit" id="emailBtn" name="emailBtn" value="인증 메일 보내기" >	
-		</form>	
-			 <br>
- 		<form action ="setNewPw.do" method="post">
-			 <input type="text" id="pwChangeKey" placeholder="인증번호를 입력하세요" name="pwChangeKey">
-			 <input type="submit" id="authBtn" name="authBtn" value="확인">
-		</form>
-		
-			<li>비밀번호 : <button onclick="menuClick('changePw')">수정하기</button><br></li>
+	<form action="forgot.do" method="post">
+		<input type="text" id="id" name="id" placeholder="가입하신 아이디나 이메일주소를 입력해주세요">
+		<input type="submit" id="emailBtn" name="emailBtn" value="인증 메일 보내기">
+	</form>
+	<br>
+	<form action="setNewPw.do" method="post">
+		<input type="text" id="pwChangeKey" placeholder="인증번호를 입력하세요" name="pwChangeKey">
+		<input type="submit" id="authBtn" name="authBtn" value="확인">
+	</form>
+
 
 </body>
 </html>
