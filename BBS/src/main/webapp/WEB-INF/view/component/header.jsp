@@ -6,6 +6,7 @@
 	position: absolute;
 	width: 100%;
 	height: 33px;
+
 }
 
 .home {
@@ -48,7 +49,7 @@
 	}
 	
 	function onLoginClick() {
-		location.href = '/BBS/login.do';
+		$("#mainWrapper").load("login.do");
 	}
 
 	function onMyPageClick() {
@@ -65,3 +66,4 @@
 		<button onclick="onMyPageClick();">마이페이지</button>
 	</div>
 </div>
+

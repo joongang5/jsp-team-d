@@ -32,7 +32,7 @@
 			
 			<h1>로그인 해주세요</h1>
 
-			<form action="login.do" method="post" onsubmit="">
+			<form action="login.do" method="post">
 				<span id="inputId"> ID : <input type="text" placeholder="아이디를 입력해주세요" name="id" value="${param.id }">
 					<c:if test="${errors.id }">ID나 email을 입력하세요.</c:if><br>
 				</span>
