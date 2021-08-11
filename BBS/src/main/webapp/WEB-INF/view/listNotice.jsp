@@ -34,10 +34,7 @@ table {
 #paging a{
 	color: white;
 }
-#writeN a{
-	float: right; 
-	color: white;
-}
+
 #titleN th{
 	border-bottom: 3px solid white;
 }
@@ -53,7 +50,7 @@ table {
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-			<div id="mainWrapper">
+			<div id="mainWrapper" style="width: 100%; margin:0;">
 				<h1>Notice</h1>
 				<table >
 
@@ -87,7 +84,7 @@ table {
 				</table>
 
 
-				<div id="paging" style="text-align: center;">
+				<div id="paging" style="text-align: center; width: 45%; margin-top:10px; margin-right: auto; margin-left: auto;">
 					<c:if test="${noticePage.hasNotices()}">
 						<tr>
 							<c:if test="${noticePage.startPage > 5}">
@@ -103,11 +100,11 @@ table {
 							</c:if>
 						</tr>
 					</c:if>
+					<br>
+					
+						<a style="float: right;" href="write.do">[공지사항 쓰기]</a>
+				
 				</div>
-
-					<div id="writeN" >
-						<a href="write.do">[공지사항 쓰기]</a>
-					</div>
 			</div>
 		</div>
 	</div>

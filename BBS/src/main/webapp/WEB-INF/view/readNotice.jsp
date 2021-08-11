@@ -37,6 +37,14 @@ table{
 	border-collapse: collapse;
 }
 #nButton{
+	margin-top: 10px;
+	width: 45%; 
+	margin-top:10px; 
+	margin-right: auto; 
+	margin-left: auto;
+}
+#nButton a{
+	color: white;
 }
 #cud{
 	float: right;
@@ -61,7 +69,7 @@ function del(no){
 		<c:import url="/WEB-INF/view/component/menu.jsp" />
 	</div>
 	<div id="main">
-	<div id="mainWrapper">
+	<div id="mainWrapper" style="width: 100%; margin:0;">
 		<h1 id=head>Notice</h1>
 		<table>
 			<tr style="height: 30px">
@@ -86,13 +94,13 @@ function del(no){
 			
 			
 		</table>
-				<div id="nButton" style=" margin-top: 10px;">  
+				<div id="nButton">  
 					<dl style="text-align: center;"><c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" /> 
-						<a style="color: white;" href="list.do?pageNo=${pageNo}">[목록]</a></dl> 
+						<a href="list.do?pageNo=${pageNo}">[목록]</a></dl> 
 						
 					<dl style="text-align: right; margin-bottom: 10px;"><c:if test="${authUser.id == noticeData.notice.writer.id }">
-						<a style="color: white;" href="modify.do?no=${noticeData.notice.number }">[게시글수정]</a>
-						<a style="color: white;" onclick="return del(${noticeData.notice.number})" >[게시글삭제]</a>
+						<a href="modify.do?no=${noticeData.notice.number }">[수정]</a>&emsp;
+						<a onclick="return del(${noticeData.notice.number})" >[삭제]</a>
 							</c:if>
 							</dl>
 				</div>
