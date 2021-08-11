@@ -19,7 +19,7 @@
 		<c:forEach var="offmeet" items="${page.content }">
 			<tr>
 				<td>${offmeet.offmeetNo}</td>
-				<td>${offmeet.writerId }</td>
+				<td>${offmeet.writerName }</td>
 				<td>
 					<a href="../offmeet/read.do?no=${offmeet.offmeetNo}&pageNo=${pageNum}">
 							<c:out value="${offmeet.title}" />

@@ -19,7 +19,7 @@
 			<tr>
 				<td>${review.number}</td>
 			
-				<td>${review.id }</td>
+				<td>${review.name }</td>
 				<td>
 					<a href="../review/read.do?no=${review.number}&pageNo=${pageNum}">
 							<c:out value="${review.title}" />
