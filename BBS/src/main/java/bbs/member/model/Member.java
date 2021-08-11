@@ -44,8 +44,11 @@ public class Member {
 		this.imgName = imgName;
 	}
 	
+	
 	public void levelUp(int level, int myPoint) {
-		if (this.maxPoint <= myPoint) {
+		// 레벨 1 인 사람은 더이상 레벨업 못하게 막아놓기도 하기 
+		// 레벨업
+		if (this.maxPoint <= myPoint) {			
 			level -= 1 ;
 			this.level = level;
 			this.myPoint = 0;
