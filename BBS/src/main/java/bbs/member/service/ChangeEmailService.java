@@ -10,18 +10,18 @@ import bbs.member.model.Member;
 
 public class ChangeEmailService {
 
-	public static void modify(ModifyRequest modiReq) { //��
+	public static void modify(ModifyRequest modiReq) { // ��
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
-			
+
 			MemberDao memberDao = new MemberDao();
 			Member member = memberDao.selectById(conn, modiReq.getId());
 			if (member == null) {
 				throw new MemberNotFoundException();
 			}
-			
+
 			member.changeEmail(modiReq.getEmail());
 			memberDao.update(conn, member);
 			conn.commit();
@@ -31,31 +31,7 @@ public class ChangeEmailService {
 		} finally {
 			JdbcUtil.close(conn);
 		}
-		
-	}
-	
-	public static void modifyPw(ModifyRequest modiReq) { //��
-		Connection conn = null;
-		try {
-			conn = ConnectionProvider.getConnection();
-			conn.setAutoCommit(false);
-			
-			MemberDao memberDao = new MemberDao();
-			Member member = memberDao.selectById(conn, modiReq.getEmail());
-			if (member == null) {
-				throw new MemberNotFoundException();
-			}
-			
-			member.changePassword(modiReq.getEmail());
-			memberDao.update(conn, member);
-			conn.commit();
-		} catch (SQLException e) {
-			JdbcUtil.rollBack(conn);
-			throw new RuntimeException(e);
-		} finally {
-			JdbcUtil.close(conn);
-		}
-		
+
 	}
 
 }

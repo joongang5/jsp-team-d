@@ -20,7 +20,7 @@ import bbs.member.model.Member;
 public class ValidEmailService {
 	
 	public String validEmailService(String to){
-	//mail server ¼³Á¤
+	//mail server ì„¤ì •
 			String host = "smtp.gmail.com";
 			String admin = "hyuna960229";
 			String password = "gusdkgusdk*";
@@ -29,7 +29,7 @@ public class ValidEmailService {
 			
 		
 			
-			//SMTP ¼­¹ö Á¤º¸
+			//SMTP ì„œë²„ ì •ë³´
 					Properties props = System.getProperties();
 					props.put("mail.smtp.starttls.enable","true");
 					props.put("mail.smtp.host", host);
@@ -41,7 +41,7 @@ public class ValidEmailService {
 					
 					
 					
-					//ÀÎÁõ ¹øÈ£ »ı¼º±â
+					//ì¸ì¦ ë²ˆí˜¸ ìƒì„±ê¸°
 					StringBuffer temp = new StringBuffer();
 					Random random = new Random();
 					for (int i = 0; i < 10; i++) {
@@ -60,7 +60,7 @@ public class ValidEmailService {
 			                break;
 						}
 					}
-			         String key = temp.toString(); //ÀÎÁõÅ°
+			         String key = temp.toString();  //ì¸ì¦í‚¤
 			         System.out.println(key);
 			         
 			         Session session = Session.getDefaultInstance(props, new Authenticator() {
@@ -69,30 +69,30 @@ public class ValidEmailService {
 			             }
 			         });
 			         
-			       //email Àü¼Û
+			       //email ì „ì†¡
 			         try {
 			             MimeMessage msg = new MimeMessage(session);
 			             msg.setFrom(new InternetAddress(admin, "My Favorits"));
 			             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to)); 
 			             
-			             //¸ŞÀÏ Á¦¸ñ
-			             msg.setSubject("¿µÈ­¸¦ »ç¶ûÇÏ´Â »ç¶÷µéÀÇ ¸ğÀÓ, My Favorits ÀÌ¸ŞÀÏ º¯°æ ÀÎÁõ ¸ŞÀÏÀÔ´Ï´Ù.");
-			             //¸ŞÀÏ ³»¿ë
-			             msg.setText("ÀÎÁõ ¹øÈ£´Â :"+temp);
+			             //ë©”ì¼ ì œëª©
+			             msg.setSubject("ì˜í™”ë¥¼ ì‚¬ë‘í•˜ëŠ” ì‚¬ëŒë“¤ì˜ ëª¨ì„, My Favorits ì´ë©”ì¼ ë³€ê²½ ì¸ì¦ ë©”ì¼ì…ë‹ˆë‹¤.");
+			             //ë©”ì¼ ë‚´ìš©
+			             msg.setText("ì¸ì¦ ë²ˆí˜¸ëŠ” : "+temp);
 			             
 			             Transport.send(msg);
-			             System.out.println("ÀÌ¸ŞÀÏ Àü¼Û");
+			             System.out.println("ì´ë©”ì¼ ì „ì†¡");
 			           
 			             
 			         }catch (AddressException e) {
 			             e.printStackTrace();
-			             System.out.println("ÁÖ¼Ò ¹®Á¦");
+			             System.out.println("ì£¼ì†Œ ë¬¸ì œ");
 			         }catch (MessagingException e) {
 			        	 e.printStackTrace();
-			        	 System.out.println("¸Ş¼¼Áö ¹®Á¦");
+			        	 System.out.println("ë©”ì„¸ì§€ ë¬¸ì œ");
 			         } catch (UnsupportedEncodingException e) {
 						e.printStackTrace();
-						System.out.println("ÀÎÄÚµù¹®Á¦");
+						System.out.println("ì¸ì½”ë”©ë¬¸ì œ");
 					}
 			         return key;
 	}

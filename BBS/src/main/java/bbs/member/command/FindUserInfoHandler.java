@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bbs.auth.model.User;
+import bbs.auth.service.LoginService;
 import bbs.jdbc.ConnectionProvider;
 import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
@@ -31,87 +32,70 @@ public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한
 
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
-		System.out.println("##################1");
-		
+
+//		Connection conn = ConnectionProvider.getConnection();
+//		String memberId = req.getParameter("id");
+//
+//		System.out.println("##################2" + memberId);
+//
+//		MemberDao dao = new MemberDao();
+//		Member members = dao.selectById(conn, memberId);
+//		
+//		if (members == null) {
+//			return getFormViewName();
+//		}
+//		
+//		// 20210802
+//		
+//		User user = new User(members.getId(), members.getName(), members.getEmail());
+//
+//		req.getSession().setAttribute("authUser", user);
+//		
+//		
+//		try {
+//			Member member = readService.getMember(memberId); //
+//			req.setAttribute("member", member);
+//			return getFormViewName();
+//		} catch (MemberNotFoundException e) {
+//			req.getServletContext().log("no member", e);
+//			res.sendError(HttpServletResponse.SC_NOT_FOUND);
+//			return null;
+//		}
+		return getFormViewName();
+	}
+
+	// 정보 수정하기와 같은 처리를 합니다.
+	// myPage.jsp에서 수정하기 form의 action을 post방식으로 처리
+	@Override
+	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
+		// 메일 인증 후 수정 구현
 		Connection conn = ConnectionProvider.getConnection();
 		String memberId = req.getParameter("id");
-		
-		//id값 가져오기
+
+		//System.out.println("id : " + memberId);
 
 		MemberDao dao = new MemberDao();
-		Member member = dao.selectById(conn, memberId);
-		
-		//id에 일치하는 회원 있는지 확인
+		Member members = dao.selectById(conn, memberId);
 
-		if (member == null) {
+		if (members == null) {
 			return getFormViewName();
 		}
 
-		String to = member.getEmail();
-		
-		//있으면 이메일 주소 가져오기
-		req.getSession().setAttribute("email", to);
-		validService.validEmailService(to);
-		
-		System.out.println("##################2");
-		//이메일로 인증코드 발송
-		return  getFormViewName();
-	}
+		// 20210802
 
-	@Override
-	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		YesOrNoService fin = new YesOrNoService();
-		
-		Connection conn = ConnectionProvider.getConnection();
-		String memberId = req.getParameter("id");
-		
-		//id값 가져오기
+		User user = new User(members.getId(), members.getName(), members.getEmail());
 
-		MemberDao dao = new MemberDao();
-		Member member = dao.selectById(conn, memberId);
-		
-		String to = member.getEmail();
-		
-		System.out.println("@@@@@@@@1");
-		//HttpSession keyWasSaved = req.getSession(); // 세션에 저장
-		//keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); // 이름 지정
-		//keyWasSaved.setAttribute("newEmail2", to);
-		
-		
-		System.out.println("@@@@@@@@2");
+		req.getSession().setAttribute("authUser", user);
 
-		String userKey = req.getParameter("emailChangeKey");
-		req.getSession().setAttribute("userKey", userKey);
-		
-		System.out.println("@@@@@@@@3");
+		String to = members.getEmail(); // 메일 받을 주소
+		//System.out.println(to);
 
-		String adminKey = (String) req.getSession().getAttribute("AuthenticationKey");
-		String answer = fin.IsSame(adminKey, userKey);
+		// validService.validEmailService(to) = 이메일 인증번호 보내는 서비스
 
-		System.out.println(adminKey);
-		System.out.println(userKey);
-		System.out.println(answer);
-		System.out.println("@@@@@@@@4");
-		
-		User user = (User) req.getSession().getAttribute("authUser");
-		String userId = member.getId();
-		String curPw = member.getPassword();
-		String newPw = req.getParameter("newPw");
-		
-		System.out.println("@@@@@@@@5");
-
-		System.out.println("to : " + to);
-		
-		//HttpSession keyWasSaved = req.getSession(); //세션에 저장
-        //keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); //이름 지정
-        
-		
-		
-		
-		
-		
-		
+		HttpSession keyWasSaved = req.getSession(); // 세션에 저장
+		keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); // 이름 지정
+		keyWasSaved.setAttribute("newEmail2", to);
 
 		return getFormViewName();
 

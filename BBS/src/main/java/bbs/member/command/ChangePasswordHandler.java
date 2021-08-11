@@ -22,21 +22,25 @@ public class ChangePasswordHandler extends CommandHandler {
 
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		User user = (User)req.getSession().getAttribute("authUser");
-		
+
+		User user = (User) req.getSession().getAttribute("authUser");
+
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
-		
+
 		String curPw = req.getParameter("curPw");
 		String newPw = req.getParameter("newPw");
-		
+
+		System.out.println(curPw);
+		// System.out.println(newPw);
+
 		ErrorUtil.checkEmpty(errors, curPw, "curPw");
 		ErrorUtil.checkEmpty(errors, newPw, "newPw");
-		
+
 		if (errors.isEmpty() == false) {
-			return getFormViewName();	
+			return getFormViewName();
 		}
-		
+
 		try {
 			ChangePasswordService service = new ChangePasswordService();
 			service.changePassword(user.getId(), curPw, newPw);
@@ -49,4 +53,5 @@ public class ChangePasswordHandler extends CommandHandler {
 			return null;
 		}
 	}
+
 }
