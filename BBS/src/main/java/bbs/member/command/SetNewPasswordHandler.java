@@ -19,7 +19,7 @@ public class SetNewPasswordHandler extends CommandHandler { // 유저가 등록�
 
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		User user = (User) req.getSession().getAttribute("authUser");
+		User user = (User) req.getSession().getAttribute("tempAuthUser");
 
 		if (req.getParameter("newPw") != null) {
 			String userId = user.getId();

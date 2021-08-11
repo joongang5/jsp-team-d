@@ -33,6 +33,7 @@ table{
 	height: auto;
 	min-height: 400px;
 	width:auto;
+	min-width:800px;
 	color: white;
 	border-collapse: collapse;
 }
@@ -74,7 +75,7 @@ function del(no){
 		<table>
 			<tr style="height: 30px">
 				<td>제목</td>
-				<td>${noticeData.notice.number }번글: <c:out value="${noticeData.notice.title }" /></td>
+				<td>${noticeData.notice.number }번글&nbsp;:&nbsp;<c:out value="${noticeData.notice.title }" /></td>
 			</tr>
 			<tr style="height: 30px">
 				<td>작성자</td>
@@ -98,7 +99,7 @@ function del(no){
 					<dl style="text-align: center;"><c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" /> 
 						<a href="list.do?pageNo=${pageNo}">[목록]</a></dl> 
 						
-					<dl style="text-align: right; margin-bottom: 10px;"><c:if test="${authUser.id == noticeData.notice.writer.id }">
+					<dl style="text-align: right; margin-bottom: 10px;"><c:if test="${authUser.id == 'admin' }">
 						<a href="modify.do?no=${noticeData.notice.number }">[수정]</a>&emsp;
 						<a onclick="return del(${noticeData.notice.number})" >[삭제]</a>
 							</c:if>

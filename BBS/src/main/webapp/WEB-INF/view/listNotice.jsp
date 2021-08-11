@@ -26,6 +26,7 @@ table {
 	border-top: 3px solid white;
 	border-bottom: 3px solid white;
 	width: auto;
+	min-width:800px;
 	height: auto;
 	min-height: 400px;
 	boder-collapse: collapse;
@@ -55,8 +56,8 @@ table {
 				<table >
 
 					<tr id="titleN" style="text-align: center;"> 
-						<th style="width: 7%;">번호</th>
-						<th style="width: 44%">제목</th>
+						<th style="width: 9%;">번호</th>
+						<th style="width: 42%">제목</th>
 						<th style="width: 11%;">작성자</th>
 						<th style="width: 29%;">날짜</th>
 						<th style="width: 9%;">조회수</th>
@@ -72,8 +73,8 @@ table {
 						<tr id="contentN">
 							<td style="text-align: center;">${notice.number }</td>
 							
-							<td>
-							<a style="color:white;" href="read.do?no=${notice.number}&pageNo=${noticePage.currentPage}"> ${notice.title } </a>
+							<td style="text-overflow:ellipsis; white-space:nowrap; max-width:330px; overflow:hidden">
+							<a style="color:white; " href="read.do?no=${notice.number}&pageNo=${noticePage.currentPage}"> ${notice.title } </a>
 							</td>
 							
 							<td style="text-align: center;">${notice.writer.name}</td>
@@ -101,9 +102,9 @@ table {
 						</tr>
 					</c:if>
 					<br>
-					
+						<c:if test="${authUser.id == 'admin' }">
 						<a style="float: right;" href="write.do">[공지사항 쓰기]</a>
-				
+						</c:if>
 				</div>
 			</div>
 		</div>
