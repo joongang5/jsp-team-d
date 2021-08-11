@@ -100,7 +100,7 @@ function isSame() {
 	var same = document.getElementById('pwSame');
 	var leng = document.getElementById('pwLength');
     
-	if(pw1.length < 6){
+	if(pw1.length < 6 || pw1.length > 30){
     		leng.innerHTML='비밀번호를 6자 이상 입력해주세요.';
             leng.style.color='red';
             $("#joinSubmit").prop("disabled", true);
