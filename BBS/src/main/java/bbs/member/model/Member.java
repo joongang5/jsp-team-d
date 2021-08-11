@@ -13,22 +13,9 @@ public class Member {
 	private String imgName;
 	private int level;
 	private int myPoint;
+	private int maxPoint = 100;
 	
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
-	public int getMyPoint() {
-		return myPoint;
-	}
-
-	public void setMyPoint(int myPoint) {
-		this.myPoint = myPoint;
-	}
+	
 
 	public Member(String id, String name, String password, String email, String birth_date, Date regDate) {
 		this.id = id;
@@ -48,13 +35,40 @@ public class Member {
 		this.birth_date = birth_date;
 		this.regDate = regDate;
 		this.imgName = imgName;
-		this.level = level;
 		this.myPoint = myPoint; 
+		levelUp(level, this.myPoint);
 	}
 	
 	public Member(String id, String imgName) {
 		this.id = id;
 		this.imgName = imgName;
+	}
+	
+	public void levelUp(int level, int myPoint) {
+		if (this.maxPoint <= myPoint) {
+			level -= 1 ;
+			this.level = level;
+			this.myPoint = 0;
+		} else {
+			this.level = level;
+		}
+	
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getMyPoint() {
+		return myPoint;
+	}
+
+	public void setMyPoint(int myPoint) {
+		this.myPoint = myPoint;
 	}
 	
 	public String getId() {
