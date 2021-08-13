@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 목록</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath }/css/main.css"
 	rel="stylesheet">
 <style type="text/css">

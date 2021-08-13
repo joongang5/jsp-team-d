@@ -6,9 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>영화 홈</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.3/jquery.scrollTo.min.js"></script>
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/boxOffice.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath }/js/scrollTo.js" type="text/javascript" ></script>
 </head>
 <body>
 	<div id="container">
@@ -21,47 +24,98 @@
 		<div id="main">
 			<div id="mainWrapper">
 				<div id="movieMain">
-					<div>박스오피스</div>
-					<table id="row01">
-						<tr>
-							<c:forEach var="boxOfficeView" items="${page.content }" begin="0" end="4" step="1">
-								<td class="imageTd">
-									<img SRC="${boxOfficeView.image }">
-									<div>${boxOfficeView.rank }</div>
-								</td>
-							</c:forEach>
-						</tr>
-						<tr>
-							<c:forEach var="boxOfficeView" items="${page.content }" begin="0" end="4" step="1">
-								<td class="labelTd">
-									<div>
-										<label>누적관객</label>
-										<label>${boxOfficeView.audiAcc }명</label>
-									</div>
-								</td>
-							</c:forEach>
-						</tr>
-					</table>
-					<table id="row02">
-						<tr>
-							<c:forEach var="boxOfficeView" items="${page.content }" begin="5" end="9" step="1">
-								<td class="imageTd">
-									<img SRC="${boxOfficeView.image }">
-									<div>${boxOfficeView.rank }</div>
-								</td>
-							</c:forEach>
-						</tr>
-						<tr>
-							<c:forEach var="boxOfficeView" items="${page.content }" begin="5" end="9" step="1">
-								<td class="labelTd">
-									<div>
-										<label>누적관객</label>
-										<label>${boxOfficeView.audiAcc }명</label>
-									</div>
-								</td>
-							</c:forEach>
-						</tr>
-					</table>
+					<a href="#pageBoxOffice" class="panel selected">박스오피스</a>
+					<a href="#pageNewMovie" class="panel">최신영화</a>
+					<div id="wrapper">
+						<div id="mask">
+							<div id="pageBoxOffice" class="scrollItem">
+								<div class="scrollContent">
+									<table id="row01">
+										<tr>
+											<c:forEach var="boxOfficeView" items="${page.content }"
+												begin="0" end="4" step="1">
+												<td class="imageTd">
+													<img SRC="${boxOfficeView.image }">
+													<div>${boxOfficeView.rank }</div>
+												</td>
+											</c:forEach>
+										</tr>
+										<tr>
+											<c:forEach var="boxOfficeView" items="${page.content }"
+												begin="0" end="4" step="1">
+												<td class="labelTd">
+													<div>
+														<label>누적관객</label> <label>${boxOfficeView.audiAcc }명</label>
+													</div>
+												</td>
+											</c:forEach>
+										</tr>
+									</table>
+									<table id="row02">
+										<tr>
+											<c:forEach var="boxOfficeView" items="${page.content }"
+												begin="5" end="9" step="1">
+												<td class="imageTd"><img SRC="${boxOfficeView.image }">
+													<div>${boxOfficeView.rank }</div></td>
+											</c:forEach>
+										</tr>
+										<tr>
+											<c:forEach var="boxOfficeView" items="${page.content }"
+												begin="5" end="9" step="1">
+												<td class="labelTd">
+													<div>
+														<label>누적관객</label> <label>${boxOfficeView.audiAcc }명</label>
+													</div>
+												</td>
+											</c:forEach>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<div id="pageNewMovie" class="scrollItem">
+								<div class="scrollContent">
+									<table id="row01">
+										<tr>
+											<c:forEach var="boxOfficeView" items="${page.content }"
+												begin="0" end="4" step="1">
+												<td class="imageTd"><img SRC="${boxOfficeView.image }">
+													<div>${boxOfficeView.rank }</div></td>
+											</c:forEach>
+										</tr>
+										<tr>
+											<c:forEach var="boxOfficeView" items="${page.content }"
+												begin="0" end="4" step="1">
+												<td class="labelTd">
+													<div>
+														<label>누적관객</label> <label>${boxOfficeView.audiAcc }명</label>
+													</div>
+												</td>
+											</c:forEach>
+										</tr>
+									</table>
+									<table id="row02">
+										<tr>
+											<c:forEach var="boxOfficeView" items="${page.content }"
+												begin="5" end="9" step="1">
+												<td class="imageTd"><img SRC="${boxOfficeView.image }">
+													<div>${boxOfficeView.rank }</div></td>
+											</c:forEach>
+										</tr>
+										<tr>
+											<c:forEach var="boxOfficeView" items="${page.content }"
+												begin="5" end="9" step="1">
+												<td class="labelTd">
+													<div>
+														<label>누적관객</label> <label>${boxOfficeView.audiAcc }명</label>
+													</div>
+												</td>
+											</c:forEach>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

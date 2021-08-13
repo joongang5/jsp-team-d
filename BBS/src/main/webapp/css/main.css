@@ -44,8 +44,3 @@ body {
 	height: 100%;
 	background-color: #2b2b2b;
 }
-
-a:link, a:visited, a:hover, a:active {
-	color: black;
-	text-decoration: none;
-}

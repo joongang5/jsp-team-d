@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 목록</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/articleWrite.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/custom.min.css" rel="stylesheet" >
