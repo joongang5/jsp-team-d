@@ -9,6 +9,10 @@
 
 </head>
 <body>
+
+<div id="myPageMenu">
+	<c:import url="/WEB-INF/view/component/myPageMenu.jsp" />
+</div>	
 내 영화팟 글 목록
 <table border="1">
 		<tr>

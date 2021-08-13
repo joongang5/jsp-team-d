@@ -8,7 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<div id="myPageMenu">
+	<c:import url="/WEB-INF/view/component/myPageMenu.jsp" />
+</div>	
 	리뷰 리스트
+	<div>
 	<table border="1">
 		<tr>
 			<td>번호</td>
@@ -28,6 +33,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
 	<div id="paging">
 		<c:set var="command" value="reviewList.do" scope="request" />
 		<c:import url="/WEB-INF/view/component/paging.jsp" />

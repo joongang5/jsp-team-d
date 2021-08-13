@@ -1,10 +1,16 @@
 @charset "UTF-8";
 
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 body{
 	background-color: #0f0f0f;
 	color: #faeef0;	
-	font-family: 'Nanum Myeongjo', serif;
+	
+}
+#container{
+	position: relative;
+	
 }
 img{
  margin: 0 auto;
@@ -12,16 +18,10 @@ img{
  width: 200px;
  height: 200px;
 }
-#myPageList{
-	float:left;
-}
-#myPageList > ul {
-	list-style:none;
-	font-family: "맑은고딕";
-}
+
 #myInfo > ul > li {
 	list-style:none;
-	font-family: "맑은고딕";
+	font-family: 'Nanum Gothic';
 }
 
 
@@ -32,6 +32,7 @@ img{
 	height: 40%;
 }
 #myPic{
+	position:relative;
 	margin:0 auto;
 	box-sizing:border-box;
 	padding:5px;
@@ -39,7 +40,7 @@ img{
 	height: 200px;
 	border: 1px solid #faeef0 ;
 	border-radius: 100px 100px 100px 100px;
-	
+	margin-top:20px;
 	
 }
 #imageProfil{
@@ -77,9 +78,9 @@ img{
 }
 #title{
 	float: right;
-	margin-top: 70px;
-	padding-left: 20px;
-	padding-bottom: 70px;
+	margin-top: 5px;
+	padding-left: 10px;
+	padding-bottom: 30px;
 	font-size: 72pt;
 	-webkit-transform: rotate(90deg);	
 	-ms-transform:roate(90deg);

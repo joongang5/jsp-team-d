@@ -11,25 +11,22 @@
 <script type="text/javascript" src="/BBS/js/menu.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/BBS/js/myPage.js"></script>
+
 </head>
 <body>
+<div id="header">
+         <c:import url="/WEB-INF/view/component/header.jsp" />
+      </div>
+<div id="myPageMenu">
+	<c:import url="/WEB-INF/view/component/myPageMenu.jsp" />
+</div>	
 <div id = "container">
 <div id="title">
 My <br>
-Favorits
+Profile
 </div>
 
-<div id="myPageList">
-<ul>
-	<li>My Page <hr></li>
-	
-	<li><div id="menuItem" onclick="menuClick('myPage')">내 정보</div><hr></li>
-	
-	<li><div id="menuItem" onclick="menuClick('myPage/reviewList')">내 리뷰</div><hr></li>
-	
-	<li><div id="menuItem" onclick="menuClick('myPage/offMeetList')">내 영화팟 글</div></li>
-</ul>
-</div>
+
 <div id="contents">
 <div id="myPic">
  	 <div id= "profilPreview">
@@ -95,7 +92,6 @@ Favorits
 	 </li>	
 	<li><p>가입일시 : <fmt:formatDate value="${member.regDate }" pattern="yyyy-MM-dd" /></p></li>
 </ul>	
-<div id="menuItem" onclick="menuClick('boxOffice/list')">home</div>
 </div>
 </div>
 </div>  
