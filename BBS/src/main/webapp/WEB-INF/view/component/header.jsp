@@ -52,7 +52,7 @@ input[id*="popup"] {
 }
 input[id*="popup"] + label {
 	display:inline-block;
-	padding:20px;
+	padding:10px;
 	background:#ffcd41;
 	color:#fff;
 }
@@ -65,11 +65,15 @@ input[id*="popup"] + label + div {
 	z-index:100;
 }
 input[id*="popup"] + label + div {
-	display:none;
+	opacity:0;
+	visibility: hidden;
+	transition:all 0.5s;
 }
 
 input[id*="popup"]:checked + label + div {
-	display:block;
+	opacity:1;
+	visibility: visible;
+	background:rgba(0,0,0,.9);
 }
 
 input[id*="popup"] + label + div > div {
@@ -85,7 +89,7 @@ input[id*="popup"] + label + div > div {
 input[id*="popup"] + label + div > div > label {
 	position:absolute;
 	top:0%;
-	left:0%;
+	right:0%;
 	transform:translate(40%,-40%);
 	padding:20px;
 	background:#dd5347;
@@ -98,7 +102,7 @@ input[id*="popup"] + label + div > label {
 	left:0
 	width:100%;
 	height:100%;
-	background:rgba(0,0,0,.9);
+	background:rgba(0,0,0,.8);
 	z-index:1;
 }
 
@@ -127,15 +131,16 @@ input[id*="popup"] + label + div > label {
 <div id="headerButtons">
 
 	<input type="checkbox" id="popup">
-	<label for="popup" onclick="onLoginClick();"></label>
+	<label for="popup">로그인</label>
 	<div>
-	<div>
-		<label for="popup"></label>
-	</div>
-	<label for="popup" id="modalLogin"></label>
-		
+		<div id="">
+		<label for="popup">X</label>
+		<c:import url="/WEB-INF/view/loginForm.jsp" />
+		</div>
+		<label for="popup">
+		</label>
 	</div>
 	
-	<button onclick="onMyPageClick();">마이페이지</button>
+	<label onclick="onMyPageClick();">마이페이지</label>
 </div>
 
