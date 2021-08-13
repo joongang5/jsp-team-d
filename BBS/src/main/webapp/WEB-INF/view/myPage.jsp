@@ -13,10 +13,12 @@
 <script type="text/javascript" src="/BBS/js/myPage.js"></script>
 </head>
 <body>
+<div id = "container">
 <div id="title">
 My <br>
 Favorits
 </div>
+
 <div id="myPageList">
 <ul>
 	<li>My Page <hr></li>
@@ -28,6 +30,7 @@ Favorits
 	<li><div id="menuItem" onclick="menuClick('myPage/offMeetList')">내 영화팟 글</div></li>
 </ul>
 </div>
+<div id="contents">
 <div id="myPic">
  	 <div id= "profilPreview">
  	 <c:if test="${member.imgName ne null }">						
@@ -52,26 +55,30 @@ Favorits
 </div> 
 <br>
 
+
 <div id="myInfo">
+<br>
+
  <ul>
-		<li>Level : ${member.grade} <br><li>
+		<li><p>Level : ${member.grade} </p><li>
 		
-		<li id=>MyPoint : ${member.myPoint} <br></li>
-		<li> <progress class="progressTag" value="${member.myPoint}" max="100"></progress></li>
-		
-		<li>이름 : ${member.name }<br></li>		
-		
-		<li>이메일 : ${member.email }<br>	
+		<li><p>MyPoint : ${member.myPoint} <p></li>
+		<li><p><progress class="progressTag" value="${member.myPoint}" max="100"></progress></p></li>
+</ul>
+	
+<ul>					
+		<li><p>이름 : ${member.name }</p></li>		
 		
 			<!-- sns 로그인 사용자들만 암호변경 사용불가 by 강민--> 
-	<c:if test="${empty snsAuthUser}">
+		<c:if test="${empty snsAuthUser}">
 			<!--  -->
-		<li>아이디 : ${member.id}<br> </li>
+		<li><p>아이디 : ${member.id}</p> </li>
 
-		<li>비밀번호 : <button onclick="menuClick('changePw')">수정하기</button><br></li>
+		<li><p>비밀번호 : <button onclick="menuClick('changePw')">수정하기</button></p></li>
 				 	
-	
-	
+</ul>		
+<ul>	
+		<li><p>이메일 : ${member.email }</p>	
 	 
 		<form action ="myPage.do" method="post">
 			 <input type="email" id="newEmail" name="newEmail" placeholder="새로운 이메일주소를 입력해주세요">
@@ -86,10 +93,15 @@ Favorits
 	</c:if>	
 
 	 </li>	
-	<li>가입일시 : <fmt:formatDate value="${member.regDate }" pattern="yyyy-MM-dd" /></li>
+	<li><p>가입일시 : <fmt:formatDate value="${member.regDate }" pattern="yyyy-MM-dd" /></p></li>
 </ul>	
 <div id="menuItem" onclick="menuClick('boxOffice/list')">home</div>
 </div>
+</div>
+</div>  
+
+
+
 
 
 

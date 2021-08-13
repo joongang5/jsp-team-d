@@ -17,9 +17,11 @@ img{
 }
 #myPageList > ul {
 	list-style:none;
+	font-family: "맑은고딕";
 }
 #myInfo > ul > li {
 	list-style:none;
+	font-family: "맑은고딕";
 }
 
 
