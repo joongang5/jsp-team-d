@@ -13,9 +13,7 @@
 </head>
 <body>
 	<div id="container">
-	<div id="menu">
-			<c:import url="/WEB-INF/view/component/menu.jsp" />
-		</div>
+	
 	<div id="loginBox">
 		<!-- 로그인, 로그아웃 관련 기능 / 이강민 -->
 		<c:if test="${! empty authUser}">

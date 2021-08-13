@@ -30,6 +30,10 @@
 .menuItemSub:hover {
 	color: gray;
 }
+
+
+
+
 </style>
 
 <div class="navi">
@@ -53,4 +57,11 @@
 	</div>
 	
 	<div class="menuItem" onclick="menuClick('admin')">관리자</div>
+	
+	
 </div>
+
+
+
+
+
