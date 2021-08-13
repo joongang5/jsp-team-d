@@ -11,11 +11,8 @@ public class Member {
 	private String birth_date;
 	private Date regDate;
 	private String imgName;
-	private int level;
+	private int grade;
 	private int myPoint;
-	private int maxPoint = 100;
-	
-	
 
 	public Member(String id, String name, String password, String email, String birth_date, Date regDate) {
 		this.id = id;
@@ -27,7 +24,7 @@ public class Member {
 		
 	}
 
-	public Member(String id, String name, String password, String email, String birth_date, Date regDate,String imgName, int level, int myPoint ) {
+	public Member(String id, String name, String password, String email, String birth_date, Date regDate,String imgName, int grade, int myPoint ) {
 		this.id = id;
 		this.name = name;
 		this.password = password;
@@ -35,8 +32,8 @@ public class Member {
 		this.birth_date = birth_date;
 		this.regDate = regDate;
 		this.imgName = imgName;
+		this.grade = grade;
 		this.myPoint = myPoint; 
-		levelUp(level, this.myPoint);
 	}
 	
 	public Member(String id, String imgName) {
@@ -44,26 +41,12 @@ public class Member {
 		this.imgName = imgName;
 	}
 	
-	
-	public void levelUp(int level, int myPoint) {
-		// 레벨 1 인 사람은 더이상 레벨업 못하게 막아놓기도 하기 
-		// 레벨업
-		if (this.maxPoint <= myPoint) {			
-			level -= 1 ;
-			this.level = level;
-			this.myPoint = 0;
-		} else {
-			this.level = level;
-		}
-	
-	}
-	
-	public int getLevel() {
-		return level;
+	public int getGrade() {
+		return grade;
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 
 	public int getMyPoint() {

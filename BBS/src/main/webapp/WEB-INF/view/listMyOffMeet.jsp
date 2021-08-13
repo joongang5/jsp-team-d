@@ -21,7 +21,7 @@
 				<td>${offmeet.offmeetNo}</td>
 				<td>${offmeet.writerName }</td>
 				<td>
-					<a href="../offmeet/read.do?no=${offmeet.offmeetNo}&pageNo=${pageNum}">
+					<a href="../offmeet/read.do?no=${offmeet.offmeetNo}">
 							<c:out value="${offmeet.title}" />
 					</a>
 				</td>

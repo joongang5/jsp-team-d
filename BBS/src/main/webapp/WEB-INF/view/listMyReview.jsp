@@ -21,7 +21,7 @@
 			
 				<td>${review.name }</td>
 				<td>
-					<a href="../review/read.do?no=${review.number}&pageNo=${pageNum}">
+					<a href="../review/read.do?no=${review.number}">
 							<c:out value="${review.title}" />
 					</a>
 				</td>

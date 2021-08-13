@@ -10,6 +10,7 @@ import java.util.Date;
 import bbs.jdbc.ConnectionProvider;
 import bbs.jdbc.JdbcUtil;
 import bbs.member.model.Member;
+import bbs.member.service.MemberGradeUpRequest;
 
 public class MemberDao {
 	
@@ -172,12 +173,12 @@ public class MemberDao {
 		}
 	}
 	
-	public void updatePointAndLevel(Connection conn, Member member) throws SQLException{
+	public void updatePointAndLevel(Connection conn, MemberGradeUpRequest request) throws SQLException{
 		String sql = "UPDATE member SET point=?, grade=? where id=?";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
-			pstmt.setInt(1, member.getMyPoint() + 5);
-			pstmt.setInt(2, member.getLevel());
-			pstmt.setString(3, member.getId());
+			pstmt.setInt(1, request.getMyPoint());
+			pstmt.setInt(2, request.getGrade());
+			pstmt.setString(3, request.getId());
 			pstmt.executeUpdate();
 		}
 	}

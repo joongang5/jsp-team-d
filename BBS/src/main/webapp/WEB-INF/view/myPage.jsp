@@ -54,7 +54,7 @@ Favorits
 
 <div id="myInfo">
  <ul>
-		<li>Level : ${member.level} <br><li>
+		<li>Level : ${member.grade} <br><li>
 		
 		<li id=>MyPoint : ${member.myPoint} <br></li>
 		<li> <progress class="progressTag" value="${member.myPoint}" max="100"></progress></li>
