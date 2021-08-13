@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상영작·예정작</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/movieList.css" rel="stylesheet">
 </head>

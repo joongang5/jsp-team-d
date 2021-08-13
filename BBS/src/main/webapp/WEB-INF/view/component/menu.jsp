@@ -1,69 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="${pageContext.request.contextPath }/js/menu.js" type="text/javascript"></script>
 
 <style type="text/css">
 .naviSub {
 	display: none;
 }
+
 .menuItem {
 	display: block;
 	padding: 5px 10px;
 	border: 1px solid #2b2b2b;
 	cursor: pointer;
 }
+
 .menuItem:hover {
 	color: gray;
 }
+
 .menuItemSub {
 	display: block;
 	padding: 5px 20px;
 	font-size: 12px;
 	cursor: pointer;
 }
+
 .menuItemSub:hover {
 	color: gray;
 }
 </style>
-
-<script>
-$(function() {
-	var curPath = $(location).attr('pathname');
-	var referrer = document.referrer;
-	var naviId = getSelectedNaviId();
-	
-	if (referrer.indexOf(curPath) > 0)
-		$(naviId).next().css('display', 'block');
-	else
-		$(naviId).next().slideDown('fast');
-	
-	$(naviId).css('border', '1px solid white');
-});
-
-function slideDown(obj) {
-	var naviId = getSelectedNaviId();
-	$(naviId).css('border', 'none');
-	$(naviId).next().slideUp('fast');
-	
-	$(obj).next().slideDown('fast');
-	$(obj).css('border', '1px solid white');
-}
-
-function getSelectedNaviId() {
-	var curPath = $(location).attr('pathname');
-	var referrer = document.referrer;
-	var naviId;
-	var paths = curPath.split('/');
-	if (paths.length > 2)
-		naviId = '#' + paths[2];
-
-	if (naviId == '#')
-		naviId = '#boxOffice'; 
-	
-	return naviId;
-}
-</script>
 
 <div class="navi">
 	<div class="menuItem" id="boxOffice" onclick="menuClick('boxOffice/list')">영화 홈</div>
@@ -87,5 +54,3 @@ function getSelectedNaviId() {
 	
 	<div class="menuItem" onclick="menuClick('admin')">관리자</div>
 </div>
-
-<script type="text/javascript" src="/BBS/js/menu.js"></script>
