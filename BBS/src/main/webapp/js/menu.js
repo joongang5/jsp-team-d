@@ -1,20 +1,32 @@
 $(document).ready(function() {
 	var curPath = $(location).attr('pathname');
 	var referrer = document.referrer;
-	var naviId = getSelectedNaviId();
 	
-	if (referrer.indexOf(curPath) > 0)
-		$(naviId).next().css('display', 'block');
+	var curNaviId = getNaviIdFromPath(curPath);
+	var referId = getNaviIdFromPath(referrer); 
+	
+	if (curNaviId == referId)
+		$(curNaviId).next().css('display', 'block');
 	else
-		$(naviId).next().slideDown('fast');
+		$(curNaviId).next().slideDown('fast');
 	
-	$(naviId).css('border', '1px solid white');
+	$(curNaviId).css('border', '1px solid white');
+	
+	var curNaviSubId = getNaviSubIdFromPath(curPath);
+	if (curNaviSubId.indexOf('.do') == -1) {
+		$(curNaviSubId).children(':first').css('color', 'red');		
+	} else {
+		var firstSubId = curNaviId + 'Sub';
+		$(firstSubId).children(':first').css('color', 'red');
+	}
 });
 
 function slideDown(obj) {
 	var naviId = getSelectedNaviId();
-	$(naviId).css('border', 'none');
-	$(naviId).next().slideUp('fast');
+	if (naviId != '') {
+		$(naviId).css('border', 'none');
+		$(naviId).next().slideUp('fast');	
+	}
 	
 	$(obj).next().slideDown('fast');
 	$(obj).css('border', '1px solid white');
@@ -22,16 +34,31 @@ function slideDown(obj) {
 
 function getSelectedNaviId() {
 	var curPath = $(location).attr('pathname');
-	var referrer = document.referrer;
-	var naviId;
-	var paths = curPath.split('/');
-	if (paths.length > 2)
-		naviId = '#' + paths[2];
+	return getNaviIdFromPath(curPath);
+}
 
-	if (naviId == '#')
-		naviId = '#boxOffice'; 
+function getNaviIdFromPath(path) {
+	if (path.indexOf('http:') != -1)
+		path = path.replace('http://localhost:8080', '');
+
+	var split = path.split('/');
+	var naviId = '';
+	if (split.length > 2)
+		naviId = '#' + split[2];
 	
+	if (naviId == '')
+		naviId = '#boxOffice';
+		
 	return naviId;
+}
+
+function getNaviSubIdFromPath(path) {
+	var split = path.split('/');
+	var naviSubId = '';
+	if (split.length > 3)
+		naviSubId = '#' + split[3];
+	
+	return naviSubId;
 }
 
 function menuClick(menu) {
