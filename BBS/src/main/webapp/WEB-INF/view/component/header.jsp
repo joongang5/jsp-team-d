@@ -13,7 +13,7 @@
 	cursor: pointer;
 }
 
-.home > div {
+.home>div {
 	position: absolute;
 	top: 50%;
 	left: 45%;
@@ -30,7 +30,7 @@
 	background-color: red;
 }
 
-#headerButtons > button {
+#headerButtons>button {
 	position: relative;
 	top: 50%;
 	transform: translate(0, -50%);
@@ -38,91 +38,84 @@
 	width: 100px;
 }
 
-#headerButtons > button + button {
+#headerButtons>button+button {
 	position: relative;
 	top: 50%;
 	transform: translate(0, -50%);
 	margin: 0;
 	width: 100px;
 }
-
 
 input[id*="popup"] {
-	display:none;
+	display: none;
 }
-input[id*="popup"] + label {
-	display:inline-block;
-	padding:10px;
-	background:#ffcd41;
-	color:#fff;
+
+input[id*="popup"]+label {
+	display: inline-block;
+	padding: 10px;
+	background: #ffcd41;
+	color: #fff;
 }
-input[id*="popup"] + label + div {
-	position:fixed;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	z-index:100;
-	opacity:0;
+
+input[id*="popup"]+label+div {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	opacity: 0;
 	visibility: hidden;
-	transition:all 0.5s;
+	transition: all 0.5s;
 }
 
-input[id*="popup"]:checked + label + div {
-	opacity:1;
+input[id*="popup"]:checked+label+div {
+	opacity: 1;
 	visibility: visible;
-	background:rgba(0,0,0,.6);
+	background: rgba(0, 0, 0, .6);
 }
 
-input[id*="popup"] + label + div > div {
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	width:500px;
-	height:300px;
-	background:#fff;
-	z-index:2;
-}
-input[id*="popup"] + label + div > div > label {
-	position:absolute;
-	top:0%;
-	right:0%;
-	transform:translate(40%,-40%);
-	padding:15px;
-	background:#dd5347;
-	border-radius:100%;
-	z-index:1;
-}
-input[id*="popup"] + label + div > label {
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	background:rgba(0,0,0,.8);
-	z-index:1;
+input[id*="popup"]+label+div>div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: 300px;
+	background: #fff;
+	z-index: 2;
 }
 
+input[id*="popup"]+label+div>div>label {
+	position: absolute;
+	top: 0%;
+	right: 0%;
+	transform: translate(40%, -40%);
+	padding: 15px;
+	background: #dd5347;
+	border-radius: 100%;
+	z-index: 1;
+}
 
-
-
+input[id*="popup"]+label+div>label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .8);
+	z-index: 1;
+}
 </style>
 
 <script>
 	function onHomeClick() {
 		location.href = '/BBS/boxOffice/list.do';
 	}
-	
 
 	function onMyPageClick() {
 		location.href = '/BBS/myPage.do';
 	}
-	
-	
-	$('#forgotPw').click(function(){
-		  $('#modalLogin').load("../forgot.do");
-		});
 </script>
 
 <div class="home">
@@ -131,16 +124,20 @@ input[id*="popup"] + label + div > label {
 <div id="headerButtons">
 
 	<input type="checkbox" id="popup">
-	<label for="popup">로그인</label>
+	<c:if test="${empty authUser}">
+		<label for="popup">로그인</label>
+	</c:if>
+	<c:if test="${! empty authUser}">
+		<label for="popup">${authUser.name}님</label>
+	</c:if>
 	<div>
 		<div id="modalLogin">
-		<label for="popup" >X</label>
-		<c:import url="/WEB-INF/view/loginForm.jsp" />
+			<label for="popup">X</label>
+			<c:import url="/WEB-INF/view/loginForm.jsp" />
 		</div>
-		<label for="popup">
-		</label>
+		<label for="popup"></label>
 	</div>
-	
+
 	<label onclick="onMyPageClick();">마이페이지</label>
 </div>
 

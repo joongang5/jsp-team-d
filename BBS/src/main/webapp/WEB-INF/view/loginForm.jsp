@@ -7,6 +7,8 @@
 <head>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
+
+
 <meta charset="UTF-8">
 <title>Login</title>
 <link href="./css/main.css" rel="stylesheet">
@@ -19,10 +21,10 @@
 		<c:if test="${! empty authUser}">
 			
 			<h1>${authUser.name}님 로그인 되었습니다.</h1>
-				<a href="../logout.do"><button>로그아웃</button></a>
+				<a href="/BBS/logout.do"><button>로그아웃</button></a>
 			<c:if test="${empty snsAuthUser}">
 			<!-- sns 로그인 사용자들만 암호변경 사용불가 -->
-				<a href="../changePw.do"><button>암호변경</button></a>
+				<a href="/BBS/changePw.do"><button>암호변경</button></a>
 			</c:if>
 		</c:if>
 			
@@ -47,7 +49,7 @@
 				<c:set var="redirectUri" value="http://localhost:8080/BBS/login.do" />
 			<br>
 				<a href="https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code">
-					<button type="submit"><img src="./img/kakao_login.png"></button>
+					<button type="submit"><img src="../img/kakao_login.png"></button>
 				</a>
 			<br>
 	

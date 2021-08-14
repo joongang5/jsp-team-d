@@ -89,7 +89,7 @@ public class LoginHandler extends CommandHandler {
 			User user = loginService.login(id, password);
 
 			req.getSession().setAttribute("authUser", user);
-			res.sendRedirect(req.getContextPath() + "/index.jsp");
+			res.sendRedirect(req.getContextPath() + "/boxOffice/list.do");
 			return null;
 		} catch (LoginFailException e) {
 			errors.put("idOrPwNotMatch", Boolean.TRUE);
