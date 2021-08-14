@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import bbs.boxoffice.model.BoxOffice;
 import bbs.boxoffice.service.RegisterBoxOfficeService;
 import bbs.member.service.DuplicateIdException;
+import bbs.movie.model.Movie;
 import bbs.movie.service.RegisterMoviePosterService;
 import bbs.movie.service.RegisterMovieService;
 import bbs.mvc.command.CommandHandler;
@@ -39,13 +40,16 @@ public class AdminHandler extends CommandHandler {
 			if (targetDt != null && targetDt.isEmpty() == false) {
 				ArrayList<BoxOffice> boxOfficeList = regBoxOfficeService.register(targetDt);
 				
-				regMoviePosterService.registerPoster(boxOfficeList);
+				regMoviePosterService.registerBoxOfficePoster(boxOfficeList);
 				
 				req.setAttribute("registerSuccess", true);	
 			}
 			
 			if (openStartDt != null && openStartDt.isEmpty() == false) {
-				regMovieService.register(openStartDt);
+				ArrayList<Movie> movieList = regMovieService.register(openStartDt);
+				
+				regMoviePosterService.registerMoviePoster(movieList);
+				
 				req.setAttribute("registerSuccess", true);
 			}
 			

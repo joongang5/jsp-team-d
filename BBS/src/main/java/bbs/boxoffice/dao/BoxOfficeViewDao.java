@@ -8,6 +8,10 @@ import bbs.logic.dao.BasePagingDao;
 
 public class BoxOfficeViewDao<T extends BoxOfficeView> extends BasePagingDao<T> {
 
+	public BoxOfficeViewDao() {
+		super("box_office_view", "rank ASC");
+	}
+	
 	public BoxOfficeViewDao(String tableName, String orderRule) {
 		super(tableName, orderRule);
 	}

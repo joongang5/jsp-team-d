@@ -25,14 +25,14 @@
 			<div id="mainWrapper">
 				<div id="movieMain">
 					<a href="#pageBoxOffice" class="panel selected">박스오피스</a>
-					<a href="#pageNewMovie" class="panel">최신영화</a>
+					<a href="#pageReservedMovie" class="panel">개봉예정작</a>
 					<div id="wrapper">
 						<div id="mask">
 							<div id="pageBoxOffice" class="scrollItem">
 								<div class="scrollContent">
 									<table id="row01">
 										<tr>
-											<c:forEach var="boxOfficeView" items="${page.content }"
+											<c:forEach var="boxOfficeView" items="${boxOfficePage.content }"
 												begin="0" end="4" step="1">
 												<td class="imageTd">
 													<img SRC="${boxOfficeView.image }">
@@ -41,7 +41,7 @@
 											</c:forEach>
 										</tr>
 										<tr>
-											<c:forEach var="boxOfficeView" items="${page.content }"
+											<c:forEach var="boxOfficeView" items="${boxOfficePage.content }"
 												begin="0" end="4" step="1">
 												<td class="labelTd">
 													<div>
@@ -53,14 +53,14 @@
 									</table>
 									<table id="row02">
 										<tr>
-											<c:forEach var="boxOfficeView" items="${page.content }"
+											<c:forEach var="boxOfficeView" items="${boxOfficePage.content }"
 												begin="5" end="9" step="1">
 												<td class="imageTd"><img SRC="${boxOfficeView.image }">
 													<div>${boxOfficeView.rank }</div></td>
 											</c:forEach>
 										</tr>
 										<tr>
-											<c:forEach var="boxOfficeView" items="${page.content }"
+											<c:forEach var="boxOfficeView" items="${boxOfficePage.content }"
 												begin="5" end="9" step="1">
 												<td class="labelTd">
 													<div>
@@ -72,22 +72,21 @@
 									</table>
 								</div>
 							</div>
-							<div id="pageNewMovie" class="scrollItem">
+							<div id="pageReservedMovie" class="scrollItem">
 								<div class="scrollContent">
 									<table id="row01">
 										<tr>
-											<c:forEach var="boxOfficeView" items="${page.content }"
+											<c:forEach var="reservedMovieView" items="${reservedMoviePage.content }"
 												begin="0" end="4" step="1">
-												<td class="imageTd"><img SRC="${boxOfficeView.image }">
-													<div>${boxOfficeView.rank }</div></td>
+												<td class="imageTd"><img SRC="${reservedMovieView.image }">
 											</c:forEach>
 										</tr>
 										<tr>
-											<c:forEach var="boxOfficeView" items="${page.content }"
+											<c:forEach var="reservedMovieView" items="${reservedMoviePage.content }"
 												begin="0" end="4" step="1">
 												<td class="labelTd">
 													<div>
-														<label>누적관객</label> <label>${boxOfficeView.audiAcc }명</label>
+														<label>${reservedMovieView.openDt }</label> <label>개봉</label>
 													</div>
 												</td>
 											</c:forEach>
@@ -95,18 +94,17 @@
 									</table>
 									<table id="row02">
 										<tr>
-											<c:forEach var="boxOfficeView" items="${page.content }"
+											<c:forEach var="reservedMovieView" items="${reservedMoviePage.content }"
 												begin="5" end="9" step="1">
-												<td class="imageTd"><img SRC="${boxOfficeView.image }">
-													<div>${boxOfficeView.rank }</div></td>
+												<td class="imageTd"><img SRC="${reservedMovieView.image }">
 											</c:forEach>
 										</tr>
 										<tr>
-											<c:forEach var="boxOfficeView" items="${page.content }"
+											<c:forEach var="reservedMovieView" items="${reservedMoviePage.content }"
 												begin="5" end="9" step="1">
 												<td class="labelTd">
 													<div>
-														<label>누적관객</label> <label>${boxOfficeView.audiAcc }명</label>
+														<label>${reservedMovieView.openDt }</label> <label>개봉</label>
 													</div>
 												</td>
 											</c:forEach>

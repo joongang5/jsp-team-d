@@ -7,17 +7,22 @@ import bbs.boxoffice.dao.BoxOfficeViewDao;
 import bbs.boxoffice.model.BoxOfficeView;
 import bbs.logic.page.Page;
 import bbs.logic.service.PageListService;
+import bbs.movie.dao.ReservedMovieViewDao;
+import bbs.movie.model.ReservedMovieView;
 import bbs.mvc.command.CommandHandler;
 
 public class ListBoxOfficeHandler extends CommandHandler {
 	
-    private PageListService<BoxOfficeView> listService;
+    private PageListService<BoxOfficeView> boxOfficeListService;
+    private PageListService<ReservedMovieView> reservedListService;
     
     public ListBoxOfficeHandler() {
-    	String tableName = "box_office_view";
-    	String orderRule = "rank ASC";
-    	BoxOfficeViewDao<BoxOfficeView> dao = new BoxOfficeViewDao<BoxOfficeView>(tableName, orderRule);
-    	listService = new PageListService<BoxOfficeView>(dao);
+    	BoxOfficeViewDao<BoxOfficeView> boxOfficeViewDao = new BoxOfficeViewDao<BoxOfficeView>();
+    	boxOfficeListService = new PageListService<BoxOfficeView>(boxOfficeViewDao);
+    	
+
+    	ReservedMovieViewDao<ReservedMovieView> reservedMovieDao = new ReservedMovieViewDao<ReservedMovieView>();
+    	reservedListService = new PageListService<ReservedMovieView>(reservedMovieDao);
     }
     
 	@Override
@@ -35,10 +40,13 @@ public class ListBoxOfficeHandler extends CommandHandler {
         
         String targetDt = req.getParameter("targetDt");
         if (targetDt == null)
-            targetDt = "20210808";
+            targetDt = "20210813";
         
-        Page<BoxOfficeView> page = listService.getPage(pageNo, String.format("target_dt=%s", targetDt));
-        req.setAttribute("page", page);
+        Page<BoxOfficeView> boxOfficePage = boxOfficeListService.getPage(pageNo, String.format("target_dt=%s", targetDt));
+        req.setAttribute("boxOfficePage", boxOfficePage);
+        
+        Page<ReservedMovieView> reservedMoviePage = reservedListService.getPage(pageNo);
+        req.setAttribute("reservedMoviePage", reservedMoviePage);
         
 		return getFormViewName();
 	}

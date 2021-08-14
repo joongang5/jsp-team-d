@@ -61,8 +61,8 @@ public abstract class BasePagingDao<T> {
 			if (orderRule != null && orderRule.isEmpty() == false) {
 				sb.append(" ORDER BY ");
 				sb.append(orderRule);
-				sb.append(" limit ?,?");
 			}
+			sb.append(" limit ?,?");
 			
 			pstmt = conn.prepareStatement(sb.toString());
 			pstmt.setInt(1, startRow);

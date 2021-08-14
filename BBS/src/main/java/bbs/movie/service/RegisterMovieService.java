@@ -14,10 +14,10 @@ public class RegisterMovieService {
 	
 	private MovieDao<Movie> movieDao = new MovieDao<Movie>("movie", null); 
 	
-	public void register(String openStartDt) {
+	public ArrayList<Movie> register(String openStartDt) {
 		ArrayList<Movie> list = APIHelper.kobis.requestMovieList(openStartDt);
 		if (list == null)
-			return;
+			return null;
 		
 		Connection conn = null;
 		try {
@@ -39,5 +39,7 @@ public class RegisterMovieService {
 		} finally {
 			JdbcUtil.close(conn);
 		}
+		
+		return list;
 	}
 }
