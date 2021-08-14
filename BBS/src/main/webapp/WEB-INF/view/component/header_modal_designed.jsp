@@ -114,15 +114,13 @@ input[id*="popup"] + label + div > label {
 		location.href = '/BBS/boxOffice/list.do';
 	}
 	
+	function onLoginClick() {
+		$("#modalLogin").load("login.do");
+	}
 
 	function onMyPageClick() {
 		location.href = '/BBS/myPage.do';
 	}
-	
-	
-	$('#forgotPw').click(function(){
-		  $('#modalLogin').load("../forgot.do");
-		});
 </script>
 
 <div class="home">
