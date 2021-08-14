@@ -41,7 +41,7 @@
 	<div class="menuItem" id="movie" onclick="menuClick('movie/list')">상영작·예정작</div>
 	<div class="naviSub">
 		<div class="menuItemSub" onclick="menuClick('movie/list')">▷ 현재 상영영화</div>
-		<div class="menuItemSub" onclick="menuClick('movie/list')">▷ 개봉 예정영화</div>
+		<div class="menuItemSub" onclick="menuClick('movie/reserved/list')">▷ 개봉 예정영화</div>
 	</div>
 	<div class="menuItem" id="notice" onclick="menuClick('notice/list')">공지사항</div>
 	<div class="menuItem" id="offmeet" onclick="menuClick('offmeet/list')">영화팟 찾기</div>

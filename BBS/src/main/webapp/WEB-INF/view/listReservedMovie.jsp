@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>현재 상영영화</title>
+<title>개봉 예정영화</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 <style type="text/css">
@@ -58,7 +58,7 @@ table {
 		</div>
 		<div id="main">
 			<div id="mainWrapper" style="width: 100%; margin: 0;">
-				<h1>현재 상영영화</h1>
+				<h1>개봉 예정영화</h1>
 				<table>
 					<tr id="titleN" style="text-align: center; height: 35px;">
 						<th style="width: 9%;">영화코드</th>

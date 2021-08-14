@@ -16,60 +16,6 @@ public class MovieDao<T extends Movie> extends BasePagingDao<T> {
 	public MovieDao(String tableName, String orderRule) {
 		super(tableName, orderRule);
 	}
-
-	@Override
-	public int selectCount(Connection conn, String condition) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT count(*) FROM movie");
-			if (condition != null) {
-				sb.append(" WHERE ");
-				sb.append(condition);
-			}
-			
-			pstmt = conn.prepareStatement(sb.toString());
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getInt(1);
-			}
-			return 0;	
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
-	
-	@Override
-	public List<T> select(Connection conn, int startRow, int size, String condition) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT * FROM movie");
-			if (condition != null) {
-				sb.append(" WHERE ");
-				sb.append(condition);
-			}
-			sb.append(" ORDER BY open_dt DESC limit ?,?");
-			
-			pstmt = conn.prepareStatement(sb.toString());
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, size);
-			rs = pstmt.executeQuery();
-			List<T> result = new ArrayList<T>();
-			while (rs.next()) {
-				result.add((T)convert(rs));
-			}
-			return result;	
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
 	
 	public void insert(Connection conn, Movie movie) throws SQLException {
 		PreparedStatement insertPstmt = null;

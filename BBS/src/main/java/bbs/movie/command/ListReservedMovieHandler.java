@@ -9,21 +9,22 @@ import bbs.movie.dao.MovieDao;
 import bbs.movie.model.Movie;
 import bbs.mvc.command.CommandHandler;
 
-public class ListMovieHandler extends CommandHandler {
+public class ListReservedMovieHandler extends CommandHandler {
 
 	private PageListService<Movie> listService;
-	
-	public ListMovieHandler() {
+
+	public ListReservedMovieHandler() {
 		String tableName = "movie";
-		String orderRule = "open_dt DESC";
+		String orderRule = "open_dt ASC";
 		MovieDao<Movie> dao = new MovieDao<Movie>(tableName, orderRule);
 		
 		listService = new PageListService<Movie>(dao);
 	}
 	
+	
 	@Override
 	protected String getFormViewName() {
-		return "/WEB-INF/view/listMovie.jsp";
+		return "/WEB-INF/view/listReservedMovie.jsp";
 	}
 
 	@Override
@@ -34,7 +35,7 @@ public class ListMovieHandler extends CommandHandler {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
 		
-		String condition = "open_dt <= curdate()";
+		String condition = "open_dt > curDate()";
 		Page<Movie> page = listService.getPage(pageNo, condition);
 		req.setAttribute("page", page);
 		
@@ -46,4 +47,5 @@ public class ListMovieHandler extends CommandHandler {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }
