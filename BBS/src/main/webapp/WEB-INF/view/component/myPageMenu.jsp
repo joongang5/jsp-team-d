@@ -19,11 +19,12 @@
 	color: gray;
 }
 .myPageList{
+	float:left;
 	background-color: black;
 	position: relative;
 	width:150px;
-	font-family: 'Nanum Gothic';
-	
+	height: 820px;
+	color: white;
 }
 
 </style>
