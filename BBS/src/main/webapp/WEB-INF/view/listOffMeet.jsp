@@ -14,36 +14,40 @@
 	margin: 0;
 	padding: 0;
 }
-
-table {
-	margin: 0 auto;
-	height: 400px;
-	width: 1000px;
-	background-color: yellow;
-	border-collapse: collapse;
+h1 {
+	font-size: 50px;
 	text-align: center;
+	color: white;
 }
-
-th {
-	border-bottom: 5px solid black;
+table {
+	margin-left: auto;
+	margin-right: auto;
+	border-top: 3px solid white;
+	border-bottom: 3px solid white;
+	height: auto;
+	min-height: 400px;
+	width: auto;
+	min-width: 800px;
+	border-collapse: collapse;
+	color: white;
 }
-
-td {
-	border-bottom: 5px solid black;
-}
-
 button {
-	position: absolute;
-	left: 77%;
+
 }
 
 #title {
 	text-align: left;
 	width: 250px;
 }
-
 tr:hover {
 	background-color: green;
+}
+#titleN th{
+	border-bottom: 3px solid white;
+	max-height: 30px;
+}
+#paging a{
+	color: white;
 }
 </style>
 </head>
@@ -56,14 +60,18 @@ tr:hover {
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
+		<div id="mainWrapper" style="width: 100%; margin:0;">
+	
+			<h1>Movie Gathering</h1>
 			<table>
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>글쓴이</th>
-					<th>날짜</th>
-					<th>조회수</th>
-				</tr>
+					<tr id="titleN" style="text-align: center;	height: 35px;"> 
+						<th style="width: 9%;">번호</th>
+						<th style="width: 46%">제목</th>
+						<th style="width: 11%;">작성자</th>
+						<th style="width: 25%;">날짜</th>
+						<th style="width: 9%;">조회수</th>
+					</tr>
+				
 				<c:if test="${offmeetPage.hasNoOffMeet()}">
 				<tr>
 					<td colspan="4"> 게시글이 없습니다.</td>
@@ -71,16 +79,19 @@ tr:hover {
 				</c:if>
 				<c:forEach var="offmeet" items="${offmeetPage.content }">
 				<tr>
-					<td>${offmeet.number }</td>
-					<td>
-					<a href="read.do?no=${offmeet.number}&pageNo=${offmeetPage.currentPage }">
+					<td style="text-align: center;">${offmeet.number }</td>
+					<td style="text-overflow:ellipsis; white-space:nowrap; max-width:360px; overflow:hidden">
+					<a style="color:white; "href="read.do?no=${offmeet.number}&pageNo=${offmeetPage.currentPage }">
 					<c:out value="${offmeet.title }"/>
 					</a>
 					</td>
-					<td>${offmeet.writer.name }</td>
-					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${offmeet.modifiedDate }"/></td>
-					<td>${offmeet.readCount }</td>
+					<td style="text-align: center;">${offmeet.writer.name }</td>
+					<td style="text-align: center;"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${offmeet.modifiedDate }"/></td>
+					<td style="text-align: center;">${offmeet.readCount }</td>
 				</c:forEach>
+			</table>
+				
+				<div id="paging" style="text-align: center; width: 45%; margin-top:10px; margin-right: auto; margin-left: auto;">
 				<c:if test="${offmeetPage.hasOffMeet() }">
 					<tr>
 						<td colspan="7">
@@ -94,16 +105,17 @@ tr:hover {
 							<a href="list.do?pageNo=${offmeetPage.startPage +5 }">[다음]</a>
 							</c:if>
 						</td>
-					</tr>
-							
+					</tr>		
 				</c:if>
-			</table>
-			<a href="write.do">
+			<br>	
+			<a style="float: right;" href="write.do">
 			<button>글쓰기</button>
 			</a>
+			</div>
 		</div>
-
 	</div>
+</div>
+	
 
 
 </body>

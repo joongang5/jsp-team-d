@@ -75,22 +75,22 @@ function del(no){
 		<h1 id=head>Notice</h1>
 		<table>
 			<tr>
-				<td style="min-height: 30px;">제목</td>
+				<td style="height: 30px; min-height: 30px;">제목</td>
 				<td style="margin-top: 10px; margin-bottom: 10px;">${noticeData.notice.number }번글&nbsp;:&nbsp;<c:out value="${noticeData.notice.title }" /></td>
 			</tr>
 			<tr>
-				<td style="min-width: 70px; min-height: 30px; margin-bottom: 10px;">작성자</td>
+				<td style="height: 30px; min-width: 70px;  min-height: 30px; margin-bottom: 10px;">작성자</td>
 				<td>${noticeData.notice.writer.name }</td>
 			</tr>
 			
 			<tr>
-				<td style="min-height: 30px; margin-bottom: 10px;">날짜</td>
+				<td style="height: 30px; min-height: 30px; margin-bottom: 10px;">날짜</td>
 				<td><fmt:formatDate value="${noticeData.notice.regDate}" pattern="yyyy-MM-dd hh:mm:ss" />&emsp;&emsp;&emsp;&emsp;&emsp;조회수&emsp;&emsp;${noticeData.notice.readCount}</td>
 			</tr>
 			
 			<tr>
 				
-				<td colspan="2" style="width: 500px; border-top:3px solid white; text-align: center;">${fn:replace(noticeData.content, cn, br)}</td>
+				<td colspan="2" style="width: 500px; border-top:3px solid white; text-align: center; min-height: 300px; height: 300px;">${fn:replace(noticeData.content, cn, br)}</td>
 				 
 			</tr>
 			
