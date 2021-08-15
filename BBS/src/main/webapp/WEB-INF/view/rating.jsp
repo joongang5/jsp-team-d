@@ -8,14 +8,23 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <title>영화평가 라운지</title>
 <!-- 부트스트랩 css 추가하기 -->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <!-- 커스텀 css 추가하기 -->
 <link rel="stylesheet" href="../css/custom.min.css">
+<style type="text/css">
+
+.navbar{
+
+ background-color:gray !important;
+
+}
+
+</style>
 </head>
 <body>
-
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="index.jsp">D'movie 영화평가 라운지</a>
@@ -27,6 +36,7 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link"
 					href="../boxOffice/list.do">MAIN PAGE</a></li>
+					<!-- 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="dropdown"
 					data-toggle="dropdown"> JOIN US (추가 계정필요)</a>
@@ -36,27 +46,31 @@
 							class="dropdown-item" href="logout.do">로그아웃</a>
 					</div></li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
+			 <form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="내용을 입력하세요." aria-label="Search">
-				<button class="btn btn-outline-info my-2 my-sm-0" type="submit">검색</button>
+				<button class="btn btn-outline-dark my-2 my-sm-0" type="submit">검색</button>
 			</form>
+					 -->
+			
 		</div>
 	</nav>
+
 	<section class="container">
 		<form method="get" action="./rating.jsp" class="form-inline mt-3">
-			<select name="movieDivide" class="form-control mx-1 mt-2">
+			<!--  <select name="movieDivide" class="form-control mx-1 mt-2">
 				<option value="전체">전체</option>
 				<option value="현재 상영작">현재 상영작</option>
 				<option value="지난 개봉작">지난 개봉작</option>
 				<option value="기타">기타</option>
 			</select> <input type="text" name="search" class="form-control mx-1 mt-2"
 				placeholder="내용을 입력하세요">
-			<button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>
-			<a class="btn btn-success mx-1 mt-2" data-toggle="modal"
-				href="#registerModal">등록하기</a> <a class="btn btn-danger mx-1 mt-2"
-				data-toggle="modal" href="#reportModal">신고</a>
+			<button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>-->
+			<a class="btn btn-success mx-auto mt-2 w-100" data-toggle="modal"
+				href="#registerModal">등록하기</a> 
+				<!-- <a class="btn btn-danger mx-1 mt-2"	data-toggle="modal" href="#reportModal">신고</a> -->
 		</form>
+
 		
 		<!-- 링크 넣는 곳 -->
 		
@@ -111,16 +125,16 @@
 					</h5>
 					<p class="card-text">${rating.ratingContent}</p>
 					<div class="row">
-						<div class="col-9 text-left">
+						<div class="col-9 text-center">
 							몰입도<span style="color: red;">${rating.immersionScore}</span> 영상미<span
 								style="color: red;">${rating.visualbeautyScore}</span> 메시지<span style="color: red;">${rating.messageScore}</span>
-							<span style="color: green;">(추천: ${rating.likeCount})</span>
+							<span style="color: green;"><!-- (추천: ${rating.likeCount}) --></span>
 						</div>
 						<div class="col-3 text-right">
 							<a onclick="return confirm('추천하시겠습니까?')"
-								href="./likeAction.jsp?ratingID=">추천</a> <a
+								href="./likeAction.jsp?ratingID="></a> <a
 								onclick="return confirm('삭제하시겠습니까?')"
-								href="./deleteAction.jsp?ratingID=">삭제</a>
+								href="./deleteAction.jsp?ratingID="></a>
 						</div>
 					</div>
 				</div>
