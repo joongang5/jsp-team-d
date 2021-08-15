@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,7 +93,39 @@
 		</div>
 
 		<!-- 하단 예시 -->
-
+		<c:forEach var="rating" items="${page.content}">
+			<div class="card bg-light mt-3">
+				<div class="card-header bg-light">
+					<div class="row">
+						<div class="col-8 text-left">
+							${rating.movieName}&nbsp;<small>${rating.directorName}</small>
+						</div>
+						<div class="col-4 text-right">
+							종합<span style="color: red;">${rating.totalScore}</span>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">
+						${rating.ratingTitle}<small>${rating.userID}</small>
+					</h5>
+					<p class="card-text">${rating.ratingContent}</p>
+					<div class="row">
+						<div class="col-9 text-left">
+							몰입도<span style="color: red;">${rating.immersionScore}</span> 영상미<span
+								style="color: red;">${rating.visualbeautyScore}</span> 메시지<span style="color: red;">${rating.messageScore}</span>
+							<span style="color: green;">(추천: ${rating.likeCount})</span>
+						</div>
+						<div class="col-3 text-right">
+							<a onclick="return confirm('추천하시겠습니까?')"
+								href="./likeAction.jsp?ratingID=">추천</a> <a
+								onclick="return confirm('삭제하시겠습니까?')"
+								href="./deleteAction.jsp?ratingID=">삭제</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
 
 		<div class="card bg-light mt-3">
 			<div class="card-header bg-light">

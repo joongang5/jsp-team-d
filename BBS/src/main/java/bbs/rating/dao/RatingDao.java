@@ -8,11 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bbs.jdbc.JdbcUtil;
+import bbs.logic.dao.BasePagingDao;
 import bbs.rating.model.Rating;
 
 
-public class RatingDao {
+public class RatingDao<T extends Rating> extends BasePagingDao<T>  {
 
+	public RatingDao() {
+		super("rating", "ratingID desc");
+	}
+	
+	public RatingDao(String tableName, String orderRule) {
+		super(tableName, orderRule);
+	}
+	
 	public Rating insert(Connection conn, Rating rating) throws SQLException {
 		PreparedStatement insertPstmt = null;
 		PreparedStatement resultPstmt = null;
@@ -48,29 +57,11 @@ public class RatingDao {
 			JdbcUtil.close(insertPstmt);
 		}
 	}
-	//검토 필요
-	public List<Rating> select(Connection conn, int startRow, int size) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement("select * from rating order by ratingID desc limit ?,?");
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, size);
-			rs = pstmt.executeQuery();
-			java.util.List<Rating> result = new ArrayList<>();
-			while (rs.next()) {
-				result.add(convertRating(rs));
-			}
-			return result;
-
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
 	
-	private Rating convertRating(ResultSet rs) throws SQLException {
-		return new Rating(rs.getInt("ratingID"),
+	@SuppressWarnings("unchecked")
+	@Override
+	protected T convert(ResultSet rs) throws SQLException {
+		return (T)new Rating(rs.getInt("ratingID"),
 						rs.getString("userID"),
 						rs.getString("movieName"),
 						rs.getString("directorName"),
@@ -79,8 +70,8 @@ public class RatingDao {
 						rs.getString("genreDivide"),
 						rs.getString("ratingTitle"),
 						rs.getString("ratingContent"),
-						rs.getString("getTotalScore"),
-						rs.getString("getImmersionScore"),
+						rs.getString("totalScore"),
+						rs.getString("immersionScore"),
 						rs.getString("visualbeautyScore"),
 						rs.getString("messageScore"),
 						rs.getInt("likeCount")

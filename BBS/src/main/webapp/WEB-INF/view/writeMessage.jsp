@@ -23,6 +23,9 @@
 <body>
 방명록에 메시지 남겼습니다.
 <br/>
-<a href="messagelist.jsp">[목록 보기]</a>
+	<div>${guestName }</div>
+	<div>${password }</div>
+	<div>${message }</div>
+<a href="${pageContext.request.contextPath }/review/list.do">[목록 보기]</a>
 </body>
 </html>

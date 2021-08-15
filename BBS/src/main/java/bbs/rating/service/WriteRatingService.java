@@ -10,7 +10,7 @@ import bbs.rating.model.Rating;
 
 public class WriteRatingService {
 	
-	private RatingDao dao = new RatingDao();
+	private RatingDao<Rating> dao = new RatingDao<Rating>();
 	
 	public void write(Rating rating) {
 		Connection conn = null;
