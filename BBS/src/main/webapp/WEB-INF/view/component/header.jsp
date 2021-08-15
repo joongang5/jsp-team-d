@@ -21,11 +21,15 @@
 	cursor: pointer;
 }
 
+#modalLogin {
+	background-color: #212121;
+}
+
 #headerButtons {
 	position: absolute;
 	top: 0;
-	left: 750px;
-	width: 210px;
+	left: 680px;
+	width: 710px;
 	height: 100%;
 }
 
@@ -54,6 +58,9 @@ input[id*="popup"]+label {
 	padding: 10px;
 	color: #fff;
 }
+input[id*="popup"]+label[id*="login"] {
+	display: hidden;
+}
 
 input[id*="popup"]+label+div {
 	position: fixed;
@@ -70,7 +77,7 @@ input[id*="popup"]+label+div {
 input[id*="popup"]:checked+label+div {
 	opacity: 1;
 	visibility: visible;
-	background: rgba(0, 0, 0, .6);
+	background: rgba(0, 0, 0, .4);
 }
 
 input[id*="popup"]+label+div>div {
@@ -78,9 +85,9 @@ input[id*="popup"]+label+div>div {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 500px;
+	width: 300px;
 	height: 300px;
-	background: #fff;
+	background: #212121;
 	z-index: 2;
 }
 
@@ -89,8 +96,8 @@ input[id*="popup"]+label+div>div>label {
 	top: 0%;
 	right: 0%;
 	transform: translate(40%, -40%);
-	padding: 15px;
-	background: #dd5347;
+	padding: 10px;
+	background: white;
 	border-radius: 100%;
 	z-index: 1;
 }
@@ -114,6 +121,10 @@ input[id*="popup"]+label+div>label {
 	function onMyPageClick() {
 		location.href = '/BBS/myPage.do';
 	}
+	
+	function onLogoutClick() {
+		location.href = '/BBS/logout.do';
+	}
 </script>
 
 <div class="home">
@@ -121,18 +132,22 @@ input[id*="popup"]+label+div>label {
 </div>
 <div id="headerButtons">
 
-	<input type="checkbox" id="popup">
-	<c:if test="${empty authUser}">
-		<label for="popup">로그인</label>
-	</c:if>
-	
+
 	<c:if test="${! empty authUser}">
-		
-		<label for="popup">${authUser.name}님</label>
-		
+		<label>${authUser.name}님</label>
 	</c:if>
 	
 	
+	<input type="checkbox" id="popup">
+	
+	<c:if test="${empty authUser}">
+		<label id="login" for="popup">로그인</label>
+	</c:if>
+
+	<c:if test="${! empty authUser}">
+		<label onclick="onMyPageClick();">마이페이지</label>
+		<label onclick="onLogoutClick();">로그아웃</label>
+	</c:if>
 	<div>
 		<div id="modalLogin">
 			<label for="popup">X</label>
@@ -141,8 +156,5 @@ input[id*="popup"]+label+div>label {
 		<label for="popup"></label>
 	</div>
 	
-
-		<label onclick="onMyPageClick();">마이페이지</label>
-
 </div>
 
