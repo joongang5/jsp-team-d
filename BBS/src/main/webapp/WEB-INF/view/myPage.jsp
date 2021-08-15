@@ -90,11 +90,6 @@ Profile
 	 
 			 <input type="submit" id="emailBtn" name="emailBtn" value="인증 메일 보내기" >	
 		</form>	
-			 <br>
- 		<form action ="myPage/userKey.do" method="post">
-			 <input type="text" id="emailChangKey" placeholder="인증번호를 입력하세요" name="emailChangeKey"> <input type="submit" id="authBtn" name="authBtn" value="확인">
-		</form>
-	
 	</c:if>	
 
 	<li><p>가입일시 : <fmt:formatDate value="${member.regDate }" pattern="yyyy-MM-dd" /></p></li>
