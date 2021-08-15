@@ -32,7 +32,7 @@
 			
 			<h1>로그인 해주세요</h1>
 
-			<form action="../login.do" method="post">
+			<form action="${pageContext.request.contextPath }/login.do" method="post">
 				<span id="inputId"> ID : <input type="text" placeholder="아이디를 입력해주세요" name="id" required="required" value="${param.id }">
 					<c:if test="${errors.id }">ID나 email을 입력하세요.</c:if><br>
 				</span>
@@ -42,8 +42,8 @@
 					<c:if test="${errors.idOrPwNotMatch }"> 아이디와 암호가 일치하지 않습니다.</c:if><br>
 				<button type="submit">로그인</button><br>
 			</form>
-					<a href="../forgot.do"><button id="forgotPw">ID/PW</button></a>
-					<a href="../join.do"><button>회원가입</button></a>
+					<a href="${pageContext.request.contextPath }/forgot.do"><button id="forgotPw">ID/PW</button></a>
+					<a href="${pageContext.request.contextPath }/join.do"><button>회원가입</button></a>
 			
 				<c:set var="clientId" value="188766d70b45863a165fa74d7d8a455b" />
 				<c:set var="redirectUri" value="http://localhost:8080/BBS/login.do" />

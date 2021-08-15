@@ -125,9 +125,14 @@ input[id*="popup"]+label+div>label {
 	<c:if test="${empty authUser}">
 		<label for="popup">로그인</label>
 	</c:if>
+	
 	<c:if test="${! empty authUser}">
+		
 		<label for="popup">${authUser.name}님</label>
+		
 	</c:if>
+	
+	
 	<div>
 		<div id="modalLogin">
 			<label for="popup">X</label>
