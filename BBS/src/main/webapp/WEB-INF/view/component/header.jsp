@@ -27,7 +27,6 @@
 	left: 750px;
 	width: 210px;
 	height: 100%;
-	background-color: red;
 }
 
 #headerButtons>button {
@@ -53,7 +52,6 @@ input[id*="popup"] {
 input[id*="popup"]+label {
 	display: inline-block;
 	padding: 10px;
-	background: #ffcd41;
 	color: #fff;
 }
 
@@ -137,7 +135,9 @@ input[id*="popup"]+label+div>label {
 		</div>
 		<label for="popup"></label>
 	</div>
+	
 
-	<label onclick="onMyPageClick();">마이페이지</label>
+		<label onclick="onMyPageClick();">마이페이지</label>
+
 </div>
 
