@@ -60,7 +60,7 @@
 		
 		<!-- 링크 넣는 곳 -->
 		
-		<div class="card bg-light mt-3">
+<%-- 		<div class="card bg-light mt-3">
 			<div class="card-header bg-light">
 				<div class="row">
 					<div class="col-8 text-left">
@@ -90,7 +90,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 
 		<!-- 하단 예시 -->
 		<c:forEach var="rating" items="${page.content}">
@@ -337,41 +337,41 @@
 						<div class="form-row">
 							<div class="form-group col-sm-3">
 								<label>종합</label> <select name="totalScore" class="form-control">
-									<option value="5star">★★★★★</option>
-									<option value="4star">☆★★★★</option>
-									<option value="3star" selected>☆☆★★★</option>
-									<option value="2star">☆☆☆★★</option>
-									<option value="1star">☆☆☆☆★</option>
+									<option value="★★★★★">★★★★★</option>
+									<option value="☆★★★★">☆★★★★</option>
+									<option value="☆☆★★★" selected>☆☆★★★</option>
+									<option value="☆☆☆★★">☆☆☆★★</option>
+									<option value="☆☆☆☆★">☆☆☆☆★</option>
 								</select>
 							</div>
 							<div class="form-group col-sm-3">
 								<label>몰입도</label> <select name="immersionScore"
 									class="form-control">
-									<option value="5star">★★★★★</option>
-									<option value="4star">☆★★★★</option>
-									<option value="3star" selected>☆☆★★★</option>
-									<option value="2star">☆☆☆★★</option>
-									<option value="1star">☆☆☆☆★</option>
+									<option value="★★★★★">★★★★★</option>
+									<option value="☆★★★★">☆★★★★</option>
+									<option value="☆☆★★★" selected>☆☆★★★</option>
+									<option value="☆☆☆★★">☆☆☆★★</option>
+									<option value="☆☆☆☆★">☆☆☆☆★</option>
 								</select>
 							</div>
 							<div class="form-group col-sm-3">
 								<label>영상미</label> <select name="visualbeautyScore"
 									class="form-control">
-									<option value="5star">★★★★★</option>
-									<option value="4star">☆★★★★</option>
-									<option value="3star" selected>☆☆★★★</option>
-									<option value="2star">☆☆☆★★</option>
-									<option value="1star">☆☆☆☆★</option>
+									<option value="★★★★★">★★★★★</option>
+									<option value="☆★★★★">☆★★★★</option>
+									<option value="☆☆★★★" selected>☆☆★★★</option>
+									<option value="☆☆☆★★">☆☆☆★★</option>
+									<option value="☆☆☆☆★">☆☆☆☆★</option>
 								</select>
 							</div>
 							<div class="form-group col-sm-3">
 								<label>메시지</label> <select name="messageScore"
 									class="form-control">
-									<option value="5star">★★★★★</option>
-									<option value="4star">☆★★★★</option>
-									<option value="3star" selected>☆☆★★★</option>
-									<option value="2star">☆☆☆★★</option>
-									<option value="1star">☆☆☆☆★</option>
+									<option value="★★★★★">★★★★★</option>
+									<option value="☆★★★★">☆★★★★</option>
+									<option value="☆☆★★★" selected>☆☆★★★</option>
+									<option value="☆☆☆★★">☆☆☆★★</option>
+									<option value="☆☆☆☆★">☆☆☆☆★</option>
 								</select>
 							</div>
 							<div class="modal-footer">
