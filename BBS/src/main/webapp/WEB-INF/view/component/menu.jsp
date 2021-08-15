@@ -62,12 +62,6 @@
 			<label>평가 라운지</label>
 		</div>
 	</div>
-	<div class="menuItem" id="test" onclick="slideDown(this)">TEST</div>
-	<div class="naviSub">
-		<div class="menuItemSub" onclick="menuClick('review/list')">TEST</div>
-		<div class="menuItemSub" onclick="menuClick('rating/rating')">TEST</div>
-	</div>
-	
 	<div class="menuItem" onclick="menuClick('admin')">관리자</div>
 	
 	

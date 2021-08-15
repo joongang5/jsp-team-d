@@ -6,11 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bbs.auth.model.User;
 import bbs.mvc.command.CommandHandler;
-import bbs.review.model.Writer;
-import bbs.review.service.WriteRequest;
-import bbs.review.service.WriteReviewService;
 
 
 

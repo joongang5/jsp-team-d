@@ -55,6 +55,44 @@
 				href="#registerModal">등록하기</a> <a class="btn btn-danger mx-1 mt-2"
 				data-toggle="modal" href="#reportModal">신고</a>
 		</form>
+		
+		<!-- 링크 넣는 곳 -->
+		
+		<div class="card bg-light mt-3">
+			<div class="card-header bg-light">
+				<div class="row">
+					<div class="col-8 text-left">
+						${rating.movieName}&nbsp;<small>${rating.directorName}</small>
+					</div>
+					<div class="col-4 text-right">
+						종합<span style="color: red;">${rating.getTotalScore}</span>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					${rating.ratingTitle}<small>${rating.userID}</small>
+				</h5>
+				<p class="card-text">${rating.ratingContent}</p>
+				<div class="row">
+					<div class="col-9 text-left">
+						몰입도<span style="color: red;">${rating.getImmersionScore}</span> 영상미<span
+							style="color: red;">${rating.visualbeautyScore}</span> 메시지<span style="color: red;">${rating.messageScore}</span>
+						<span style="color: green;">(추천: ${rating.likeCount})</span>
+					</div>
+					<div class="col-3 text-right">
+						<a onclick="return confirm('추천하시겠습니까?')"
+							href="./likeAction.jsp?ratingID=">추천</a> <a
+							onclick="return confirm('삭제하시겠습니까?')"
+							href="./deleteAction.jsp?ratingID=">삭제</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 하단 예시 -->
+
+
 		<div class="card bg-light mt-3">
 			<div class="card-header bg-light">
 				<div class="row">
@@ -70,7 +108,9 @@
 				<h5 class="card-title">
 					이번에도 자막 실망임! &nbsp;<small>pika****</small>
 				</h5>
-				<p class="card-text">약빤 척하는게 아니라 제대로 하고싶은대로 한 영화. 참신한 장면들이 많았음에도 역시 대중들에게 이질감이란 방해물이 되기도 하나보다..난 정말 좋았음. 개성있는 캐릭터들에 약간의 주제의식이 첨가되니 액션을 뒷받침하기에 충분하다.절대적인 것이 있을까? 생각해본다. 누구나 목적을 가질 수 있다. </p>
+				<p class="card-text">약빤 척하는게 아니라 제대로 하고싶은대로 한 영화. 참신한 장면들이 많았음에도
+					역시 대중들에게 이질감이란 방해물이 되기도 하나보다..난 정말 좋았음. 개성있는 캐릭터들에 약간의 주제의식이 첨가되니
+					액션을 뒷받침하기에 충분하다.절대적인 것이 있을까? 생각해본다. 누구나 목적을 가질 수 있다.</p>
 				<div class="row">
 					<div class="col-9 text-left">
 						몰입도<span style="color: red;">☆★★★★</span> 영상미<span
@@ -86,7 +126,7 @@
 				</div>
 			</div>
 		</div>
-				<div class="card bg-light mt-3">
+		<div class="card bg-light mt-3">
 			<div class="card-header bg-light">
 				<div class="row">
 					<div class="col-8 text-left">
@@ -101,7 +141,9 @@
 				<h5 class="card-title">
 					애들 보여주러 갔다가, 본인이 더 재미지게 보고 왔네요.&nbsp;<small>evee****</small>
 				</h5>
-				<p class="card-text">이번 극장판은 초반과 중반에는 재미가 있고후반에는 감동과 반전이 있었네요~?특히, 「너와 거듭한 독백(君と重ねたモノロ?グ)」이 흘러나오는 부분부터는 노비타(진구)와 큐의 우정 이 더 잘 드러나 가지고 더 감동적으로 봤네요~</p>
+				<p class="card-text">이번 극장판은 초반과 중반에는 재미가 있고후반에는 감동과 반전이
+					있었네요~?특히, 「너와 거듭한 독백(君と重ねたモノロ?グ)」이 흘러나오는 부분부터는 노비타(진구)와 큐의 우정 이 더 잘
+					드러나 가지고 더 감동적으로 봤네요~</p>
 				<div class="row">
 					<div class="col-9 text-left">
 						몰입도<span style="color: red;">★★★★★</span> 영상미<span
@@ -117,7 +159,7 @@
 				</div>
 			</div>
 		</div>
-				<div class="card bg-light mt-3">
+		<div class="card bg-light mt-3">
 			<div class="card-header bg-light">
 				<div class="row">
 					<div class="col-8 text-left">
@@ -132,7 +174,8 @@
 				<h5 class="card-title">
 					백기 장면;;;&nbsp;<small>gobu****</small>
 				</h5>
-				<p class="card-text">누구나 예상할 수 있는 전개가 연속되더니 끝나버림...하나 예상못한 사실, 21년도에 북한과의 화합장려 영화가 등장할 줄은.. 예상못함.. </p>
+				<p class="card-text">누구나 예상할 수 있는 전개가 연속되더니 끝나버림...하나 예상못한 사실,
+					21년도에 북한과의 화합장려 영화가 등장할 줄은.. 예상못함..</p>
 				<div class="row">
 					<div class="col-9 text-left">
 						몰입도<span style="color: red;">★★★★★</span> 영상미<span
@@ -148,7 +191,7 @@
 				</div>
 			</div>
 		</div>
-				<div class="card bg-light mt-3">
+		<div class="card bg-light mt-3">
 			<div class="card-header bg-light">
 				<div class="row">
 					<div class="col-8 text-left">
@@ -163,7 +206,9 @@
 				<h5 class="card-title">
 					이 영화의 최대 문제는 공포 영화임에도 전혀 무섭지가 않다는 점&nbsp;<small>pair****</small>
 				</h5>
-				<p class="card-text">정말 돈이 아까운 허접영화 비상보트 탈출 표류중 일행중 2명이 상어에게 공격당해 죽었는데 배경이 야간설정이라 어떻게 죽었는지 모두 실루엣으로 처리했고 잘보이는 낮에는 일상대화밀 잔뜩 지루...내돈 내놔~~</p>
+				<p class="card-text">정말 돈이 아까운 허접영화 비상보트 탈출 표류중 일행중 2명이 상어에게
+					공격당해 죽었는데 배경이 야간설정이라 어떻게 죽었는지 모두 실루엣으로 처리했고 잘보이는 낮에는 일상대화밀 잔뜩
+					지루...내돈 내놔~~</p>
 				<div class="row">
 					<div class="col-9 text-left">
 						몰입도<span style="color: red;">☆☆☆★★</span> 영상미<span
@@ -339,8 +384,7 @@
 		</div>
 	</div>
 	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
-		Copyright &copy; 2021 D'movie All Right Reserved.
-	</footer>
+		Copyright &copy; 2021 D'movie All Right Reserved. </footer>
 	<!-- 제이쿼리 자바스크립트 추가하기 -->
 	<script src="../js/jquery.min.js"></script>
 	<!-- Popper 자바스크립트 추가하기 -->
