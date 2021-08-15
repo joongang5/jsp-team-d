@@ -27,6 +27,16 @@
 			<td>내용</td>
 			<td><c:out value="${offmeetData.content }"/></td>
 		</tr>
+		
+		<tr>
+			<td>카카오</td>
+			<td><c:out value="${kakao.sangho }"/></td>
+			<td>카카오</td>
+			<td><c:out value="${kakao.juso }"/></td>
+			<td>카카오</td>
+			<td><c:out value="${kakao.sangho }"/></td>
+		</tr>
+		
 		<tr>
 			<td colspan="2">
 			<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }"/>

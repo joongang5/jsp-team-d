@@ -29,8 +29,9 @@ public class ReadOffMeetHandler extends CommandHandler {
 			int offmeetNo = Integer.parseInt(noVal);
 			try {
 				OffMeetData offmeetData = readService.getOffMeet(offmeetNo, true);
-				System.out.println(offmeetData.getOffMeet());
+//				System.out.println(offmeetData.getOffMeet());
 				req.setAttribute("offmeetData", offmeetData.getOffMeet());
+				
 				return "/WEB-INF/view/readOffMeet.jsp";
 			}catch (OffMeetNotFoundException e) {
 				req.getServletContext().log("no offmeet", e);
@@ -40,6 +41,7 @@ public class ReadOffMeetHandler extends CommandHandler {
 			}
 			
 		}
+		
 
 
 }

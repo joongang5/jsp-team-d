@@ -142,11 +142,6 @@ function displayPlaces(places) {
                 
                 var resultDiv = document.getElementById('mapResult');  
                 resultDiv.innerHTML = message;
-				var hiddenInput = document.getElementsByName('mapResult');
-				if (hiddenInput.length >= 1) {
-					var mapResult = infoList[0] + infoList[1] + infoList[2] + infoList[3]; 
-                	hiddenInput[0].setAttribute('value', mapResult);
-				}
             };
             
         })(marker, places[i].place_name);

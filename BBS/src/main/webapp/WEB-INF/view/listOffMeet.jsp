@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>영화팟</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 
 <style type="text/css">
@@ -79,7 +78,7 @@ tr:hover {
 					</a>
 					</td>
 					<td>${offmeet.writer.name }</td>
-					<td>${offmeet.modifiedDate }</td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${offmeet.modifiedDate }"/></td>
 					<td>${offmeet.readCount }</td>
 				</c:forEach>
 				<c:if test="${offmeetPage.hasOffMeet() }">

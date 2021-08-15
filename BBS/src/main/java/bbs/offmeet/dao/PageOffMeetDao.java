@@ -11,7 +11,7 @@ import bbs.review.model.Review;
 
 public class PageOffMeetDao<T extends OffMeet> extends BasePagingDao<OffMeet> {
 
-	public PageOffMeetDao(String tableName, String orderRule) { // ÀÌÇö¾Æ »ý¼º,,
+	public PageOffMeetDao(String tableName, String orderRule) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½,,
 		super(tableName, orderRule);
 	}
 
