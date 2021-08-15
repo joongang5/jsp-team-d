@@ -34,6 +34,9 @@ public class MemberGradeUpRequest {
 			// 일케하면 포인트 + 150 하면 레벨업하고 50포인트 남네요
 			// 이렇게하면 테스트 두번?으로 가능할거같은데 ㅠㅠ 해볼게여!
 			//myPoint = myPoint - MAX_POINT;
+			if(grade <= 2 ) { //레벨 2 도달하면 더 이상 레벨업x  
+				grade = 2;
+			}
 		} else {
 			// 2.2.2.1 grade은 그대로, point + 5
 			myPoint += 5;

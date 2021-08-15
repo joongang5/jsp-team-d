@@ -76,7 +76,7 @@ img{
 	width: 500px;
 	height: 500px;
 	margin: 0 auto;
-	margin-left: 43%;
+	margin-left: 40%;
 }
 .myInfo > ul > li {
 	list-style:none;
@@ -91,14 +91,14 @@ img{
         width: 150px;
         height: 20px;
         border-radius: 7px;
-        color: #35495e;
+        
       }
       progress::-webkit-progress-bar {
         background-color: #eee;
         border-radius: 8px;
       }
       progress::-webkit-progress-value {
-        background-color: #35495e;
+        background: linear-gradient(45deg, blueviolet, aquamarine);
         border-radius: 8px;
       }
       progress::-moz-progress-bar {
