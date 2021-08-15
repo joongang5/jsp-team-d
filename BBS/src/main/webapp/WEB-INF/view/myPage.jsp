@@ -9,27 +9,29 @@
 <title>마이페이지</title>
 <link href="./css/myPage.css" rel="stylesheet">
 <script type="text/javascript" src="/BBS/js/menu.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/BBS/js/myPage.js"></script>
-
 </head>
+
 <body>
+<!-- header랑 menu 임포트 -->
 <div id="header">
          <c:import url="/WEB-INF/view/component/header.jsp" />
       </div>
 <div id="myPageMenu">
 	<c:import url="/WEB-INF/view/component/myPageMenu.jsp" />
 </div>	
-<div id = "container">
+<!-- 여기까지 -->
+
+
+
 <div id="title">
 My <br>
 Profile
 </div>
 
-
-<div id="contents">
-<div id="myPic">
- 	 <div id= "profilPreview">
+<!-- 프로필 사진  -->
+<div class="myPic">
+ 	 <div class= "profilPreview">
  	 <c:if test="${member.imgName ne null }">						
      <img id="imageProfil" src = "./upload/${member.imgName} " > 
      </c:if>
@@ -37,7 +39,8 @@ Profile
      <img id="imageProfil" src ="./img/user2.png">		
      </c:if>
     </div>
-    <div id = "cameraIcon">
+    
+    <div class = "cameraIcon">
 
  	 <label>
  	 	<img id="imageUpload" src="./img/camera.png">
@@ -49,11 +52,15 @@ Profile
      </form>
     
     </div>
-</div> 
+    
+</div>    
+<!-- 여기까지 -->
+
+
 <br>
 
 
-<div id="myInfo">
+<div class="myInfo">
 <br>
 
  <ul>
@@ -61,9 +68,9 @@ Profile
 		
 		<li><p>MyPoint : ${member.myPoint} <p></li>
 		<li><p><progress class="progressTag" value="${member.myPoint}" max="100"></progress></p></li>
-</ul>
+
 	
-<ul>					
+					
 		<li><p>이름 : ${member.name }</p></li>		
 		
 			<!-- sns 로그인 사용자들만 암호변경 사용불가 by 강민--> 
@@ -73,9 +80,10 @@ Profile
 
 		<li><p>비밀번호 : <button onclick="menuClick('changePw')">수정하기</button></p></li>
 				 	
-</ul>		
-<ul>	
-		<li><p>이메일 : ${member.email }</p>	
+		
+	
+		<li><p>이메일 : ${member.email }</p></li>		
+
 	 
 		<form action ="myPage.do" method="post">
 			 <input type="email" id="newEmail" name="newEmail" placeholder="새로운 이메일주소를 입력해주세요">
@@ -89,12 +97,12 @@ Profile
 	
 	</c:if>	
 
-	 </li>	
 	<li><p>가입일시 : <fmt:formatDate value="${member.regDate }" pattern="yyyy-MM-dd" /></p></li>
 </ul>	
 </div>
-</div>
-</div>  
+
+
+
 
 
 
