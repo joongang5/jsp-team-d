@@ -8,74 +8,6 @@ body{
 	color: #faeef0;	
 	
 }
-#container{
-	position: relative;
-	
-}
-img{
- margin: 0 auto;
- margin-left :19%;
- width: 200px;
- height: 200px;
-}
-
-#myInfo > ul > li {
-	list-style:none;
-	font-family: 'Nanum Gothic';
-}
-
-
-#myInfo{
-	margin: 0 auto;
-	margin-left :35%;
-	width: 70%;
-	height: 40%;
-}
-#myPic{
-	position:relative;
-	margin:0 auto;
-	box-sizing:border-box;
-	padding:5px;
-	width: 200px;
-	height: 200px;
-	border: 1px solid #faeef0 ;
-	border-radius: 100px 100px 100px 100px;
-	margin-top:20px;
-	
-}
-#imageProfil{
-	
-	width:170px;
-	height: 170px;
-	margin-left: 7.5px;
-	margin-top: 8px;
-	position: relative;
-	border-radius: 100px 100px 100px 100px;
-}
-#cameraIcon{
-	position: relative;
-	z-index:2;
-	bottom: 50px;
-	left : 130px;
-	border : 1px solid white;
-	background-color: white;
-	width:35px;
-	height: 35px;
-	border-radius: 100px 100px 100px 100px;
-}
-#profilPreview{
-	position: relative;
-	z-index: 1;
-}
-
-#imageUpload{
-	margin: 0 auto;
-	box-sizing: border-box;
-	width: 30px;
-	height: 30px;
-	padding-left:6px;
-	padding-top:3px;
-}
 #title{
 	float: right;
 	margin-top: 5px;
@@ -87,9 +19,70 @@ img{
 	transform:rotate(90deg);
 	box-sizing:border-box;
 }
+.myPic{
+	position:relative;
+	margin:0 auto;
+	box-sizing:border-box;
+	padding:5px;
+	width: 200px;
+	height: 200px;
+	border: 1px solid #faeef0 ;
+	border-radius: 100px 100px 100px 100px;
+	margin-top:20px;
+	
+}
+.profilPreview{
+	position: relative;
+	z-index: 1;
+}
+#imageProfil{
+	width:170px;
+	height: 170px;
+	margin-left: 7.5px;
+	margin-top: 8px;
+	position: relative;
+	border-radius: 100px 100px 100px 100px;
+}
+.cameraIcon{
+	position: relative;
+	z-index:2;
+	bottom: 50px;
+	left : 130px;
+	border : 1px solid white;
+	background-color: white;
+	width:35px;
+	height: 35px;
+	border-radius: 100px 100px 100px 100px;
+}
+#imageUpload{
+	margin: 0 auto;
+	box-sizing: border-box;
+	width: 30px;
+	height: 30px;
+	padding-left:6px;
+	padding-top:3px;
+}
 #profilModi{
 	margin-top: 40px;
 }
+img{
+ margin: 0 auto;
+ margin-left :19%;
+ width: 200px;
+ height: 200px;
+}
+
+.myInfo{
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+	margin-left: 40%;
+}
+.myInfo > ul > li {
+	list-style:none;
+	font-family: 'Nanum Gothic';
+}
+
 .progressTag {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -98,18 +91,17 @@ img{
         width: 150px;
         height: 20px;
         border-radius: 7px;
-        color: #35495e;
+        
       }
       progress::-webkit-progress-bar {
         background-color: #eee;
         border-radius: 8px;
       }
       progress::-webkit-progress-value {
-        background-color: #35495e;
+        background: linear-gradient(45deg, blueviolet, aquamarine);
         border-radius: 8px;
       }
       progress::-moz-progress-bar {
         background-color: #eee;
         border-radius: 8px;
       }
-

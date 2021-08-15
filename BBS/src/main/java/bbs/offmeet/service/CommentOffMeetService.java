@@ -1,35 +1,30 @@
 package bbs.offmeet.service;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Date;
 
 import bbs.jdbc.ConnectionProvider;
 import bbs.jdbc.JdbcUtil;
 import bbs.offmeet.dao.OffMeetContentDao;
-import bbs.offmeet.dao.OffMeetDao;
+import bbs.offmeet.dao.OffMeetDao2;
 import bbs.offmeet.model.OffMeet;
 import bbs.offmeet.model.OffMeetContent;
 
-public class WriteOffMeetService {
+public class CommentOffMeetService {
 	
-	private OffMeetDao offMeetDao = new OffMeetDao();
+	private OffMeetDao2 OffMeetDao2 = new OffMeetDao2();
 	private OffMeetContentDao contentDao = new OffMeetContentDao();
 	
-	
-	//write() 메서드는 WriteRequest 타입의 req 파라미터를 이용해서 게시글을 등록하고, 결과로 게시글 번호를 리턴
-	public Integer write(WriteRequest req) {
+	public Integer write(CommentWrite req) {
 		Connection conn = null;
 		try {
-			//conn = ConnectionProvider.getConnection();
-			conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:board");
-			//트랜잭션 시작
+			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
 			OffMeet offmeet = toOffmeet(req);
 			System.out.println(req.getContent());
-			OffMeet savedOffMeet = offMeetDao.insert(conn, offmeet);
+			OffMeet savedOffMeet = OffMeetDao2.insert(conn, offmeet, req.getContent());
 			if(savedOffMeet == null) {
 				throw new RuntimeException("fail to insert offmeet");
 			}
@@ -54,11 +49,8 @@ public class WriteOffMeetService {
 		
 	}
 
-	
-	
-	private OffMeet toOffmeet(WriteRequest req) {
+	private OffMeet toOffmeet(CommentWrite req) {
 		Date now = new Date();
-		String content = req.getContent() + req.getMapResult();
-		return new OffMeet(null, content, req.getWriter(), req.getTitle(), now, now, 0);
+		return new OffMeet(null, req.getContent(), req.getWriter(), req.getTitle(), now, now, 0);
 	}
 }

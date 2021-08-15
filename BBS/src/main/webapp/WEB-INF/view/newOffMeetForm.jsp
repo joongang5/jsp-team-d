@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,6 @@
 						<textarea name="content" required="required"></textarea>
 						<input type="file" name="file1">
 						<button type="submit">글쓰기</button>
-						<input type="hidden" name="mapResult" value="">
 					</form>
 					<br>					
 					<p onclick="location.href='/BBS/offmeet/list.do'">게시판으로</p>
@@ -38,7 +38,7 @@
 						<div class="option">
 							<div>
 								<form onsubmit="searchPlaces(); return false;">
-									키워드 : <input type="text" value="강남 CGV" id="keyword" size="15">
+									키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
 									<button type="submit">검색하기</button>
 								</form>
 							</div>

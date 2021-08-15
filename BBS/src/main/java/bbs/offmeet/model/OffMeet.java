@@ -12,11 +12,14 @@ public class OffMeet {
 	private Date modifiedDate;
 	private int readCount;
 	private int offmeetNo;
-   private String offmeetContent;
-   private String writerId;
-   private String writerName;
+    private String offmeetContent;
+    private String writerId;
+    private String writerName;
 	
-	public OffMeet(int offmeet_no, String offmeet_content, String writer_id, String writer_name,String title, Date regDate, Date modifiedDate, int readCount) {
+    
+    
+	public OffMeet(int offmeet_no, String offmeet_content, String writer_id, String writer_name,
+			String title, Date regDate, Date modifiedDate, int readCount) {
       this.offmeetNo = offmeet_no;
       this.offmeetContent = offmeet_content;
       this.writerId = writer_id;
@@ -27,7 +30,7 @@ public class OffMeet {
       this.readCount = readCount;
       }
    
-   
+
 
 public int getOffmeetNo() {
       return offmeetNo;
