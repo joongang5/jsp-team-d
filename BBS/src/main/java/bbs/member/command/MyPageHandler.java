@@ -19,7 +19,7 @@ import bbs.member.service.ValidEmailService;
 import bbs.mvc.command.CommandHandler;
 
 
-public class MyPageHandler extends CommandHandler { //��
+public class MyPageHandler extends CommandHandler { //占쏙옙
 
 	private ReadMyPageService readService = new ReadMyPageService();
 	private ValidEmailService validService = new ValidEmailService();
@@ -29,9 +29,9 @@ public class MyPageHandler extends CommandHandler { //��
 		return "/WEB-INF/view/myPage.jsp";
 	}
 
-	// 마이페이지에 진입했을 때 보여줄 데이터에 대한 처리를 합니다.
-	// ReadArticleHandler의 process(HttpServletRequest req, HttpServletResponse res)
-	// 함수 참조
+	// 留덉씠�럹�씠吏��뿉 吏꾩엯�뻽�쓣 �븣 蹂댁뿬以� �뜲�씠�꽣�뿉 ���븳 泥섎━瑜� �빀�땲�떎.
+	// ReadArticleHandler�쓽 process(HttpServletRequest req, HttpServletResponse res)
+	// �븿�닔 李몄“
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
@@ -56,31 +56,31 @@ public class MyPageHandler extends CommandHandler { //��
 		}
 	}
 
-	// 정보 수정하기와 같은 처리를 합니다.
-	// myPage.jsp에서 수정하기 form의 action을 post방식으로 처리
+	// �젙蹂� �닔�젙�븯湲곗� 媛숈� 泥섎━瑜� �빀�땲�떎.
+	// myPage.jsp�뿉�꽌 �닔�젙�븯湲� form�쓽 action�쓣 post諛⑹떇�쑝濡� 泥섎━
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 	
 		
-		//메일 인증 후 수정 구현
+		//硫붿씪 �씤利� �썑 �닔�젙 援ы쁽
 		
 		User user = (User) req.getSession().getAttribute("authUser");
 		String userId = user.getId(); 	
 		
 		
-		String to = req.getParameter("newEmail"); //메일 받을 주소
-		//System.out.println(to); 잘 들어옴
+		String to = req.getParameter("newEmail"); //硫붿씪 諛쏆쓣 二쇱냼
+		//System.out.println(to); �옒 �뱾�뼱�샂
 		
-	 //  validService.validEmailService(to) = 이메일 인증번호 보내는 서비스 
+	 //  validService.validEmailService(to) = �씠硫붿씪 �씤利앸쾲�샇 蹂대궡�뒗 �꽌鍮꾩뒪 
 		
 
-		HttpSession keyWasSaved = req.getSession(); //세션에 저장
-        keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); //이름 지정
+		HttpSession keyWasSaved = req.getSession(); //�꽭�뀡�뿉 ���옣
+        keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); //�씠由� 吏��젙
         keyWasSaved.setAttribute("newEmail2", to);
          
 		
 		         
-         return  getFormViewName();
+         return  "/WEB-INF/view/sendKeySuccess.jsp";
         
 			}
 		
