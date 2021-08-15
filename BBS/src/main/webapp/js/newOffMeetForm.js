@@ -135,13 +135,23 @@ function displayPlaces(places) {
             		infoList.push(info[i].textContent);
             	}            	
             	
-            	var message = '<div id="name" style="color: white;">상호명 : ' + infoList[0] + '</div>';
-            	message += '<div id="roadAddr" style="color: white;">도로명주소 : ' + infoList[1] + '</div>';
-            	message += '<div id="address" style="color: white;">지번주소 : ' + infoList[2] + '</div>';
-            	message += '<div id="telePhone" style="color: white;">전화번호 : ' + infoList[3] + '</div>';
+            	// form 태그 값 넘김을 위한 값 전달.
+            	var message1 = '<input type="hidden" name="sangho" value="' + infoList[0] + '"></div>';
+            	message1 += '<input type="hidden" name="juso" value="' + infoList[1] + '"></div>';
+            	message1 += '<input type="hidden" name="TEL" value="' + infoList[3] + '"></div>'; 
                 
-                var resultDiv = document.getElementById('mapResult');  
-                resultDiv.innerHTML = message;
+                var resultDiv1 = document.getElementById('mapResult1');
+                resultDiv1.innerHTML = message1;
+            	
+            	
+            	// 지도 밑에 선택한 지역 표시.(나중에 삭제)
+            	var message2 = '<div id="name" style="color: white;">상호명 : ' + infoList[0] + '</div>';
+            	message2 += '<div id="roadAddr" style="color: white;">도로명주소 : ' + infoList[1] + '</div>';
+            	message2 += '<div id="address" style="color: white;">지번주소 : ' + infoList[2] + '</div>';
+            	message2 += '<div id="telePhone" style="color: white;">전화번호 : ' + infoList[3] + '</div>';
+                
+                var resultDiv2 = document.getElementById('mapResult2');  
+                resultDiv2.innerHTML = message2;
             };
             
         })(marker, places[i].place_name);

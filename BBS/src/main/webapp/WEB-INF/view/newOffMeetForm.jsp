@@ -21,6 +21,7 @@
 			<div id="mainWrapper">
 				<div id="write">
 					<form action="write.do" method="post">
+						<div id="mapResult1"></div>
 						<input type="text" name="title" required="required" placeholder="제목을 적어주세요">
 						<c:if test="${errors.title }">제목을 입력하세요.</c:if>
 						<textarea name="content" required="required"></textarea>
@@ -38,7 +39,7 @@
 						<div class="option">
 							<div>
 								<form onsubmit="searchPlaces(); return false;">
-									키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
+									키워드 : <input type="text" value="강남 CGV" id="keyword" size="15">
 									<button type="submit">검색하기</button>
 								</form>
 							</div>
@@ -48,7 +49,7 @@
 						<div id="pagination"></div>
 					</div>
 				</div>
-				<div id="mapResult"></div>
+				<div id="mapResult2"></div>
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f7c4b2fc5ab90c2479e74ec47a34e03b&libraries=services"></script>
 				<script type="text/javascript" src="../js/newOffMeetForm.js"></script>
 			</div>			
