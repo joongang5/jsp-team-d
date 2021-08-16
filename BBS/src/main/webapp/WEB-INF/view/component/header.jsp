@@ -18,16 +18,10 @@ label {
 	transition: .4s;
 
 }
-label:active,
-label:focus,
-label:hover {
-	color: black;
-	transition: .4s;
-}
 
-#login:active,
-#login:focus,
-#login:hover {
+.headerButton:active,
+.headerButton:focus,
+.headerButton:hover {
 	color: black;
 	transition: .4s;
 }
@@ -54,8 +48,8 @@ label:hover {
 #headerButtons {
 	position: absolute;
 	top: 0;
-	left: 680px;
-	width: 710px;
+	width: calc(100% - 160px);
+	right: 10px;
 	height: 100%;
 	color: white;
 }
@@ -68,7 +62,16 @@ input[id*="popup"]+label {
 	display: inline-block;
 	padding: 10px;
 	color: #fff;
+	float: right;
 }
+
+input[id*="popup"]+label+label {
+	display: inline-block;
+	padding: 10px;
+	color: #fff;
+	float: right;
+}
+
 input[id*="popup"]+label[id*="login"] {
 	display: hidden;
 }
@@ -120,35 +123,47 @@ input[id*="popup"]+label+div>label {
 </style>
 
 <script>
-	function onHomeClick() {
-		location.href = '/BBS/boxOffice/list.do';
-	}
-
-	function onMyPageClick() {
-		location.href = '/BBS/myPage.do';
-	}
+$(document).ready(function() {
+	var curPath = $(location).attr('pathname');
+	var split = curPath.split('/');
+	var naviId = '';
+	if (split.length > 2)
+		naviId = split[2];
 	
-	function onLogoutClick() {
-		location.href = '/BBS/logout.do';
+	if (naviId == '' || naviId == 'boxOffice') {
+		$('#headerButtons').css('right', '');
+		$('#headerButtons').css('width', '500px');
+		$('#headerButtons').css('left', '460px');	
 	}
+});
+
+function onHomeClick() {
+	location.href = '/BBS/boxOffice/list.do';
+}
+
+function onMyPageClick() {
+	location.href = '/BBS/myPage.do';
+}
+
+function onLogoutClick() {
+	location.href = '/BBS/logout.do';
+}
 </script>
 
 <div class="home">
 	<div id="logo" onclick="onHomeClick();">D'movie</div>
 </div>
+
 <div id="headerButtons">
-
-
 	<input type="checkbox" id="popup">
 	
 	<c:if test="${empty authUser}">
-		<label id="login" for="popup">로그인</label>
+		<label id="login" class="headerButton" for="popup">로그인</label>
 	</c:if>
 
 	<c:if test="${! empty authUser}">
-		<label></label>
-		<label onclick="onMyPageClick();">${authUser.name}님 마이페이지</label>
-		<label onclick="onLogoutClick();">로그아웃</label>
+		<label class="headerButton" onclick="onLogoutClick();">로그아웃</label>
+		<label class="headerButton" onclick="onMyPageClick();">${authUser.name}님 마이페이지</label>
 	</c:if>
 	
 	<c:if test="${empty authUser}">
@@ -160,6 +175,6 @@ input[id*="popup"]+label+div>label {
 		<label for="popup"></label>
 	</div>
 	</c:if>
-	
 </div>
+
 
