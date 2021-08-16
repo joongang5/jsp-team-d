@@ -138,7 +138,7 @@ a:visited {
 		-->
 
 			<c:if test="${empty authUser}">
-
+				<br>
 				<h2 align="center">로그인</h2>
 
 			<form action="${pageContext.request.contextPath }/login.do" method="post">

@@ -44,6 +44,13 @@ label:hover {
 	background-color: #212121;
 }
 
+#closeModal {
+	position: relative;
+	top: -20px;
+	float: right;
+	z-index: 5;
+}
+
 #headerButtons {
 	position: absolute;
 	top: 0;
@@ -52,7 +59,6 @@ label:hover {
 	height: 100%;
 	color: white;
 }
-
 
 input[id*="popup"] {
 	display: none;
@@ -82,7 +88,7 @@ input[id*="popup"]+label+div {
 input[id*="popup"]:checked+label+div {
 	opacity: 1;
 	visibility: visible;
-	background: rgba(0, 0, 0, .4);
+	background: rgba(0, 0, 0, .7);
 }
 
 input[id*="popup"]+label+div>div {
@@ -97,7 +103,9 @@ input[id*="popup"]+label+div>div {
 }
 
 input[id*="popup"]+label+div>div>label {
-
+	position: absolute;
+	top: -20px;
+	float: right;
 }
 
 input[id*="popup"]+label+div>label {
@@ -142,13 +150,16 @@ input[id*="popup"]+label+div>label {
 		<label onclick="onMyPageClick();">${authUser.name}님 마이페이지</label>
 		<label onclick="onLogoutClick();">로그아웃</label>
 	</c:if>
+	
+	<c:if test="${empty authUser}">
 	<div>
 		<div id="modalLogin">
-			<label for="popup"></label>
+			<label id="closeModal" for="popup">X</label>
 			<c:import url="/WEB-INF/view/loginForm.jsp" />
 		</div>
 		<label for="popup"></label>
 	</div>
+	</c:if>
 	
 </div>
 
