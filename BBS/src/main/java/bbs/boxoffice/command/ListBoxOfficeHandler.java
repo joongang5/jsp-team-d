@@ -10,19 +10,25 @@ import bbs.logic.service.PageListService;
 import bbs.movie.dao.ReservedMovieViewDao;
 import bbs.movie.model.ReservedMovieView;
 import bbs.mvc.command.CommandHandler;
+import bbs.offmeet.dao.PageOffMeetDao;
+import bbs.offmeet.model.OffMeet;
 
 public class ListBoxOfficeHandler extends CommandHandler {
 	
     private PageListService<BoxOfficeView> boxOfficeListService;
     private PageListService<ReservedMovieView> reservedListService;
+    private PageListService<OffMeet> offMeetListService;
     
     public ListBoxOfficeHandler() {
     	BoxOfficeViewDao<BoxOfficeView> boxOfficeViewDao = new BoxOfficeViewDao<BoxOfficeView>();
     	boxOfficeListService = new PageListService<BoxOfficeView>(boxOfficeViewDao);
     	
-
     	ReservedMovieViewDao<ReservedMovieView> reservedMovieDao = new ReservedMovieViewDao<ReservedMovieView>();
     	reservedListService = new PageListService<ReservedMovieView>(reservedMovieDao);
+    	
+    	PageOffMeetDao<OffMeet> offMeetDao = new PageOffMeetDao<OffMeet>();
+    	offMeetListService = new PageListService<OffMeet>(offMeetDao);
+    	offMeetListService.setSize(5);
     }
     
 	@Override
@@ -47,6 +53,9 @@ public class ListBoxOfficeHandler extends CommandHandler {
         
         Page<ReservedMovieView> reservedMoviePage = reservedListService.getPage(pageNo);
         req.setAttribute("reservedMoviePage", reservedMoviePage);
+        
+        Page<OffMeet> offMeetPage = offMeetListService.getPage(pageNo);
+        req.setAttribute("offMeetPage", offMeetPage);
         
 		return getFormViewName();
 	}
