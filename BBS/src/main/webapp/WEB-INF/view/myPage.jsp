@@ -86,7 +86,7 @@ Profile
 
 	 
 		<form action ="myPage.do" method="post">
-			 <input type="email" id="newEmail" name="newEmail" placeholder="새로운 이메일주소를 입력해주세요">
+			 <input type="email" id="newEmail" name="newEmail" placeholder="새로운 이메일주소를 입력해주세요" required>
 	 
 			 <input type="submit" id="emailBtn" name="emailBtn" value="인증 메일 보내기" >	
 		</form>	
