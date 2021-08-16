@@ -13,10 +13,6 @@ public class PageListService<T> {
 	private BasePagingDao<T> dao;
 	
 	private int size = 10;
-
-	public void setSize(int size) {
-		this.size = size;
-	}
 	
 	public PageListService(BasePagingDao<T> dao) {
 		this.dao = dao;

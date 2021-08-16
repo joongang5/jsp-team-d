@@ -115,33 +115,6 @@
 						</div>
 					</div>
 				</div>
-				<div id="offMeetMain">
-					<a class="miniBoardTitle" href="">Movie Gathering</a>
-					<table class="miniBoard">
-						<tr id="titleN" style="text-align: center;	height: 35px;"> 
-							<th style="width: 60%">제목</th>
-							<th style="width: 20%;">조회수</th>
-							<th style="width: 20%;">작성자</th>
-						</tr>
-						
-						<c:if test="${!offMeetPage.hasContent()}">
-							<tr>
-								<td colspan="3"> 게시글이 없습니다.</td>
-							</tr>
-						</c:if>
-						<c:forEach var="offMeet" items="${offMeetPage.content }">
-							<tr>
-								<td style="text-overflow:ellipsis; white-space:nowrap; max-width:260px; overflow:hidden">
-									<a style="color:white; "href="read.do?no=${offMeet.number}">
-										<c:out value="${offMeet.title }"/>
-									</a>
-								</td>
-								<td style="text-align: center;">${offMeet.readCount }</td>
-								<td style="text-align: center;">${offMeet.writerName }</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
 			</div>
 		</div>
 	</div>
