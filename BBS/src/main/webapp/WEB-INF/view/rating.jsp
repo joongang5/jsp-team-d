@@ -19,15 +19,17 @@
 .navbar{
 
  background-color:gray !important;
-
+ border-radius: 10px;
+ 
 }
 
 </style>
 </head>
 <body>
+<div class="p-3 mb-2 bg-dark text-black">
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="index.jsp">D'movie 영화평가 라운지</a>
+		<a class="navbar-brand" href="rating.do" onclick="return confirm('평가리스트 최신화 완료')">D'movie 영화평가 라운지</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
@@ -35,7 +37,7 @@
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="../boxOffice/list.do">MAIN PAGE</a></li>
+					href="../boxOffice/list.do">|&nbsp;&nbsp;&nbsp;&nbsp;MAIN PAGE</a></li>
 					<!-- 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="dropdown"
@@ -45,7 +47,6 @@
 							class="dropdown-item" href="join.do">회원가입</a> <a
 							class="dropdown-item" href="logout.do">로그아웃</a>
 					</div></li>
-			</ul>
 			 <form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="내용을 입력하세요." aria-label="Search">
@@ -53,6 +54,7 @@
 			</form>
 					 -->
 			
+			</ul>
 		</div>
 	</nav>
 
@@ -66,8 +68,8 @@
 			</select> <input type="text" name="search" class="form-control mx-1 mt-2"
 				placeholder="내용을 입력하세요">
 			<button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>-->
-			<a class="btn btn-success mx-auto mt-2 w-100" data-toggle="modal"
-				href="#registerModal">등록하기</a> 
+			<a class="btn btn-warning mx-auto mt-2 w-100" data-toggle="modal"
+				href="#registerModal" onclick="return confirm('로그인 하셨습니까?')">등록하기</a> 
 				<!-- <a class="btn btn-danger mx-1 mt-2"	data-toggle="modal" href="#reportModal">신고</a> -->
 		</form>
 
@@ -121,7 +123,7 @@
 				</div>
 				<div class="card-body">
 					<h5 class="card-title">
-						${rating.ratingTitle}<small>${rating.userID}</small>
+						${rating.ratingTitle}<small>&nbsp;${rating.userID}</small>
 					</h5>
 					<p class="card-text">${rating.ratingContent}</p>
 					<div class="row">
@@ -391,7 +393,8 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">취소</button>
-								<button type="submit" class="btn btn-success">등록하기</button>
+								<button type="submit" class="btn btn-success" 
+								onclick="return confirm('상단의 메인을 클릭하시면 글이 등록됩니다.')">등록하기</button>
 							</div>
 						</div>
 					</form>
@@ -431,7 +434,7 @@
 			</div>
 		</div>
 	</div>
-	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
+	<footer class="bg-secondary mt-4 p-5 text-center" style="color: #FFFFFF;">
 		Copyright &copy; 2021 D'movie All Right Reserved. </footer>
 	<!-- 제이쿼리 자바스크립트 추가하기 -->
 	<script src="../js/jquery.min.js"></script>
@@ -439,7 +442,7 @@
 	<script src="../js/popper.js"></script>
 	<!-- 부트스트랩 자바스크립트 추가하기 -->
 	<script src="../js/bootstrap.min.js"></script>
-
+</div>
 </body>
 
 
