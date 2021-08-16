@@ -11,6 +11,7 @@ import bbs.offmeet.dao.OffMeetContentDao;
 import bbs.offmeet.dao.OffMeetDao;
 import bbs.offmeet.model.OffMeet;
 import bbs.offmeet.model.OffMeetContent;
+import bbs.offmeet.model.kakao;
 
 public class WriteOffMeetService {
 	
@@ -30,6 +31,9 @@ public class WriteOffMeetService {
 			OffMeet offmeet = toOffmeet(req);
 			System.out.println(req.getContent());
 			OffMeet savedOffMeet = offMeetDao.insert(conn, offmeet);
+			//kakao savekakao = offMeetDao.kakaoin(conn, kakao);
+//			
+			//null 일시 테이블에 삽입한 값이 없으므로 에러 발생
 			if(savedOffMeet == null) {
 				throw new RuntimeException("fail to insert offmeet");
 			}
@@ -58,7 +62,8 @@ public class WriteOffMeetService {
 	
 	private OffMeet toOffmeet(WriteRequest req) {
 		Date now = new Date();
-		String content = req.getContent() + req.getMapResult();
-		return new OffMeet(null, content, req.getWriter(), req.getTitle(), now, now, 0);
+		String content = req.getContent() + req.getJuso() + req.getSangho() + req.getTel();
+		return new OffMeet(null, content, req.getWriter(), req.getTitle(), now, now, req.getJuso(), req.getSangho(), req.getTel(), 0);
 	}
+	
 }

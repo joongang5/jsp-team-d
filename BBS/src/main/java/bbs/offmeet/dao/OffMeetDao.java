@@ -20,7 +20,7 @@ public class OffMeetDao {
 	public OffMeet insert(Connection conn, OffMeet offmeet) throws SQLException {
 		PreparedStatement pstmt = null;
 		Statement stmt = null;
-		String sql = "insert into offmeet (offmeet_content, writer_id, writer_name, title, regdate, moddate, read_cnt) values (?,?,?,?,?,?,0)";
+		String sql = "insert into offmeet (offmeet_content, writer_id, writer_name, title, regdate, moddate, sangho, juso, tel, read_cnt) values (?,?,?,?,?,?,?,?,?,0)";
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -30,6 +30,9 @@ public class OffMeetDao {
 			pstmt.setString(4, offmeet.getTitle());
 			pstmt.setTimestamp(5, toTimestamp(offmeet.getRegDate()));
 			pstmt.setTimestamp(6, toTimestamp(offmeet.getModifiedDate()));
+			pstmt.setString(7, offmeet.getJuso());
+			pstmt.setString(8, offmeet.getSangho());
+			pstmt.setString(9, offmeet.getTel());
 			int insertedCount = pstmt.executeUpdate();
 			System.out.println(insertedCount);
 
@@ -40,7 +43,7 @@ public class OffMeetDao {
 				if (rs.next()) {
 					Integer newNum = rs.getInt(1);
 					return new OffMeet(newNum, offmeet.getContent(), offmeet.getWriter(), offmeet.getTitle(),
-							offmeet.getRegDate(), offmeet.getModifiedDate(), 0);
+							offmeet.getRegDate(), offmeet.getModifiedDate(), offmeet.getJuso(),offmeet.getSangho(), offmeet.getTel(), 0);
 				}
 			}
 
@@ -102,6 +105,9 @@ public class OffMeetDao {
 				rs.getString("title"),
 				toDate(rs.getTimestamp("regdate")), 
 				toDate(rs.getTimestamp("moddate")), 
+				rs.getString("juso"),
+				rs.getString("sangho"),
+				rs.getString("tel"),
 				rs.getInt("read_cnt"));
 	}
 
@@ -200,41 +206,24 @@ public class OffMeetDao {
 		return null;
 	}
 
-	public kakao kakao(Connection conn, kakao kakao) throws SQLException {
-		PreparedStatement pstmt = null;
-		Statement stmt = null;
-		try {
-			pstmt = conn.prepareStatement("insert into kakao_data (juso, sangho, TEL) values (?,?,?)");
-			pstmt.setString(1, kakao.getJuso());
-			pstmt.setString(2, kakao.getSangho());
-			pstmt.setInt(3, kakao.getTEL());
-			return null;
-		} finally {
-			JdbcUtil.close(stmt);
-		}
-
-
-	}
-//	//21-08-15
-//	public kakao Readkakao(Connection conn, kakao kakao) {
+//	public kakao kakaoin(Connection conn, kakao kakao) throws SQLException {
 //		PreparedStatement pstmt = null;
+//		Statement stmt = null;
 //		ResultSet rs = null;
 //		try {
-//			pstmt = conn.prepareStatement("select * from kakao_data where no=?");
-//			pstmt.setInt(1, no);
-//			rs = pstmt.executeQuery();
-//			if (rs.next()) {
-//				kakao = convertkakao(rs);
-//			}
-//			return kakao;
+//			pstmt = conn.prepareStatement("insert into kakao_data (juso, sangho, TEL) values (?,?,?)");
+//			pstmt.setString(1, kakao.getJuso());
+//			pstmt.setString(2, kakao.getSangho());
+//			pstmt.setInt(3, kakao.getTEL());
+//			return null;
+//
 //		} finally {
 //			JdbcUtil.close(rs);
+//			JdbcUtil.close(stmt);
 //			JdbcUtil.close(pstmt);
 //		}
+//
+//
 //	}
-//	//21-08-15
-//	private kakao convertkakao(ResultSet rs) throws SQLException {
-//		return null ;
-//	}
-	
+
 }
