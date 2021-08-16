@@ -59,14 +59,28 @@ table#row02 {
 td.imageTd {
 	position: relative;
 	margin: 0;
-	padding: 0 5px;
+	padding: 0;
 	width: 120px;
 	height: 160px;
 	line-height: 0;
+	border-left-style: solid;
+	border-left-width: 10px;
+	border-left-color: #2b2b2b;
+	border-right-style: solid;
+	border-right-width: 10px;
+	border-right-color: #2b2b2b;
+	overflow: hidden;
+}
+
+td.imageTd:hover img {
+	transform: scale(1.05);
 }
 
 td.imageTd > img {
 	z-index: 1;
+	transform: scale(1);
+	transition: transform 0.1s linear;
+	cursor: pointer;
 }
 
 td.imageTd > img + div {
@@ -82,8 +96,14 @@ td.imageTd > img + div {
 
 td.labelTd {
 	margin: 0;
-	padding: 0 5px;
+	padding: 0;
 	height: 20px;
+	border-left-style: solid;
+	border-left-width: 10px;
+	border-left-color: #2b2b2b;
+	border-right-style: solid;
+	border-right-width: 10px;
+	border-right-color: #2b2b2b;
 }
 
 td.labelTd > div {
