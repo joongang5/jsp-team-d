@@ -24,6 +24,7 @@
 
 .login_input {
 	border: none;
+	color: white;
 	border-bottom: 2px solid #D1D1D4;
 	background: none;
 	padding: 15px;
@@ -143,11 +144,11 @@ a:visited {
 			<form action="${pageContext.request.contextPath }/login.do" method="post">
 					
 					<div class="login_field" align="center">
-						<input type="text" id="id" class="login_input" placeholder="아이디" name="id" required="required" value="${param.id }">
+						<input type="text" id="loginId" class="login_input" placeholder="아이디" name="id" required="required" value="${param.id }">
 					</div>
 					
 					<div class="login_field" align="center">
-						<input type="password" id="password" class="login_input" name="password" placeholder="비밀번호" required="required" value="${param.pw }">
+						<input type="password" id="loginPassword" class="login_input" name="password" placeholder="비밀번호" required="required" value="${param.pw }">
 					</div>
 						<a id="button_join" href="${pageContext.request.contextPath }/join.do">회원가입</a>
 						<a id="button_forgot" href="${pageContext.request.contextPath }/forgot.do">비밀번호 찾기</a>

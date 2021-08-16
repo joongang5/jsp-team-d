@@ -244,46 +244,53 @@ function handleOnEmail(e)  {
 
 </head>
 <body>
-	<div id="menu">
-		<c:import url="/WEB-INF/view/component/menu.jsp" />
+	<div id="container">
+		<div id="header">
+				<c:import url="/WEB-INF/view/component/header.jsp" />
+			</div>
+		<div id="menu">
+			<c:import url="/WEB-INF/view/component/menu.jsp" />
+		</div>
+		<div id="main" style="background-color: white">
+		
+			<form action="join.do" method="post" class="join_field">
+				<div>
+					<input type="text" id="id" name="id" class="join_input" placeholder="아이디" required="required" onchange="checkID()" oninput="handleOnEmail(this)">
+					<span id="joinIdInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
+					<br><span id="joinIdConfirm"></span>
+				</div>
+				<div>
+					
+					<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)">
+					<span id="joinNameInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
+					<br><span id="joinNameConfirm"></span>
+				</div>
+				<div>
+					<input type="password" id="password" name="password" class="join_input" placeholder="비밀번호" required="required" onchange="isSame()">
+					<span id="joinPwInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
+					<br><span id="pwLength"></span>
+				</div>
+				<div>
+					<input type="password" id="confirmPassword" name="confirmPassword" class="join_input" placeholder="비밀번호 확인" required="required" onchange="isSame()">
+					<br><span id="pwSame"></span>
+				</div>
+				<div id="joinEmailConfirmBox">
+					
+					<input type="email" id="email" name="email" class="join_input" placeholder="이메일" required="required" style="text-transform: lowercase" onchange="checkEmail()" onchange="checkConfirmEmail()" oninput="handleOnEmail(this)">
+					<span id="joinEmailInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
+					<br><span id="joinEmailConfirm"></span>
+				</div>
+				<div>
+					<input type="text" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="(this.type='date')">
+					<span id="joinBirthInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
+					<br><span id="birthConfirm"></span>
+				</div>
+				<div></div>
+				
+				
+				<input type="image" id="joinSubmit" name="joinSubmit" src="./img/join_confirm_icon.png" alt="submit">
+			</form>
+		</div>
 	</div>
-
-	<form action="join.do" method="post" class="join_field">
-		<div>
-			<input type="text" id="id" name="id" class="join_input" placeholder="아이디" required="required" onchange="checkID()" oninput="handleOnEmail(this)">
-			<span id="joinIdInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><span id="joinIdConfirm"></span>
-		</div>
-		<div>
-			
-			<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)">
-			<span id="joinNameInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><span id="joinNameConfirm"></span>
-		</div>
-		<div>
-			<input type="password" id="password" name="password" class="join_input" placeholder="비밀번호" required="required" onchange="isSame()">
-			<span id="joinPwInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><span id="pwLength"></span>
-		</div>
-		<div>
-			<input type="password" id="confirmPassword" name="confirmPassword" class="join_input" placeholder="비밀번호 확인" required="required" onchange="isSame()">
-			<br><span id="pwSame"></span>
-		</div>
-		<div id="joinEmailConfirmBox">
-			
-			<input type="email" id="email" name="email" class="join_input" placeholder="이메일" required="required" style="text-transform: lowercase" onchange="checkEmail()" onchange="checkConfirmEmail()" oninput="handleOnEmail(this)">
-			<span id="joinEmailInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><span id="joinEmailConfirm"></span>
-		</div>
-		<div>
-			<input type="text" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="(this.type='date')">
-			<span id="joinBirthInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><span id="birthConfirm"></span>
-		</div>
-		<div></div>
-		
-		
-		<input type="image" id="joinSubmit" name="joinSubmit" src="./img/join_confirm_icon.png" alt="submit">
-	</form>
 </body>
 </html>

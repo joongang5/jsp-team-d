@@ -25,6 +25,13 @@ label:hover {
 	transition: .4s;
 }
 
+#login:active,
+#login:focus,
+#login:hover {
+	color: black;
+	transition: .4s;
+}
+
 #logo {
 	position: absolute;
 	top: 55%;
@@ -46,21 +53,6 @@ label:hover {
 	color: white;
 }
 
-#headerButtons>button {
-	position: relative;
-	top: 50%;
-	transform: translate(0, -50%);
-	margin: 0;
-	width: 100px;
-}
-
-#headerButtons>button+button {
-	position: relative;
-	top: 50%;
-	transform: translate(0, -50%);
-	margin: 0;
-	width: 100px;
-}
 
 input[id*="popup"] {
 	display: none;
@@ -105,14 +97,7 @@ input[id*="popup"]+label+div>div {
 }
 
 input[id*="popup"]+label+div>div>label {
-	position: absolute;
-	top: 0%;
-	right: 0%;
-	transform: translate(40%, -40%);
-	padding: 10px;
-	background: white;
-	border-radius: 100%;
-	z-index: 1;
+
 }
 
 input[id*="popup"]+label+div>label {
@@ -146,24 +131,20 @@ input[id*="popup"]+label+div>label {
 <div id="headerButtons">
 
 
-	<c:if test="${! empty authUser}">
-		<label>${authUser.name}님</label>
-	</c:if>
-	
-	
 	<input type="checkbox" id="popup">
 	
 	<c:if test="${empty authUser}">
-		<label for="popup">로그인</label>
+		<label id="login" for="popup">로그인</label>
 	</c:if>
 
 	<c:if test="${! empty authUser}">
-		<label onclick="onMyPageClick();">마이페이지</label>
+		<label></label>
+		<label onclick="onMyPageClick();">${authUser.name}님 마이페이지</label>
 		<label onclick="onLogoutClick();">로그아웃</label>
 	</c:if>
 	<div>
 		<div id="modalLogin">
-			<label for="popup">X</label>
+			<label for="popup"></label>
 			<c:import url="/WEB-INF/view/loginForm.jsp" />
 		</div>
 		<label for="popup"></label>
