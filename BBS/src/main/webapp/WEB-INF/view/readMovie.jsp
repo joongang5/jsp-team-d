@@ -69,25 +69,25 @@ function del(no){
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-			<div id="mainWrapper" style="width: 100%; margin:0;">
-				<h1 id=head>${movie.movieNm }</h1>
+			<div id="mainWrapper">
+				<br /><br />
 				<table>
 					<tr>
-						<td style="height: 30px; min-height: 30px;">제목</td>
-						<td style="margin-top: 10px; margin-bottom: 10px;">${movie.movieNm }번글&nbsp;:&nbsp;<c:out value="${movie.movieNm }" /></td>
+						<td><img SRC="${movieView.image }"></td>
+						<td style="height: 30px; min-height: 30px;">${movieView.movieNm }</td>
 					</tr>
 					<tr>
 						<td style="height: 30px; min-width: 70px;  min-height: 30px; margin-bottom: 10px;">감독</td>
-						<td>${movie.directors }</td>
+						<td>${movieView.directors }</td>
 					</tr>
 					
 					<tr>
 						<td style="height: 30px; min-height: 30px; margin-bottom: 10px;">날짜</td>
-						<td>${movie.openDt}&emsp;&emsp;&emsp;&emsp;&emsp;영화유형&emsp;&emsp;${movie.typeNm }</td>
+						<td>${movieView.openDt}&emsp;&emsp;&emsp;&emsp;&emsp;영화유형&emsp;&emsp;${movieView.typeNm }</td>
 					</tr>
 					
 					<tr>
-						<td colspan="2" style="width: 500px; border-top:3px solid white; text-align: center; min-height: 300px; height: 300px;">${movie.movieNm }</td>
+						<td colspan="2" style="width: 500px; border-top:3px solid white; text-align: center; min-height: 300px; height: 300px;">${movieView.movieNm }</td>
 					</tr>
 					
 				</table>
@@ -99,8 +99,8 @@ function del(no){
 						
 					<dl style="text-align: right; margin-bottom: 10px;">
 						<c:if test="${authUser.id == 'admin' }">
-							<a href="modify.do?no=${movie.movieCd }">[수정]</a>&emsp;
-							<a onclick="return del(${movie.movieCd })" >[삭제]</a>
+							<a href="modify.do?no=${movieView.movieCd }">[수정]</a>&emsp;
+							<a onclick="return del(${movieView.movieCd })" >[삭제]</a>
 						</c:if>
 					</dl>
 				</div>

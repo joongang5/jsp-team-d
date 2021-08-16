@@ -18,6 +18,7 @@ public class APIHelper implements ServletContextListener {
 		kobis = new KobisAPI(
 				kobisProp.getProperty("boxOfficeUrl"),
 				kobisProp.getProperty("movieListUrl"),
+				kobisProp.getProperty("movieDetailUrl"),
 				kobisProp.getProperty("key"));
 		
 		Properties naverProp = loadProperty(sce, "naverMovie");

@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import bbs.jdbc.JdbcUtil;
 import bbs.logic.dao.BasePagingDao;
+import bbs.movie.model.BaseMovie;
 import bbs.movie.model.Movie;
 
 public class MovieDao<T extends Movie> extends BasePagingDao<T> {
@@ -24,7 +26,7 @@ public class MovieDao<T extends Movie> extends BasePagingDao<T> {
 		PreparedStatement resultPstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "INSERT INTO movie VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO movie VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			insertPstmt = conn.prepareStatement(sql);
 			insertPstmt.setString(1, movie.getMovieCd());
 			insertPstmt.setString(2, movie.getMovieNm());
@@ -35,13 +37,8 @@ public class MovieDao<T extends Movie> extends BasePagingDao<T> {
 			insertPstmt.setString(7, movie.getPrdtStatNm());
 			insertPstmt.setString(8, movie.getNationAlt());
 			insertPstmt.setString(9, movie.getGenreAlt());
-			insertPstmt.setString(10, movie.getRepNationNm());
-			insertPstmt.setString(11, movie.getRepGenreNm());
-			insertPstmt.setString(12, movie.getDirectors());
-			insertPstmt.setString(13, movie.getPeopleNm());
-			insertPstmt.setString(14, movie.getCompanys());
-			insertPstmt.setString(15, movie.getCompanyCd());
-			insertPstmt.setString(16, movie.getCompanyNm());
+			insertPstmt.setString(10, movie.getDirectors());
+			insertPstmt.setString(11, movie.getCompanyCd());
 			insertPstmt.executeUpdate();
 			
 		} finally {
@@ -80,13 +77,8 @@ public class MovieDao<T extends Movie> extends BasePagingDao<T> {
 				rs.getString("prdt_stat_nm"),
 				rs.getString("nation_alt"),
 				rs.getString("genre_alt"),
-				rs.getString("rep_nation_nm"),
-				rs.getString("rep_genre_nm"),
 				rs.getString("directors"),
-				rs.getString("people_nm"),
-				rs.getString("companys"),
-				rs.getString("company_cd"),
-				rs.getString("company_nm"));
+				rs.getString("company_cd"));
 		return (T)movie;
 	}
 
@@ -107,5 +99,24 @@ public class MovieDao<T extends Movie> extends BasePagingDao<T> {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
+	}
+	
+	public ArrayList<BaseMovie> selectAllToBase(Connection conn) throws SQLException {
+		ArrayList<BaseMovie> list = new ArrayList<BaseMovie>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT * FROM movie";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(convert(rs));
+			}
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return list;
 	}
 }

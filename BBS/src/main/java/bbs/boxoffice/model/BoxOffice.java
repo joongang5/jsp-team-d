@@ -1,14 +1,14 @@
 package bbs.boxoffice.model;
 
-public class BoxOffice {
+import bbs.movie.model.BaseMovie;
+
+public class BoxOffice extends BaseMovie {
 
 	private String targetDt;		// 조회하고자 하는 날짜를 yyyymmdd 형식으로 입력합니다.
 	private int rnum; 				// 순번을 출력합니다.
 	private int rank; 				// 해당일자의 박스오피스 순위를 출력합니다.
 	private int rankInten; 			// 전일대비 순위의 증감분을 출력합니다.
 	private String rankOldAndNew; 	// 랭킹에 신규진입여부를 출력합니다. “OLD” : 기존 , “NEW” : 신규
-	private String movieCd; 		// 영화의 대표코드를 출력합니다.
-	private String movieNm; 		// 영화명(국문)을 출력합니다.
 	private String openDt; 			// 영화의 개봉일을 출력합니다.
 	private long salesAmt; 			// 해당일의 매출액을 출력합니다.
 	private float salesShare;		// 해당일자 상영작의 매출총액 대비 해당 영화의 매출비율을 출력합니다.
@@ -25,13 +25,13 @@ public class BoxOffice {
 	public BoxOffice(String targetDt, int rnum, int rank, int rankInten, String rankOldAndNew, String movieCd, String movieNm, String openDt,
 			long salesAmt, float salesShare, int salesInten, float salesChange, long salesAcc, int audiCnt,
 			int audiInten, float audiChange, int audiAcc, int scrnCnt, int showCnt) {
+		super(movieCd, movieNm);
+		
 		this.targetDt = targetDt;
 		this.rnum = rnum;
 		this.rank = rank;
 		this.rankInten = rankInten;
 		this.rankOldAndNew = rankOldAndNew;
-		this.movieCd = movieCd;
-		this.movieNm = movieNm;
 		this.openDt = openDt;
 		this.salesAmt = salesAmt;
 		this.salesShare = salesShare;
@@ -68,14 +68,6 @@ public class BoxOffice {
 
 	public String getRankOldAndNew() {
 		return rankOldAndNew;
-	}
-
-	public String getMovieCd() {
-		return movieCd;
-	}
-
-	public String getMovieNm() {
-		return movieNm;
 	}
 
 	public String getOpenDt() {

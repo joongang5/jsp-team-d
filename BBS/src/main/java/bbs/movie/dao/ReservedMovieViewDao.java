@@ -22,6 +22,7 @@ public class ReservedMovieViewDao<T extends ReservedMovieView> extends BasePagin
 
 		ReservedMovieView reservedMovieView = new ReservedMovieView(
 				changeOpenDtFormat(rs.getString("open_dt")),
+				rs.getString("movie_cd"),
 				rs.getString("movie_nm"),
 				rs.getString("image"));
 		

@@ -5,16 +5,16 @@ import java.sql.SQLException;
 
 import bbs.article.service.ArticleNotFoundException;
 import bbs.jdbc.ConnectionProvider;
-import bbs.movie.dao.MovieDao;
-import bbs.movie.model.Movie;
+import bbs.movie.dao.MovieViewDao;
+import bbs.movie.model.MovieView;
 
 public class ReadMovieService {
 
-	private MovieDao<Movie> dao = new MovieDao<Movie>();
+	private MovieViewDao dao = new MovieViewDao();
 	
-	public Movie getMovie(int movieCd) {
+	public MovieView getMovie(int movieCd) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			Movie movie = dao.selectById(conn, movieCd);
+			MovieView movie = dao.selectById(conn, movieCd);
 			if (movie == null) {
 				throw new ArticleNotFoundException();
 			}

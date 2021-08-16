@@ -9,17 +9,20 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import bbs.boxoffice.model.BoxOffice;
+import bbs.movie.model.BaseMovie;
 import bbs.movie.model.Movie;
 import bbs.util.HttpURLConnUtil;
 
 public class KobisAPI {
 	private String boxOfficeUrl;
 	private String movieListUrl;
+	private String movieDetailUrl;
 	private String key;
 
-	public KobisAPI(String boxOfficeUrl, String movieListUrl, String key) {
+	public KobisAPI(String boxOfficeUrl, String movieListUrl, String movieDetailUrl, String key) {
 		this.boxOfficeUrl = boxOfficeUrl;
 		this.movieListUrl = movieListUrl;
+		this.movieDetailUrl = movieDetailUrl;
 		this.key = key;
 	}
 
@@ -32,14 +35,31 @@ public class KobisAPI {
 		return parseBoxOfficeJson(response.toString());
 	}
 	
-
-	public ArrayList<Movie> requestMovieList(String openStartDt) {
+	public ArrayList<BaseMovie> requestBaseBoxOffice(String targetDt) {
+		String url = generateBoxOfficeUrl(targetDt);
+		String response = HttpURLConnUtil.request(url);
+		if (response == null) {
+			return null;
+		}
+		return parseBoxOfficeJsonToBaseMovie(response.toString());
+	}
+	
+	public ArrayList<BaseMovie> requestMovieList(String openStartDt) {
 		String url = generateMovieListUrl(openStartDt);
 		String response = HttpURLConnUtil.request(url);
 		if (response == null) {
 			return null;
 		}
-		return parseMovieListJson(response.toString());
+		return parseMovieListJsonToBaseMovie(response.toString());
+	}
+
+	public Movie requestMovieDetail(String movieCd) {
+		String url = generateMovieDetailUrl(movieCd);
+		String response = HttpURLConnUtil.request(url);
+		if (response == null) {
+			return null;
+		}
+		return parseMovieDetailJson(response.toString());
 	}
 	
 	private String generateBoxOfficeUrl(String targetDt) {
@@ -52,6 +72,108 @@ public class KobisAPI {
 		String params = String.format("key=%s&openStartDt=%s&itemPerPage=100", key, openStartDt);
 
 		return String.format("%s?%s", movieListUrl, params);
+	}
+
+	private String generateMovieDetailUrl(String movieCd) {
+		String params = String.format("key=%s&movieCd=%s", key, movieCd);
+
+		return String.format("%s?%s", movieDetailUrl, params);
+	}
+
+	@SuppressWarnings("unchecked")
+	private ArrayList<BaseMovie> parseBoxOfficeJsonToBaseMovie(String json) {
+		ArrayList<BaseMovie> list = new ArrayList<BaseMovie>();
+		JSONParser parser = new JSONParser();
+
+		try {
+			JSONObject rootObj = (JSONObject) parser.parse(json);
+			JSONObject boxOfficeResult = (JSONObject) rootObj.get("boxOfficeResult");
+
+			JSONArray dailyBoxOfficeList = (JSONArray) boxOfficeResult.get("dailyBoxOfficeList");
+			Iterator<JSONObject> iter = dailyBoxOfficeList.iterator();
+			while (iter.hasNext()) {
+				JSONObject obj = iter.next();
+
+				BaseMovie data = new BaseMovie(
+						(String) obj.get("movieCd"),
+						(String) obj.get("movieNm"));
+
+				list.add(data);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private ArrayList<BaseMovie> parseMovieListJsonToBaseMovie(String json) {
+		ArrayList<BaseMovie> list = new ArrayList<BaseMovie>();
+		JSONParser parser = new JSONParser();
+
+		try {
+			JSONObject rootObj = (JSONObject) parser.parse(json);
+			JSONObject movieListResult = (JSONObject) rootObj.get("movieListResult");
+
+			JSONArray movieList = (JSONArray) movieListResult.get("movieList");
+			Iterator<JSONObject> iter = movieList.iterator();
+			while (iter.hasNext()) {
+				JSONObject obj = iter.next();
+
+				BaseMovie data = new BaseMovie(
+						(String) obj.get("movieCd"),
+						(String) obj.get("movieNm"));
+				
+				list.add(data);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	private Movie parseMovieDetailJson(String json) {
+		Movie movie = null;
+		JSONParser parser = new JSONParser();
+
+		try {
+			JSONObject rootObj = (JSONObject) parser.parse(json);
+			JSONObject movieInfoResult = (JSONObject) rootObj.get("movieInfoResult");
+
+			JSONObject movieInfo = (JSONObject) movieInfoResult.get("movieInfo");
+			
+			movie = new Movie(
+					(String) movieInfo.get("movieCd"),
+					(String) movieInfo.get("movieNm"),
+					(String) movieInfo.get("movieNmEn"),
+					(String) movieInfo.get("prdtYear"),
+					(String) movieInfo.get("openDt"),
+					(String) movieInfo.get("typeNm"),
+					(String) movieInfo.get("prdtStatNm"),
+					getJsonElementFromArray((JSONArray)movieInfo.get("nations"), "nationNm"),
+					getJsonElementFromArray((JSONArray)movieInfo.get("genres"), "genreNm"),
+					getJsonElementFromArray((JSONArray)movieInfo.get("directors"), "peopleNm"),
+					getJsonElementFromArray((JSONArray)movieInfo.get("companys"), "companyCd"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return movie;
+	}
+	
+	private String getJsonElementFromArray(JSONArray array, String elementName) {
+		if (array.isEmpty())
+			return null;
+		
+		return (String)((JSONObject)(array.get(0))).get(elementName);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -102,7 +224,7 @@ public class KobisAPI {
 		return list;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	private ArrayList<Movie> parseMovieListJson(String json) {
 		ArrayList<Movie> list = new ArrayList<Movie>();
 		JSONParser parser = new JSONParser();
@@ -126,13 +248,8 @@ public class KobisAPI {
 						(String) obj.get("prdtStatNm"),
 						(String) obj.get("nationAlt"),
 						(String) obj.get("genreAlt"),
-						(String) obj.get("repNationNm"),
-						(String) obj.get("repGenreNm"),
 						getJsonElementFromArray((JSONArray)obj.get("directors"), "peopleNm"),
-						(String) obj.get("peopleNm"),
-						getJsonElementFromArray((JSONArray)obj.get("companys"), "companyNm"),
-						(String) obj.get("companyCd"),
-						(String) obj.get("companyNm"));
+						(String) obj.get("companyCd"));
 				
 				list.add(data);
 			}
@@ -143,12 +260,5 @@ public class KobisAPI {
 			e.printStackTrace();
 		}
 		return list;
-	}
-	
-	private String getJsonElementFromArray(JSONArray array, String elementName) {
-		if (array.isEmpty())
-			return null;
-		
-		return (String)((JSONObject)(array.get(0))).get(elementName);
 	}
 }

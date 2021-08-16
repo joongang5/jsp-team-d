@@ -3,10 +3,8 @@ package bbs.movie.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bbs.article.service.ArticleContentNotFoundException;
-import bbs.article.service.ArticleData;
 import bbs.article.service.ArticleNotFoundException;
-import bbs.movie.model.Movie;
+import bbs.movie.model.MovieView;
 import bbs.movie.service.ReadMovieService;
 import bbs.mvc.command.CommandHandler;
 
@@ -28,10 +26,10 @@ public class ReadMovieHandler extends CommandHandler {
 		}
 		
 		try {
-			Movie movie = readService.getMovie(no);
-			req.setAttribute("movie", movie);
+			MovieView movieView = readService.getMovie(no);
+			req.setAttribute("movieView", movieView);
 			return getFormViewName();
-		} catch (ArticleNotFoundException | ArticleContentNotFoundException e) {
+		} catch (ArticleNotFoundException e) {
 			req.getServletContext().log("no movie", e);
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;

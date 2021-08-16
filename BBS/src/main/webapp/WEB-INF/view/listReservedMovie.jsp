@@ -57,7 +57,7 @@ table {
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-			<div id="mainWrapper" style="width: 100%; margin: 0;">
+			<div id="mainWrapper">
 				<h1>Reserved</h1>
 				<table>
 					<tr id="titleN" style="text-align: center; height: 35px;">

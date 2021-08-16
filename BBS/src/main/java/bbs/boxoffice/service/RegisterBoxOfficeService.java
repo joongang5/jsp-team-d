@@ -9,15 +9,14 @@ import bbs.boxoffice.model.BoxOffice;
 import bbs.jdbc.ConnectionProvider;
 import bbs.jdbc.JdbcUtil;
 import bbs.member.service.DuplicateIdException;
-import bbs.util.api.APIHelper;
+import bbs.movie.model.BaseMovie;
 
 public class RegisterBoxOfficeService {
 
-	private BoxOfficeDao<BoxOffice> dao = new BoxOfficeDao<BoxOffice>("box_office_view", null); 
+	private BoxOfficeDao<BoxOffice> dao = new BoxOfficeDao<BoxOffice>("box_office", null); 
 
-	public ArrayList<BoxOffice> register(String targetDt) {
-		ArrayList<BoxOffice> list = APIHelper.kobis.requestBoxOffice(targetDt);
-		if (list == null)
+	public ArrayList<BaseMovie> register(String targetDt, ArrayList<BoxOffice> boxOfficeList) {
+		if (boxOfficeList == null)
 			return null;
 		
 		Connection conn = null;
@@ -30,10 +29,12 @@ public class RegisterBoxOfficeService {
 				JdbcUtil.rollBack(conn);
 				throw new DuplicateIdException();
 			}
-			for (BoxOffice boxOffice : list) {
+			
+			for (BoxOffice boxOffice : boxOfficeList) {
 				boxOffice.setTargetDt(targetDt);
 				dao.insert(conn, boxOffice);
 			}
+			
 			conn.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollBack(conn);
@@ -41,6 +42,12 @@ public class RegisterBoxOfficeService {
 		} finally {
 			JdbcUtil.close(conn);
 		}
-		return list;
+		
+		ArrayList<BaseMovie> baseMovieList = new ArrayList<BaseMovie>();
+		for (BoxOffice boxOffice : boxOfficeList) {
+			baseMovieList.add(boxOffice);
+		}
+		
+		return baseMovieList;
 	}
 }

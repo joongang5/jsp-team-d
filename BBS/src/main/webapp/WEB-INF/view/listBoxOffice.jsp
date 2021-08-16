@@ -77,7 +77,7 @@
 										<tr>
 											<c:forEach var="reservedMovieView" items="${reservedMoviePage.content }" begin="0" end="4" step="1">
 												<td class="imageTd">
-													<img SRC="${reservedMovieView.image }" onclick="location.href='/BBS/movie/read.do?no=${boxOfficeView.movieCd}'">
+													<img SRC="${reservedMovieView.image }" onclick="location.href='/BBS/movie/read.do?no=${reservedMovieView.movieCd}'">
 												</td>
 											</c:forEach>
 										</tr>
@@ -96,7 +96,7 @@
 										<tr>
 											<c:forEach var="reservedMovieView" items="${reservedMoviePage.content }" begin="5" end="9" step="1">
 												<td class="imageTd">
-													<img SRC="${reservedMovieView.image }" onclick="location.href='/BBS/movie/read.do?no=${boxOfficeView.movieCd}'">
+													<img SRC="${reservedMovieView.image }" onclick="location.href='/BBS/movie/read.do?no=${reservedMovieView.movieCd}'">
 												</td>
 											</c:forEach>
 										</tr>

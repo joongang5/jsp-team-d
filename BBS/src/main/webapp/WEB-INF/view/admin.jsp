@@ -12,23 +12,15 @@
 	<div>
 		<form action="admin.do" method="post">
 			<div>
-				<input type="date" name="targetDt" value="20210801">
+				<input type="date" name="targetDt" placeholder="20210816">
+				<label>박스오피스 등록 (해당 날짜)</label>
 			</div>
 			<div>
-				<input type="submit" value="박스오피스 등록">
-			</div>
-			<div>
-				<input type="date" name="openStartDt" value="2021">
-			</div>
-			<div>
-				<input type="submit" value="최신영화 100 등록">
-			</div>
-			<div>
-				<input type="text" name="query" value="spiderman">
-			</div>
-			<div>
-				<input type="submit" value="검색">
-			</div>
+				<input type="date" name="openStartDt" placeholder="2021">
+				<label>최신영화 100 등록 (해당 년도)</label>
+			</div>			
+			<input type="submit" value="입력된 값 실행">
+			<label>입력된 값 없을 경우 DB검토</label>
 		</form>
 		<c:if test="${registerSuccess }">
 			등록에 성공했습니다.
