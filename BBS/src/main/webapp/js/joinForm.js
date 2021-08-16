@@ -1,18 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>가입</title>
-<link href="./css/joinForm.css" rel="stylesheet">
-<link href="./css/main.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
-
-
 $(function(){
 		$("#joinSubmit").prop("disabled", true);
 });
@@ -46,8 +31,8 @@ function checkID(){
 				$("#joinSubmit").prop("disabled", true);
 				return false;
 			}else{
-				$("#id").css("border-bottom-color", "#6A679E");
-				$("#joinIdConfirm").text("");
+				$("#joinIdConfirm").css("color", "blue");
+				$("#joinIdConfirm").text("아이디");
 				$("#joinSubmit").prop("disabled", false);
 				return true;
 			}
@@ -238,52 +223,3 @@ function handleOnInput(e)  {
 function handleOnEmail(e)  {
 	  e.value = e.value.replace(/[^a-z0-9@.-_]/ig, '')
 	}
-
-	
-</script>
-
-</head>
-<body>
-	<div id="menu">
-		<c:import url="/WEB-INF/view/component/menu.jsp" />
-	</div>
-
-	<form action="join.do" method="post" class="join_field">
-		<div>
-			<input type="text" id="id" name="id" class="join_input" placeholder="아이디" required="required" onchange="checkID()" oninput="handleOnEmail(this)">
-			<span id="joinIdInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><span id="joinIdConfirm"></span>
-		</div>
-		<div>
-			
-			<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)">
-			<span id="joinNameInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><span id="joinNameConfirm"></span>
-		</div>
-		<div>
-			<input type="password" id="password" name="password" class="join_input" placeholder="비밀번호" required="required" onchange="isSame()">
-			<span id="joinPwInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><span id="pwLength"></span>
-		</div>
-		<div>
-			<input type="password" id="confirmPassword" name="confirmPassword" class="join_input" placeholder="비밀번호 확인" required="required" onchange="isSame()">
-			<br><span id="pwSame"></span>
-		</div>
-		<div id="joinEmailConfirmBox">
-			
-			<input type="email" id="email" name="email" class="join_input" placeholder="이메일" required="required" style="text-transform: lowercase" onchange="checkEmail()" onchange="checkConfirmEmail()" oninput="handleOnEmail(this)">
-			<span id="joinEmailInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><span id="joinEmailConfirm"></span>
-		</div>
-		<div>
-			<input type="text" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="(this.type='date')">
-			<span id="joinBirthInstruction"><img id="join_help_icon" src="./img/join_help_icon.png"></span>
-			<br><span id="birthConfirm"></span>
-		</div>
-		<div></div>
-		
-		
-		<input type="image" id="joinSubmit" name="joinSubmit" src="./img/join_confirm_icon.png" alt="submit">
-	</form>
-</body>
-</html>

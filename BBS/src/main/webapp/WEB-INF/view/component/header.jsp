@@ -12,11 +12,23 @@
 	background-color: black;
 	cursor: pointer;
 }
+label {
+	text-align: center;
+	font-weight: 1000;
+	transition: .4s;
 
-.home>div {
+}
+label:active,
+label:focus,
+label:hover {
+	color: black;
+	transition: .4s;
+}
+
+#logo {
 	position: absolute;
-	top: 50%;
-	left: 45%;
+	top: 55%;
+	left: 50%;
 	transform: translate(-50%, -50%);
 	cursor: pointer;
 }
@@ -31,6 +43,7 @@
 	left: 680px;
 	width: 710px;
 	height: 100%;
+	color: white;
 }
 
 #headerButtons>button {
@@ -128,7 +141,7 @@ input[id*="popup"]+label+div>label {
 </script>
 
 <div class="home">
-	<div onclick="onHomeClick();">D'Movie</div>
+	<div id="logo" onclick="onHomeClick();">D'movie</div>
 </div>
 <div id="headerButtons">
 
@@ -141,7 +154,7 @@ input[id*="popup"]+label+div>label {
 	<input type="checkbox" id="popup">
 	
 	<c:if test="${empty authUser}">
-		<label id="login" for="popup">로그인</label>
+		<label for="popup">로그인</label>
 	</c:if>
 
 	<c:if test="${! empty authUser}">
