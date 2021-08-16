@@ -14,7 +14,7 @@
 }
 label {
 	text-align: center;
-	font-weight: 1000;
+	font-weight: 0;
 	transition: .4s;
 
 }
@@ -43,6 +43,13 @@ label {
 	top: -20px;
 	float: right;
 	z-index: 5;
+}
+
+#closeModal:active,
+#closeModal:focus,
+#closeModal:hover {
+	color: gray;
+	transition: .4s;
 }
 
 #headerButtons {
@@ -75,6 +82,8 @@ input[id*="popup"]+label+label {
 input[id*="popup"]+label[id*="login"] {
 	display: hidden;
 }
+
+
 
 input[id*="popup"]+label+div {
 	position: fixed;
@@ -120,6 +129,67 @@ input[id*="popup"]+label+div>label {
 	background: rgba(0, 0, 0, .8);
 	z-index: 1;
 }
+
+
+
+
+input[id*="joinPopup"] {
+	display: none;
+}
+
+input[id*="joinPopup"]+label {
+	display: inline-block;
+	padding: 10px;
+	color: #fff;
+}
+
+input[id*="joinPopup"]+label[id*="join"] {
+	display: hidden;
+}
+
+input[id*="joinPopup"]+label+div {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.5s;
+}
+
+input[id*="joinPopup"]:checked+label+div {
+	opacity: 1;
+	visibility: visible;
+}
+
+input[id*="joinPopup"]+label+div>div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 500px;
+	background: #212121;
+	z-index: 2;
+}
+
+input[id*="joinPopup"]+label+div>div>label {
+	position: absolute;
+	top: -20px;
+	float: right;
+}
+
+input[id*="joinPopup"]+label+div>label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
 </style>
 
 <script>
@@ -174,6 +244,21 @@ function onLogoutClick() {
 		</div>
 		<label for="popup"></label>
 	</div>
+	
+	
+		<input type="checkbox" id="joinPopup">
+			<label id="join" for="joinPopup"></label>
+		<div>
+			<div id="modalLogin">
+				<label id="closeModal" for="joinPopup">X</label>
+				<c:import url="/WEB-INF/view/joinForm.jsp" />
+			</div>
+				<label for="joinPopup"></label>
+		</div>
+			
+	
+	
+	
 	</c:if>
 </div>
 

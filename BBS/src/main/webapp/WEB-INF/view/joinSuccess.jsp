@@ -10,6 +10,9 @@
 </head>
 <body>
 <div id="container">
+		<div id="header">
+			<c:import url="/WEB-INF/view/component/header.jsp" />
+		</div>
 		<div id="menu">
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
@@ -17,9 +20,7 @@
 			<h1>성공</h1>
 		${param.name }님, 회원 가입에 성공했습니다.<br>
 		다시 로그인 해주세요. 
-		<a href="login.do"><button>로그인</button></a>
-
-		
+			
 			
 		</div>
 	</div>

@@ -17,10 +17,6 @@
  	transform: translateX(-50%);
 }
 
-.login__field {
-	padding: 20px 0px;	
-	position: relative;	
-}
 
 .login_input {
 	border: none;
@@ -150,7 +146,7 @@ a:visited {
 					<div class="login_field" align="center">
 						<input type="password" id="loginPassword" class="login_input" name="password" placeholder="비밀번호" required="required" value="${param.pw }">
 					</div>
-						<a id="button_join" href="${pageContext.request.contextPath }/join.do">회원가입</a>
+						<a id="button_join"><label id="join" for="joinPopup">회원가입</label></a>
 						<a id="button_forgot" href="${pageContext.request.contextPath }/forgot.do">비밀번호 찾기</a>
 					
 					<c:if test="${errors.idOrPwNotMatch }"> 아이디와 비밀번호가 일치하지 않습니다.</c:if>
