@@ -11,7 +11,37 @@
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/articleWrite.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/custom.min.css" rel="stylesheet" >
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 50px;
+	text-align: center;
+	color: white;
+}
+table {
+	margin-left: auto;
+	margin-right: auto;
+	border-top: 3px solid white;
+	border-bottom: 3px solid white;
+	width: auto;
+	min-width:800px;
+	height: auto;
+	min-height: 400px;
+	boder-collapse: collapse;
+	color:white;
+}
+#titleN th{
+	border-bottom: 3px solid white;
+	max-height: 30px;
+}
+#paging a{
+	color: white;
+}
 
+</style>
 </head>
 <body>
 	<div id="container">
@@ -21,19 +51,21 @@
 		<div id="menu">
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
-		<br>제목을 클릭하면 내용을 볼 수 있습니다.
-		<table border="1">
-			<tr>
-				<td colspan="4">
-					<a href="../review/write.do">[리뷰쓰기]</a>
-				</td>
+		
+		<div id="main">
+		<div id="mainWrapper" style="width: 100%; margin:0;">
+		
+		<h1>Review</h1>
+		<table >
+		
+				
+			<tr id="titleN" style="text-align: center;	height: 35px;"> 
+				<th style="width: 9%;">번호</th>
+				<th style="width: 71%">제목</th>
+				<th style="width: 11%;">작성자</th>
+				<th style="width: 9%;">조회수</th>
 			</tr>
-			<tr>
-				<td>번호</td>
-				<td>제목</td>
-				<td>작성자</td>
-				<td>조회수</td>
-			</tr>
+					
 			<c:if test="${reviewPage.hasNoReviews()}">
 				<tr>
 					<td colspan="4">게시글이 없습니다.</td>
@@ -41,16 +73,20 @@
 			</c:if>
 			<c:forEach var="review" items="${reviewPage.content}">
 				<tr>
-					<td>${review.number }</td>
-					<td>
-						<a href="read.do?no=${review.number}&pageNo=${reviewPage.currentPage}">
+					<td style="text-align: center;">${review.number }</td>
+					
+					<td style="text-overflow:ellipsis; white-space:nowrap; max-width:360px; overflow:hidden">
+						<a style="color:white; " href="read.do?no=${review.number}&pageNo=${reviewPage.currentPage}">
 							<c:out value="${review.title}" />
 						</a>
 					</td>
-					<td>${review.writer.name}</td>
-					<td>${review.readCount}</td>
+					<td style="text-align: center;">${review.writer.name}</td>
+					<td style="text-align: center;">${review.readCount}</td>
 				</tr>
 			</c:forEach>
+		</table>
+		
+		<div id="paging" style="text-align: center; width: 45%; margin-top:10px; margin-right: auto; margin-left: auto;">
 			<c:if test="${reviewPage.hasReviews()}">
 				<tr>
 					<td colspan="4">
@@ -66,8 +102,11 @@
 					</td>
 				</tr>
 			</c:if>
-		</table>
-		<a href="../boxoffice/list.do">[영화홈으로]</a>
-	</div>
+			<br>
+				<a style="float: right;" href="../review/write.do">[리뷰쓰기]</a>
+		</div>
+		</div>
+		</div>
+		</div>
 </body>
 </html>
