@@ -63,8 +63,9 @@
 			<label>평가 라운지</label>
 		</div>
 	</div>
-	<div class="menuItem" onclick="menuClick('admin')">관리자</div>
-	
+	<c:if test="${authUser.id == 'admin' }">
+		<div class="menuItem" onclick="menuClick('admin')">관리자</div>
+	</c:if>
 	
 </div>
 
