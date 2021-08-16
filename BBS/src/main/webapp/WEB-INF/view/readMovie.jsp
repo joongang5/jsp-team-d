@@ -13,6 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>영화 상세</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath }/css/main.css" rel="stylesheet">
 <style type="text/css">
 *{
