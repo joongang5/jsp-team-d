@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import bbs.jdbc.JdbcUtil;
 import bbs.logic.dao.BasePagingDao;
@@ -13,6 +11,10 @@ import bbs.movie.model.Movie;
 
 public class MovieDao<T extends Movie> extends BasePagingDao<T> {
 
+	public MovieDao() {
+		super("movie", null);
+	}
+	
 	public MovieDao(String tableName, String orderRule) {
 		super(tableName, orderRule);
 	}
@@ -86,5 +88,24 @@ public class MovieDao<T extends Movie> extends BasePagingDao<T> {
 				rs.getString("company_cd"),
 				rs.getString("company_nm"));
 		return (T)movie;
+	}
+
+	public Movie selectById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT * FROM movie WHERE movie_cd=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			Movie movie = null;
+			if (rs.next()) {
+				movie = convert(rs);
+			}
+			return movie;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
 	}
 }

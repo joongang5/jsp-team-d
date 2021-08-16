@@ -79,7 +79,7 @@ table {
 							<td style="text-align: center;">${movie.movieCd }</td>
 							
 							<td style="text-overflow:ellipsis; white-space:nowrap; max-width:360px; overflow:hidden">
-							<a style="color:white; " href="read.do?no=${movie.movieCd}&pageNo=${page.currentPage}"> ${movie.movieNm } </a>
+								<a style="color:white; "href="read.do?no=${movie.movieCd}"> ${movie.movieNm } </a>
 							</td>
 							
 							<td style="text-align: center;">${movie.nationAlt}</td>
