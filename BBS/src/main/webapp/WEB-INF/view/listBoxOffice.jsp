@@ -26,6 +26,8 @@
 				<div id="movieMain">
 					<a href="#pageBoxOffice" class="panel selected">박스오피스</a>
 					<a href="#pageReservedMovie" class="panel">개봉예정작</a>
+					<img id="arrowLeft" src="/BBS/img/arrow_left.png" onclick="restartAutoScrollTo();">
+					<img id="arrowRight" src="/BBS/img/arrow_right.png" onclick="restartAutoScrollTo();">
 					<div id="wrapper">
 						<div id="mask">
 							<div id="pageBoxOffice" class="scrollItem">

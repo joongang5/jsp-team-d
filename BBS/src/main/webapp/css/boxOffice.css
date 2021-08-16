@@ -14,6 +14,20 @@
 	text-decoration: underline;
 }
 
+#arrowLeft {
+	position: absolute;
+	top: 245px;
+	left: 50px;
+	cursor: pointer;
+}
+
+#arrowRight {
+	position: absolute;
+	top: 245px;
+	left: 720px;
+	cursor: pointer;
+}
+
 #wrapper {
 	width: 600px;
 	height: 400px;
