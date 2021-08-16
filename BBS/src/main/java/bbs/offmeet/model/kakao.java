@@ -2,10 +2,20 @@ package bbs.offmeet.model;
 
 public class kakao {
 	
+	private int no;
 	private String juso;
 	private String sangho;
 	private int TEL;
 	
+	
+	public int getNo() {
+		return no;
+	}
+
+
+	public void setNo(int no) {
+		this.no = no;
+	}
 	
 	public String getJuso() {
 		return juso;
@@ -37,11 +47,16 @@ public class kakao {
 	}
 
 
-	public kakao(String juso, String sangho, int TEL) {
+	public kakao(int no, String juso, String sangho, int TEL) {
+		this.no = no;
 		this.sangho = sangho;
 		this.juso = juso;
 		this.TEL = TEL;
 	}
+
+
+	
+	
 
 	
 }

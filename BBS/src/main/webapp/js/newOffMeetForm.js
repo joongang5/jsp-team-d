@@ -138,7 +138,7 @@ function displayPlaces(places) {
             	// form 태그 값 넘김을 위한 값 전달.
             	var message1 = '<input type="hidden" name="sangho" value="' + infoList[0] + '"></div>';
             	message1 += '<input type="hidden" name="juso" value="' + infoList[1] + '"></div>';
-            	message1 += '<input type="hidden" name="TEL" value="' + infoList[3] + '"></div>'; 
+            	message1 += '<input type="hidden" name="tel" value="' + infoList[3] + '"></div>'; 
                 
                 var resultDiv1 = document.getElementById('mapResult1');
                 resultDiv1.innerHTML = message1;

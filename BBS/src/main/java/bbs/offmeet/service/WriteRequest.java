@@ -8,13 +8,17 @@ public class WriteRequest {
 	private Writer writer;
 	private String title;
 	private String content;					
-	private String mapResult;				
+	private String juso;				
+	private String sangho;				
+	private String tel;				
 	
-	public WriteRequest(Writer writer, String title, String content, String mapResult) {
+	public WriteRequest(Writer writer, String title, String content, String juso, String sangho, String tel) {
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
-		this.mapResult = mapResult;
+		this.juso = juso;
+		this.sangho = sangho;
+		this.tel = tel;
 	}
 	
 	public Writer getWriter() {
@@ -26,9 +30,14 @@ public class WriteRequest {
 	public String getContent() {
 		return content;
 	}
-	
-	public String getMapResult() {
-		return mapResult;
+	public String getJuso() {
+		return juso;
+	}
+	public String getSangho() {
+		return sangho;
+	}
+	public String getTel() {
+		return tel;
 	}
 	//데이터 유효 검사 없다면 에러 발생
 	public void validate(Map<String, Boolean> errors) {

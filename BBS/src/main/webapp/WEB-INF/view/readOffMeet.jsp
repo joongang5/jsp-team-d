@@ -29,12 +29,16 @@
 		</tr>
 		
 		<tr>
-			<td>카카오</td>
-			<td><c:out value="${kakao.sangho }"/></td>
-			<td>카카오</td>
-			<td><c:out value="${kakao.juso }"/></td>
-			<td>카카오</td>
-			<td><c:out value="${kakao.sangho }"/></td>
+			<td>상호명</td>
+			<td><c:out value="${offmeetData.sangho }"/></td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td><c:out value="${offmeetData.juso }"/></td>
+		</tr>
+		<tr>
+			<td>전화번호</td>
+			<td><c:out value="${offmeetData.tel }"/></td>
 		</tr>
 		
 		<tr>
