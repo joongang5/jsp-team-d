@@ -22,7 +22,7 @@
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-			<div id="mainWrapper">
+			<div id="mainWrapper" style="width: 800px">
 				<div id="movieMain">
 					<a href="#pageBoxOffice" class="panel selected">박스오피스</a>
 					<a href="#pageReservedMovie" class="panel">개봉예정작</a>

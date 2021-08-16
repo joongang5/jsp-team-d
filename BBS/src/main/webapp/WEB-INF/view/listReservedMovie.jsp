@@ -58,7 +58,7 @@ table {
 		</div>
 		<div id="main">
 			<div id="mainWrapper" style="width: 100%; margin: 0;">
-				<h1>개봉 예정영화</h1>
+				<h1>Reserved</h1>
 				<table>
 					<tr id="titleN" style="text-align: center; height: 35px;">
 						<th style="width: 9%;">영화코드</th>
