@@ -32,13 +32,7 @@ table {
 	color:white;
 }
 
-#paging {
-	position: relative;
-	top: 10px;
-	left: 57%;
-	transform: translate(-50%, 0);
-	width: 450px;
-	height: 30px;
+#paging a {
 	color: white;
 }
 
@@ -88,9 +82,26 @@ table {
 						</tr>
 					</c:forEach>
 				</table>
-				<div id="paging">
-					<c:set var="command" value="list.do" scope="request" />
-					<c:import url="/WEB-INF/view/component/paging.jsp" />
+								
+				<div id="paging" style="text-align: center; width: 45%; margin-top:10px; margin-right: auto; margin-left: auto;">
+					<c:if test="${page.hasContent()}">
+						<tr>
+							<c:if test="${page.startPage > 5}">
+								<a href="list.do?pageNo=${page.startPage - 5}">[이전]</a>
+							</c:if>
+							<c:forEach var="pNo" begin="${page.startPage}" end="${page.endPage}">
+								<a href="list.do?pageNo=${pNo}">[${pNo}]</a>
+							</c:forEach>
+
+							<c:if test="${page.endPage < page.totalPages}">
+								<a href="list.do?pageNo=${page.startPage +  5}">[다음]</a>
+							</c:if>
+						</tr>
+					</c:if>
+					<br>
+					<c:if test="${authUser.id == 'admin' }">
+						<a style="float: right;" href="write.do">[공지사항 쓰기]</a>
+					</c:if>
 				</div>
 			</div>
 		</div>
