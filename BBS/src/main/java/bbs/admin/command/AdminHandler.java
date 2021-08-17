@@ -43,12 +43,12 @@ public class AdminHandler extends CommandHandler {
 		try {
 			if (targetDt.isEmpty() == false) {
 				ArrayList<BoxOffice> boxOfficeList = APIHelper.kobis.requestBoxOffice(targetDt);
-				
+
+				regMovieService.registerByBoxOffice(boxOfficeList);
+
 				ArrayList<BaseMovie> regList = regBoxOfficeService.register(targetDt, boxOfficeList);
 				
 				regMoviePosterService.registerMoviePoster(regList);
-
-				regMovieService.register(regList);
 
 				req.setAttribute("registerSuccess", true);
 			}
@@ -56,9 +56,9 @@ public class AdminHandler extends CommandHandler {
 			if (openStartDt.isEmpty() == false) {
 				ArrayList<BaseMovie> regList = APIHelper.kobis.requestMovieList(openStartDt);
 
-				regMoviePosterService.registerMoviePoster(regList);
+				regMovieService.registerByBaseMovie(regList);
 				
-				regMovieService.register(regList);
+				regMoviePosterService.registerMoviePoster(regList);
 				
 				req.setAttribute("registerSuccess", true);
 			}
@@ -67,10 +67,8 @@ public class AdminHandler extends CommandHandler {
 				try (Connection conn = ConnectionProvider.getConnection()) {
 					MovieDao<Movie> movieDao = new MovieDao<Movie>();
 					ArrayList<BaseMovie> regList = movieDao.selectAllToBase(conn);
-
-					regMoviePosterService.registerMoviePoster(regList);
 					
-					regMovieService.register(regList);
+					regMoviePosterService.registerMoviePoster(regList);
 					
 				} catch (SQLException e) {
 					throw new RuntimeException(e);
