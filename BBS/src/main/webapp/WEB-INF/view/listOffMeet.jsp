@@ -58,7 +58,7 @@ button {
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-		<div id="mainWrapper" style="width: 100%; margin:0;">
+		<div id="mainWrapper">
 	
 			<h1>Movie Gathering</h1>
 			<table>
