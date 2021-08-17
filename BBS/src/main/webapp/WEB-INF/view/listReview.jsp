@@ -53,7 +53,7 @@ table {
 		</div>
 		
 		<div id="main">
-		<div id="mainWrapper" style="width: 100%; margin:0;">
+		<div id="mainWrapper">
 		
 		<h1>Review</h1>
 		<table >
