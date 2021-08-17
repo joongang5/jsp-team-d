@@ -34,6 +34,8 @@ public class WriteOffMeetService {
 			//kakao savekakao = offMeetDao.kakaoin(conn, kakao);
 //			
 			//null 일시 테이블에 삽입한 값이 없으므로 에러 발생
+			System.out.println(req.getContent());
+
 			if(savedOffMeet == null) {
 				throw new RuntimeException("fail to insert offmeet");
 			}
@@ -59,10 +61,10 @@ public class WriteOffMeetService {
 	}
 
 	
-	
+	//21-08-17 내용 겹치는 부분 해결
 	private OffMeet toOffmeet(WriteRequest req) {
 		Date now = new Date();
-		String content = req.getContent() + req.getJuso() + req.getSangho() + req.getTel();
+		String content = req.getContent() ;
 		return new OffMeet(null, content, req.getWriter(), req.getTitle(), now, now, req.getJuso(), req.getSangho(), req.getTel(), 0);
 	}
 	

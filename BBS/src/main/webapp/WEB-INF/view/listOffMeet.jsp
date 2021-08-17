@@ -58,7 +58,7 @@ button {
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-		<div id="mainWrapper">
+		<div id="mainWrapper" style="width: 100%; margin:0;">
 	
 			<h1>Movie Gathering</h1>
 			<table>
@@ -105,10 +105,13 @@ button {
 						</td>
 					</tr>		
 				</c:if>
-			<br>	
+			<br>
+			<!--로그인시 글쓰기 가능 -->
+			<c:if test="${! empty authUser}">	
 			<a style="float: right;" href="write.do">
 			<button>글쓰기</button>
 			</a>
+			</c:if>
 			</div>
 		</div>
 	</div>

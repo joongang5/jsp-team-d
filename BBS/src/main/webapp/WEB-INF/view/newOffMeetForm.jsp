@@ -11,6 +11,19 @@
 <link href="../css/main.css" rel="stylesheet">
 <link href="../css/menu.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/newOffMeetForm.css" />
+<style type="text/css">
+#write{
+
+	text-align: center !important ;
+
+}
+textarea{
+	width:400px; 
+	height:100px; 
+    resize:none;
+}
+
+</style>
 </head>
 <body>
 	<div id="container">
@@ -22,16 +35,18 @@
 				<div id="write">
 					<form action="write.do" method="post">
 						<div id="mapResult1"></div>
-						<input type="text" name="title" required="required" placeholder="제목을 적어주세요">
+						<input type="text" name="title" required="required" placeholder="제목을 적어주세요" style="width:400px;height:30px; font-size:10px;">
 						<c:if test="${errors.title }">제목을 입력하세요.</c:if>
+						<br>
 						<textarea name="content" required="required"></textarea>
-						<input type="file" name="file1">
+						<br>
+						
 						<button type="submit">글쓰기</button>
 					</form>
-					<br>					
+					<br>
 					<p onclick="location.href='/BBS/offmeet/list.do'">게시판으로</p>
 				</div>
-				<div class="map_wrap">				
+				<div class="map_wrap">
 					<div id="map"
 						style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 					
@@ -39,7 +54,7 @@
 						<div class="option">
 							<div>
 								<form onsubmit="searchPlaces(); return false;">
-									키워드 : <input type="text" value="강남 CGV" id="keyword" size="15">
+									키워드 : <input type="text" value="강남" id="keyword" size="15">
 									<button type="submit">검색하기</button>
 								</form>
 							</div>
@@ -55,5 +70,6 @@
 			</div>			
 		</div>
 	</div>
+	
 </body>
 </html>
