@@ -17,6 +17,13 @@
  	transform: translateX(-50%);
 }
 
+#text_align {
+	text-align: center;
+}
+
+#joinWelcome{
+	font-size: 11px;
+}
 
 .login_input {
 	border: none;
@@ -134,8 +141,18 @@ a:visited {
 		-->
 
 			<c:if test="${empty authUser}">
-				<br>
-				<h2 align="center">로그인</h2>
+				<c:if test="${empty param.joinvalue}">
+					<br>
+						<h2 align="center">로그인</h2>
+				</c:if>
+				<c:if test="${param.joinvalue eq 'done'}">
+					<h2 align="center">로그인</h2>
+					<div id="text_align">
+						<span id="joinWelcome">
+							가입이 완료되었습니다.<br>다시 로그인 해주세요.
+						</span>
+					</div>
+				</c:if>
 
 			<form action="${pageContext.request.contextPath }/login.do" method="post">
 					

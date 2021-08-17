@@ -106,16 +106,20 @@ function clickEmailBtn(){
 			<c:if test="${param.fpwvalue eq 'sns'}">SNS 가입자는 비밀번호를 변경 할 수 없습니다.</c:if>
 			<c:if test="${param.fpwvalue eq 'none'}">가입된 정보가 없습니다.</c:if>
 			<c:if test="${param.fpwvalue eq 'success'}">이메일로 인증번호가 발송되었습니다.</c:if>
+			<c:if test="${param.fpwvalue eq 'done'}"><br><br>변경이 완료되었습니다.<br>다시 로그인 해주세요.</c:if>
+				
 		</span></div>
-		<form action ="${pageContext.request.contextPath }/forgot.do" method="post">
-			 <input type="text" id="id" name="id" class="fpw_input" placeholder="아이디 혹은 이메일" onfocus="focusFPW()">
-			 <input type="submit" id="emailBtn" name="emailBtn" value="인증 메일 보내기" onclick="clickEmailBtn()">	
-		</form>	
-		<form action ="${pageContext.request.contextPath }/setNewPw.do" method="post">
-			 <input type="text" id="pwChangKey" class="fpw_input" placeholder="인증번호를 입력하세요." required="required" name="pwChangeKey" onfocus="focusFpwChgkey()">
-			 <input type="submit" id="authBtn" name="authBtn" value="확인">
-		</form>
 		
+		<c:if test="${param.fpwvalue ne 'done'}">
+			<form action ="${pageContext.request.contextPath }/forgot.do" method="post">
+				 <input type="text" id="id" name="id" class="fpw_input" placeholder="아이디 혹은 이메일" onfocus="focusFPW()">
+				 <input type="submit" id="emailBtn" name="emailBtn" value="인증 메일 보내기" onclick="clickEmailBtn()">	
+			</form>	
+			<form action ="${pageContext.request.contextPath }/setNewPw.do" method="post">
+				 <input type="text" id="pwChangKey" class="fpw_input" placeholder="인증번호를 입력하세요." required="required" name="pwChangeKey" onfocus="focusFpwChgkey()">
+				 <input type="submit" id="authBtn" name="authBtn" value="확인">
+			</form>
+		</c:if>
 </div>
 </body>
 </html>

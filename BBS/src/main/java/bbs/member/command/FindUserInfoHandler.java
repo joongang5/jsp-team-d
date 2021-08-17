@@ -59,7 +59,6 @@ public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한
 		User user = new User(members.getId(), members.getName(), members.getEmail());
 
 		req.getSession().setAttribute("tempAuthUser", user);
-		req.getSession().setMaxInactiveInterval(60);
 
 		String to = members.getEmail(); // 메일 받을 주소
 		//System.out.println(to);

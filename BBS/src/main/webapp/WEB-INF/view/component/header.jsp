@@ -283,13 +283,20 @@ function onLogoutClick() {
 </div>
 
 <div id="headerButtons">
+	
+	<c:choose>
+		<c:when test="${param.joinvalue eq 'done'}">
+			<input type="checkbox" id="popup" checked="checked">
+		</c:when>
+		<c:when test="${! empty snsUser}">
+			<input type="checkbox" id="popup" checked="checked">
+		</c:when>
+		<c:otherwise>
+			<input type="checkbox" id="popup" type="hidden">
+		</c:otherwise>
+	</c:choose>
 
-	<c:if test="${! empty snsUser}">
-		<input type="checkbox" id="popup" checked="checked">
-	</c:if>
-	<c:if test="${empty snsUser}">
-		<input type="checkbox" id="popup" type="hidden">
-	</c:if>
+
 	<c:if test="${empty authUser}">
 		<label id="login" class="headerButton" for="popup">로그인</label>
 	</c:if>
@@ -322,7 +329,12 @@ function onLogoutClick() {
 				<label id="closeModal" for="joinPopup">X</label>
 				<c:import url="/WEB-INF/view/joinForm.jsp" />
 			</div>
-				<label for="joinPopup"></label>
+				<c:if test="${! empty param.joinvalue}">
+					<label for="joinPopup" style="background: rgba(0, 0, 0, .8);"></label>
+				</c:if>
+				<c:if test="${empty param.joinvalue}">	
+					<label for="joinPopup"></label>
+				</c:if>
 		</div>
 		
 	<!-- 비밀번호 변경 폼 -->
@@ -336,7 +348,19 @@ function onLogoutClick() {
 		<div>
 			<div id="modalLogin">
 				<label id="closeModal" for="fogotPopup">X</label>
-				<c:import url="/WEB-INF/view/findUserInfo.jsp" />
+				
+				<c:if test="${! empty tempAuthUser}">
+					<c:if test="${param.fpwvalue ne 'pass'}">
+						<c:import url="/WEB-INF/view/findUserInfo.jsp" />
+					</c:if>
+					<c:if test="${param.fpwvalue eq 'pass'}">
+						<c:import url="/WEB-INF/view/setNewOne.jsp" />
+					</c:if>
+				</c:if>
+				<c:if test="${empty tempAuthUser}">
+						<c:import url="/WEB-INF/view/findUserInfo.jsp" />
+				</c:if>
+
 			</div>
 			<c:if test="${! empty param.fpwvalue}">
 				<label for="fogotPopup" style="background: rgba(0, 0, 0, .8);"></label>

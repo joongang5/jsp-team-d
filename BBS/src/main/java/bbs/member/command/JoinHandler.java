@@ -22,7 +22,7 @@ public class JoinHandler extends CommandHandler {
 	}
 
 	@Override
-	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 		HttpSession session = req.getSession();
 		
@@ -59,7 +59,8 @@ public class JoinHandler extends CommandHandler {
 			joinService.join(joinReq);
 			if (session.getAttribute("snsUser") != null)
 				session.invalidate();
-			return "/WEB-INF/view/joinSuccess.jsp";
+			res.sendRedirect("./boxOffice/list.do?joinvalue=done");
+			return null;
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", Boolean.TRUE);
 			return getFormViewName();

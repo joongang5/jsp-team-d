@@ -82,9 +82,12 @@
 </style>
 <script type="text/javascript">
 
+$(function(){
+	$("#joinSubmit").prop("readonly", true);
+});
 
 function focusID(){
-	$("#joinMsg").text("2자 이상, 이메일도 사용 가능합니다.");
+	$("#joinMsg").text("4자 이상, 이메일도 사용 가능합니다.");
 	$("#email").prop("disabled", true);
 	$("#name").prop("disabled", true);
 	$("#id").prop("readonly", false);
@@ -325,9 +328,8 @@ function handleOnEmail(e)  {
 		<h2 align="center">회원가입</h2>
 	<div id="text_align"><span id="joinMsg">D'movie</span></div>
 	<div id="text_align"><span id="joinErr"> </span></div>
+		<c:if test="${empty param.joinvalue}">	
 		<form action="${pageContext.request.contextPath }/join.do" method="post" autocomplete="off">
-			<input type="text" style="display:none" aria-hidden="true"> <input type="password" style="display:none" aria-hidden="true">
-
 			<c:if test="${empty snsUser}">
 				<div>
 					<input type="text" id="id" name="id" class="join_input" placeholder="아이디" required="required" onchange="checkID()" oninput="handleOnEmail(this)" onfocus="focusID()">
@@ -366,6 +368,8 @@ function handleOnEmail(e)  {
 			
 					<input type="submit" id="joinSubmit" name="joinSubmit" class="join_input" value="가입하기">
 		</form>
+		</c:if>
+		
 	</div>
 </body>
 </html>
