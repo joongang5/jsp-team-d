@@ -32,7 +32,8 @@ public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한
 
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
+		
+		
 		// 메일 인증 후 수정 구현
 		Connection conn = ConnectionProvider.getConnection();
 		String memberId = req.getParameter("id");
@@ -42,12 +43,15 @@ public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한
 		MemberDao dao = new MemberDao();
 		Member members = dao.selectById(conn, memberId);
 
+		
 		if (members == null) {
-			return "/WEB-INF/view/findUserInfo.jsp?value=none";
+			res.sendRedirect("./boxOffice/list.do?fpwvalue=none");
+			return null;
 		}
 		
 		if (members.getPassword().length() > 30){ //sns 가입자는 토큰으로 비번처리 하여 30자 이상임.
-			return "/WEB-INF/view/findUserInfo.jsp?sns=true";
+			res.sendRedirect("./boxOffice/list.do?fpwvalue=sns");
+			return null;
 		}
 
 		// 20210802
@@ -55,6 +59,7 @@ public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한
 		User user = new User(members.getId(), members.getName(), members.getEmail());
 
 		req.getSession().setAttribute("tempAuthUser", user);
+		req.getSession().setMaxInactiveInterval(60);
 
 		String to = members.getEmail(); // 메일 받을 주소
 		//System.out.println(to);
@@ -65,7 +70,8 @@ public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한
 		keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); // 이름 지정
 		keyWasSaved.setAttribute("newEmail2", to);
 
-		return "/WEB-INF/view/findUserInfo.jsp?success=true";
+		res.sendRedirect("./boxOffice/list.do?fpwvalue=success");
+		return null;
 
 	}
 

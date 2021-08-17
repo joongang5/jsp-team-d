@@ -190,6 +190,64 @@ input[id*="joinPopup"]+label+div>label {
 	z-index: 1;
 }
 
+
+input[id*="fogotPopup"] {
+	display: none;
+}
+
+input[id*="fogotPopup"]+label {
+	display: inline-block;
+	padding: 10px;
+	color: #fff;
+}
+
+input[id*="fogotPopup"]+label[id*="join"] {
+	display: hidden;
+}
+
+input[id*="fogotPopup"]+label+div {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.5s;
+}
+
+input[id*="fogotPopup"]:checked+label+div {
+	opacity: 1;
+	visibility: visible;
+}
+
+input[id*="fogotPopup"]+label+div>div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 300px;
+	background: #212121;
+	z-index: 2;
+}
+
+input[id*="fogotPopup"]+label+div>div>label {
+	position: absolute;
+	top: -20px;
+	float: right;
+}
+
+input[id*="fogotPopup"]+label+div>label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
 </style>
 
 <script>
@@ -225,8 +283,13 @@ function onLogoutClick() {
 </div>
 
 <div id="headerButtons">
-	<input type="checkbox" id="popup">
-	
+
+	<c:if test="${! empty snsUser}">
+		<input type="checkbox" id="popup" checked="checked">
+	</c:if>
+	<c:if test="${empty snsUser}">
+		<input type="checkbox" id="popup" type="hidden">
+	</c:if>
 	<c:if test="${empty authUser}">
 		<label id="login" class="headerButton" for="popup">로그인</label>
 	</c:if>
@@ -236,6 +299,7 @@ function onLogoutClick() {
 		<label class="headerButton" onclick="onMyPageClick();">${authUser.name}님 마이페이지</label>
 	</c:if>
 	
+	<!-- 로그인 폼 -->
 	<c:if test="${empty authUser}">
 	<div>
 		<div id="modalLogin">
@@ -245,8 +309,13 @@ function onLogoutClick() {
 		<label for="popup"></label>
 	</div>
 	
-	
+	<!-- 회원가입 및 SNS 가입 폼 -->
+	<c:if test="${! empty snsUser}">
+		<input type="checkbox" id="joinPopup" checked="checked">
+	</c:if>
+	<c:if test="${empty snsUser}">
 		<input type="checkbox" id="joinPopup">
+	</c:if>
 			<label id="join" for="joinPopup"></label>
 		<div>
 			<div id="modalLogin">
@@ -255,9 +324,28 @@ function onLogoutClick() {
 			</div>
 				<label for="joinPopup"></label>
 		</div>
-			
-	
-	
+		
+	<!-- 비밀번호 변경 폼 -->
+	<c:if test="${! empty param.fpwvalue}">
+		<input type="checkbox" id="fogotPopup" checked="checked">
+	</c:if>
+	<c:if test="${empty param.fpwvalue}">	
+		<input type="checkbox" id="fogotPopup">
+	</c:if>
+			<label id="forgotPwd" for="fogotPopup"></label>
+		<div>
+			<div id="modalLogin">
+				<label id="closeModal" for="fogotPopup">X</label>
+				<c:import url="/WEB-INF/view/findUserInfo.jsp" />
+			</div>
+			<c:if test="${! empty param.fpwvalue}">
+				<label for="fogotPopup" style="background: rgba(0, 0, 0, .8);"></label>
+			</c:if>
+			<c:if test="${empty param.fpwvalue}">	
+				<label for="fogotPopup"></label>
+			</c:if>
+
+		</div>
 	
 	</c:if>
 </div>

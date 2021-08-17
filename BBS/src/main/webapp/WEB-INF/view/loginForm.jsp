@@ -147,7 +147,7 @@ a:visited {
 						<input type="password" id="loginPassword" class="login_input" name="password" placeholder="비밀번호" required="required" value="${param.pw }">
 					</div>
 						<a id="button_join"><label id="join" for="joinPopup">회원가입</label></a>
-						<a id="button_forgot" href="${pageContext.request.contextPath }/forgot.do">비밀번호 찾기</a>
+						<a id="button_forgot"><label id="join" for="fogotPopup">비밀번호 찾기</label></a>
 					
 					<c:if test="${errors.idOrPwNotMatch }"> 아이디와 비밀번호가 일치하지 않습니다.</c:if>
 					<input type="submit" class="login_submit" value="로그인">

@@ -96,8 +96,6 @@ function checkName(){
 		$("#name").css("border-bottom-color", "red");
 		$("#joinErr").text("닉네임을 작성해주세요.");
 		$("#name").focus();
-		$("#joinSubmit").prop("readonly", true);
-		$("#name").prop("readonly", false);
 		return false;
 	}
 	$.ajax({
@@ -109,12 +107,9 @@ function checkName(){
 			if(rData == 1){
 				$("#name").css("border-bottom-color", "red");
 				$("#joinErr").text("이미 등록된 닉네임 입니다.");
-				$("#joinSubmit").prop("readonly", true);
-				$("#name").prop("readonly", false);
 			}else{
 				$("#name").css("border-bottom-color", "#6A679E");
 				$("#joinErr").text(" ");
-				$("#joinSubmit").prop("readonly", false);
 				return true;
 			}
 		},
@@ -131,13 +126,10 @@ function checkBirth() {
 	if(birth != null){
     	$("#birth_date").css("border-bottom-color", "#6A679E");
     	$("#joinErr").text(" ");
-		$("#joinSubmit").prop("readonly", false);
     	return true;
     } else if (birth.include('-') != 2 && birth.length() != 10){
     	$("#birth_date").css("border-bottom-color", "red");
 		$("#joinErr").text("생년월일을 다시 확인해주세요.");
-		$("#joinSubmit").prop("readonly", true);
-		$("#birth_date").prop("readonly", false);
         return false;
     }
 }
@@ -177,7 +169,7 @@ function handleOnEmail(e)  {
 				</div>
 					<input type="hidden" name="id" value="${snsUser.email}">
 					<input type="hidden" type="password" name="password" value="${snsUser.access_token }">
-					<input type="hidden" name="confirmPassword" type="hidden" value="${snsUser.access_token }">
+					<input type="hidden" type="password" name="confirmPassword" value="${snsUser.access_token }">
 					<input type="hidden" name="email" value="${snsUser.email}">
 				<div>
 					<input type="date" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="focusBirth()">

@@ -60,7 +60,7 @@ public class LoginHandler extends CommandHandler {
 			// 3.2.2 id 필드에 email주소를 입력
 			User user = new User(email, access_token);
 			session.setAttribute("snsUser", user);
-			return "/WEB-INF/view/snsJoinForm.jsp?login=kakao";
+			return "/boxOffice/list.do?login=kakao";
 
 			// 카카오 간단 회원가입 폼 이동
 			// snsJoinForm.jsp

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bbs.member.service.DuplicateIdException;
 import bbs.member.service.JoinRequest;
@@ -22,6 +23,8 @@ public class JoinHandler extends CommandHandler {
 
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+		
+		HttpSession session = req.getSession();
 		
 		String id = req.getParameter("id");
 		String name = req.getParameter("name");
@@ -54,6 +57,8 @@ public class JoinHandler extends CommandHandler {
 		
 		try {
 			joinService.join(joinReq);
+			if (session.getAttribute("snsUser") != null)
+				session.invalidate();
 			return "/WEB-INF/view/joinSuccess.jsp";
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", Boolean.TRUE);
@@ -63,30 +68,5 @@ public class JoinHandler extends CommandHandler {
 	}
 	
 	
-	
 
-//	
-//	protected String snsProcessSubmit(HttpServletRequest req, HttpServletResponse res) {
-//		JoinRequest joinReq = new JoinRequest();
-//		joinReq.setName(req.getParameter("name"));
-//		joinReq.setEmail(req.getParameter("email"));
-//		
-//		Map<String, Boolean> errors = new HashMap<String, Boolean>();
-//		req.setAttribute("errors", errors);
-//
-//		joinReq.validate(errors);
-//		
-//		if (errors.isEmpty() == false) {
-//			return getFormViewName();
-//		}
-//		
-//		try {
-//			joinService.join(joinReq);
-//			return "/WEB-INF/view/joinSuccess.jsp";
-//		} catch (DuplicateIdException e) {
-//			errors.put("duplicateId", Boolean.TRUE);
-//			return getFormViewName();
-//		}
-//	}
-	
 }

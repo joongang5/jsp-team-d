@@ -15,6 +15,10 @@
  	transform: translateX(-50%);
 }
 
+#snsUserBox {
+	visibility:hidden;
+}
+
 #text_align {
 	text-align: center;
 }
@@ -81,15 +85,24 @@
 
 function focusID(){
 	$("#joinMsg").text("2자 이상, 이메일도 사용 가능합니다.");
+	$("#email").prop("disabled", true);
+	$("#name").prop("disabled", true);
+	$("#id").prop("readonly", false);
 }
 function focusName(){
 	$("#joinMsg").text("특수문자는 사용하실 수 없습니다.");
+	$("#email").prop("disabled", true);
+	$("#id").prop("disabled", true);
+	$("#name").prop("readonly", false);
 }
 function focusPw(){
 	$("#joinMsg").text("6자 이상 입력해주세요.");
 }
 function focusEmail(){
 	$("#joinMsg").text("아이디를 이메일로 사용시 향후 변경이 불가합니다.");
+	$("#name").prop("disabled", true);
+	$("#id").prop("disabled", true);
+	$("#email").prop("readonly", false);
 }
 function focusBirth(){
 	$("#joinMsg").text("2020-02-02 형식으로 입력해주세요.");
@@ -130,6 +143,8 @@ function checkID(){
 				$("#id").css("border-bottom-color", "#6A679E");
 				$("#joinErr").text(" ");
 				$(".join_input").prop("readonly", false);
+				$("#email").prop("disabled", false);
+				$("#name").prop("disabled", false);
 				return true;
 			}
 		},
@@ -166,6 +181,8 @@ function checkName(){
 				$("#name").css("border-bottom-color", "#6A679E");
 				$("#joinErr").text(" ");
 				$(".join_input").prop("readonly", false);
+				$("#email").prop("disabled", false);
+				$("#id").prop("disabled", false);
 				return true;
 			}
 		},
@@ -256,6 +273,8 @@ function checkEmail(){
 				$("#email").css("border-bottom-color", "#6A679E");
 				$("#joinErr").text(" ");
 				$(".join_input").prop("readonly", false);
+				$("#id").prop("disabled", false);
+				$("#name").prop("disabled", false);
 				return true;
 			}
 		},
@@ -303,31 +322,50 @@ function handleOnEmail(e)  {
 </head>
 <body>
 	<div id="joinBox">
-	<h2 align="center">회원가입</h2>
+		<h2 align="center">회원가입</h2>
 	<div id="text_align"><span id="joinMsg">D'movie</span></div>
 	<div id="text_align"><span id="joinErr"> </span></div>
-	<form action="../join.do" method="post">
-		<div>
-			<input type="text" id="id" name="id" class="join_input" placeholder="아이디" required="required" onchange="checkID()" oninput="handleOnEmail(this)" onfocus="focusID()">
-		</div>
-		<div>
-			<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)" onfocus="focusName()">
-		</div>
-		<div>
-			<input type="password" id="password" name="password" class="join_input" placeholder="비밀번호" required="required" onchange="isSame()" onfocus="focusPw()">
-		</div>
-		<div>
-			<input type="password" id="confirmPassword" name="confirmPassword" class="join_input" placeholder="비밀번호 확인" required="required" onchange="isSame()">
-		</div>
-		<div>
-			<input type="email" id="email" name="email" class="join_input" placeholder="이메일" required="required" style="text-transform: lowercase" onchange="checkEmail()" onchange="checkConfirmEmail()" oninput="handleOnEmail(this)" onfocus="focusEmail()">
-		</div>
-		<div>
-			<input type="date" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="focusBirth()">
-		</div>
-	
-			<input type="submit" id="joinSubmit" name="joinSubmit" class="join_input" value="가입하기">
-	</form>
+		<form action="${pageContext.request.contextPath }/join.do" method="post" autocomplete="off">
+			<input type="text" style="display:none" aria-hidden="true"> <input type="password" style="display:none" aria-hidden="true">
+
+			<c:if test="${empty snsUser}">
+				<div>
+					<input type="text" id="id" name="id" class="join_input" placeholder="아이디" required="required" onchange="checkID()" oninput="handleOnEmail(this)" onfocus="focusID()">
+				</div>
+			</c:if>
+			<c:if test="${! empty snsUser}">
+				<div>
+					<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)" onfocus="focusName()">
+				</div>
+			</c:if>
+			<c:if test="${empty snsUser}">
+				<div>
+					<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)" onfocus="focusName()">
+				</div>
+				<div>
+					<input type="password" id="password" name="password" class="join_input" placeholder="비밀번호" required="required" onchange="isSame()" onfocus="focusPw()">
+				</div>
+				<div>
+					<input type="password" id="confirmPassword" name="confirmPassword" class="join_input" placeholder="비밀번호 확인" required="required" onchange="isSame()">
+				</div>
+				<div>
+					<input type="email" id="email" name="email" class="join_input" placeholder="이메일" required="required" style="text-transform: lowercase" onchange="checkEmail()" onchange="checkConfirmEmail()" oninput="handleOnEmail(this)" onfocus="focusEmail()">
+				</div>
+			</c:if>
+			<c:if test="${! empty snsUser}">
+				<div id="snsUserBox">
+					<input id="id" name="id" readonly="readonly" value="${snsUser.email}">
+					<input id="password" type="password" name="password" readonly="readonly" value="${snsUser.access_token }">
+					<input id="confirmPassword" type="password" name="confirmPassword" readonly="readonly" value="${snsUser.access_token }">
+					<input id="email" name="email" readonly="readonly" value="${snsUser.email}">
+				</div>
+			</c:if>
+				<div>
+					<input type="date" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="focusBirth()">
+				</div>
+			
+					<input type="submit" id="joinSubmit" name="joinSubmit" class="join_input" value="가입하기">
+		</form>
 	</div>
 </body>
 </html>
