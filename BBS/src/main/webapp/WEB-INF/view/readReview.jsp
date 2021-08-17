@@ -12,46 +12,85 @@
 <link href="../css/menu.css" rel="stylesheet">
 <link href="../css/articleWrite.css" rel="stylesheet">
 <style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+}
+h1{
+	font-size:50px;
+	text-align:center;
+	color: white;
+}
+table{
+	margin-left: auto; 
+	margin-right: auto;
+	border-top: 3px solid white; 
+	border-bottom: 3px solid white; 
+	height: auto;
+	min-height: 400px;
+	width:auto;
+	min-width:800px;
+	max-width:800px;
+	color: white;
+	border-collapse: collapse;
+}
+#nButton{
+	margin-top: 10px;
+	width: 45%; 
+	margin-top:10px; 
+	margin-right: auto; 
+	margin-left: auto;
+}
+#nButton a{
+	color: white;
+}
 </style>
 
 
 </head>
 <body>
 	<div id="container">
+		<div id="header">
+			<c:import url="/WEB-INF/view/component/header.jsp" />
+		</div>
 		<div id="menu">
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
-		<br> [리뷰게시판입니다.]
-		<table border="1" width=auto;>
+		
+		<div id="main">
+		<div id="mainWrapper" style="width: 100%; margin:0;">
+		<h1>Review</h1>
+		
+		<table width=auto;>
+
 			<tr>
-				<td>번호</td>
-				<td>${reviewData.review.number}</td>
+				<td style="height: 30px; min-height: 30px;">제목</td>
+				<td style="margin-top: 10px; margin-bottom: 10px;">${reviewData.review.number}번글&nbsp;:&nbsp;<c:out value="${reviewData.review.title}" /></td>
 			</tr>
 			<tr>
-				<td>작성자</td>
+				<td style="height: 30px; min-width: 70px;  min-height: 30px; margin-bottom: 10px;">작성자</td>
 				<td>${reviewData.review.writer.name}</td>
 			</tr>
 			<tr>
-				<td>제목</td>
-				<td><c:out value="${reviewData.review.title}" /></td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td><c:out value="${reviewData.content}" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><c:set var="pageNo"
-						value="${empty param.pageNo ? '1' : param.pageNo}" /> <a
-					href="list.do?pageNo=${pageNo}">[목록]</a> <c:if
-						test="${authUser.id == reviewData.review.writer.id}">
-						<a href="modify.do?no=${reviewData.review.number}">[리뷰수정]</a>
-						<a href="delete.do?no=${reviewData.review.number}">[리뷰삭제]</a>
-					</c:if></td>
+				<td colspan="2" style="width: 500px; border-top:3px solid white; text-align: center; min-height: 300px; height: 300px;"><c:out value="${reviewData.content}" /></td>
 			</tr>
 		</table>
+			<div id="nButton"> 
+				<dl style="text-align: center;"><c:set var="pageNo"
+						value="${empty param.pageNo ? '1' : param.pageNo}" /> <a
+					href="list.do?pageNo=${pageNo}">[목록]</a></dl> 
+					
+					<dl style="text-align: right; margin-bottom: 10px;">
+					<c:if test="${authUser.id == reviewData.review.writer.id}">
+						<a href="modify.do?no=${reviewData.review.number}">[리뷰수정]</a>&emsp;
+						<a href="delete.do?no=${reviewData.review.number}">[리뷰삭제]</a>
+					</c:if></dl>
+			</div>
 		<br> [리뷰 코멘트]
 		<div id="message">
 			<c:import url="/WEB-INF/view/messagelist.jsp" />
+		</div>
+		</div>
 		</div>
 	</div>
 </body>
