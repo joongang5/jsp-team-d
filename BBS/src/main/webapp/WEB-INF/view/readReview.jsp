@@ -44,6 +44,21 @@ table{
 #nButton a{
 	color: white;
 }
+#main {
+	position: relative;
+	float: right;
+	width: calc(100% - 150px);
+	height: calc(auto - 35px);
+	background-color: #6e6e6e;
+}
+
+#mainWrapper {
+	position: relative;
+	left: 20px;
+	width: calc(100% - 20px);
+	height: auto;
+	background-color: #2b2b2b;
+}
 </style>
 
 
@@ -58,7 +73,7 @@ table{
 		</div>
 		
 		<div id="main">
-		<div id="mainWrapper" style="width: 100%; margin:0;">
+		<div id="mainWrapper">
 		<h1>Review</h1>
 		
 		<table width=auto;>
@@ -86,7 +101,7 @@ table{
 						<a href="delete.do?no=${reviewData.review.number}">[리뷰삭제]</a>
 					</c:if></dl>
 			</div>
-		<br> [리뷰 코멘트]
+		<br> <h2 style="text-align: center; color: white;">[리뷰 코멘트]</h2>
 		<div id="message">
 			<c:import url="/WEB-INF/view/messagelist.jsp" />
 		</div>

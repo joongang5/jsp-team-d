@@ -39,9 +39,7 @@ button {
 	text-align: left;
 	width: 250px;
 }
-tr:hover {
-	background-color: green;
-}
+
 #titleN th{
 	border-bottom: 3px solid white;
 	max-height: 30px;
