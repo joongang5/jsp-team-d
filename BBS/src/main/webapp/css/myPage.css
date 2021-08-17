@@ -6,7 +6,8 @@
 body{
 	background-color: #0f0f0f;
 	color: #faeef0;	
-	
+	margin: 0;
+	padding: 0;
 }
 #title{
 	float: right;

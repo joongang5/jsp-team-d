@@ -57,7 +57,7 @@ label {
 	top: 0;
 	width: calc(100% - 160px);
 	right: 10px;
-	height: 100%;
+	height: 35px;
 	color: white;
 }
 
