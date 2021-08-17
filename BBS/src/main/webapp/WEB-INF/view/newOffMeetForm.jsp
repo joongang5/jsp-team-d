@@ -14,16 +14,25 @@
 <style type="text/css">
 #write{
 
-	text-align: center !important ;
+	
 
 }
 textarea{
-	width:400px; 
+	width:600px; 
 	height:100px; 
-    resize:none;
+	float: left;
+	margin-left: 25%;
 }
 
 </style>
+<script type="text/javascript">
+
+function btnclick(){
+	//alert(1);
+	document.aaa.submit();
+}
+
+</script>
 </head>
 <body>
 	<div id="container">
@@ -31,20 +40,22 @@ textarea{
 			<c:import url="/WEB-INF/view/component/menu.jsp" />
 		</div>
 		<div id="main">
-			<div id="mainWrapper">
+			<div id="mainWrapper" >
 				<div id="write">
-					<form action="write.do" method="post">
+					<form name="aaa" action="write.do" method="post">
 						<div id="mapResult1"></div>
-						<input type="text" name="title" required="required" placeholder="제목을 적어주세요" style="width:400px;height:30px; font-size:10px;">
-						<c:if test="${errors.title }">제목을 입력하세요.</c:if>
-						<br>
-						<textarea name="content" required="required"></textarea>
-						<br>
+						<input type="text" name="title" required="required" placeholder="제목을 적어주세요" style="width:600px;height:30px; font-size:10px;float: left;margin-left: 25%;">
+						<div id=test>&nbsp
+						</div>
+<%-- 						<c:if test="${errors.title }">제목을 입력하세요.</c:if>
+ --%>						<br>
+						<textarea name="content" required="required" placeholder="내용을 적어주세요"></textarea>
+						<br><br><br><br><br>
 						
-						<button type="submit">글쓰기</button>
+						<!-- <button type="submit" style="margin-left: 25%;">글쓰기</button> -->
 					</form>
 					<br>
-					<p onclick="location.href='/BBS/offmeet/list.do'">게시판으로</p>
+					
 				</div>
 				<div class="map_wrap">
 					<div id="map"
@@ -61,13 +72,20 @@ textarea{
 						</div>
 						<hr>
 						<ul id="placesList"></ul>
-						<div id="pagination"></div>
+						<div id="pagination" ></div>
 					</div>
 				</div>
-				<div id="mapResult2"></div>
+				<div id=ddd style="float:right;">
+				<p onclick="location.href='/BBS/offmeet/list.do'">[게시판으로]</p>
+				</div>
+				<div id=ddd style="float:right;">
+				<p onclick="btnclick()">[글쓰기]&nbsp&nbsp</p>
+				</div> 
+				
+				<div id="mapResult2" style="margin-left: 25%"></div>
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f7c4b2fc5ab90c2479e74ec47a34e03b&libraries=services"></script>
 				<script type="text/javascript" src="../js/newOffMeetForm.js"></script>
-			</div>			
+			</div>				
 		</div>
 	</div>
 	

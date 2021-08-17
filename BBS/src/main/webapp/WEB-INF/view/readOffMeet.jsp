@@ -74,7 +74,7 @@ table{
 	<table width="100%">
 		<tr>
 			<td style="height: 30px; min-height: 30px; width: 100px;">제목</td>
-			<td style="margin-top: 10px; margin-bottom: 10px;">${offmeetData.number}번글&nbsp;:&nbsp;<c:out value="${offmeetData.title }"/></td>
+			<td style="margin-top: 10px; margin-bottom: 10px;"><c:out value="${offmeetData.title }"/></td>
 		</tr>
 		<tr>
 			<td style="height: 30px; min-width: 70px;  min-height: 30px; margin-bottom: 10px; width: 100px;">작성자</td>
