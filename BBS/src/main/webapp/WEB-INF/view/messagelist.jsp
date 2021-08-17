@@ -27,20 +27,30 @@ MessageListView viewData = messageListService.getMessageList(pageNumber);
 <head>
 <meta charset="EUC-KR">
 <title>방명록 메시지 목록</title>
+<style type="text/css">
+#nButton{
+	text-align: center;
+}
+#nButton a{
+	color: white;
+}
+</style>
 </head>
 <body>
-
+	<div style="text-align: center; color: white;">
 	<form action="../message/write.do" method="post">
-		이름: <input type="text" name="guestName"> <br> 암호: <input
-			type="password" name="password"> <br> 메시지:
-		<textarea name="message" cols="30" rows="3"></textarea>
+		이름: <input type="text" name="guestName" style="width: 100px;"> <br> 
+		암호: <input type="password" name="password" style="width: 100px;"> <br> 
+		
+		메시지: <textarea name="message" cols="30" rows="3"></textarea>
 		<br> <input type="submit" value="메시지 남기기" />
 	</form>
+	</div>
 
 	<hr>
 	<c:if test="${viewData.isEmpty()}">
-등록된 메시지가 없습니다.
-</c:if>
+		등록된 메시지가 없습니다.
+	</c:if>
 	<table border="1">
 		<c:forEach var="message" items="${viewData.messageList}">
 			<tr>
@@ -51,10 +61,11 @@ MessageListView viewData = messageListService.getMessageList(pageNumber);
 			</tr>
 		</c:forEach>
 	</table>
-
+	<div id=nButton> 
 	<c:forEach var="pageNum" begin="1" end="${viewData.pageTotalCount}">
 		<a href="./message.do?page=${pageNum}">[${pageNum}]</a>
 	</c:forEach>
+	</div>
 
 </body>
 </html>
