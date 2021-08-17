@@ -42,7 +42,8 @@ public class MovieViewDao {
 				rs.getString("genre_alt"),
 				rs.getString("directors"),
 				rs.getString("company_cd"),
-				rs.getString("image"));
+				rs.getString("image"),
+				rs.getFloat("user_rating"));
 		return movie;
 	}
 }

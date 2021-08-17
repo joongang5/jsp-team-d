@@ -20,7 +20,8 @@ public class MoviePosterDao {
 			while (rs.next()) {
 				return new MoviePoster(
 						rs.getString("movie_cd"),
-						rs.getString("image"));
+						rs.getString("image"),
+						rs.getFloat("user_rating"));
 			}
 		} finally {
 			JdbcUtil.close(rs);
@@ -52,10 +53,11 @@ public class MoviePosterDao {
 		PreparedStatement resultPstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "INSERT INTO movie_poster VALUES (?,?)";
+			String sql = "INSERT INTO movie_poster VALUES (?,?,?)";
 			insertPstmt = conn.prepareStatement(sql);
 			insertPstmt.setString(1, moviePoster.getMovieCd());
 			insertPstmt.setString(2, moviePoster.getImage());
+			insertPstmt.setFloat(3, moviePoster.getUserRating());
 			insertPstmt.executeUpdate();
 			
 		} finally {

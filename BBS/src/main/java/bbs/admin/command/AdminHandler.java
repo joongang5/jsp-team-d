@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bbs.article.service.ArticleNotFoundException;
 import bbs.boxoffice.model.BoxOffice;
 import bbs.boxoffice.service.RegisterBoxOfficeService;
 import bbs.jdbc.ConnectionProvider;

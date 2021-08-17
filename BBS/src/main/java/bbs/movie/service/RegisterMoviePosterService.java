@@ -28,8 +28,12 @@ public class RegisterMoviePosterService {
 					continue;
 				}
 				
-				String posterLink = findPoster(baseMovie.getMovieNm());
-				posterDao.insert(conn, new MoviePoster(baseMovie.getMovieCd(), posterLink));
+				MoviePoster poster = findPoster(baseMovie.getMovieNm());
+				if (poster == null)
+					continue;
+				
+				poster.setMovieCd(baseMovie.getMovieCd());
+				posterDao.insert(conn, poster);
 				conn.commit();
 
 				Thread.sleep(500);
@@ -45,17 +49,18 @@ public class RegisterMoviePosterService {
 		}
 	}
 
-	private String findPoster(String movieNm) {
+	private MoviePoster findPoster(String movieNm) {
 		ArrayList<NaverMovie> list = APIHelper.naver.requestMovieList(movieNm);
-		if (list == null)
-			return null;
-		
+
 		for (NaverMovie naverMovie : list) {
-			String posterLink = naverMovie.getImage(); 
-			if (posterLink.isEmpty() == false) {
-				return posterLink;
-			}
+			MoviePoster poster = new MoviePoster(
+					null,
+					naverMovie.getImage(),
+					Float.parseFloat(naverMovie.getUserRating()));
+			
+			return poster;
 		}
-		return null;
+		
+		return new MoviePoster(null, null, 0f);
 	}
 }

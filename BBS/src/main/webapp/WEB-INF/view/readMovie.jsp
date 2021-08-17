@@ -31,7 +31,7 @@ table{
 	border-top: 3px solid white; 
 	border-bottom: 3px solid white; 
 	height: auto;
-	min-height: 400px;
+	min-height: 300px;
 	width:auto;
 	min-width:800px;
 	max-width:800px;
@@ -50,6 +50,9 @@ table{
 }
 #cud{
 	float: right;
+}
+p {
+	line-height: 1.5em; 
 }
 </style>
 <script type= "text/javascript">
@@ -74,28 +77,46 @@ function del(no){
 				<br /><br />
 				<table>
 					<tr>
-						<td><img SRC="${movieView.image }"></td>
-						<td style="height: 30px; min-height: 30px;">${movieView.movieNm }</td>
+						<td style="width: 150px;"><img SRC="${movieView.image }"></td>
+						<td style="vertical-align: top;">
+							<div style="font-weight: bold; font-size: 30px; position: relative; top: 25px">
+								${movieView.movieNm }
+							</div>
+							<div style="position: relative; left: 3px; top: 25px">
+								<c:if test="${not empty movieView.movieNmEn}">
+									${movieView.movieNmEn },									
+								</c:if>
+								<c:if test="${empty movieView.movieNmEn}">
+									-,									
+								</c:if>
+								${movieView.prdtYear }
+							</div>
+							<div style="position: relative; left: 3px; top: 50px">
+								<label>네티즌 평점</label>
+								<label>★★★★★</label>
+								<label>${movieView.userRating }</label>
+							</div>
+						</td>
 					</tr>
-					<tr>
-						<td style="height: 30px; min-width: 70px;  min-height: 30px; margin-bottom: 10px;">감독</td>
-						<td>${movieView.directors }</td>
-					</tr>
-					
-					<tr>
-						<td style="height: 30px; min-height: 30px; margin-bottom: 10px;">날짜</td>
-						<td>${movieView.openDt}&emsp;&emsp;&emsp;&emsp;&emsp;영화유형&emsp;&emsp;${movieView.typeNm }</td>
-					</tr>
-					
-					<tr>
-						<td colspan="2" style="width: 500px; border-top:3px solid white; text-align: center; min-height: 300px; height: 300px;">${movieView.movieNm }</td>
+					<tr style="border-top: 3px solid white;">
+						<td colspan="2" style="width: 500px; vertical-align: top; min-height: 200px; height: 200px;">
+							<br />
+							<p>개봉일 : ${movieView.openDt }</p>
+							<p>영화유형 : ${movieView.typeNm }</p>
+							<p>제작상태 : ${movieView.prdtStatNm }</p>
+							<p>제작국가 : ${movieView.nationAlt }</p>
+							<p>영화장르 : ${movieView.genreAlt }</p>
+							<p>영화감독 : ${movieView.directors }</p>
+						</td>
 					</tr>
 					
 				</table>
 				<div id="nButton">  
 					<dl style="text-align: center;">
-						<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" /> 
-						<a href="list.do?pageNo=${pageNo }">[목록]</a>
+						<dt>
+							<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
+							<a href="list.do?pageNo=${pageNo }">[목록]</a>
+						</dt>
 					</dl> 
 						
 					<dl style="text-align: right; margin-bottom: 10px;">
