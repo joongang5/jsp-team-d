@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script type="text/javascript" src="/BBS/js/menu.js"></script>
-<style type="text/css">
 
+<script src="${pageContext.request.contextPath }/js/menu.js" type="text/javascript"></script>
+
+<style type="text/css">
 .menuItem {
 	display: block;
 	padding: 5px 10px;
@@ -26,14 +23,10 @@
 	height: 820px;
 	color: white;
 }
-
 </style>
-</head>
-<body>
+
 <div class="myPageList">
 	<div class="menuItem" onclick="menuClick('myPage')">내 정보</div>
 	<div class="menuItem" onclick="menuClick('myPage/reviewList')">내 리뷰</div>
 	<div class="menuItem" onclick="menuClick('myPage/offMeetList')">내 영화팟 글</div>
 </div>
-</body>
-</html>
