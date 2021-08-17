@@ -161,13 +161,17 @@ function checkID(){
 
 function checkName(){
 	var name = $("#name").val();
+//	alert($("#id").val());
+//	alert(name);
+//	alert($("#password").val());
+//	alert($("#confirmPassword").val());
+//	alert($("#email").val());
 	if(name == ""){
 		$("#name").css("border-bottom-color", "red");
 		$("#joinErr").text("닉네임을 작성해주세요.");
 		$("#name").focus();
 		$(".join_input").prop("readonly", true);
 		$("#name").prop("readonly", false);
-		return false;
 	}
 	$.ajax({
 		type:'post',
@@ -328,7 +332,7 @@ function handleOnEmail(e)  {
 		<h2 align="center">회원가입</h2>
 	<div id="text_align"><span id="joinMsg">D'movie</span></div>
 	<div id="text_align"><span id="joinErr"> </span></div>
-		<c:if test="${empty param.joinvalue}">	
+		
 		<form action="${pageContext.request.contextPath }/join.do" method="post" autocomplete="off">
 			<c:if test="${empty snsUser}">
 				<div>
@@ -368,7 +372,6 @@ function handleOnEmail(e)  {
 			
 					<input type="submit" id="joinSubmit" name="joinSubmit" class="join_input" value="가입하기">
 		</form>
-		</c:if>
 		
 	</div>
 </body>

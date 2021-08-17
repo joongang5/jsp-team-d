@@ -329,12 +329,7 @@ function onLogoutClick() {
 				<label id="closeModal" for="joinPopup">X</label>
 				<c:import url="/WEB-INF/view/joinForm.jsp" />
 			</div>
-				<c:if test="${! empty param.joinvalue}">
-					<label for="joinPopup" style="background: rgba(0, 0, 0, .8);"></label>
-				</c:if>
-				<c:if test="${empty param.joinvalue}">	
-					<label for="joinPopup"></label>
-				</c:if>
+				<label for="joinPopup"></label>
 		</div>
 		
 	<!-- 비밀번호 변경 폼 -->
