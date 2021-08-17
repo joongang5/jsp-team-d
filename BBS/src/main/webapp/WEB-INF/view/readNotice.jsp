@@ -51,6 +51,21 @@ table{
 #cud{
 	float: right;
 }
+#main {
+	position: relative;
+	float: right;
+	width: calc(100% - 150px);
+	height: calc(auto - 35px);
+	background-color: #6e6e6e;
+}
+
+#mainWrapper {
+	position: relative;
+	left: 20px;
+	width: calc(100% - 20px);
+	height: auto;
+	background-color: #2b2b2b;
+}
 </style>
 <script type= "text/javascript">
 function del(no){
