@@ -26,6 +26,7 @@ table {
 	border-bottom: 3px solid white;
 	width: auto;
 	min-width:800px;
+	max-width: 900px;
 	height: auto;
 	min-height: 400px;
 	boder-collapse: collapse;
@@ -73,7 +74,7 @@ table {
 							<td style="text-align: center;">${movie.movieCd }</td>
 							
 							<td style="text-overflow:ellipsis; white-space:nowrap; max-width:360px; overflow:hidden">
-								<a style="color:white; "href="/BBS/movie/read.do?no=${movie.movieCd}"> ${movie.movieNm } </a>
+								<a style="color:white;" href="/BBS/movie/read.do?no=${movie.movieCd}"> ${movie.movieNm } </a>
 							</td>
 							
 							<td style="text-align: center;">${movie.nationAlt}</td>
