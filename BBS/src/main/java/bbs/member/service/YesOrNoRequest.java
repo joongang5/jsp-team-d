@@ -1,6 +1,6 @@
 package bbs.member.service;
 
-public class YesOrNoRequest { //이메일 인증 일치?,,Yes OR NO 
+public class YesOrNoRequest { 
 	 private String yes;
 	 private String no;
 	private String adminKey;

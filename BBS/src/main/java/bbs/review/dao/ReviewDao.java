@@ -53,7 +53,7 @@ public class ReviewDao {
 		return new Timestamp(date.getTime());
 	}
 
-	// °Ô½Ã±ÛÀÇ °³¼ö¸¦ ±¸ÇÏ±â À§ÇÑ selectcount()¸Ş¼­µå¸¦ ±¸Çö
+	// ê²Œì‹œê¸€ì˜ ê°œìˆ˜ë¥¼ êµ¬í•˜ê¸° ìœ„í•œ selectcount()ë©”ì„œë“œë¥¼ êµ¬í˜„
 	public int selectCount(Connection conn) throws SQLException {
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -71,8 +71,8 @@ public class ReviewDao {
 		}
 	}
 
-	// selectcount()¸Ş¼Òµå´Â review Å×ÀÌºíÀÇ ÀüÃ¼ ·¹ÄÚµå¼ö¸¦ ¸®ÅÏÇÑ´Ù.
-	// ÁöÁ¤ÇÑ ¹üÀ§ÀÇ °Ô½Ã±ÛÀ» ÀĞ¾î¿À±â À§ÇÑ select()¸Ş¼­µå´Â ¾Æ·¡¿Í °°ÀÌ ±¸ÇöÇÑ´Ù.
+	// selectcount()ë©”ì†Œë“œëŠ” review í…Œì´ë¸”ì˜ ì „ì²´ ë ˆì½”ë“œìˆ˜ë¥¼ ë¦¬í„´í•œë‹¤.
+	// ì§€ì •í•œ ë²”ìœ„ì˜ ê²Œì‹œê¸€ì„ ì½ì–´ì˜¤ê¸° ìœ„í•œ select()ë©”ì„œë“œëŠ” ì•„ë˜ì™€ ê°™ì´ êµ¬í˜„í•œë‹¤.
 
 	public List<Review> select(Connection conn, int startRow, int size) throws SQLException {
 		PreparedStatement pstmt = null;
@@ -123,7 +123,7 @@ public class ReviewDao {
 	}
 	
 	
-	//ÀÌÇö¾Æ°¡ Ãß°¡
+	//ì´í˜„ì•„ê°€ ì¶”ê°€
 	public  List<Review> selectByIdReall(Connection conn, String id) throws SQLException {
 	
 		PreparedStatement pstmt = null;
@@ -157,7 +157,7 @@ public class ReviewDao {
 		return null;
 	}
 	
-	//ÀÌÇö¾Æ°¡ Ãß°¡ - »èÁ¦ ±â´É
+	//ì´í˜„ì•„ê°€ ì¶”ê°€ - ì‚­ì œ ê¸°ëŠ¥
 	public void DeleteReview(Connection conn, int reviewNo) throws SQLException{
 		String sql = "DELETE FROM r, rc USING review r LEFT JOIN review_content rc ON r.review_no = rc.review_no WHERE rc.review_no = ?";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){

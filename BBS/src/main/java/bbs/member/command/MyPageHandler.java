@@ -19,7 +19,7 @@ import bbs.member.service.ValidEmailService;
 import bbs.mvc.command.CommandHandler;
 
 
-public class MyPageHandler extends CommandHandler { //占쏙옙
+public class MyPageHandler extends CommandHandler { 
 
 	private ReadMyPageService readService = new ReadMyPageService();
 	private ValidEmailService validService = new ValidEmailService();
