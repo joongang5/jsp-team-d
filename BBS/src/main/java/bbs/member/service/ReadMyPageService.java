@@ -11,15 +11,14 @@ public class ReadMyPageService {
 	// 20210802
 	private MemberDao memberDao = new MemberDao();
 
-	public Member getMember(String id) { // 아이디로 멤버 정보 얻기
+	public Member getMember(String id) { 
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			Member member = memberDao.selectByIdPlusImg(conn, id); // 입력 id 관련 정보 가져오기
-
-			if (member == null) { // 멤버 없을 경우
+			Member member = memberDao.selectByIdPlusImg(conn, id); 
+			if (member == null) { 
 				throw new MemberNotFoundException();
 			}
 
-			return member; // 생성자로 안에 있는 데이터 꺼내기
+			return member; 
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

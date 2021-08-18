@@ -2,10 +2,10 @@ package bbs.member.service;
 
 import java.util.List;
 
-import bbs.article.model.Article;
+
 import bbs.review.model.Review;
 
-public class MyReviewPage { //ÆäÀÌÂ¡ À§ÇØ 20210810 »ı¼º
+public class MyReviewPage { //í˜ì´ì§• ìœ„í•´ 20210810 ìƒì„±
 	private int total;
 	private int currentPage;
 	private List<Review> content;
@@ -17,7 +17,7 @@ public class MyReviewPage { //ÆäÀÌÂ¡ À§ÇØ 20210810 »ı¼º
 		return total;
 	}
 	
-	///////////////////////////////////ÇÔ¼ö
+	///////////////////////////////////í•¨ìˆ˜
 	public MyReviewPage(int total, int currentPage, int size, List<Review> content) {
 		this.total = total;
 		this.currentPage = currentPage;
@@ -74,5 +74,7 @@ public class MyReviewPage { //ÆäÀÌÂ¡ À§ÇØ 20210810 »ı¼º
 	}
 	
 	}
+
+
 
 

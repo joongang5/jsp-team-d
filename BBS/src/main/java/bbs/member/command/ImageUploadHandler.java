@@ -14,7 +14,7 @@ import bbs.member.service.ModifyRequest;
 import bbs.member.service.SaveImgDBService;
 import bbs.mvc.command.CommandHandler;
 
-public class ImageUploadHandler extends CommandHandler { //Çö
+public class ImageUploadHandler extends CommandHandler { //í˜„
 
 	FileUploadService fileUpload = new FileUploadService();
 	
@@ -45,10 +45,10 @@ public class ImageUploadHandler extends CommandHandler { //Çö
 		
      	try {
      		 SaveImgDBService.modify(modiReq);
-     		 System.out.println("ÇÁ·ÎÇÊ »çÁø ¼öÁ¤ ¼º°ø");
+     		 System.out.println("í”„ë¡œí•„ ì‚¬ì§„ ìˆ˜ì • ì„±ê³µ");
      		 return getFormViewName();
      	 }catch(Exception e){
-     		 System.out.println("¼öÁ¤ ½ÇÆÐ");
+     		 System.out.println("ìˆ˜ì • ì‹¤íŒ¨");
      	 }
      	
        

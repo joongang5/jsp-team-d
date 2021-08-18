@@ -1,6 +1,6 @@
 package bbs.member.service;
 
-import java.io.File;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,7 +8,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class FileUploadService {
-	public MultipartRequest fileUpload(HttpServletRequest req) { //20210808 Çö
+	public MultipartRequest fileUpload(HttpServletRequest req) { //20210808 í˜„
 	
 	int sizeLimit = 10*1024*1024;
 	String savePath = req.getServletContext().getRealPath("upload");
@@ -24,10 +24,11 @@ public class FileUploadService {
 		return mr;
 	}catch(Exception e) {
 		e.printStackTrace();
-		System.out.println("ÀÌ¹ÌÁö ¾÷·Îµå ½ÇÆĞ");
+		System.out.println("ì´ë¯¸ì§€ ì—…ë¡œë“œ ì‹¤íŒ¨");
 		return null;
 	}
 	
 	
 	}
 }
+

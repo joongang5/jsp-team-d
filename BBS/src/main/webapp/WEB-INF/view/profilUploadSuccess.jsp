@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>ÇÁ·ÎÇÊ »çÁø ¾÷·Îµå</title>
+<meta charset="UTF-8">
+<title>í”„ë¡œí•„ ì‚¬ì§„ ì—…ë¡œë“œ</title>
 <style type="text/css">
 *{
 	margin: 0;
@@ -34,7 +34,7 @@ body{
 	<c:import url="/WEB-INF/view/component/myPageMenu.jsp" />
 </div>
 <div id="profile">	      
-<h2>ÇÁ·ÎÇÊ »çÁø °»½Å ¿Ï·á</h2>
+<h2>í”„ë¡œí•„ ì‚¬ì§„ ê°±ì‹  ì™„ë£Œ</h2>
 </div>	
 
 </body>
