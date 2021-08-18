@@ -22,13 +22,12 @@ public class ReviewDao {
 		ResultSet rs = null;
 
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO review (writer_id, writer_name, title, regdate, moddate, read_cnt) values(?,?,?,?,?,0)");
+			pstmt = conn.prepareStatement("INSERT INTO review (title, regdate, moddate, read_cnt, member_no) values(?,?,?,0,(SELECT m_no FROM member WHERE id=?))");
 
-			pstmt.setString(1, review.getWriter().getId());
-			pstmt.setString(2, review.getWriter().getName());
-			pstmt.setString(3, review.getTitle());
-			pstmt.setTimestamp(4, toTimeStamp(review.getRegDate()));
-			pstmt.setTimestamp(5, toTimeStamp(review.getModifiedDate()));
+			pstmt.setString(1, review.getTitle());
+			pstmt.setTimestamp(2, toTimeStamp(review.getRegDate()));
+			pstmt.setTimestamp(3, toTimeStamp(review.getModifiedDate()));
+			pstmt.setString(4, review.getWriter().getId());
 			int insertedCount = pstmt.executeUpdate();
 
 			if (insertedCount > 0) {
@@ -78,7 +77,7 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from review order by review_no desc limit ?,?");
+			pstmt = conn.prepareStatement("select * from review_view limit ?,?");
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -108,7 +107,7 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM review WHERE review_no = ?");
+			pstmt = conn.prepareStatement("SELECT * FROM review_view WHERE review_no = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			Review review = null;
