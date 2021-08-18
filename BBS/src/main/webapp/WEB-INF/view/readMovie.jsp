@@ -54,6 +54,35 @@ table{
 p {
 	line-height: 1.5em; 
 }
+.starRatings {
+  color: #aaa9a9; 
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  -webkit-text-fill-color: transparent; 
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+}
+ 
+.starRatingsFill {	
+  color: red;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+}
+ 
+.starRatingsBase {
+  z-index: 0;
+  padding: 0;
+}
+#parent{
+	display:flex;
+}
 </style>
 <script type= "text/javascript">
 function del(no){
@@ -91,11 +120,19 @@ function del(no){
 								</c:if>
 								${movieView.prdtYear }
 							</div>
-							<div style="margin-left: 3px; margin-top: 30px">
+							<div id="parent" style="margin-left: 3px; margin-top: 30px">
 								<label>네티즌 평점</label>
-								<label>★★★★★</label>
+								<div class="starRatings">
+									<div class="starRatingsFill" style= 'width: ${movieView.userRating * 10}%;'> <!-- 나란히 두려면 10 곱하긴 해야겠네요 -->
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									</div>
+									<div class="starRatingsBase">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									</div>
+								</div>
 								<label>${movieView.userRating }</label>
 							</div>
+								
 						</td>
 					</tr>
 					<tr style="border-top: 3px solid white;">
