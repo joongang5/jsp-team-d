@@ -233,7 +233,7 @@ input[id*="fogotPopup"]+label+div>div {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 300px;
-	height: 300px;
+	height: 330px;
 	background: #212121;
 	z-index: 2;
 }
@@ -348,7 +348,7 @@ function onLogoutClick() {
 			<label id="forgotPwd" for="fogotPopup"></label>
 		<div>
 			<div id="modalLogin">
-				<label id="closeModal" for="fogotPopup"></label>
+				<label id="closeModal" for="fogotPopup">X</label>
 				
 				<c:if test="${! empty tempAuthUser}">
 					<c:if test="${param.fpwvalue ne 'pass'}">
