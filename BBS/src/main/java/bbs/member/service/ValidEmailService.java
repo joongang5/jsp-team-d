@@ -72,11 +72,11 @@ public class ValidEmailService {
 			       //email 전송
 			         try {
 			             MimeMessage msg = new MimeMessage(session);
-			             msg.setFrom(new InternetAddress(admin, "My Favorits"));
+			             msg.setFrom(new InternetAddress(admin, "D'Movie"));
 			             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to)); 
 			             
 			             //메일 제목
-			             msg.setSubject("영화를 사랑하는 사람들의 모임, My Favorits 이메일 변경 인증 메일입니다.");
+			             msg.setSubject("영화를 사랑하는 사람들의 모임, D'Movie 이메일 변경 인증 메일입니다.");
 			             //메일 내용
 			             msg.setText("인증 번호는 : "+temp);
 			             
