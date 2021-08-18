@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="bbs.message.model.Message"%>
 <%@ page import="bbs.message.service.MessageListView"%>
 <%@ page import="bbs.message.service.GetMessageListService"%>
@@ -25,8 +25,8 @@ MessageListView viewData = messageListService.getMessageList(pageNumber);
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>¹æ¸í·Ï ¸Ş½ÃÁö ¸ñ·Ï</title>
+<meta charset="UTF-8">
+<title>ë°©ëª…ë¡ ë©”ì‹œì§€ ëª©ë¡</title>
 <style type="text/css">
 #nButton{
 	text-align: center;
@@ -39,24 +39,25 @@ MessageListView viewData = messageListService.getMessageList(pageNumber);
 <body>
 	<div style="text-align: center; color: white;">
 	<form action="../message/write.do" method="post">
-		ÀÌ¸§: <input type="text" name="guestName" style="width: 100px;"> <br> 
-		¾ÏÈ£: <input type="password" name="password" style="width: 100px;"> <br> 
+		ì´ë¦„: <input type="text" name="guestName" style="width: 100px;"> <br> 
+		ì•”í˜¸: <input type="password" name="password" style="width: 100px;"> <br> 
 		
-		¸Ş½ÃÁö: <textarea name="message" cols="30" rows="3"></textarea>
-		<br> <input type="submit" value="¸Ş½ÃÁö ³²±â±â" />
+		ë©”ì‹œì§€: <textarea name="message" cols="30" rows="3"></textarea>
+		<br> <input type="submit" value="ë©”ì‹œì§€ ë‚¨ê¸°ê¸°" />
 	</form>
 	</div>
 
 	
 	<c:if test="${viewData.isEmpty()}">
-		µî·ÏµÈ ¸Ş½ÃÁö°¡ ¾ø½À´Ï´Ù.
+		ë“±ë¡ëœ ë©”ì‹œì§€ê°€ ì—†ìŠµë‹ˆë‹¤.
 	</c:if>
 	<table border="1">
 		<c:forEach var="message" items="${viewData.messageList}">
 			<tr>
-				<td>¸Ş½ÃÁö ¹øÈ£: ${message.id} <br /> ¼Õ´Ô ÀÌ¸§: ${message.guestName} <br />
-					¸Ş½ÃÁö: ${message.message} <br />
-					<a href="confirmDeletion.jsp?messageId=${message.id}">[»èÁ¦ÇÏ±â]</a>
+				<td>ë©”ì‹œì§€ ë²ˆí˜¸: ${message.id} <br /> ì†ë‹˜ ì´ë¦„: ${message.guestName} <br />
+					ë©”ì‹œì§€: ${message.message} <br />
+					<a href="confirmDeletion.jsp?messageId=${message.id}"></a>
+					<!-- ì‚­ì œí•˜ê¸° ë²„íŠ¼ ì œê±° -->
 				</td>
 			</tr>
 		</c:forEach>

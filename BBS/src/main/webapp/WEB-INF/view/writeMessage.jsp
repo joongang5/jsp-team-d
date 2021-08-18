@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="bbs.message.model.Message" %>
 <%@ page import="bbs.message.service.WriteMessageService" %>
 <%
@@ -17,15 +17,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>╧Ф╦М╥о ╦ч╫цаЖ Ё╡╠Х</title>
+<meta charset="UTF-8">
+<title>К╟╘К╙┘К║² К╘■Л▀°Л╖─ К┌╗Й╧─</title>
 </head>
 <body>
-╧Ф╦М╥о©║ ╦ч╫цаЖ Ё╡╟Е╫ю╢о╢ы.
+К╟╘К╙┘К║²Л≈░ К╘■Л▀°Л╖─ К┌╗Й╡╪Л┼╣К▀┬К▀╓.
 <br/>
 	<div>${guestName }</div>
 	<div>${password }</div>
 	<div>${message }</div>
-<a href="${pageContext.request.contextPath }/review/list.do">[╦Я╥о ╨╦╠Б]</a>
+<a href="${pageContext.request.contextPath }/review/list.do">[К╙╘К║² КЁ╢Й╦╟]</a>
 </body>
 </html>

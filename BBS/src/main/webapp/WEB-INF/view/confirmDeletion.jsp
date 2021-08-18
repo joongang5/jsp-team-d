@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>╧Ф╦М╥о ╦ч╫цаЖ ╩Ха╕ х╝юн</title>
+<meta charset="UTF-8">
+<title>К╟╘К╙┘К║² К╘■Л▀°Л╖─ Л┌╜Л═° М≥∙Л²╦</title>
 </head>
 <body>
 
 <form action="deleteMessage.jsp" method="post">
 <input type="hidden" name="messageId" value="${param.messageId }">
-╦ч╫цаЖ╦╕ ╩Ха╕го╥а╦И ╬охё╦╕ ют╥бго╪╪©Д:<br>
-╬охё: <input type="password" name="password"> <br>
-<input type="submit" value="╦ч╫цаЖ ╩Ха╕го╠Б">
+К╘■Л▀°Л╖─К╔╪ Л┌╜Л═°М∙≤К═╓К╘╢ Л∙■М≤╦К╔╪ Л·┘К═╔М∙≤Л└╦Л ■:<br>
+Л∙■М≤╦: <input type="password" name="password"> <br>
+<input type="submit" value="К╘■Л▀°Л╖─ Л┌╜Л═°М∙≤Й╦╟">
 
 </form>
 </body>

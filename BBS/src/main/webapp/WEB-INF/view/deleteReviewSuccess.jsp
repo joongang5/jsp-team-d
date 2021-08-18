@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>¸®ºä »èÁ¦ ¼º°ø</title>
+<meta charset="UTF-8">
+<title>ë¦¬ë·° ì‚­ì œ ì„±ê³µ</title>
 <script type="text/javascript" src="/BBS/js/menu.js"></script>
 </head>
 <body>
- ¸®ºä »èÁ¦ ¼º°ø
- <div id="menuItem" onclick="menuClick('review/list')">µ¹¾Æ°¡±â</div>
+ ë¦¬ë·° ì‚­ì œ ì„±ê³µ
+ <div id="menuItem" onclick="menuClick('review/list')">ëŒì•„ê°€ê¸°</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@page import="bbs.message.service.InvalidPasswordException"%>
 <%@page import="bbs.message.service.DeleteMessageService"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 	int messageId = Integer.parseInt(request.getParameter("messageId"));
 	String password = request.getParameter("password");
@@ -20,17 +20,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>╧Ф╦М╥о ╦ч╫цаЖ ╩Ха╕гт</title>
+<meta charset="UTF-8">
+<title>К╟╘К╙┘К║² К╘■Л▀°Л╖─ Л┌╜Л═°М∙╗</title>
 </head>
 <body>
 <% if (!invalidPassword){ %>
-╦ч╫цаЖ╦╕ ╩Ха╕го©╢╫ю╢о╢ы.
+К╘■Л▀°Л╖─К╔╪ Л┌╜Л═°М∙≤Л≤─Л┼╣К▀┬К▀╓.
 <% } else { %>
-ют╥бгя ╬охё╟║ ©ц╧ы╦ёаЖ ╬й╫ю╢о╢ы. ╬охё╦╕ х╝юнгьаж╪╪©Д.
+Л·┘К═╔М∙° Л∙■М≤╦Й╟─ Л≤╛К╟■К╔╢Л╖─ Л∙┼Л┼╣К▀┬К▀╓. Л∙■М≤╦К╔╪ М≥∙Л²╦М∙╢Лё╪Л└╦Л ■.
 <% }%>
 <br/>
-<a href="list.jsp">[╦Я╥о ╨╦╠Б]</a>
+<a href="list.jsp">[К╙╘К║² КЁ╢Й╦╟]</a>
 
 </body>
 </html>
