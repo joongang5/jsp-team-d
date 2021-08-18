@@ -44,6 +44,37 @@ public class MemberDao {
 		return null;
 	}
 	
+	public Member selectByIdPlusSalt(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("SELECT * FROM member where id = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Member member = new Member(
+						rs.getString("id"),
+						rs.getString("name"),
+						rs.getString("password"),
+						rs.getString("email"),
+						rs.getString("salt"),
+						rs.getString("birth_date"),
+						toDate(rs.getTimestamp("reg_date"))
+						
+						);
+				
+				return member;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return null;
+	}
+	
 	public Member selectByIdPlusImg(Connection conn, String id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -155,12 +186,13 @@ public class MemberDao {
 	}
 	
 	public void update(Connection conn, Member member) throws SQLException {
-		String sql = "UPDATE member SET name=?, password=?, email=? where id=?";
+		String sql = "UPDATE member SET name=?, password=?, email=?, salt=? where id=?";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, member.getName());
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getEmail());
-			pstmt.setString(4, member.getId());
+			pstmt.setString(4, member.getSalt());
+			pstmt.setString(5, member.getId());
 			pstmt.executeUpdate();
 		}
 	}

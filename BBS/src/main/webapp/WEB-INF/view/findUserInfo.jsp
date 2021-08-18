@@ -80,7 +80,6 @@
 
 function focusFPW(){
 	$("#fpwErr").text("가입하신 아이디나 이메일을 입력해주세요.");
-	$("#pwChangKey").prop("readonly", true);
 	$("#authBtn").prop("readonly", true);
 }
 
@@ -91,7 +90,6 @@ function focusFpwChgkey(){
 
 function clickEmailBtn(){
 	$("#fpwErr").text("잠시만 기다려주세요.");
-	$("#pwChangKey").prop("readonly", false);
 	$("#authBtn").prop("readonly", false);
 }
 </script>

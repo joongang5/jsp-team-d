@@ -30,14 +30,15 @@ public class SetNewPasswordHandler extends CommandHandler { // 유저가 등록�
 			String tempnewPw = req.getParameter("newPw");
 			String prehexnewPw = HashService.stringToHex(tempnewPw);
 			byte[] hexnewPw = HashService.hexStringToByteArray(prehexnewPw);
-			MemberDao dao = new MemberDao();
-			String salt = dao.getSaltById(userId);
+//			MemberDao dao = new MemberDao();
+//			String salt = dao.getSaltById(userId);
+			String salt = HashService.setSalt(userId);
 			String newPw = HashService.Hashing(hexnewPw, salt);
 
 //			System.out.println(tempnewPw);
 //			System.out.println(newPw);
 
-			newPasswordService.setNewPassword(userId, newPw);
+			newPasswordService.setNewPassword(userId, newPw, salt);
 			req.getSession().invalidate();
 			res.sendRedirect("./boxOffice/list.do?fpwvalue=done");
 			return null;

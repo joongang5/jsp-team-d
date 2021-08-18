@@ -10,19 +10,20 @@ import bbs.member.model.Member;
 
 public class SetNewPasswordService {
 
-	public void setNewPassword(String userId, String newPw) {
+	public void setNewPassword(String userId, String newPw, String salt) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
 			MemberDao memberDao = new MemberDao();
-			Member member = memberDao.selectById(conn, userId);
+			Member member = memberDao.selectByIdPlusSalt(conn, userId);
 			if (member == null) {
 				throw new MemberNotFoundException();
 			}
 	
 			member.changePassword(newPw);
+			member.setSalt(salt);
 			memberDao.update(conn, member);
 			conn.commit();
 		} catch (SQLException e) {

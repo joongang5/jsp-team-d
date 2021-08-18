@@ -10,14 +10,14 @@ import bbs.member.model.Member;
 
 public class ChangePasswordService {
 
-	public void changePassword(String userId, String curPw, String newPw) {
+	public void changePassword(String userId, String curPw, String newPw, String salt) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
 			MemberDao memberDao = new MemberDao();
-			Member member = memberDao.selectById(conn, userId);
+			Member member = memberDao.selectByIdPlusSalt(conn, userId);
 			if (member == null) {
 				throw new MemberNotFoundException();
 			}
@@ -27,6 +27,7 @@ public class ChangePasswordService {
 			}
 			
 			member.changePassword(newPw);
+			member.setSalt(salt);
 			memberDao.update(conn, member);
 			conn.commit();
 		} catch (SQLException e) {
