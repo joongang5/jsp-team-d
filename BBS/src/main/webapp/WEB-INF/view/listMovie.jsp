@@ -99,10 +99,6 @@ table {
 							</c:if>
 						</tr>
 					</c:if>
-					<br>
-					<c:if test="${authUser.id == 'admin' }">
-						<a style="float: right;" href="write.do">[공지사항 쓰기]</a>
-					</c:if>
 				</div>
 			</div>
 		</div>

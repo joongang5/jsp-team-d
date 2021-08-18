@@ -2,7 +2,7 @@ package bbs.util;
 
 public class Util {
 	public static int str2Int(String str) {
-		// 120AÀÌ·¸°Ô µé¾î¿Â´Ù¸é 120À» ¸®ÅÏÇØÁÝ´Ï´Ù.
+		// 120Aï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´Ù¸ï¿½ 120ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´Ï´ï¿½.
 		int result = 0;
 		String temp = "";
 		for (int i = 0; i < str.length(); i++) {
@@ -20,5 +20,13 @@ public class Util {
 		} catch (Exception e) {
 			return 0;
 		}
+	}
+	
+	public static String str2Replace(String str) {
+		str = str.replaceAll(">", "&gt;");
+		str = str.replaceAll("<", "&lt;");
+		str = str.replaceAll("/", "&#47;");
+		str = str.replaceAll("\n", "<br>");
+		return str;
 	}
 }
