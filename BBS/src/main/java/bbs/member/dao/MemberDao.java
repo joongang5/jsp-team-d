@@ -142,13 +142,14 @@ public class MemberDao {
 	}
 	
 	public void insert(Connection conn, Member mem) throws SQLException {
-		try (PreparedStatement pstmt = conn.prepareStatement("INSERT INTO member (id, name, password, email, birth_date, reg_date) VALUES (?, ?, ?, ?, ?, ?)")) {
+		try (PreparedStatement pstmt = conn.prepareStatement("INSERT INTO member (id, name, password, email, salt, birth_date, reg_date) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 			pstmt.setString(1, mem.getId());
 			pstmt.setString(2, mem.getName());
 			pstmt.setString(3, mem.getPassword());
 			pstmt.setString(4, mem.getEmail());
-			pstmt.setString(5, mem.getBirthDate());
-			pstmt.setTimestamp(6, new Timestamp(mem.getRegDate().getTime()));
+			pstmt.setString(5, mem.getSalt());
+			pstmt.setString(6, mem.getBirthDate());
+			pstmt.setTimestamp(7, new Timestamp(mem.getRegDate().getTime()));
 			pstmt.executeUpdate();
 		}
 	}
@@ -256,6 +257,29 @@ public class MemberDao {
 		return result;
 	}
 	
+	public String getSaltById(String id) {
+		String result = "";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT salt FROM member WHERE id=?";
+
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getString("salt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+
+		return result;
+	}
 	
 
 	

@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bbs.auth.model.User;
+import bbs.auth.service.HashService;
 import bbs.auth.service.KakaoLoginService;
 import bbs.auth.service.LoginFailException;
 import bbs.auth.service.LoginService;
+import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
 import bbs.mvc.command.CommandHandler;
 import bbs.util.ErrorUtil;
@@ -19,6 +21,7 @@ public class LoginHandler extends CommandHandler {
 
 	private LoginService loginService = new LoginService();
 	private KakaoLoginService kakaoLoginService = new KakaoLoginService();
+	private HashService hashService = new HashService();
 
 	@Override
 	protected String getFormViewName() {
@@ -70,8 +73,17 @@ public class LoginHandler extends CommandHandler {
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
+		MemberDao dao = new MemberDao();
 		String id = trim(req.getParameter("id"));
-		String password = trim(req.getParameter("password"));
+		String tempPassword = trim(req.getParameter("password"));
+		
+		String prehexPw = HashService.stringToHex(tempPassword);
+		byte[] hexPw = HashService.hexStringToByteArray(prehexPw);
+			
+		String salt = dao.getSaltById(id);
+		String password = HashService.Hashing(hexPw, salt);
+		
+				
 
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);

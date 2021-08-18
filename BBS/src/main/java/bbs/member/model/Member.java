@@ -11,6 +11,7 @@ public class Member {
 	private String birth_date;
 	private Date regDate;
 	private String imgName;
+	private String salt;
 	private int grade;
 	private int myPoint;
 
@@ -41,6 +42,17 @@ public class Member {
 		this.imgName = imgName;
 	}
 	
+	public Member(String id, String name, String password, String email, String salt, String birth_date,
+			Date regDate) {
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+		this.salt = salt;
+		this.birth_date = birth_date;
+		this.regDate = regDate;
+	}
+
 	public int getGrade() {
 		return grade;
 	}
@@ -126,6 +138,14 @@ public class Member {
 
 	public void setImgName(String imgName) {
 		this.imgName = imgName;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 }

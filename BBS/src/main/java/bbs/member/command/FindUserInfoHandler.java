@@ -49,7 +49,7 @@ public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한
 			return null;
 		}
 		
-		if (members.getPassword().length() > 30){ //sns 가입자는 토큰으로 비번처리 하여 30자 이상임.
+		if (members.getPassword().length() < 60){ //sns 가입자는 토큰으로 비번처리 하여 5?자 이상임.
 			res.sendRedirect("./boxOffice/list.do?fpwvalue=sns");
 			return null;
 		}

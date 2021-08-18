@@ -11,6 +11,7 @@ public class JoinRequest {
 	private String password;
 	private String confirmPassword;
 	private String email;
+	private String salt;
 	private String birth_date;
 
 	public String getId() {
@@ -78,6 +79,14 @@ public class JoinRequest {
 
 	private boolean isPasswordEqualToConfirm() {
 		return password != null && password.equals(confirmPassword);
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	
