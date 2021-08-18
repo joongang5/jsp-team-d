@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bbs.auth.model.User;
+import bbs.auth.service.HashService;
+import bbs.member.dao.MemberDao;
 import bbs.member.service.SetNewPasswordService;
 import bbs.member.service.YesOrNoService;
 import bbs.mvc.command.CommandHandler;
@@ -23,7 +25,18 @@ public class SetNewPasswordHandler extends CommandHandler { // 유저가 등록�
 
 		if (req.getParameter("newPw") != null) {
 			String userId = user.getId();
-			String newPw = req.getParameter("newPw");
+			// String newPw = req.getParameter("newPw");
+
+			String tempnewPw = req.getParameter("newPw");
+			String prehexnewPw = HashService.stringToHex(tempnewPw);
+			byte[] hexnewPw = HashService.hexStringToByteArray(prehexnewPw);
+			MemberDao dao = new MemberDao();
+			String salt = dao.getSaltById(userId);
+			String newPw = HashService.Hashing(hexnewPw, salt);
+
+//			System.out.println(tempnewPw);
+//			System.out.println(newPw);
+
 			newPasswordService.setNewPassword(userId, newPw);
 			req.getSession().invalidate();
 			res.sendRedirect("./boxOffice/list.do?fpwvalue=done");

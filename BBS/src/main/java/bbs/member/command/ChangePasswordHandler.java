@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bbs.auth.model.User;
+import bbs.auth.service.HashService;
+import bbs.member.dao.MemberDao;
 import bbs.member.service.ChangePasswordService;
 import bbs.member.service.InvalidPasswordException;
 import bbs.member.service.MemberNotFoundException;
@@ -28,11 +30,28 @@ public class ChangePasswordHandler extends CommandHandler {
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
 
-		String curPw = req.getParameter("curPw");
-		String newPw = req.getParameter("newPw");
+//		String curPw = req.getParameter("curPw");
+//		String newPw = req.getParameter("newPw");
 
-		System.out.println(curPw);
-		// System.out.println(newPw);
+		MemberDao dao = new MemberDao();
+		String tempcurPw = req.getParameter("curPw");
+		String tempnewPw = req.getParameter("newPw");
+
+//		System.out.println(tempcurPw);
+//		System.out.println(tempnewPw);
+
+		String prehexcurPw = HashService.stringToHex(tempcurPw);
+		String prehexnewPw = HashService.stringToHex(tempnewPw);
+
+		byte[] hexcurPw = HashService.hexStringToByteArray(prehexcurPw);
+		byte[] hexnewPw = HashService.hexStringToByteArray(prehexnewPw);
+
+		String salt = dao.getSaltById(user.getId());
+		String curPw = HashService.Hashing(hexcurPw, salt);
+		String newPw = HashService.Hashing(hexnewPw, salt);
+
+//		System.out.println(curPw);
+//		System.out.println(newPw);
 
 		ErrorUtil.checkEmpty(errors, curPw, "curPw");
 		ErrorUtil.checkEmpty(errors, newPw, "newPw");
