@@ -11,28 +11,25 @@ import java.util.Date;
 import java.util.List;
 
 import bbs.jdbc.JdbcUtil;
-import bbs.member.model.Member;
 import bbs.offmeet.model.OffMeet;
 import bbs.offmeet.model.Writer;
-import bbs.offmeet.model.kakao;
 
 public class OffMeetDao {
 	public OffMeet insert(Connection conn, OffMeet offmeet) throws SQLException {
 		PreparedStatement pstmt = null;
 		Statement stmt = null;
-		String sql = "insert into offmeet (offmeet_content, writer_id, writer_name, title, regdate, moddate, sangho, juso, tel, read_cnt) values (?,?,?,?,?,?,?,?,?,0)";
+		String sql = "insert into offmeet (offmeet_content, title, regdate, moddate, sangho, juso, tel, read_cnt, member_no) values (?,?,?,?,?,?,?,0,(SELECT m_no FROM member WHERE id=?))";
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, offmeet.getContent());
-			pstmt.setString(2, offmeet.getWriter().getId());
-			pstmt.setString(3, offmeet.getWriter().getName());
-			pstmt.setString(4, offmeet.getTitle());
-			pstmt.setTimestamp(5, toTimestamp(offmeet.getRegDate()));
-			pstmt.setTimestamp(6, toTimestamp(offmeet.getModifiedDate()));
-			pstmt.setString(7, offmeet.getJuso());
-			pstmt.setString(8, offmeet.getSangho());
-			pstmt.setString(9, offmeet.getTel());
+			pstmt.setString(2, offmeet.getTitle());
+			pstmt.setTimestamp(3, toTimestamp(offmeet.getRegDate()));
+			pstmt.setTimestamp(4, toTimestamp(offmeet.getModifiedDate()));
+			pstmt.setString(5, offmeet.getJuso());
+			pstmt.setString(6, offmeet.getSangho());
+			pstmt.setString(7, offmeet.getTel());
+			pstmt.setString(8, offmeet.getWriter().getId());
 			int insertedCount = pstmt.executeUpdate();
 			System.out.println(insertedCount);
 
@@ -81,7 +78,7 @@ public class OffMeetDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from offmeet order by offmeet_no desc limit ?,?");
+			pstmt = conn.prepareStatement("select * from offmeet_view limit ?,?");
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -119,7 +116,7 @@ public class OffMeetDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from offmeet where offmeet_no=?");
+			pstmt = conn.prepareStatement("select * from offmeet_view where offmeet_no=?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			OffMeet offmeet = null;
@@ -181,7 +178,7 @@ public class OffMeetDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM offmeet where writer_id = ?");
+			pstmt = conn.prepareStatement("SELECT * FROM offmeet_view where writer_id = ?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 

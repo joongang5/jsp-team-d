@@ -22,13 +22,12 @@ public class NoticeDao {
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO notice (writer_id, writer_name, title, regdate, moddate, read_cnt) values(?,?,?,?,?,0)");
+			pstmt = conn.prepareStatement("INSERT INTO notice (title, regdate, moddate, read_cnt, member_no) values(?,?,?,?,?,0,(SELECT m_no FROM member WHERE id=?))");
 			
-			pstmt.setString(1, notice.getWriter().getId());
-			pstmt.setString(2, notice.getWriter().getName());
-			pstmt.setString(3, notice.getTitle());
-			pstmt.setTimestamp(4, toTimeStamp(notice.getRegDate()));
-			pstmt.setTimestamp(5, toTimeStamp(notice.getModifiedDate()));
+			pstmt.setString(1, notice.getTitle());
+			pstmt.setTimestamp(2, toTimeStamp(notice.getRegDate()));
+			pstmt.setTimestamp(3, toTimeStamp(notice.getModifiedDate()));
+			pstmt.setString(4, notice.getWriter().getId());
 			int insertedCount = pstmt.executeUpdate();
 			
 			if(insertedCount > 0 ) {
@@ -77,7 +76,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM notice " + "ORDER BY notice_no desc limit ?,?");
+			pstmt = conn.prepareStatement("SELECT * FROM notice_view limit ?,?");
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -109,7 +108,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM notice WHERE notice_no = ?");
+			pstmt = conn.prepareStatement("SELECT * FROM notice_view WHERE notice_no = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			Notice notice = null;
