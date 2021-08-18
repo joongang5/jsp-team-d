@@ -8,9 +8,9 @@ import bbs.jdbc.JdbcUtil;
 import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
 
-public class MyPointService { // 20210809 Çö
+public class MyPointService { // 20210809 í˜„
 
-	// 2. Æ÷ÀÎÆ®¸¦ Ãß°¡½ÃÅ²´Ù
+	// 2. í¬ì¸íŠ¸ë¥¼ ì¶”ê°€ì‹œí‚¨ë‹¤
 	public void upgradeMyPoint(String id) {
 		Connection conn = null;
 		try {
@@ -18,19 +18,19 @@ public class MyPointService { // 20210809 Çö
 			conn.setAutoCommit(false);
 
 			MemberDao memberDao = new MemberDao();
-			// 2.1 ±Û¾´ »ç¶÷ÀÇ member Á¤º¸¸¦ DB¿¡¼­ ÀĞ¾î¸¸ ¿Â´Ù
+			// 2.1 ê¸€ì“´ ì‚¬ëŒì˜ member ì •ë³´ë¥¼ DBì—ì„œ ì½ì–´ë§Œ ì˜¨ë‹¤
 			Member member = memberDao.selectByIdPlusImg(conn, id); 
 			
 			if (member == null) {
 				throw new MemberNotFoundException();
 			}
 
-			// 2.2 ÀĞ¾î¿Â ÇöÀç Æ÷ÀÎÆ® °ªÀÌ maxPoint¸¦ ³Ñ¾î¼­¸é ·¹º§¾÷
+			// 2.2 ì½ì–´ì˜¨ í˜„ì¬ í¬ì¸íŠ¸ ê°’ì´ maxPointë¥¼ ë„˜ì–´ì„œë©´ ë ˆë²¨ì—…
 			MemberGradeUpRequest request = createLevelUpRequest(member);
 			request.gradeUp();
 			
 			memberDao.updatePointAndLevel(conn, request);
-			System.out.println("5 Æ÷ÀÎÆ® È¹µæ");
+			System.out.println("5 í¬ì¸íŠ¸ íšë“");
 			conn.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollBack(conn);
@@ -44,3 +44,4 @@ public class MyPointService { // 20210809 Çö
 		return new MemberGradeUpRequest(member.getId(), member.getGrade(), member.getMyPoint());
 	}
 }
+

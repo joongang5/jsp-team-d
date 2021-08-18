@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Å° ÀÎÁõ</title>
+<meta charset="UTF-8">
+<title>í‚¤ ì¸ì¦</title>
 <style type="text/css">
 *{
 	margin: 0;
@@ -32,21 +32,21 @@ height: 45px;
 </style>
 </head>
 <body>
-<!-- header¶û menu ÀÓÆ÷Æ® -->
+<!-- headerëž‘ menu ìž„í¬íŠ¸ -->
 <div id="header">
          <c:import url="/WEB-INF/view/component/myPageHeader.jsp" />
       </div>
 <div id="myPageMenu">
 	<c:import url="/WEB-INF/view/component/myPageMenu.jsp" />
 </div>	
-<!-- ¿©±â±îÁö -->
+<!-- ì—¬ê¸°ê¹Œì§€ -->
 <div id = "send">
-<h1>ÀÎÁõ ±¸°£</h1>
+<h1>ì¸ì¦ êµ¬ê°„</h1>
 <br>
 
-<h3>${newEmail2}·Î ÀÎÁõÅ°¸¦ º¸³»µå·È»ç¿À´Ï, È®ÀÎÇÏ½Å ÈÄ ¾Æ·¡¿¡ ÀÔ·ÂÇØÁÖ¼¼¿ä.</h3>
+<h3>${newEmail2}ë¡œ ì¸ì¦í‚¤ë¥¼ ë³´ë‚´ë“œë ¸ì‚¬ì˜¤ë‹ˆ, í™•ì¸í•˜ì‹  í›„ ì•„ëž˜ì— ìž…ë ¥í•´ì£¼ì„¸ìš”.</h3>
 <form action ="myPage/userKey.do" method="post">
-			 <p><input type="text" id="emailChangKey" placeholder="ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä" name="emailChangeKey" required> <input type="submit" id="authBtn" name="authBtn" value="È®ÀÎ" ></p>
+			 <p><input type="text" id="emailChangKey" placeholder="ì¸ì¦ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš”" name="emailChangeKey" required> <input type="submit" id="authBtn" name="authBtn" value="í™•ì¸" ></p>
 		</form>
 </div>		
 </body>
