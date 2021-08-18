@@ -1,41 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title> ³» ¿µÈ­ÆÌ °Ô½Ã±Û</title>
+<meta charset="uft-8">
+<title> ë‚´ ì˜í™”íŒŸ ê²Œì‹œê¸€</title>
 </head>
 <body>
 
-	³» ¿µÈ­ÆÌ °Ô½Ã±Û
+	ë‚´ ì˜í™”íŒŸ ê²Œì‹œê¸€
 	<table>
 		<tr>
-			<td>¹øÈ£</td>
+			<td>ë²ˆí˜¸</td>
 			<td>${offMeet.offmeetNo}</td>
 		</tr>
 		<tr>
-			<td>ÀÛ¼ºÀÚ</td>
+			<td>ì‘ì„±ì</td>
 			<td>${offMeet.writerId}</td>
 		</tr>
 		<tr>
-			<td>Á¦¸ñ</td>
+			<td>ì œëª©</td>
 			<td>${offMeet.title}</td>
 		</tr>
 		<tr>
-			<td>³»¿ë</td>
+			<td>ë‚´ìš©</td>
 			<td>${offMeet.offmeetContent}</td>
 		</tr>
 		<tr>
-			<td>¿Ã¸° ³¯Â¥</td>
+			<td>ì˜¬ë¦° ë‚ ì§œ</td>
 			<td>${offMeet.regDate}</td>
 		</tr>
 		<tr>
-			<td>¼öÁ¤ ³¯Â¥</td>
+			<td>ìˆ˜ì • ë‚ ì§œ</td>
 			<td>${offMeet.modifiedDate}</td>
 		</tr>
 		<tr>
-			<td>Á¶È¸¼ö</td>
+			<td>ì¡°íšŒìˆ˜</td>
 			<td>${offMeet.readCount}</td>
 		</tr>
 	</table>

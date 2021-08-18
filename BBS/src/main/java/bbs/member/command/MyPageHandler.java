@@ -29,9 +29,7 @@ public class MyPageHandler extends CommandHandler { //占쏙옙
 		return "/WEB-INF/view/myPage.jsp";
 	}
 
-	// 留덉씠�럹�씠吏��뿉 吏꾩엯�뻽�쓣 �븣 蹂댁뿬以� �뜲�씠�꽣�뿉 ���븳 泥섎━瑜� �빀�땲�떎.
-	// ReadArticleHandler�쓽 process(HttpServletRequest req, HttpServletResponse res)
-	// �븿�닔 李몄“
+	
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
@@ -46,7 +44,7 @@ public class MyPageHandler extends CommandHandler { //占쏙옙
 		String memberId = user.getId();
 		
 		try {
-			Member member = readService.getMember(memberId); //
+			Member member = readService.getMember(memberId); 
 			req.setAttribute("member", member);
 			return getFormViewName();
 		} catch (MemberNotFoundException e) {
@@ -56,26 +54,25 @@ public class MyPageHandler extends CommandHandler { //占쏙옙
 		}
 	}
 
-	// �젙蹂� �닔�젙�븯湲곗� 媛숈� 泥섎━瑜� �빀�땲�떎.
-	// myPage.jsp�뿉�꽌 �닔�젙�븯湲� form�쓽 action�쓣 post諛⑹떇�쑝濡� 泥섎━
+
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 	
 		
-		//硫붿씪 �씤利� �썑 �닔�젙 援ы쁽
+	
 		
 		User user = (User) req.getSession().getAttribute("authUser");
 		String userId = user.getId(); 	
 		
 		
-		String to = req.getParameter("newEmail"); //硫붿씪 諛쏆쓣 二쇱냼
-		//System.out.println(to); �옒 �뱾�뼱�샂
+		String to = req.getParameter("newEmail"); // 사용자가 입력한 이메일을 가져온다.
+		//System.out.println(to); 
 		
-	 //  validService.validEmailService(to) = �씠硫붿씪 �씤利앸쾲�샇 蹂대궡�뒗 �꽌鍮꾩뒪 
+	 //  validService.validEmailService(to) = 사용자가 입력한 이메일로 인증메일 보내기
 		
 
-		HttpSession keyWasSaved = req.getSession(); //�꽭�뀡�뿉 ���옣
-        keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); //�씠由� 吏��젙
+		HttpSession keyWasSaved = req.getSession(); //
+        keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); // 인증 키 저장하기
         keyWasSaved.setAttribute("newEmail2", to);
          
 		

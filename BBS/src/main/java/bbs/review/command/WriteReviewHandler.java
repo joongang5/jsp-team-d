@@ -16,7 +16,7 @@ import bbs.review.service.WriteReviewService;
 
 
 public class WriteReviewHandler extends CommandHandler {
-	//ÀÌÇö¾Æ Ãß°¡
+	//ì´í˜„ì•„ ì¶”ê°€
 	private MyPointService myPointS = new MyPointService();
 	////////////////////////////////
 	
@@ -32,29 +32,29 @@ public class WriteReviewHandler extends CommandHandler {
 		req.setAttribute("errors", errors);
 		
 		
-		//¼¼¼Ç¿¡¼­ ·Î±×ÀÎÇÑ »ç¿ëÀÚ Á¤º¸¸¦ ±¸ÇÑ´Ù.
-		//user¿Í httpservletrequest¸¦ ÀÌ¿ëÇØ¼­ writerequest °´Ã¼¸¦ »ı¼ºÇÑ´Ù.
-		//writereq °´Ã¼°¡ À¯È¿ÇÑÁö °Ë»çÇÑ´Ù.
+		//ì„¸ì…˜ì—ì„œ ë¡œê·¸ì¸í•œ ì‚¬ìš©ì ì •ë³´ë¥¼ êµ¬í•œë‹¤.
+		//userì™€ httpservletrequestë¥¼ ì´ìš©í•´ì„œ writerequest ê°ì²´ë¥¼ ìƒì„±í•œë‹¤.
+		//writereq ê°ì²´ê°€ ìœ íš¨í•œì§€ ê²€ì‚¬í•œë‹¤.
 		User user = (User)req.getSession(false).getAttribute("authUser");
 		WriteRequest writeReq = createWriteRequest(user, req);
 		writeReq.validate(errors);
 		
-		//ÀÌÇö¾Æ°¡ ¾ÆÀÌµğ º¯¼ö Ãß°¡
+		//ì´í˜„ì•„ê°€ ì•„ì´ë”” ë³€ìˆ˜ ì¶”ê°€
 		String userId = user.getId();
 		
 		
-		//¿¡·¯°¡ Á¸ÀçÇÏ¸é ÆûÀ» ´Ù½Ã º¸¿©ÁØ´Ù.
+		//ì—ëŸ¬ê°€ ì¡´ì¬í•˜ë©´ í¼ì„ ë‹¤ì‹œ ë³´ì—¬ì¤€ë‹¤.
 		if(errors.isEmpty() == false)
 			return getFormViewName();
 
 		
-		//writereviewservice¸¦ ÀÌ¿ëÇØ¼­ °Ô½Ã±ÛÀ» µî·ÏÇÏ°í, µî·ÏµÈ °Ô½Ã±ÙÀÇ id¸¦ ¸®ÅÏ¹Ş´Â´Ù.
-		//»õ ±ÛÀÇ id¸¦ requestÀÇ newreviewid ¼Ó¼º¿¡ ÀúÀåÇÑ´Ù. Ã³¸® °á°ú¸¦ º¸¿©ÁÙ jsp´Â ÀÌ ¼Ó¼º°ªÀ» »ç¿ëÇØ¼­ ¸µÅ©¸¦ »ı¼ºÇÑ´Ù.
+		//writereviewserviceë¥¼ ì´ìš©í•´ì„œ ê²Œì‹œê¸€ì„ ë“±ë¡í•˜ê³ , ë“±ë¡ëœ ê²Œì‹œê·¼ì˜ idë¥¼ ë¦¬í„´ë°›ëŠ”ë‹¤.
+		//ìƒˆ ê¸€ì˜ idë¥¼ requestì˜ newreviewid ì†ì„±ì— ì €ì¥í•œë‹¤. ì²˜ë¦¬ ê²°ê³¼ë¥¼ ë³´ì—¬ì¤„ jspëŠ” ì´ ì†ì„±ê°’ì„ ì‚¬ìš©í•´ì„œ ë§í¬ë¥¼ ìƒì„±í•œë‹¤.
 		WriteReviewService writeService = new WriteReviewService();
 		int newReviewNo = writeService.write(writeReq);
 		req.setAttribute("newReviewNo", newReviewNo);
 		
-		//ÀÌÇö¾Æ Ãß°¡ - ±Û ¾²±â ¿Ï·á ÇßÀ¸´Ï Æ÷ÀÎÆ® Ãß°¡
+		//ì´í˜„ì•„ ì¶”ê°€ - ê¸€ ì“°ê¸° ì™„ë£Œ í–ˆìœ¼ë‹ˆ í¬ì¸íŠ¸ ì¶”ê°€
 		myPointS.upgradeMyPoint(userId); 
 		/////////////////////////////////////
 		
