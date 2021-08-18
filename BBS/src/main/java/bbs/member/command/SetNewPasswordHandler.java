@@ -14,7 +14,7 @@ public class SetNewPasswordHandler extends CommandHandler { // 유저가 등록�
 
 	@Override
 	protected String getFormViewName() {
-		return "index.do";
+		return "/WEB-INF/view/setNewOne.jsp";
 	}
 
 	@Override
@@ -26,7 +26,8 @@ public class SetNewPasswordHandler extends CommandHandler { // 유저가 등록�
 			String newPw = req.getParameter("newPw");
 			newPasswordService.setNewPassword(userId, newPw);
 			req.getSession().invalidate();
-			return getFormViewName();
+			res.sendRedirect("./boxOffice/list.do?fpwvalue=done");
+			return null;
 		}
 
 		YesOrNoService fin = new YesOrNoService();
@@ -40,8 +41,8 @@ public class SetNewPasswordHandler extends CommandHandler { // 유저가 등록�
 		// System.out.println(adminKey);
 
 		if (answer == "yes") {
-			return "/WEB-INF/view/setNewOne.jsp";
-
+			res.sendRedirect("./boxOffice/list.do?fpwvalue=pass");
+			return null;
 		}
 
 		return getFormViewName();

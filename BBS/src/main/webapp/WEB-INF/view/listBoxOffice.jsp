@@ -36,7 +36,7 @@
 										<tr>
 											<c:forEach var="boxOfficeView" items="${boxOfficePage.content }" begin="0" end="4" step="1">
 												<td class="imageTd">
-													<img SRC="${boxOfficeView.image }" onclick="location.href='/BBS/movie/read.do?no=${boxOfficeView.movieCd}'">
+													<img SRC="${boxOfficeView.image }" width="110px" height="158px" onclick="location.href='/BBS/movie/read.do?no=${boxOfficeView.movieCd}'">
 													<div>${boxOfficeView.rank }</div>
 												</td>
 											</c:forEach>
@@ -55,7 +55,7 @@
 									<table id="row02">
 										<tr>
 											<c:forEach var="boxOfficeView" items="${boxOfficePage.content }" begin="5" end="9" step="1">
-												<td class="imageTd"><img SRC="${boxOfficeView.image }" onclick="location.href='/BBS/movie/read.do?no=${boxOfficeView.movieCd}'">
+												<td class="imageTd"><img SRC="${boxOfficeView.image }" width="110px" height="158px" onclick="location.href='/BBS/movie/read.do?no=${boxOfficeView.movieCd}'">
 													<div>${boxOfficeView.rank }</div></td>
 											</c:forEach>
 										</tr>
@@ -77,7 +77,7 @@
 										<tr>
 											<c:forEach var="reservedMovieView" items="${reservedMoviePage.content }" begin="0" end="4" step="1">
 												<td class="imageTd">
-													<img SRC="${reservedMovieView.image }" onclick="location.href='/BBS/movie/read.do?no=${reservedMovieView.movieCd}'">
+													<img SRC="${reservedMovieView.image }" width="110px" height="158px" onclick="location.href='/BBS/movie/read.do?no=${reservedMovieView.movieCd}'">
 												</td>
 											</c:forEach>
 										</tr>
@@ -96,7 +96,7 @@
 										<tr>
 											<c:forEach var="reservedMovieView" items="${reservedMoviePage.content }" begin="5" end="9" step="1">
 												<td class="imageTd">
-													<img SRC="${reservedMovieView.image }" onclick="location.href='/BBS/movie/read.do?no=${reservedMovieView.movieCd}'">
+													<img SRC="${reservedMovieView.image }" width="110px" height="158px" onclick="location.href='/BBS/movie/read.do?no=${reservedMovieView.movieCd}'">
 												</td>
 											</c:forEach>
 										</tr>

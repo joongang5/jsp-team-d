@@ -17,6 +17,13 @@
  	transform: translateX(-50%);
 }
 
+#text_align {
+	text-align: center;
+}
+
+#joinWelcome{
+	font-size: 11px;
+}
 
 .login_input {
 	border: none;
@@ -134,8 +141,18 @@ a:visited {
 		-->
 
 			<c:if test="${empty authUser}">
-				<br>
-				<h2 align="center">로그인</h2>
+				<c:if test="${empty param.joinvalue}">
+					<br>
+						<h2 align="center">로그인</h2>
+				</c:if>
+				<c:if test="${param.joinvalue eq 'done'}">
+					<h2 align="center">로그인</h2>
+					<div id="text_align">
+						<span id="joinWelcome">
+							가입이 완료되었습니다.<br>다시 로그인 해주세요.
+						</span>
+					</div>
+				</c:if>
 
 			<form action="${pageContext.request.contextPath }/login.do" method="post">
 					
@@ -147,7 +164,7 @@ a:visited {
 						<input type="password" id="loginPassword" class="login_input" name="password" placeholder="비밀번호" required="required" value="${param.pw }">
 					</div>
 						<a id="button_join"><label id="join" for="joinPopup">회원가입</label></a>
-						<a id="button_forgot" href="${pageContext.request.contextPath }/forgot.do">비밀번호 찾기</a>
+						<a id="button_forgot"><label id="join" for="fogotPopup">비밀번호 찾기</label></a>
 					
 					<c:if test="${errors.idOrPwNotMatch }"> 아이디와 비밀번호가 일치하지 않습니다.</c:if>
 					<input type="submit" class="login_submit" value="로그인">

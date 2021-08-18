@@ -81,7 +81,7 @@ public class KakaoLoginService {
 
 			// HashMap<String, Object> userInfo = getKakaoUserInfo(access_token);
 
-			System.out.println("*****KakaoLoginService login() passed");
+			//System.out.println("*****KakaoLoginService login() passed");
 
 			return access_token;
 
@@ -125,7 +125,7 @@ public class KakaoLoginService {
 			// 요청에 필요한 Header에 포함될 내용
 			conn.setRequestProperty("Authorization", "Bearer " + access_token);
 
-			int responseCode = conn.getResponseCode();
+//			int responseCode = conn.getResponseCode();
 //			System.out.println("responseCode : " + responseCode);
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -141,8 +141,7 @@ public class KakaoLoginService {
 			JsonParser parser = new JsonParser();
 			JsonElement element = parser.parse(result);
 
-			// JsonObject properties =
-			// element.getAsJsonObject().get("properties").getAsJsonObject();
+			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
 			// String nickname = properties.getAsJsonObject().get("nickname").getAsString();
@@ -152,7 +151,6 @@ public class KakaoLoginService {
 			userInfo.put("email", email);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
