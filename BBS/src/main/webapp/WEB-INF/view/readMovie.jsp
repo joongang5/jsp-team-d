@@ -79,10 +79,10 @@ function del(no){
 					<tr>
 						<td style="width: 150px;"><img SRC="${movieView.image }"></td>
 						<td style="vertical-align: top;">
-							<div style="font-weight: bold; font-size: 30px; position: relative; top: 25px">
+							<div style="font-weight: bold; font-size: 30px; margin-top: 25px;">
 								${movieView.movieNm }
 							</div>
-							<div style="position: relative; left: 3px; top: 25px">
+							<div style="margin-left: 3px;">
 								<c:if test="${not empty movieView.movieNmEn}">
 									${movieView.movieNmEn },									
 								</c:if>
@@ -91,7 +91,7 @@ function del(no){
 								</c:if>
 								${movieView.prdtYear }
 							</div>
-							<div style="position: relative; left: 3px; top: 50px">
+							<div style="margin-left: 3px; margin-top: 30px">
 								<label>네티즌 평점</label>
 								<label>★★★★★</label>
 								<label>${movieView.userRating }</label>
