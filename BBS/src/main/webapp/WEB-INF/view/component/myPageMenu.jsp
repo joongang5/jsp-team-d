@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <script src="${pageContext.request.contextPath }/js/menu.js" type="text/javascript"></script>
@@ -26,7 +26,7 @@
 </style>
 
 <div class="myPageList">
-	<div class="menuItem" onclick="menuClick('myPage')">³» Á¤º¸</div>
-	<div class="menuItem" onclick="menuClick('myPage/reviewList')">³» ¸®ºä</div>
-	<div class="menuItem" onclick="menuClick('myPage/offMeetList')">³» ¿µÈ­ÆÌ ±Û</div>
+	<div class="menuItem" onclick="menuClick('myPage')">ë‚´ ì •ë³´</div>
+	<div class="menuItem" onclick="menuClick('myPage/reviewList')">ë‚´ ë¦¬ë·°</div>
+	<div class="menuItem" onclick="menuClick('myPage/offMeetList')">ë‚´ ì˜í™”íŒŸ ê¸€</div>
 </div>
