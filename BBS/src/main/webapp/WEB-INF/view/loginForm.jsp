@@ -126,7 +126,7 @@ a:visited {
 
 	<div id="container">
 
-		<div id="loginBox">
+		<div id="loginBox" class="modalBox">
 			<!-- 로그인, 로그아웃 관련 기능 / 이강민 -->
 			<!-- 
 		<c:if test="${! empty authUser}">
@@ -150,6 +150,13 @@ a:visited {
 					<div id="text_align">
 						<span id="joinWelcome">
 							가입이 완료되었습니다.<br>다시 로그인 해주세요.
+						</span>
+					</div>
+				</c:if><c:if test="${param.joinvalue eq 'um'}">
+					<h3 align="center">로그인</h3>
+					<div id="text_align">
+						<span id="joinWelcome">
+							정보가 없거나 일치하지 않습니다.<br>다시 확인 후 로그인 해주세요.
 						</span>
 					</div>
 				</c:if>

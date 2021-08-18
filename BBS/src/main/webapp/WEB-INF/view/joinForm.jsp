@@ -64,7 +64,7 @@
 	text-align: center;
 	font-weight: 1000;
 	align-items: center;
-	width: 85%;
+	width: 70%;
 	color: #4C489D;
 	box-shadow: 0px 2px 2px #5C5696;
 	cursor: pointer;
@@ -89,7 +89,6 @@ $(function(){
 function focusID(){
 	$("#joinMsg").text("4자 이상, 이메일도 사용 가능합니다.");
 	$("#email").prop("disabled", true);
-	$("#name").prop("disabled", true);
 	$("#id").prop("readonly", false);
 }
 function focusName(){
@@ -103,7 +102,6 @@ function focusPw(){
 }
 function focusEmail(){
 	$("#joinMsg").text("아이디를 이메일로 사용시 향후 변경이 불가합니다.");
-	$("#name").prop("disabled", true);
 	$("#id").prop("disabled", true);
 	$("#email").prop("readonly", false);
 }
@@ -147,7 +145,6 @@ function checkID(){
 				$("#joinErr").text(" ");
 				$(".join_input").prop("readonly", false);
 				$("#email").prop("disabled", false);
-				$("#name").prop("disabled", false);
 				return true;
 			}
 		},
@@ -303,6 +300,8 @@ function checkBirth() {
     	$("#birth_date").css("border-bottom-color", "#6A679E");
     	$("#joinErr").text(" ");
 		$(".join_input").prop("readonly", false);
+		$("#joinSubmit").prop("type", "submit");
+		$("#joinSubmit").prop("readonly", false);
     	return true;
     } else if (birth.include('-') != 2 && birth.length() != 10){
     	$("#birth_date").css("border-bottom-color", "red");
@@ -328,7 +327,7 @@ function handleOnEmail(e)  {
 
 </head>
 <body>
-	<div id="joinBox">
+	<div id="joinBox" class="modalBox">
 		<h2 align="center">회원가입</h2>
 	<div id="text_align"><span id="joinMsg">D'movie</span></div>
 	<div id="text_align"><span id="joinErr"> </span></div>
@@ -338,13 +337,6 @@ function handleOnEmail(e)  {
 				<div>
 					<input type="text" id="id" name="id" class="join_input" placeholder="아이디" required="required" onchange="checkID()" oninput="handleOnEmail(this)" onfocus="focusID()">
 				</div>
-			</c:if>
-			<c:if test="${! empty snsUser}">
-				<div>
-					<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)" onfocus="focusName()">
-				</div>
-			</c:if>
-			<c:if test="${empty snsUser}">
 				<div>
 					<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)" onfocus="focusName()">
 				</div>
@@ -359,6 +351,11 @@ function handleOnEmail(e)  {
 				</div>
 			</c:if>
 			<c:if test="${! empty snsUser}">
+				<div>
+					<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)" onfocus="focusName()">
+				</div>
+			</c:if>
+			<c:if test="${! empty snsUser}">
 				<div id="snsUserBox">
 					<input id="id" name="id" readonly="readonly" value="${snsUser.email}">
 					<input id="password" type="password" name="password" readonly="readonly" value="${snsUser.access_token }">
@@ -370,7 +367,7 @@ function handleOnEmail(e)  {
 					<input type="date" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="focusBirth()">
 				</div>
 			
-					<input type="submit" id="joinSubmit" name="joinSubmit" class="join_input" value="가입하기">
+					<input id="joinSubmit" name="joinSubmit" value="가입하기">
 		</form>
 		
 	</div>

@@ -34,6 +34,11 @@ label {
 	cursor: pointer;
 }
 
+.modalBox {
+	margin-top: 30px;
+}
+
+
 #modalLogin {
 	background-color: #212121;
 }
@@ -109,7 +114,7 @@ input[id*="popup"]+label+div>div {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 300px;
-	height: 300px;
+	height: 330px;
 	background: #212121;
 	z-index: 2;
 }
@@ -262,6 +267,7 @@ $(document).ready(function() {
 		$('#headerButtons').css('right', '');
 		$('#headerButtons').css('width', '500px');
 		$('#headerButtons').css('left', '460px');	
+		$('.modalBox').css('margin-top', '0px');	
 	}
 });
 
@@ -285,7 +291,7 @@ function onLogoutClick() {
 <div id="headerButtons">
 	
 	<c:choose>
-		<c:when test="${param.joinvalue eq 'done'}">
+		<c:when test="${! empty param.joinvalue}">
 			<input type="checkbox" id="popup" checked="checked">
 		</c:when>
 		<c:when test="${! empty snsUser}">
@@ -342,7 +348,7 @@ function onLogoutClick() {
 			<label id="forgotPwd" for="fogotPopup"></label>
 		<div>
 			<div id="modalLogin">
-				<label id="closeModal" for="fogotPopup">X</label>
+				<label id="closeModal" for="fogotPopup"></label>
 				
 				<c:if test="${! empty tempAuthUser}">
 					<c:if test="${param.fpwvalue ne 'pass'}">

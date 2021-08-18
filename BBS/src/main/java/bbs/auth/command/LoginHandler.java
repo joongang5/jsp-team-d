@@ -93,7 +93,8 @@ public class LoginHandler extends CommandHandler {
 			return null;
 		} catch (LoginFailException e) {
 			errors.put("idOrPwNotMatch", Boolean.TRUE);
-			return getFormViewName();
+			res.sendRedirect(req.getContextPath() + "/boxOffice/list.do?joinvalue=um");
+			return null;
 		}
 	}
 

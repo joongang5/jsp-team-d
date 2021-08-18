@@ -99,7 +99,7 @@ function clickEmailBtn(){
 </head>
 <body>
 
-	<div id="fpwBox">
+	<div id="fpwBox" class="modalBox">
 		<h2 align="center">비밀번호 찾기</h2>
 		<div id="text_align"><span id="fpwMsg">D'movie</span></div>
 		<div id="text_align"><span id="fpwErr"> 
