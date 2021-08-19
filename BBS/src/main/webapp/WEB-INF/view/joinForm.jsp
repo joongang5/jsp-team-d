@@ -88,20 +88,15 @@ $(function(){
 
 function focusID(){
 	$("#joinMsg").text("4자 이상, 이메일도 사용 가능합니다.");
-	$("#email").prop("disabled", true);
 }
 function focusName(){
 	$("#joinMsg").text("특수문자는 사용하실 수 없습니다.");
-	$("#email").prop("disabled", true);
-	$("#id").prop("disabled", true);
 }
 function focusPw(){
 	$("#joinMsg").text("6자 이상 입력해주세요.");
 }
 function focusEmail(){
 	$("#joinMsg").text("아이디를 이메일로 사용시 향후 변경이 불가합니다.");
-	$("#id").prop("disabled", true);
-	$("#email").prop("disabled", false);
 }
 function focusBirth(){
 	$("#joinMsg").text("2020-02-02 형식으로 입력해주세요.");
@@ -183,7 +178,6 @@ function checkName(){
 		$("#joinErr").text("닉네임을 작성해주세요.");
 		$("#name").focus();
 	}
-
 	if (agent.indexOf("firefox") != -1) {
 		$.ajax({
 			type:'post',
@@ -230,9 +224,6 @@ function checkName(){
 		});
 	}
 }
-
-
-
 function isSame() {
 	var pw1 = $("#password").val();
 	var pw2 = $("#confirmPassword").val();
@@ -261,7 +252,6 @@ function isSame() {
 	
 	
 	
-
 function checkEmail(){
 	var id = $("#id").val();
 	var email = $("#email").val();
@@ -337,10 +327,6 @@ function checkEmail(){
 	}
 }
 
-
-
-
-
 function checkBirth() {
 	var birth = $("#birth_date").val();
 	var bc = document.getElementById('birthConfirm');
@@ -357,8 +343,6 @@ function checkBirth() {
         return false;
     }
 }
-
-
 
 function handleOnInput(e)  {
 	  e.value = e.value.replace(/[^ㄱ-힣a-zA-Z0-9]/ig, '')
@@ -395,25 +379,13 @@ function handleOnEmail(e)  {
 				<div>
 					<input type="email" id="email" name="email" class="join_input" placeholder="이메일" required="required" style="text-transform: lowercase" onchange="checkEmail()" onchange="checkConfirmEmail()" oninput="handleOnEmail(this)" onfocus="focusEmail()">
 				</div>
-			</c:if>
-			<c:if test="${! empty snsUser}">
-				<div>
-					<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)" onfocus="focusName()">
-				</div>
-			</c:if>
-			<c:if test="${! empty snsUser}">
-				<div id="snsUserBox">
-					<input id="id" name="id" readonly="readonly" value="${snsUser.email}">
-					<input id="password" type="password" name="password" readonly="readonly" value="${snsUser.access_token }">
-					<input id="confirmPassword" type="password" name="confirmPassword" readonly="readonly" value="${snsUser.access_token }">
-					<input id="email" name="email" readonly="readonly" value="${snsUser.email}">
-				</div>
-			</c:if>
+			
 				<div>
 					<input type="date" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="focusBirth()">
 				</div>
 			
 					<input id="joinSubmit" name="joinSubmit" value="가입하기">
+			</c:if>
 		</form>
 		
 	</div>

@@ -179,6 +179,16 @@ input[id*="joinPopup"]+label+div>div {
 	background: #212121;
 	z-index: 2;
 }
+input[id*="joinPopup"]+label+div>div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 500px;
+	background: #212121;
+	z-index: 2;
+}
 
 input[id*="joinPopup"]+label+div>div>label {
 	position: absolute;
@@ -187,6 +197,73 @@ input[id*="joinPopup"]+label+div>div>label {
 }
 
 input[id*="joinPopup"]+label+div>label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+input[id*="snsJoinPopup"] {
+	display: none;
+}
+
+input[id*="snsJoinPopup"]+label {
+	display: inline-block;
+	padding: 10px;
+	color: #fff;
+}
+
+input[id*="snsJoinPopup"]+label[id*="join"] {
+	display: hidden;
+}
+
+input[id*="snsJoinPopup"]+label+div {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.5s;
+}
+
+input[id*="snsJoinPopup"]:checked+label+div {
+	opacity: 1;
+	visibility: visible;
+}
+
+input[id*="snsJoinPopup"]+label+div>div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 500px;
+	background: #212121;
+	z-index: 2;
+}
+input[id*="snsJoinPopup"]+label+div>div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 330px;
+	background: #212121;
+	z-index: 2;
+}
+
+input[id*="snsJoinPopup"]+label+div>div>label {
+	position: absolute;
+	top: -20px;
+	float: right;
+}
+
+input[id*="snsJoinPopup"]+label+div>label {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -322,13 +399,8 @@ function onLogoutClick() {
 		<label for="popup"></label>
 	</div>
 	
-	<!-- 회원가입 및 SNS 가입 폼 -->
-	<c:if test="${! empty snsUser}">
-		<input type="checkbox" id="joinPopup" checked="checked">
-	</c:if>
-	<c:if test="${empty snsUser}">
+	<!-- 회원가입 폼 -->
 		<input type="checkbox" id="joinPopup">
-	</c:if>
 			<label id="join" for="joinPopup"></label>
 		<div>
 			<div id="modalLogin">
@@ -338,6 +410,18 @@ function onLogoutClick() {
 				<label for="joinPopup"></label>
 		</div>
 		
+	<!-- SNS 가입 폼 -->
+	<c:if test="${! empty snsUser}">
+		<input type="checkbox" id="snsJoinPopup" checked="checked">
+			<label id="join" for="snsJoinPopup"></label>
+		<div>
+			<div id="modalLogin">
+				<label id="closeModal" for="snsJoinPopup">X</label>
+				<c:import url="/WEB-INF/view/snsJoinForm.jsp" />
+			</div>
+				<label for="snsJoinPopup"></label>
+		</div>
+	</c:if>
 	<!-- 비밀번호 변경 폼 -->
 	<c:if test="${! empty param.fpwvalue}">
 		<input type="checkbox" id="fogotPopup" checked="checked">
@@ -347,7 +431,7 @@ function onLogoutClick() {
 	</c:if>
 			<label id="forgotPwd" for="fogotPopup"></label>
 		<div>
-			<div id="modalLogin">
+			<div id="modalLogin" style="height: 300px;">
 				<label id="closeModal" for="fogotPopup">X</label>
 				
 				<c:if test="${! empty tempAuthUser}">
