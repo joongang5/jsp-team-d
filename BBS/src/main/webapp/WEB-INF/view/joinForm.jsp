@@ -89,13 +89,11 @@ $(function(){
 function focusID(){
 	$("#joinMsg").text("4자 이상, 이메일도 사용 가능합니다.");
 	$("#email").prop("disabled", true);
-	$("#id").prop("readonly", false);
 }
 function focusName(){
 	$("#joinMsg").text("특수문자는 사용하실 수 없습니다.");
 	$("#email").prop("disabled", true);
 	$("#id").prop("disabled", true);
-	$("#name").prop("readonly", false);
 }
 function focusPw(){
 	$("#joinMsg").text("6자 이상 입력해주세요.");
@@ -103,7 +101,7 @@ function focusPw(){
 function focusEmail(){
 	$("#joinMsg").text("아이디를 이메일로 사용시 향후 변경이 불가합니다.");
 	$("#id").prop("disabled", true);
-	$("#email").prop("readonly", false);
+	$("#email").prop("disabled", false);
 }
 function focusBirth(){
 	$("#joinMsg").text("2020-02-02 형식으로 입력해주세요.");
@@ -112,13 +110,12 @@ function focusBirth(){
 function checkID(){
 	var id = $("#id").val();
 	var email = $("#email").val();
+	var agent = navigator.userAgent.toLowerCase();
 	
 	if(id == "" || id.length < 4){
 		$("#id").css("border-bottom-color", "red");
 		$("#joinErr").text("아이디를 4자 이상 작성해주세요.");
 		$("#id").focus();
-		$(".join_input").prop("readonly", true);
-		$("#id").prop("readonly", false);
 		return false;
 	}
 	if(id.includes('@') == 1 && id.includes('.') == true){
@@ -126,74 +123,112 @@ function checkID(){
 		$("#id").css("border-bottom-color", "#6A679E");
 		$("#email").css("border-bottom-color", "#6A679E");
 		$("#joinErr").text(" ");
-		$(".join_input").prop("readonly", false);
 	}
-	$.ajax({
-		type:'post',
-		dataType:'text',
-		data: 'id='+id,
-		url: '../joinCheck',
-		success: function(rData, textStatus, xhr){
-			if(rData == 1){
-				$("#id").css("border-bottom-color", "red");
-				$("#joinErr").text("이미 등록된 아이디 입니다.");
-				$(".join_input").prop("readonly", true);
-				$("#id").prop("readonly", false);
-				return false;
-			}else{
-				$("#id").css("border-bottom-color", "#6A679E");
-				$("#joinErr").text(" ");
-				$(".join_input").prop("readonly", false);
-				$("#email").prop("disabled", false);
-				return true;
+	if (agent.indexOf("firefox") != -1) {
+		$.ajax({
+			type:'post',
+			dataType:'text',
+			data: 'id='+id,
+			url: 'joinCheck',
+			success: function(rData, textStatus, xhr){
+				if(rData == 1){
+					$("#id").css("border-bottom-color", "red");
+					$("#joinErr").text("이미 등록된 아이디 입니다.");
+					return false;
+				}else{
+					$("#id").css("border-bottom-color", "#6A679E");
+					$("#joinErr").text(" ");
+					$("#email").prop("disabled", false);
+					return true;
+				}
+			},
+			error: function(xhr, status, e){
+				alert("문제 발생 : " + e);
 			}
-		},
-		error: function(xhr, status, e){
-			alert("문제 발생 : " + e);
-		}
-	});
+		});
+	} else if (agent.indexOf("firefox") == -1) {
+		$.ajax({
+			type:'post',
+			dataType:'text',
+			data: 'id='+id,
+			url: '../joinCheck',
+			success: function(rData, textStatus, xhr){
+				if(rData == 1){
+					$("#id").css("border-bottom-color", "red");
+					$("#joinErr").text("이미 등록된 아이디 입니다.");
+					return false;
+				}else{
+					$("#id").css("border-bottom-color", "#6A679E");
+					$("#joinErr").text(" ");
+					$("#email").prop("disabled", false);
+					return true;
+				}
+			},
+			error: function(xhr, status, e){
+				alert("문제 발생 : " + e);
+			}
+		});
+	}
+	
 }
 
 
 
 function checkName(){
 	var name = $("#name").val();
-//	alert($("#id").val());
-//	alert(name);
-//	alert($("#password").val());
-//	alert($("#confirmPassword").val());
-//	alert($("#email").val());
+	var agent = navigator.userAgent.toLowerCase();
+	
 	if(name == ""){
 		$("#name").css("border-bottom-color", "red");
 		$("#joinErr").text("닉네임을 작성해주세요.");
 		$("#name").focus();
-		$(".join_input").prop("readonly", true);
-		$("#name").prop("readonly", false);
 	}
-	$.ajax({
-		type:'post',
-		dataType:'text',
-		data: 'name='+name,
-		url: '../joinCheck',
-		success: function(rData, textStatus, xhr){
-			if(rData == 1){
-				$("#name").css("border-bottom-color", "red");
-				$("#joinErr").text("이미 등록된 닉네임 입니다.");
-				$(".join_input").prop("readonly", true);
-				$("#name").prop("readonly", false);
-			}else{
-				$("#name").css("border-bottom-color", "#6A679E");
-				$("#joinErr").text(" ");
-				$(".join_input").prop("readonly", false);
-				$("#email").prop("disabled", false);
-				$("#id").prop("disabled", false);
-				return true;
+
+	if (agent.indexOf("firefox") != -1) {
+		$.ajax({
+			type:'post',
+			dataType:'text',
+			data: 'name='+name,
+			url: 'joinCheck',
+			success: function(rData, textStatus, xhr){
+				if(rData == 1){
+					$("#name").css("border-bottom-color", "red");
+					$("#joinErr").text("이미 등록된 닉네임 입니다.");
+				}else{
+					$("#name").css("border-bottom-color", "#6A679E");
+					$("#joinErr").text(" ");
+					$("#email").prop("disabled", false);
+					$("#id").prop("disabled", false);
+					return true;
+				}
+			},
+			error: function(xhr, status, e){
+				alert("문제 발생 : " + e);
 			}
-		},
-		error: function(xhr, status, e){
-			alert("문제 발생 : " + e);
-		}
-	});
+		});
+	} else if (agent.indexOf("firefox") == -1) {
+		$.ajax({
+			type:'post',
+			dataType:'text',
+			data: 'name='+name,
+			url: '../joinCheck',
+			success: function(rData, textStatus, xhr){
+				if(rData == 1){
+					$("#name").css("border-bottom-color", "red");
+					$("#joinErr").text("이미 등록된 닉네임 입니다.");
+				}else{
+					$("#name").css("border-bottom-color", "#6A679E");
+					$("#joinErr").text(" ");
+					$("#email").prop("disabled", false);
+					$("#id").prop("disabled", false);
+					return true;
+				}
+			},
+			error: function(xhr, status, e){
+				alert("문제 발생 : " + e);
+			}
+		});
+	}
 }
 
 
@@ -205,9 +240,6 @@ function isSame() {
 	if(pw1.length < 6 || pw1.length > 30){
 			$("#joinErr").text("비밀번호를 6자 이상 입력해주세요.");
 			$("#password").css("border-bottom-color", "red");
-			$(".join_input").prop("readonly", true);
-			$("#password").prop("readonly", false);
-			$("#confirmPassword").prop("readonly", false);
             return false;
     }
 	if(pw1.length > 5){
@@ -215,7 +247,6 @@ function isSame() {
     		$("#joinErr").text(" ");
 			$("#password").css("border-bottom-color", "#6A679E");
 			$("#confirmPassword").css("border-bottom-color", "#6A679E");
-			$(".join_input").prop("readonly", false);
             return true;
         } else if(pw2 == "") {
         	$("#joinErr").text("비밀번호를 한번 더 입력해주세요.");
@@ -224,9 +255,6 @@ function isSame() {
             $("#joinErr").text("비밀번호가 일치하지 않습니다.");
 			$("#password").css("border-bottom-color", "red");
 			$("#confirmPassword").css("border-bottom-color", "red");
-			$(".join_input").prop("readonly", true);
-			$("#password").prop("readonly", false);
-			$("#confirmPassword").prop("readonly", false);
         }
     } 
 }
@@ -237,19 +265,18 @@ function isSame() {
 function checkEmail(){
 	var id = $("#id").val();
 	var email = $("#email").val();
+	var agent = navigator.userAgent.toLowerCase();
+	
 	if(email == "" || id.length < 5 || id.includes('.') != true || id.includes('@') != true){
 		$("#joinErr").text("이메일을 다시 확인해주세요.");
 		$("#email").css("border-bottom-color", "red");
 		$("#email").focus();
-		$(".join_input").prop("readonly", true);
-		$("#email").prop("readonly", false);
 	}
 	if(id.includes('@') == 1 && id.includes('.') == true){
 		if(id != email){
 			$("#email").css("border-bottom-color", "red");
 			$("#joinErr").text("아이디와 이메일을 똑같이 입력해주세요.");
 			$("#id").focus();
-			$(".join_input").prop("readonly", true);
 			$("#email").prop("readonly", false);
 			return false;
 		}
@@ -257,35 +284,57 @@ function checkEmail(){
 			$("#email").css("border-bottom-color", "red");
 			$("#joinErr").text("아이디와 이메일을 똑같이 입력해주세요.");
 			$("#id").focus();
-			$(".join_input").prop("readonly", true);
-			$("#email").prop("readonly", false);
 			return false;
 		}
 	}
-	$.ajax({
-		type:'post',
-		dataType:'text',
-		data: 'email='+email,
-		url: '../joinCheck',
-		success: function(rData, textStatus, xhr){
-			if(rData == 1){
-				$("#email").css("border-bottom-color", "red");
-				$("#joinErr").text("이미 등록된 이메일입니다.");
-				$(".join_input").prop("readonly", true);
-				$("#email").prop("readonly", false);
-			}else{
-				$("#email").css("border-bottom-color", "#6A679E");
-				$("#joinErr").text(" ");
-				$(".join_input").prop("readonly", false);
-				$("#id").prop("disabled", false);
-				$("#name").prop("disabled", false);
-				return true;
+	
+	if (agent.indexOf("firefox") != -1) {
+		$.ajax({
+			type:'post',
+			dataType:'text',
+			data: 'email='+email,
+			url: 'joinCheck',
+			success: function(rData, textStatus, xhr){
+				if(rData == 1){
+					$("#email").css("border-bottom-color", "red");
+					$("#joinErr").text("이미 등록된 이메일입니다.");
+				}else{
+					$("#email").css("border-bottom-color", "#6A679E");
+					$("#joinErr").text(" ");
+					$("#id").prop("disabled", false);
+					$("#name").prop("disabled", false);
+					$("#joinSubmit").prop("type", "submit");
+					return true;
+				}
+			},
+			error: function(xhr, status, e){
+				alert("문제 발생 : " + e);
 			}
-		},
-		error: function(xhr, status, e){
-			alert("문제 발생 : " + e);
-		}
-	});
+		});
+	} else if (agent.indexOf("firefox") == -1) {
+		$.ajax({
+			type:'post',
+			dataType:'text',
+			data: 'email='+email,
+			url: '../joinCheck',
+			success: function(rData, textStatus, xhr){
+				if(rData == 1){
+					$("#email").css("border-bottom-color", "red");
+					$("#joinErr").text("이미 등록된 이메일입니다.");
+				}else{
+					$("#email").css("border-bottom-color", "#6A679E");
+					$("#joinErr").text(" ");
+					$("#id").prop("disabled", false);
+					$("#name").prop("disabled", false);
+					$("#joinSubmit").prop("type", "submit");
+					return true;
+				}
+			},
+			error: function(xhr, status, e){
+				alert("문제 발생 : " + e);
+			}
+		});
+	}
 }
 
 
@@ -299,15 +348,12 @@ function checkBirth() {
 	if(birth != null){
     	$("#birth_date").css("border-bottom-color", "#6A679E");
     	$("#joinErr").text(" ");
-		$(".join_input").prop("readonly", false);
 		$("#joinSubmit").prop("type", "submit");
 		$("#joinSubmit").prop("readonly", false);
     	return true;
     } else if (birth.include('-') != 2 && birth.length() != 10){
     	$("#birth_date").css("border-bottom-color", "red");
 		$("#joinErr").text("생년월일을 다시 확인해주세요.");
-		$(".join_input").prop("readonly", true);
-		$("#birth_date").prop("readonly", false);
         return false;
     }
 }
