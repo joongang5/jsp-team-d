@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import bbs.auth.model.User;
 import bbs.auth.service.HashService;
-import bbs.member.dao.MemberDao;
 import bbs.member.service.DuplicateIdException;
 import bbs.member.service.JoinRequest;
 import bbs.member.service.JoinService;
@@ -27,16 +26,15 @@ public class JoinHandler extends CommandHandler {
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		String snsUser = req.getParameter("snsUser");
-		if (snsUser == null ||snsUser.isEmpty())
-			return processSnsSubmit(req, res);
-		
 		HttpSession session = req.getSession();
+
+		Object snsUser = req.getSession().getAttribute("snsUser");
+		if (snsUser != null)
+			return processSnsSubmit(req, res);
 
 		String id = req.getParameter("id");
 		String name = req.getParameter("name");
 
-		MemberDao dao = new MemberDao();
 		String tempPassword = req.getParameter("password");
 		String prehexPw = HashService.stringToHex(tempPassword);
 		byte[] hexPw = HashService.hexStringToByteArray(prehexPw);
@@ -49,7 +47,6 @@ public class JoinHandler extends CommandHandler {
 		String email = req.getParameter("email");
 		String birth_date = req.getParameter("birth_date");
 
-		
 //		name = name.replaceAll("<", "&lt;");
 //		name = name.replaceAll(">", "&gt;");
 //		name = name.replaceAll("/", "&#47;");
@@ -85,21 +82,17 @@ public class JoinHandler extends CommandHandler {
 
 	}
 
-	
 	protected String processSnsSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		HttpSession session = req.getSession();
-		
 
 		User user = (User) session.getAttribute("snsUser");
 		String email = ((User) user).getEmail();
 		String tempPassword = ((User) user).getAccess_token();
-		
-		
+
 		String id = ((User) user).getEmail();
 		String name = req.getParameter("name");
 
-		MemberDao dao = new MemberDao();
 		String prehexPw = HashService.stringToHex(tempPassword);
 		byte[] hexPw = HashService.hexStringToByteArray(prehexPw);
 
@@ -110,7 +103,6 @@ public class JoinHandler extends CommandHandler {
 		// String confirmPassword = req.getParameter("confirmPassword");
 		String birth_date = req.getParameter("birth_date");
 
-		
 //		name = name.replaceAll("<", "&lt;");
 //		name = name.replaceAll(">", "&gt;");
 //		name = name.replaceAll("/", "&#47;");
@@ -146,9 +138,4 @@ public class JoinHandler extends CommandHandler {
 
 	}
 
-	
-	
-	
-	
-	
 }

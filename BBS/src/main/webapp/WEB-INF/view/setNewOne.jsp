@@ -75,6 +75,32 @@
 	outline: none;
 }
 
+#sNOConfirmBtn {
+	background: #fff;
+	font-size: 14px;
+	margin: 25px 40px;
+	padding: 5px 6px;
+	border-radius: 5px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: 1000;
+	align-items: center;
+	width: 65%;
+	color: #4C489D;
+	box-shadow: 0px 2px 2px #5C5696;
+	cursor: pointer;
+	transition: .4s;
+	float:left;
+}
+
+#sNOConfirmBtn:active,
+#sNOConfirmBtn:focus,
+#sNOConfirmBtn:hover{
+	border-color: #6A679E;
+	outline: none;
+}
+
 </style>
 
 
@@ -82,9 +108,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
-$(function(){
-	$("#sNOSubmitBtn").prop("disabled", true);
-});
 
 function focusPw(){
 	$("#snoErr").text("6자 이상 입력해주세요.");
@@ -93,8 +116,18 @@ function focusCPw(){
 	$("#snoErr").text("비밀번호를 다시 한번 입력해주세요.");
 }
 function sNOSubmit(){
-	$("#snoErr").text("다시 한번 눌러주세요.");
-	$("#sNOSubmitBtn").prop("type", "submit");
+	var snpD = $("#snPwDummy").val();
+	
+	if (snpD == "true"){
+		$("#sNOSubmitBtn").prop("type", "submit");
+		$("#sNOConfirmBtn").prop("type", "hidden");
+		$(".sno_input").prop("readonly", "true");
+		$("#snsJoinErr").text("변경하기를 눌러주세요.");
+	} else {
+		$("#sNOSubmitBtn").prop("type", "hidden");
+		$("#sNOConfirmBtn").prop("type", "submit");
+		$("#snsJoinErr").text("입력하신 정보를 다시 확인해주세요.");
+	}
 }
 
 function snoIsSame() {
@@ -104,7 +137,7 @@ function snoIsSame() {
 	if(pw1.length < 6 || pw1.length > 30){
 			$("#snoErr").text("비밀번호를 6자 이상 입력해주세요.");
 			$("#newPw").css("border-bottom-color", "red");
-			$("#sNOSubmitBtn").prop("disabled", true);
+			$("#snPwDummy").val("false");
             return false;
     }
 	if(pw1.length > 5){
@@ -112,13 +145,14 @@ function snoIsSame() {
     		$("#snoErr").text(" ");
 			$(".sno_input").css("border-bottom-color", "#6A679E");
 			$("#sNOSubmitBtn").prop("disabled", false);
+			$("#snPwDummy").val("true");
             return true;
         } else if(pw2 == "") {
 			$(".sno_input").css("border-bottom-color", "#6A679E");
         } else {
             $("#snoErr").text("비밀번호가 일치하지 않습니다.");
 			$(".sno_input").css("border-bottom-color", "red");
-			$("#sNOSubmitBtn").prop("disabled", true);
+			$("#snPwDummy").val("false");
 		}
     } 
 }
@@ -143,9 +177,12 @@ function snoIsSame() {
 			<div>
 				<input type="password" id="sNOconfirmPassword" name="confirmPassword" class="sno_input" placeholder="비밀번호 확인" required="required" onchange="snoIsSame()" onfocus="focusCPw()">
 			</div>
-			<input id="sNOSubmitBtn" value="변경하기" onfocus="sNOSubmit()">
+			<input type="hidden" id="sNOSubmitBtn" value="변경하기">
 		</form>
+			<input type="submit" id="sNOConfirmBtn" value="확인하기" onclick="sNOSubmit()">
+		
 		</c:if>
 	</div>
 </body>
+	<input type="hidden" id="snPwDummy" value="">
 </html>

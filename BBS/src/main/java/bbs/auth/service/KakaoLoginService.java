@@ -81,7 +81,7 @@ public class KakaoLoginService {
 
 			// HashMap<String, Object> userInfo = getKakaoUserInfo(access_token);
 
-			//System.out.println("*****KakaoLoginService login() passed");
+			// System.out.println("*****KakaoLoginService login() passed");
 
 			return access_token;
 

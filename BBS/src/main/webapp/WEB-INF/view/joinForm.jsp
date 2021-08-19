@@ -64,7 +64,7 @@
 	text-align: center;
 	font-weight: 1000;
 	align-items: center;
-	width: 70%;
+	width: 85%;
 	color: #4C489D;
 	box-shadow: 0px 2px 2px #5C5696;
 	cursor: pointer;
@@ -79,12 +79,36 @@
 	outline: none;
 }
 
+#joinConfirm {
+	background: #fff;
+	font-size: 14px;
+	margin-top: 30px;
+	margin-left:22px;
+	padding: 8px 20px;
+	border-radius: 5px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: 1000;
+	align-items: center;
+	width: 85%;
+	color: #4C489D;
+	box-shadow: 0px 2px 2px #5C5696;
+	cursor: pointer;
+	transition: .4s;
+	float:left;
+}
+
+#joinConfirm:active,
+#joinConfirm:focus,
+#joinConfirm:hover {
+	border-color: #6A679E;
+	outline: none;
+}
+
 </style>
 <script type="text/javascript">
 
-$(function(){
-	$("#joinSubmit").prop("readonly", true);
-});
 
 function focusID(){
 	$("#joinMsg").text("4자 이상, 이메일도 사용 가능합니다.");
@@ -102,6 +126,27 @@ function focusBirth(){
 	$("#joinMsg").text("2020-02-02 형식으로 입력해주세요.");
 }
 
+function joinConfirm(){
+	var iD = $("#joinIdDummy").val();
+	var nD = $("#joinNameDummy").val();
+	var pD = $("#joinPwDummy").val();
+	var eD = $("#joinEmailDummy").val();
+	var bD = $("#joinBirthDummy").val();
+	
+	
+	if (iD == "true" && nD == "true" && pD == "true" && eD == "true" && bD == "true"){
+		$("#joinSubmit").prop("type", "submit");
+		$("#joinConfirm").prop("type", "hidden");
+		$(".join_input").prop("readonly", "true");
+		$("#joinErr").text("변경하기를 눌러주세요.");
+	} else {
+		$("#joinSubmit").prop("type", "hidden");
+		$("#joinConfirm").prop("type", "submit");
+		$("#joinErr").text("입력하신 정보를 다시 확인해주세요.");
+	}
+	
+}
+
 function checkID(){
 	var id = $("#id").val();
 	var email = $("#email").val();
@@ -111,13 +156,14 @@ function checkID(){
 		$("#id").css("border-bottom-color", "red");
 		$("#joinErr").text("아이디를 4자 이상 작성해주세요.");
 		$("#id").focus();
-		return false;
+		$("#joinIdDummy").val("false");
 	}
 	if(id.includes('@') == 1 && id.includes('.') == true){
 		$("#email").val($("#id").val());
 		$("#id").css("border-bottom-color", "#6A679E");
 		$("#email").css("border-bottom-color", "#6A679E");
 		$("#joinErr").text(" ");
+		$("#email").prop("readonly", true);
 	}
 	if (agent.indexOf("firefox") != -1) {
 		$.ajax({
@@ -129,11 +175,11 @@ function checkID(){
 				if(rData == 1){
 					$("#id").css("border-bottom-color", "red");
 					$("#joinErr").text("이미 등록된 아이디 입니다.");
-					return false;
+					$("#joinIdDummy").val("false");
 				}else{
 					$("#id").css("border-bottom-color", "#6A679E");
 					$("#joinErr").text(" ");
-					$("#email").prop("disabled", false);
+					$("#joinIdDummy").val("true");
 					return true;
 				}
 			},
@@ -151,11 +197,11 @@ function checkID(){
 				if(rData == 1){
 					$("#id").css("border-bottom-color", "red");
 					$("#joinErr").text("이미 등록된 아이디 입니다.");
-					return false;
+					$("#joinIdDummy").val("false");
 				}else{
 					$("#id").css("border-bottom-color", "#6A679E");
 					$("#joinErr").text(" ");
-					$("#email").prop("disabled", false);
+					$("#joinIdDummy").val("true");
 					return true;
 				}
 			},
@@ -177,6 +223,7 @@ function checkName(){
 		$("#name").css("border-bottom-color", "red");
 		$("#joinErr").text("닉네임을 작성해주세요.");
 		$("#name").focus();
+		$("#joinNameDummy").val("false");
 	}
 	if (agent.indexOf("firefox") != -1) {
 		$.ajax({
@@ -188,11 +235,11 @@ function checkName(){
 				if(rData == 1){
 					$("#name").css("border-bottom-color", "red");
 					$("#joinErr").text("이미 등록된 닉네임 입니다.");
+					$("#joinNameDummy").val("false");
 				}else{
 					$("#name").css("border-bottom-color", "#6A679E");
 					$("#joinErr").text(" ");
-					$("#email").prop("disabled", false);
-					$("#id").prop("disabled", false);
+					$("#joinNameDummy").val("true");
 					return true;
 				}
 			},
@@ -210,11 +257,11 @@ function checkName(){
 				if(rData == 1){
 					$("#name").css("border-bottom-color", "red");
 					$("#joinErr").text("이미 등록된 닉네임 입니다.");
+					$("#joinNameDummy").val("false");
 				}else{
 					$("#name").css("border-bottom-color", "#6A679E");
 					$("#joinErr").text(" ");
-					$("#email").prop("disabled", false);
-					$("#id").prop("disabled", false);
+					$("#joinNameDummy").val("true");
 					return true;
 				}
 			},
@@ -231,6 +278,7 @@ function isSame() {
 	if(pw1.length < 6 || pw1.length > 30){
 			$("#joinErr").text("비밀번호를 6자 이상 입력해주세요.");
 			$("#password").css("border-bottom-color", "red");
+			$("#joinPwDummy").val("false");
             return false;
     }
 	if(pw1.length > 5){
@@ -238,6 +286,7 @@ function isSame() {
     		$("#joinErr").text(" ");
 			$("#password").css("border-bottom-color", "#6A679E");
 			$("#confirmPassword").css("border-bottom-color", "#6A679E");
+			$("#joinPwDummy").val("true");
             return true;
         } else if(pw2 == "") {
         	$("#joinErr").text("비밀번호를 한번 더 입력해주세요.");
@@ -246,6 +295,7 @@ function isSame() {
             $("#joinErr").text("비밀번호가 일치하지 않습니다.");
 			$("#password").css("border-bottom-color", "red");
 			$("#confirmPassword").css("border-bottom-color", "red");
+			$("#joinPwDummy").val("false");
         }
     } 
 }
@@ -261,6 +311,7 @@ function checkEmail(){
 		$("#joinErr").text("이메일을 다시 확인해주세요.");
 		$("#email").css("border-bottom-color", "red");
 		$("#email").focus();
+		$("#joinEmailDummy").val("false");
 	}
 	if(id.includes('@') == 1 && id.includes('.') == true){
 		if(id != email){
@@ -268,13 +319,14 @@ function checkEmail(){
 			$("#joinErr").text("아이디와 이메일을 똑같이 입력해주세요.");
 			$("#id").focus();
 			$("#email").prop("readonly", false);
-			return false;
+			$("#joinEmailDummy").val("false");
 		}
 		if(email != id){
 			$("#email").css("border-bottom-color", "red");
 			$("#joinErr").text("아이디와 이메일을 똑같이 입력해주세요.");
 			$("#id").focus();
-			return false;
+			$("#email").prop("readonly", false);
+			$("#joinEmailDummy").val("false");
 		}
 	}
 	
@@ -288,12 +340,11 @@ function checkEmail(){
 				if(rData == 1){
 					$("#email").css("border-bottom-color", "red");
 					$("#joinErr").text("이미 등록된 이메일입니다.");
+					$("#joinEmailDummy").val("false");
 				}else{
 					$("#email").css("border-bottom-color", "#6A679E");
 					$("#joinErr").text(" ");
-					$("#id").prop("disabled", false);
-					$("#name").prop("disabled", false);
-					$("#joinSubmit").prop("type", "submit");
+					$("#joinEmailDummy").val("true");
 					return true;
 				}
 			},
@@ -311,12 +362,11 @@ function checkEmail(){
 				if(rData == 1){
 					$("#email").css("border-bottom-color", "red");
 					$("#joinErr").text("이미 등록된 이메일입니다.");
+					$("#joinEmailDummy").val("false");
 				}else{
 					$("#email").css("border-bottom-color", "#6A679E");
 					$("#joinErr").text(" ");
-					$("#id").prop("disabled", false);
-					$("#name").prop("disabled", false);
-					$("#joinSubmit").prop("type", "submit");
+					$("#joinEmailDummy").val("true");
 					return true;
 				}
 			},
@@ -334,13 +384,12 @@ function checkBirth() {
 	if(birth != null){
     	$("#birth_date").css("border-bottom-color", "#6A679E");
     	$("#joinErr").text(" ");
-		$("#joinSubmit").prop("type", "submit");
-		$("#joinSubmit").prop("readonly", false);
+    	$("#joinBirthDummy").val("true");
     	return true;
     } else if (birth.include('-') != 2 && birth.length() != 10){
     	$("#birth_date").css("border-bottom-color", "red");
 		$("#joinErr").text("생년월일을 다시 확인해주세요.");
-        return false;
+		$("#joinBirthDummy").val("false");
     }
 }
 
@@ -362,8 +411,8 @@ function handleOnEmail(e)  {
 	<div id="text_align"><span id="joinMsg">D'movie</span></div>
 	<div id="text_align"><span id="joinErr"> </span></div>
 		
-		<form action="${pageContext.request.contextPath }/join.do" method="post" autocomplete="off">
 			<c:if test="${empty snsUser}">
+		<form action="${pageContext.request.contextPath }/join.do" method="post" autocomplete="off">
 				<div>
 					<input type="text" id="id" name="id" class="join_input" placeholder="아이디" required="required" onchange="checkID()" oninput="handleOnEmail(this)" onfocus="focusID()">
 				</div>
@@ -384,10 +433,16 @@ function handleOnEmail(e)  {
 					<input type="date" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="focusBirth()">
 				</div>
 			
-					<input id="joinSubmit" name="joinSubmit" value="가입하기">
-			</c:if>
+					<input type="hidden" id="joinSubmit" name="joinSubmit" value="가입하기">
 		</form>
+					<input type="submit" id="joinConfirm" name="joinConfirm" value="확인하기" onclick="joinConfirm()">
 		
+			</c:if>
 	</div>
 </body>
+					<input type="hidden" id="joinIdDummy" value="">
+					<input type="hidden" id="joinNameDummy" value="">
+					<input type="hidden" id="joinPwDummy" value="">
+					<input type="hidden" id="joinEmailDummy" value="">
+					<input type="hidden" id="joinBirthDummy" value="">
 </html>

@@ -21,7 +21,6 @@ public class LoginHandler extends CommandHandler {
 
 	private LoginService loginService = new LoginService();
 	private KakaoLoginService kakaoLoginService = new KakaoLoginService();
-	private HashService hashService = new HashService();
 
 	@Override
 	protected String getFormViewName() {
@@ -50,12 +49,10 @@ public class LoginHandler extends CommandHandler {
 
 			User user = new User(member.getId(), member.getName(), access_token);
 			String snsUser = "kakao";
-			
+
 			session.setAttribute("authUser", user);
 			session.setAttribute("snsAuthUser", snsUser);
-			
-			
-			
+
 			return "/boxOffice/list.do?login=kakao";
 			// 3.2 존재하지 않는다면 카카오 계정을 기반으로 회원가입 시켜야함
 		} else {
@@ -63,7 +60,7 @@ public class LoginHandler extends CommandHandler {
 			// 3.2.2 id 필드에 email주소를 입력
 			User user = new User(email, access_token);
 			session.setAttribute("snsUser", user);
-			//return "/boxOffice/list.do?login=kakao";
+			// return "/boxOffice/list.do?login=kakao";
 			res.sendRedirect("./boxOffice/list.do");
 			return null;
 			// 카카오 간단 회원가입 폼 이동
@@ -76,14 +73,12 @@ public class LoginHandler extends CommandHandler {
 		MemberDao dao = new MemberDao();
 		String id = trim(req.getParameter("id"));
 		String tempPassword = trim(req.getParameter("password"));
-		
+
 		String prehexPw = HashService.stringToHex(tempPassword);
 		byte[] hexPw = HashService.hexStringToByteArray(prehexPw);
-			
+
 		String salt = dao.getSaltById(id);
 		String password = HashService.Hashing(hexPw, salt);
-		
-				
 
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);

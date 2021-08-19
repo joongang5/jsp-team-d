@@ -23,11 +23,11 @@
 	text-align: center;
 }
 
-#joinMsg {
+#snsJoinMsg {
 	font-size: 12px;
 }
 
-#joinErr {
+#snsJoinErr {
 	font-size: 11px;
 }
 
@@ -64,7 +64,7 @@
 	text-align: center;
 	font-weight: 1000;
 	align-items: center;
-	width: 70%;
+	width: 85%;
 	color: #4C489D;
 	box-shadow: 0px 2px 2px #5C5696;
 	cursor: pointer;
@@ -79,13 +79,36 @@
 	outline: none;
 }
 
+#joinConfirm {
+	background: #fff;
+	font-size: 14px;
+	margin-top: 30px;
+	margin-left:22px;
+	padding: 8px 20px;
+	border-radius: 5px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: 1000;
+	align-items: center;
+	width: 85%;
+	color: #4C489D;
+	box-shadow: 0px 2px 2px #5C5696;
+	cursor: pointer;
+	transition: .4s;
+	float:left;
+}
+
+#joinConfirm:active,
+#joinConfirm:focus,
+#joinConfirm:hover {
+	border-color: #6A679E;
+	outline: none;
+}
+
 </style>
 <script type="text/javascript">
 
-
-$(function(){
-	$("#joinSubmit").prop("readonly", true);
-});
 
 function focusName(){
 	$("#snsJoinMsg").text("특수문자는 사용하실 수 없습니다.");
@@ -95,6 +118,23 @@ function focusBirth(){
 	$("#snsJoinMsg").text("2020-02-02 형식으로 입력해주세요.");
 }
 
+function joinConfirm(){
+	var nD = $("#joinNameDummy").val();
+	var bD = $("#joinBirthDummy").val();
+	
+	
+	if (nD == "true" && bD == "true"){
+		$("#joinSubmit").prop("type", "submit");
+		$("#joinConfirm").prop("type", "hidden");
+		$(".join_input").prop("readonly", "true");
+		$("#snsJoinErr").text("변경하기를 눌러주세요.");
+	} else {
+		$("#joinSubmit").prop("type", "hidden");
+		$("#joinConfirm").prop("type", "submit");
+		$("#snsJoinErr").text("입력하신 정보를 다시 확인해주세요.");
+	}
+	
+}
 
 function checkName(){
 	var name = $("#name").val();
@@ -104,6 +144,7 @@ function checkName(){
 		$("#name").css("border-bottom-color", "red");
 		$("#snsJoinErr").text("닉네임을 작성해주세요.");
 		$("#name").focus();
+		$("#joinNameDummy").val("false");
 	}
 	if (agent.indexOf("firefox") != -1) {
 		$.ajax({
@@ -115,10 +156,11 @@ function checkName(){
 				if(rData == 1){
 					$("#name").css("border-bottom-color", "red");
 					$("#snsJoinErr").text("이미 등록된 닉네임 입니다.");
+					$("#joinNameDummy").val("false");
 				}else{
 					$("#name").css("border-bottom-color", "#6A679E");
 					$("#snsJoinErr").text(" ");
-					$("#joinSubmit").prop("readonly", false);
+					$("#joinNameDummy").val("true");
 					return true;
 				}
 			},
@@ -136,10 +178,11 @@ function checkName(){
 				if(rData == 1){
 					$("#name").css("border-bottom-color", "red");
 					$("#snsJoinErr").text("이미 등록된 닉네임 입니다.");
+					$("#joinNameDummy").val("false");
 				}else{
 					$("#name").css("border-bottom-color", "#6A679E");
 					$("#snsJoinErr").text(" ");
-					$("#joinSubmit").prop("readonly", false);
+					$("#joinNameDummy").val("true");
 					return true;
 				}
 			},
@@ -157,11 +200,12 @@ function checkBirth() {
 	if(birth != null){
     	$("#birth_date").css("border-bottom-color", "#6A679E");
     	$("#snsJoinErr").text(" ");
+    	$("#joinBirthDummy").val("true");
     	return true;
     } else if (birth.include('-') != 2 && birth.length() != 10){
     	$("#birth_date").css("border-bottom-color", "red");
 		$("#snsJoinErr").text("생년월일을 다시 확인해주세요.");
-        return false;
+		$("#joinBirthDummy").val("false");
     }
 }
 
@@ -182,27 +226,29 @@ function handleOnEmail(e)  {
 		<h2 align="center">SNS 회원가입</h2>
 	<div id="text_align"><span id="snsJoinMsg">D'movie</span></div>
 	<div id="text_align"><span id="snsJoinErr"> </span></div>
+		<c:if test="${empty snsUser}">
+			<div>
+			잘못된 접근입니다.
+			</div>
+		</c:if>
 		
+		<c:if test="${! empty snsUser}">
 		<form action="${pageContext.request.contextPath }/join.do" method="post" autocomplete="off">
-			
-			<c:if test="${empty snsUser}">
-				<div>
-				잘못된 접근입니다.
-				</div>
-			</c:if>
-			<c:if test="${! empty snsUser}">
-				<div>
-					<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)" onfocus="focusName()">
-				</div>
-			
-				<div>
-					<input type="date" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="focusBirth()">
-				</div>
-			
-					<input type="submit" id="joinSubmit" name="joinSubmit" value="가입하기">
-			</c:if>
-		</form>
+			<div>
+				<input type="text" id="name" name="name" class="join_input" placeholder="닉네임" required="required" onchange="checkName()" oninput="handleOnInput(this)" onfocus="focusName()">
+			</div>
 		
+			<div>
+				<input type="date" id="birth_date" name="birth_date" class="join_input" placeholder="생일" required="required" onchange="checkBirth()" onfocus="focusBirth()">
+			</div>
+		
+				<input type="hidden" id="joinSubmit" name="joinSubmit" value="가입하기">
+		</form>
+				<input type="submit" id="joinConfirm" name="joinConfirm" value="확인하기" onclick="joinConfirm()">
+		</c:if>
 	</div>
 </body>
+	<input type="hidden" id="joinNameDummy" value="">
+	<input type="hidden" id="joinBirthDummy" value="">
+
 </html>
