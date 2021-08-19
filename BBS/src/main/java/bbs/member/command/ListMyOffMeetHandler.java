@@ -16,7 +16,7 @@ public class ListMyOffMeetHandler extends CommandHandler {
 	private PageListService<OffMeet> listService;
 	
 	public ListMyOffMeetHandler() {
-		String tableName = "offmeet";
+		String tableName = "offmeet_view";
 		String orderRule = "offmeet_no DESC";
 		PageOffMeetDao<OffMeet> dao = new PageOffMeetDao<OffMeet>(tableName, orderRule);
 		listService = new PageListService<OffMeet>(dao);

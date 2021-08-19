@@ -23,7 +23,7 @@ public class ChangeEmailService {
 			}
 
 			member.changeEmail(modiReq.getEmail());
-			memberDao.update(conn, member);
+			memberDao.update2(conn, member);
 			conn.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollBack(conn);
