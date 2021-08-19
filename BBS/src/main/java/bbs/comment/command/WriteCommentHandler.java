@@ -11,7 +11,7 @@ import bbs.util.Util;
 
 public class WriteCommentHandler extends CommandHandler {
 
-	private WriteCommentService writeService = new WriteCommentService();
+	private WriteCommentService writeService;
 
 	@Override
 	protected String getFormViewName() {
@@ -23,13 +23,17 @@ public class WriteCommentHandler extends CommandHandler {
 		String content = req.getParameter("content");
 		int articleNo = Util.str2Int2(req.getParameter("articleNo"));
 		User user = (User) req.getSession().getAttribute("authUser");
+		String pageName = req.getParameter("pageName");
 
 		content = Util.str2Replace(content);
 
 		Comment comment = new Comment(articleNo, user.getId(), content);
+		
+		String tableName = String.format("comment_%s", pageName);
+		writeService = new WriteCommentService(tableName);
 		writeService.write(comment);
 
-		String viewPage = "/notice/read.do?no=" + articleNo;
+		String viewPage = String.format("/%s/read.do?no=%d", pageName, articleNo);
 		
 		return viewPage;
 	}

@@ -8,11 +8,13 @@ $(document).ready(function() {
 			var content = modifyInput.children(".content").text();
 			var commentNo = modifyInput.children(".commentNo").text();
 			var articleNo = modifyInput.children(".articleNo").text();
+			var pageName = modifyInput.children(".pageName").text();
 			modifyBox.html(
-				"<form action='/BBS/comment/modify.do?' method='post' class='commentModifyForm'>"
+				"<form action='/BBS/comment/modify.do' method='post' class='commentModifyForm'>"
 				+"<textarea class='commentTextarea' name='content' style='min-width: 680px'>"+content+"</textarea>"
 				+"<input type='hidden' name='commentNo' value='"+commentNo+"'>"
 				+"<input type='hidden' name='articleNo' value='"+articleNo+"'>"
+				+"<input type='hidden' name='pageName' value='"+pageName+"'>"
 				+"<button style='vertical-align:top; width: 50px; height: 32px;'>등록</button>"
 				+"<button class='clear1' style='vertical-align:top; width: 50px; height: 32px;'>취소</button>"
 				+"</form>");

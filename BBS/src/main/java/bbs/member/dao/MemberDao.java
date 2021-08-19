@@ -197,6 +197,19 @@ public class MemberDao {
 		}
 	}
 	
+	public void update2(Connection conn, Member member) throws SQLException {
+		String sql = "UPDATE member SET name=?, password=?, email=? where id=?";
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, member.getName());
+			pstmt.setString(2, member.getPassword());
+			pstmt.setString(3, member.getEmail());
+			pstmt.setString(4, member.getId());
+			pstmt.executeUpdate();
+		}
+	}
+	
+	
+	
 	public void updateProfile(Connection conn, Member member) throws SQLException{
 		String sql = "UPDATE member SET img=? where id=?";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){

@@ -9,7 +9,11 @@ import bbs.jdbc.JdbcUtil;
 
 public class DeleteCommentService {
 	
-	private CommentDao dao = new CommentDao("comment_notice"); 
+	private CommentDao dao; 
+	
+	public DeleteCommentService(String tableName) {
+		dao = new CommentDao(tableName);
+	}
 	
 	public void delete(int no) {
 		Connection conn =null;

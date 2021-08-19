@@ -25,46 +25,67 @@ public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-
 		return getFormViewName();
 	}
 
-
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
-		
+
+		MemberDao dao = new MemberDao();
+
 		// 메일 인증 후 수정 구현
 		Connection conn = ConnectionProvider.getConnection();
 		String memberId = req.getParameter("id");
+		String memberEmail = req.getParameter("id");
 
-		//System.out.println("id : " + memberId);
+		Member tempmembers = dao.selectById(conn, memberId);
+		if (tempmembers == null) {
+			Member tempEmembers = dao.selectByEmail(conn, memberEmail);
+			if (tempEmembers == null) {
+				res.sendRedirect("./boxOffice/list.do?fpwvalue=none");
+				return null;
+			}
+		}
 
-		MemberDao dao = new MemberDao();
 		Member members = dao.selectById(conn, memberId);
 
-		
-		if (members == null) {
-			res.sendRedirect("./boxOffice/list.do?fpwvalue=none");
+		Member emembers = dao.selectByEmail(conn, memberEmail);
+
+		if (emembers != null) {
+			String id = emembers.getId();
+			User user = new User(emembers.getId(), emembers.getName(), emembers.getEmail());
+
+			req.getSession().setAttribute("tempAuthUser", user);
+
+			String to = emembers.getEmail(); // 메일 받을 주소
+
+			HttpSession keyWasSaved = req.getSession(); // 세션에 저장
+			keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); // 이름 지정
+			keyWasSaved.setAttribute("newEmail2", to);
+
+			res.sendRedirect("./boxOffice/list.do?fpwvalue=success");
 			return null;
+			
+		} else if (members != null) {
+
+			User user = new User(members.getId(), members.getName(), members.getEmail());
+
+			req.getSession().setAttribute("tempAuthUser", user);
+
+			String to = members.getEmail(); // 메일 받을 주소
+			// System.out.println(to);
+
+			// validService.validEmailService(to) = 이메일 인증번호 보내는 서비스
+
+			HttpSession keyWasSaved = req.getSession(); // 세션에 저장
+			keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); // 이름 지정
+			keyWasSaved.setAttribute("newEmail2", to);
+
+			res.sendRedirect("./boxOffice/list.do?fpwvalue=success");
+			return null;
+
 		}
-		
-		User user = new User(members.getId(), members.getName(), members.getEmail());
-
-		req.getSession().setAttribute("tempAuthUser", user);
-
-		String to = members.getEmail(); // 메일 받을 주소
-		//System.out.println(to);
-
-		// validService.validEmailService(to) = 이메일 인증번호 보내는 서비스
-
-		HttpSession keyWasSaved = req.getSession(); // 세션에 저장
-		keyWasSaved.setAttribute("AuthenticationKey", validService.validEmailService(to)); // 이름 지정
-		keyWasSaved.setAttribute("newEmail2", to);
-
-		res.sendRedirect("./boxOffice/list.do?fpwvalue=success");
 		return null;
-
 	}
 
 }
