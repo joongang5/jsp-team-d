@@ -13,6 +13,7 @@
 <style type="text/css">
 body{
 	background-color: #2b2b2b; 
+	color: white;
 }
 #write{
 	text-align: center;
@@ -45,10 +46,10 @@ body{
 						<input type="file" name="file1">
 						<br>
 						<br>
-						<button type="submit">리뷰등록</button>
+						<button type="submit">[리뷰등록]</button>
 					</form>
 					<br />
-					<p onclick="location.href='/BBS/review/list.do'">리뷰 목록으로</p>
+					<p onclick="location.href='/BBS/review/list.do'">[리뷰 목록으로]</p>
 				</div>
 			</div>
 		</div>
