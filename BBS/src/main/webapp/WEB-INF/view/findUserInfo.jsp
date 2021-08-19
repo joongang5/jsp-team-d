@@ -110,7 +110,7 @@ function clickEmailBtn(){
 		
 		<c:if test="${param.fpwvalue ne 'done'}">
 			<form action ="${pageContext.request.contextPath }/forgot.do" method="post">
-				 <input type="text" id="id" name="id" class="fpw_input" placeholder="아이디 혹은 이메일" onfocus="focusFPW()">
+				 <input type="text" id="id" name="id" class="fpw_input" placeholder="아이디를 입력하세요." onfocus="focusFPW()">
 				 <input type="submit" id="emailBtn" name="emailBtn" value="인증 메일 보내기" onclick="clickEmailBtn()">	
 			</form>	
 			<form action ="${pageContext.request.contextPath }/setNewPw.do" method="post">

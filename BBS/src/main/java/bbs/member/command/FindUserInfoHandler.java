@@ -37,12 +37,13 @@ public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한
 		// 메일 인증 후 수정 구현
 		Connection conn = ConnectionProvider.getConnection();
 		String memberId = req.getParameter("id");
+		String memberEmail = req.getParameter("id");
 
 		//System.out.println("id : " + memberId);
 
 		MemberDao dao = new MemberDao();
 		Member members = dao.selectById(conn, memberId);
-
+		
 		
 		if (members == null) {
 			res.sendRedirect("./boxOffice/list.do?fpwvalue=none");
@@ -50,6 +51,13 @@ public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한
 		}
 		
 		User user = new User(members.getId(), members.getName(), members.getEmail());
+		
+		Member emembers = dao.selectByEmail(conn, memberEmail);
+		if (emembers == null) {
+			res.sendRedirect("./boxOffice/list.do?fpwvalue=none");
+			return null;
+		}
+		
 
 		req.getSession().setAttribute("tempAuthUser", user);
 
