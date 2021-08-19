@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰내용 읽기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="../css/main.css" rel="stylesheet">
 <link href="../css/menu.css" rel="stylesheet">
 <link href="../css/articleWrite.css" rel="stylesheet">
@@ -61,7 +62,26 @@ table{
 }
 </style>
 
-
+<script type= "text/javascript">
+$(document).ready(function() {
+	var main = document.getElementById('main');
+	var mainWrapper = document.getElementById('mainWrapper');
+	var menu = document.getElementById('menu');
+	
+	var maxHeight;
+	if (main.offsetHeight > mainWrapper.offsetHeight)
+		maxHeight = main.offsetHeight;
+	else
+		maxHeight = mainWrapper.offsetHeight;
+	
+	maxHeight += 50;
+	maxHeight += 'px';
+	
+	menu.style.height = maxHeight;
+	main.style.height = maxHeight;
+	mainWrapper.style.height = maxHeight;
+});
+</script>
 </head>
 <body>
 	<div id="container">
