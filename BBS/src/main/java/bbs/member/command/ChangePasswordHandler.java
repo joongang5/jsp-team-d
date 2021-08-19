@@ -25,6 +25,7 @@ public class ChangePasswordHandler extends CommandHandler {
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
+			
 		User user = (User) req.getSession().getAttribute("authUser");
 
 		Map<String, Boolean> errors = new HashMap<String, Boolean>();
@@ -69,7 +70,8 @@ public class ChangePasswordHandler extends CommandHandler {
 			return null;
 		} catch (InvalidPasswordException e) {
 			errors.put("badCurPw", Boolean.TRUE);
-			return getFormViewName();
+			res.sendRedirect(req.getContextPath() + "/myPage.do?mypwchg=dnm");
+			return null;
 		} catch (MemberNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return null;

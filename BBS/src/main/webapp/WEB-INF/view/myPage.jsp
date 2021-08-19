@@ -54,7 +54,7 @@ input[id*="mypwPopup"]+label+div>div {
 }
 
 input[id*="mypwPopup"]+label+div>div>label {
-	position: absolute;
+	position: relative;
 	top: -20px;
 	float: right;
 }
@@ -145,8 +145,12 @@ input[id*="mypwPopup"]+label+div>label {
 	</div>
 			
 </body>
-
-<input type="checkbox" id="mypwPopup">
+<c:if test="${param.mypwchg eq 'dnm'}">
+	<input type="checkbox" id="mypwPopup" checked="checked">
+</c:if>
+<c:if test="${param.mypwchg ne 'dnm'}">
+	<input type="checkbox" id="mypwPopup">
+</c:if>
 	<label id="mypw" for="mypwPopup"></label>
 		<div>
 			<div>

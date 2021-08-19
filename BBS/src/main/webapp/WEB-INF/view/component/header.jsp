@@ -436,10 +436,19 @@ function onLogoutClick() {
 				<label id="closeModal" for="fogotPopup">X</label>
 				
 				<c:if test="${! empty tempAuthUser}">
-					<c:if test="${param.fpwvalue ne 'pass'}">
+					<c:if test="${param.fpwvalue eq null}">
+						<c:import url="/WEB-INF/view/findUserInfo.jsp" />
+					</c:if>
+					<c:if test="${param.fpwvalue eq 'success'}">
 						<c:import url="/WEB-INF/view/findUserInfo.jsp" />
 					</c:if>
 					<c:if test="${param.fpwvalue eq 'pass'}">
+						<c:import url="/WEB-INF/view/setNewOne.jsp" />
+					</c:if>
+					<c:if test="${param.fpwvalue eq 'error'}">
+						<c:import url="/WEB-INF/view/setNewOne.jsp" />
+					</c:if>
+					<c:if test="${param.fpwvalue eq 'dnm'}">
 						<c:import url="/WEB-INF/view/setNewOne.jsp" />
 					</c:if>
 				</c:if>

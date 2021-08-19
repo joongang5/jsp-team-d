@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import bbs.auth.model.User;
 import bbs.auth.service.HashService;
-import bbs.member.dao.MemberDao;
 import bbs.member.service.SetNewPasswordService;
 import bbs.member.service.YesOrNoService;
 import bbs.mvc.command.CommandHandler;
