@@ -1,108 +1,126 @@
 @charset "UTF-8";
 
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap')
+	;
+
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
 @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-body{
+
+body {
 	background-color: #0f0f0f;
-	color: #faeef0;	
+	color: #faeef0;
 	margin: 0;
 	padding: 0;
 }
-#title{
+
+#title {
 	float: right;
 	margin-top: 5px;
 	padding-left: 10px;
 	padding-bottom: 30px;
 	font-size: 72pt;
-	-webkit-transform: rotate(90deg);	
-	-ms-transform:roate(90deg);
-	transform:rotate(90deg);
-	box-sizing:border-box;
+	-webkit-transform: rotate(90deg);
+	-ms-transform: roate(90deg);
+	transform: rotate(90deg);
+	box-sizing: border-box;
 }
-.myPic{
-	position:relative;
-	margin:0 auto;
-	box-sizing:border-box;
-	padding:5px;
+
+.myPic {
+	position: relative;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 5px;
 	width: 200px;
 	height: 200px;
-	border: 1px solid #faeef0 ;
+	border: 1px solid #faeef0;
 	border-radius: 100px 100px 100px 100px;
-	margin-top:20px;
-	
+	margin-top: 20px;
 }
-.profilPreview{
+
+.profilPreview {
 	position: relative;
 	z-index: 1;
 }
-#imageProfil{
-	width:170px;
+
+#imageProfil {
+	width: 170px;
 	height: 170px;
 	margin-left: 7.5px;
 	margin-top: 8px;
 	position: relative;
 	border-radius: 100px 100px 100px 100px;
 }
-.cameraIcon{
+
+.cameraIcon {
 	position: relative;
-	z-index:2;
+	z-index: 2;
 	bottom: 50px;
-	left : 130px;
-	border : 1px solid white;
+	left: 130px;
+	border: 1px solid white;
 	background-color: white;
-	width:35px;
+	width: 35px;
 	height: 35px;
 	border-radius: 100px 100px 100px 100px;
 }
-#imageUpload{
+
+#imageUpload {
 	margin: 0 auto;
 	box-sizing: border-box;
 	width: 30px;
 	height: 30px;
-	padding-left:6px;
-	padding-top:3px;
-}
-#profilModi{
-	margin-top: 40px;
-}
-img{
- margin: 0 auto;
- margin-left :19%;
- width: 200px;
- height: 200px;
+	padding-left: 6px;
+	padding-top: 3px;
 }
 
-.myInfo{
+#profilModi {
+	margin-top: 40px;
+}
+
+img {
+	margin: 0 auto;
+	margin-left: 19%;
+	width: 200px;
+	height: 200px;
+}
+
+.myInfo {
 	width: 500px;
 	height: 500px;
 	margin: 0 auto;
 	margin-left: 40%;
 }
-.myInfo > ul > li {
-	list-style:none;
+
+.myInfo>ul>li {
+	list-style: none;
 	font-family: 'Nanum Gothic';
 }
 
 .progressTag {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        display: block;
-        width: 150px;
-        height: 20px;
-        border-radius: 7px;
-        
-      }
-      progress::-webkit-progress-bar {
-        background-color: #eee;
-        border-radius: 8px;
-      }
-      progress::-webkit-progress-value {
-        background: linear-gradient(45deg, blueviolet, aquamarine);
-        border-radius: 8px;
-      }
-      progress::-moz-progress-bar {
-        background-color: #eee;
-        border-radius: 8px;
-      }
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: block;
+	width: 150px;
+	height: 20px;
+	border-radius: 7px;
+}
+
+progress::-webkit-progress-bar {
+	background-color: #eee;
+	border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+	background: linear-gradient(45deg, blueviolet, aquamarine);
+	border-radius: 8px;
+}
+
+progress::-moz-progress-bar {
+	background-color: #eee;
+	border-radius: 8px;
+}
+
+
+

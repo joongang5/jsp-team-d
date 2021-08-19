@@ -390,6 +390,7 @@ function onLogoutClick() {
 	</c:if>
 	
 	<!-- 로그인 폼 -->
+	
 	<c:if test="${empty authUser}">
 	<div>
 		<div id="modalLogin">
@@ -431,7 +432,7 @@ function onLogoutClick() {
 	</c:if>
 			<label id="forgotPwd" for="fogotPopup"></label>
 		<div>
-			<div id="modalLogin" style="height: 300px;">
+			<div id="modalLogin" style="height: 330px;">
 				<label id="closeModal" for="fogotPopup">X</label>
 				
 				<c:if test="${! empty tempAuthUser}">

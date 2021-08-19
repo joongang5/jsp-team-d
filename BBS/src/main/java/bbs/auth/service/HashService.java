@@ -16,22 +16,7 @@ public class HashService {
 	private static final int SALT_SIZE = 16;
 	private MemberDao memberDao = new MemberDao();
 
-	public User login(String id, String password) {
-
-		try (Connection conn = ConnectionProvider.getConnection()) {
-			Member member = memberDao.selectById(conn, id);
-			if (member == null) {
-				throw new LoginFailException();
-			}
-			if (member.matchPassword(password) == false) {
-				throw new LoginFailException();
-			}
-			return new User(member.getId(), member.getName(), member.getEmail());
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
+	
 	// 스트링을 16진수로 변경
 	public static String stringToHex(String tempPassword) {
 		String result = "";

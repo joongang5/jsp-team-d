@@ -47,9 +47,11 @@ public class ChangePasswordHandler extends CommandHandler {
 		byte[] hexnewPw = HashService.hexStringToByteArray(prehexnewPw);
 
 		String salt = HashService.setSalt(user.getId());
-		String curPw = HashService.Hashing(hexcurPw, salt);
+		String oldSalt = dao.getSaltById(user.getId());
+		String curPw = HashService.Hashing(hexcurPw, oldSalt);
 		String newPw = HashService.Hashing(hexnewPw, salt);
 
+//		System.out.println(oldSalt);
 //		System.out.println(curPw);
 //		System.out.println(newPw);
 
@@ -63,7 +65,8 @@ public class ChangePasswordHandler extends CommandHandler {
 		try {
 			ChangePasswordService service = new ChangePasswordService();
 			service.changePassword(user.getId(), curPw, newPw, salt);
-			return "/WEB-INF/view/changePwSuccess.jsp";
+			res.sendRedirect(req.getContextPath() + "/myPage.do?mypwchg=success");
+			return null;
 		} catch (InvalidPasswordException e) {
 			errors.put("badCurPw", Boolean.TRUE);
 			return getFormViewName();

@@ -10,6 +10,66 @@
 <link href="./css/myPage.css" rel="stylesheet">
 <script type="text/javascript" src="/BBS/js/menu.js"></script>
 <script type="text/javascript" src="/BBS/js/myPage.js"></script>
+<style type="text/css">
+input[id*="mypwPopup"] {
+	display: none;
+}
+
+input[id*="mypwPopup"]+label {
+	display: inline-block;
+	padding: 10px;
+	color: #fff;
+}
+
+input[id*="mypwPopup"]+label+div {
+	opacity:0;
+	visibility: hidden;
+	transition: all 1s;
+}
+
+input[id*="mypwPopup"]+label+div {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	transition: all 0.5s;
+}
+
+input[id*="mypwPopup"]:checked+label+div {
+	opacity:1;
+	visibility: visible;
+}
+
+input[id*="mypwPopup"]+label+div>div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 330px;
+	background: #212121;
+	z-index: 2;
+}
+
+input[id*="mypwPopup"]+label+div>div>label {
+	position: absolute;
+	top: -20px;
+	float: right;
+}
+
+input[id*="mypwPopup"]+label+div>label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .8);
+	z-index: 1;
+}
+</style>
+
 </head>
 <body>
 <!-- header랑 menu 임포트 -->
@@ -60,12 +120,18 @@
 							
 			<li><p>이름 : ${member.name }</p></li>		
 				
-			<!-- sns 로그인 사용자들만 암호변경 사용불가 by 강민--> 
+			<!-- sns 로그인 사용자들만 암호변경 사용불가 --> 
 			<c:if test="${empty snsAuthUser}">
 					<!--  -->
-				<li><p>아이디 : ${member.id}</p> </li>
-				<li><p>비밀번호 : <button onclick="menuClick('changePw')">수정하기</button></p></li>
-				<li><p>이메일 : ${member.email }</p></li>		
+					<li><p>아이디 : ${member.id}</p> </li>
+				<c:if test="${param.mypwchg ne 'success'}">
+					<li><p>비밀번호 :<label id="mypw" for="mypwPopup"> 변경하기</label></p></li>	
+				</c:if>
+				<c:if test="${param.mypwchg eq 'success'}">
+					<li><p>비밀번호가 변경되었습니다.</p></li>
+				</c:if>
+				
+					<li><p>이메일 : ${member.email }</p></li>		
 			 
 				<form action ="myPage.do" method="post">
 					 <input type="email" id="newEmail" name="newEmail" placeholder="새로운 이메일주소를 입력해주세요" required>
@@ -77,5 +143,18 @@
 			<li><p>가입일시 : <fmt:formatDate value="${member.regDate }" pattern="yyyy-MM-dd" /></p></li>
 		</ul>	
 	</div>
+			
 </body>
+
+<input type="checkbox" id="mypwPopup">
+	<label id="mypw" for="mypwPopup"></label>
+		<div>
+			<div>
+				<label id="mypwcloseModal" for="mypwPopup">X</label>
+					<c:import url="/WEB-INF/view/changePwForm.jsp" />
+			</div>
+				<label for="mypwPopup"></label>
+		</div>
+			
+
 </html>

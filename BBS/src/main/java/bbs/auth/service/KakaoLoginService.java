@@ -67,7 +67,7 @@ public class KakaoLoginService {
 				buffer.append(line);
 			}
 
-			System.out.println(buffer.toString());
+//			System.out.println(buffer.toString());
 
 			JsonParser parser = new JsonParser();
 			JsonElement element = parser.parse(buffer.toString());
@@ -156,7 +156,7 @@ public class KakaoLoginService {
 
 		// String nickname = (String) userInfo.get("nickname");
 		// String email = (String) userInfo.get("email");
-		System.out.println("*****KakaoLoginService getKakaoUserInfo() passed");
+//		System.out.println("*****KakaoLoginService getKakaoUserInfo() passed");
 
 		return userInfo;
 
@@ -167,10 +167,10 @@ public class KakaoLoginService {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			Member member = memberDao.selectByEmail(conn, email);
 			if (member != null) {
-				System.out.println("*****KakaoLoginService kakaoLoginValid() true passed");
+//				System.out.println("*****KakaoLoginService kakaoLoginValid() true passed");
 				return member;
 			} else {
-				System.out.println("*****KakaoLoginService kakaoLoginValid() false passed");
+//				System.out.println("*****KakaoLoginService kakaoLoginValid() false passed");
 				return null;
 			}
 
