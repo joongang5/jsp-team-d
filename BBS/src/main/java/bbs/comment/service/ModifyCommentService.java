@@ -11,8 +11,12 @@ import bbs.jdbc.JdbcUtil;
 
 public class ModifyCommentService {
 	
-	private CommentDao dao = new CommentDao("comment_notice"); 
+	private CommentDao dao; 
 
+	public ModifyCommentService(String tableName) {
+		dao = new CommentDao(tableName);
+	}
+	
 	public void modify(Comment comment) {
 		Connection conn = null;
 		try {

@@ -10,7 +10,11 @@ import bbs.jdbc.JdbcUtil;
 
 public class WriteCommentService {
 
-	private CommentDao dao = new CommentDao("comment_notice");
+	private CommentDao dao;
+	
+	public WriteCommentService(String tableName) {
+		dao = new CommentDao(tableName);
+	}
 	
 	public void write(Comment comment) {
 		Connection conn = null;

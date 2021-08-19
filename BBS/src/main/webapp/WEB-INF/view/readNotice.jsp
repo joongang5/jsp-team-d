@@ -76,10 +76,10 @@ function del(no){
 	}
 }
 
-function delComment(commentNo, noticeNo) {
+function delComment(commentNo, articleNo) {
 	if(confirm("삭제하시겠습니까?")){
 		alert("삭제합니다.")
-		location.href="/BBS/comment/delete.do?commentNo="+commentNo+"&noticeNo="+noticeNo;
+		location.href="/BBS/comment/delete.do?commentNo="+commentNo+"&articleNo="+articleNo+"&pageName=notice";
 	}
 }
 
@@ -155,6 +155,7 @@ $(document).ready(function() {
 											<div class="content" style="margin-bottom: 5px;">${i.content }</div>
 											<div class="commentNo" style="display: none;">${i.no }</div>
 											<div class="articleNo" style="display: none;">${i.articleNo }</div>
+											<div class="pageName" style="display: none;">${pageName }</div>
 										</div>
 									</div>
 									<hr>
@@ -187,6 +188,7 @@ $(document).ready(function() {
 									<form action="/BBS/comment/write.do" method="post">
 										<textarea name="content" style="min-width: 730px"></textarea>
 										<input type="hidden" name="articleNo" value="${noticeData.notice.number }">
+										<input type="hidden" name="pageName" value="${pageName }">
 										<button style="vertical-align:top; width: 50px; height: 30px;">등록</button>
 									</form>
 								</div>

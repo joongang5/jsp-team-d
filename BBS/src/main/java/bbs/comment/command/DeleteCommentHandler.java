@@ -9,7 +9,7 @@ import bbs.util.Util;
 
 public class DeleteCommentHandler extends CommandHandler {
 
-	private DeleteCommentService deleteService = new DeleteCommentService();
+	private DeleteCommentService deleteService;
 	
 	@Override
 	protected String getFormViewName() {
@@ -19,11 +19,14 @@ public class DeleteCommentHandler extends CommandHandler {
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		int commentNo = Util.str2Int(req.getParameter("commentNo"));
-		int noticeNo = Util.str2Int(req.getParameter("noticeNo"));
-		
+		int articleNo = Util.str2Int(req.getParameter("articleNo"));
+		String pageName = req.getParameter("pageName");
+
+		String tableName = String.format("comment_%s", pageName);
+		deleteService = new DeleteCommentService(tableName);
 		deleteService.delete(commentNo);	
 
-		String viewPage = "/notice/read.do?no=" + noticeNo;
+		String viewPage = String.format("/%s/read.do?no=%d", pageName, articleNo);
 		
 		return viewPage;
 	}

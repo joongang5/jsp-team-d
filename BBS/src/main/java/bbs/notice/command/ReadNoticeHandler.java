@@ -49,6 +49,7 @@ public class ReadNoticeHandler extends CommandHandler {
 			String condition = String.format("article_no=%d", noticeNum);
 			Page<CommentView> commentPage = commentListService.getPage(commentPageNo, condition);
 			req.setAttribute("commentPage", commentPage);
+			req.setAttribute("pageName", "notice");
 			
 			return getFormViewName();
 		} catch (NoticeNotFoundException | NoticeContentNotFoundException e) {
