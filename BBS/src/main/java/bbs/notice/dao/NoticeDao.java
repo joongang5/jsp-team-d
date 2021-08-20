@@ -22,7 +22,7 @@ public class NoticeDao {
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO notice (title, regdate, moddate, read_cnt, member_no) values(?,?,?,?,?,0,(SELECT m_no FROM member WHERE id=?))");
+			pstmt = conn.prepareStatement("INSERT INTO notice (title, regdate, moddate, read_cnt, member_no) values(?,?,?,0,(SELECT m_no FROM member WHERE id=?))");
 			
 			pstmt.setString(1, notice.getTitle());
 			pstmt.setTimestamp(2, toTimeStamp(notice.getRegDate()));
