@@ -62,11 +62,11 @@ MessageListView viewData = messageListService.getMessageList(pageNumber);
 			</tr>
 		</c:forEach>
 	</table>
-	<div id=nButton> 
+<%-- 	<div id=nButton> 
 	<c:forEach var="pageNum" begin="1" end="${viewData.pageTotalCount}">
 		<a href="./message.do?page=${pageNum}">[${pageNum}]</a>
 	</c:forEach>
-	</div>
+	</div> --%>
 
 </body>
 </html>
