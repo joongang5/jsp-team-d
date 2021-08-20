@@ -103,7 +103,9 @@ table {
 				</tr>
 			</c:if>
 			<br>
+			<c:if test="${authUser ne null }">
 				<a style="float: right;" href="../review/write.do">[리뷰쓰기]</a>
+			</c:if>
 		</div>
 		</div>
 		</div>
