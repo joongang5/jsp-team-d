@@ -68,8 +68,14 @@
 			</select> <input type="text" name="search" class="form-control mx-1 mt-2"
 				placeholder="내용을 입력하세요">
 			<button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>-->
-			<a class="btn btn-success mx-auto mt-2 w-100" data-toggle="modal"
-				href="#registerModal" onclick="return confirm('로그인 하셨습니까?')">등록하기</a> 
+			<c:if test="${authUser ne null }">
+				<a class="btn btn-success mx-auto mt-2 w-100" data-toggle="modal" 
+					href="#registerModal">등록하기</a>
+			</c:if>
+			<c:if test="${authUser eq null }">
+				<a class="btn btn-success mx-auto mt-2 w-100" data-toggle="modal"
+					onclick="return alert('로그인이 필요한 서비스입니다.')">등록하기</a>
+			</c:if> 
 				<!-- <a class="btn btn-danger mx-1 mt-2"	data-toggle="modal" href="#reportModal">신고</a> -->
 		</form>
 
