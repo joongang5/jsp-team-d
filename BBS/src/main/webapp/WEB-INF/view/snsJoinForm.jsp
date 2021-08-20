@@ -127,7 +127,7 @@ function joinConfirm(){
 		$("#joinSubmit").prop("type", "submit");
 		$("#joinConfirm").prop("type", "hidden");
 		$(".join_input").prop("readonly", "true");
-		$("#snsJoinErr").text("변경하기를 눌러주세요.");
+		$("#snsJoinErr").text("가입하기를 눌러주세요.");
 	} else {
 		$("#joinSubmit").prop("type", "hidden");
 		$("#joinConfirm").prop("type", "submit");
