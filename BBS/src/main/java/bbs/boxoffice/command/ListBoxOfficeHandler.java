@@ -40,7 +40,7 @@ public class ListBoxOfficeHandler extends CommandHandler {
         
         String targetDt = req.getParameter("targetDt");
         if (targetDt == null)
-            targetDt = "20210816";
+            targetDt = "20210819";
         
         Page<BoxOfficeView> boxOfficePage = boxOfficeListService.getPage(pageNo, String.format("target_dt=%s", targetDt));
         req.setAttribute("boxOfficePage", boxOfficePage);
