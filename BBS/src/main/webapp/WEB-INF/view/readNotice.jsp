@@ -198,7 +198,7 @@ $(document).ready(function() {
 				</table>
 				<div id="nButton">  
 					<dl style="text-align: center;"><c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" /> 
-						<a href="list.do?pageNo=${pageNo}">[목록]</a>
+						<a href="/BBS/notice/list.do?pageNo=${pageNo}">[목록]</a>
 					</dl> 
 					<dl style="text-align: right; margin-bottom: 10px;">
 						<c:if test="${authUser.id == 'admin' }">
