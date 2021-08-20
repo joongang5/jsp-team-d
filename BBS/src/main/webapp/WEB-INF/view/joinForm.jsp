@@ -132,8 +132,7 @@ function joinConfirm(){
 	var pD = $("#joinPwDummy").val();
 	var eD = $("#joinEmailDummy").val();
 	var bD = $("#joinBirthDummy").val();
-	
-	
+
 	if (iD == "true" && nD == "true" && pD == "true" && eD == "true" && bD == "true"){
 		$("#joinSubmit").prop("type", "submit");
 		$("#joinConfirm").prop("type", "hidden");
@@ -144,7 +143,6 @@ function joinConfirm(){
 		$("#joinConfirm").prop("type", "submit");
 		$("#joinErr").text("입력하신 정보를 다시 확인해주세요.");
 	}
-	
 }
 
 function checkID(){
@@ -152,65 +150,44 @@ function checkID(){
 	var email = $("#email").val();
 	var agent = navigator.userAgent.toLowerCase();
 	
+	// 아이디 길이 체크
 	if(id == "" || id.length < 4){
 		$("#id").css("border-bottom-color", "red");
 		$("#joinErr").text("아이디를 4자 이상 작성해주세요.");
 		$("#id").focus();
 		$("#joinIdDummy").val("false");
 	}
-	if(id.includes('@') == 1 && id.includes('.') == true){
+	
+	// 아이디가 이메일 형식인 경우
+	if(id.indexOf('@') >= 0 && id.indexOf('@') >= 0){
 		$("#email").val($("#id").val());
 		$("#id").css("border-bottom-color", "#6A679E");
 		$("#email").css("border-bottom-color", "#6A679E");
 		$("#joinErr").text(" ");
 		$("#email").prop("readonly", true);
 	}
-	if (agent.indexOf("firefox") != -1) {
-		$.ajax({
-			type:'post',
-			dataType:'text',
-			data: 'id='+id,
-			url: 'joinCheck',
-			success: function(rData, textStatus, xhr){
-				if(rData == 1){
-					$("#id").css("border-bottom-color", "red");
-					$("#joinErr").text("이미 등록된 아이디 입니다.");
-					$("#joinIdDummy").val("false");
-				}else{
-					$("#id").css("border-bottom-color", "#6A679E");
-					$("#joinErr").text(" ");
-					$("#joinIdDummy").val("true");
-					return true;
-				}
-			},
-			error: function(xhr, status, e){
-				alert("문제 발생 : " + e);
-			}
-		});
-	} else if (agent.indexOf("firefox") == -1) {
-		$.ajax({
-			type:'post',
-			dataType:'text',
-			data: 'id='+id,
-			url: '../joinCheck',
-			success: function(rData, textStatus, xhr){
-				if(rData == 1){
-					$("#id").css("border-bottom-color", "red");
-					$("#joinErr").text("이미 등록된 아이디 입니다.");
-					$("#joinIdDummy").val("false");
-				}else{
-					$("#id").css("border-bottom-color", "#6A679E");
-					$("#joinErr").text(" ");
-					$("#joinIdDummy").val("true");
-					return true;
-				}
-			},
-			error: function(xhr, status, e){
-				alert("문제 발생 : " + e);
-			}
-		});
-	}
 	
+	$.ajax({
+		type:'post',
+		dataType:'text',
+		data: 'id='+id,
+		url: '/BBS/joinCheck',
+		success: function(rData, textStatus, xhr){
+			if(rData == 1){
+				$("#id").css("border-bottom-color", "red");
+				$("#joinErr").text("이미 등록된 아이디 입니다.");
+				$("#joinIdDummy").val("false");
+			}else{
+				$("#id").css("border-bottom-color", "#6A679E");
+				$("#joinErr").text(" ");
+				$("#joinIdDummy").val("true");
+				return true;
+			}
+		},
+		error: function(xhr, status, e){
+			alert("문제 발생 : " + e);
+		}
+	});
 }
 
 
@@ -225,51 +202,28 @@ function checkName(){
 		$("#name").focus();
 		$("#joinNameDummy").val("false");
 	}
-	if (agent.indexOf("firefox") != -1) {
-		$.ajax({
-			type:'post',
-			dataType:'text',
-			data: 'name='+name,
-			url: 'joinCheck',
-			success: function(rData, textStatus, xhr){
-				if(rData == 1){
-					$("#name").css("border-bottom-color", "red");
-					$("#joinErr").text("이미 등록된 닉네임 입니다.");
-					$("#joinNameDummy").val("false");
-				}else{
-					$("#name").css("border-bottom-color", "#6A679E");
-					$("#joinErr").text(" ");
-					$("#joinNameDummy").val("true");
-					return true;
-				}
-			},
-			error: function(xhr, status, e){
-				alert("문제 발생 : " + e);
+	
+	$.ajax({
+		type:'post',
+		dataType:'text',
+		data: 'name='+name,
+		url: '/BBS/joinCheck',
+		success: function(rData, textStatus, xhr){
+			if(rData == 1){
+				$("#name").css("border-bottom-color", "red");
+				$("#joinErr").text("이미 등록된 닉네임 입니다.");
+				$("#joinNameDummy").val("false");
+			}else{
+				$("#name").css("border-bottom-color", "#6A679E");
+				$("#joinErr").text(" ");
+				$("#joinNameDummy").val("true");
+				return true;
 			}
-		});
-	} else if (agent.indexOf("firefox") == -1) {
-		$.ajax({
-			type:'post',
-			dataType:'text',
-			data: 'name='+name,
-			url: '../joinCheck',
-			success: function(rData, textStatus, xhr){
-				if(rData == 1){
-					$("#name").css("border-bottom-color", "red");
-					$("#joinErr").text("이미 등록된 닉네임 입니다.");
-					$("#joinNameDummy").val("false");
-				}else{
-					$("#name").css("border-bottom-color", "#6A679E");
-					$("#joinErr").text(" ");
-					$("#joinNameDummy").val("true");
-					return true;
-				}
-			},
-			error: function(xhr, status, e){
-				alert("문제 발생 : " + e);
-			}
-		});
-	}
+		},
+		error: function(xhr, status, e){
+			alert("문제 발생 : " + e);
+		}
+	});
 }
 function isSame() {
 	var pw1 = $("#password").val();
@@ -307,13 +261,13 @@ function checkEmail(){
 	var email = $("#email").val();
 	var agent = navigator.userAgent.toLowerCase();
 	
-	if(email == "" || id.length < 5 || id.includes('.') != true || id.includes('@') != true){
+	if(email == "" || id.length < 5 || id.indexOf('.') == -1 || id.indexOf('@') == -1){
 		$("#joinErr").text("이메일을 다시 확인해주세요.");
 		$("#email").css("border-bottom-color", "red");
 		$("#email").focus();
 		$("#joinEmailDummy").val("false");
 	}
-	if(id.includes('@') == 1 && id.includes('.') == true){
+	if(id.indexOf('@') >= 0 && id.indexOf('.') >= 0){
 		if(id != email){
 			$("#email").css("border-bottom-color", "red");
 			$("#joinErr").text("아이디와 이메일을 똑같이 입력해주세요.");
@@ -330,51 +284,27 @@ function checkEmail(){
 		}
 	}
 	
-	if (agent.indexOf("firefox") != -1) {
-		$.ajax({
-			type:'post',
-			dataType:'text',
-			data: 'email='+email,
-			url: 'joinCheck',
-			success: function(rData, textStatus, xhr){
-				if(rData == 1){
-					$("#email").css("border-bottom-color", "red");
-					$("#joinErr").text("이미 등록된 이메일입니다.");
-					$("#joinEmailDummy").val("false");
-				}else{
-					$("#email").css("border-bottom-color", "#6A679E");
-					$("#joinErr").text(" ");
-					$("#joinEmailDummy").val("true");
-					return true;
-				}
-			},
-			error: function(xhr, status, e){
-				alert("문제 발생 : " + e);
+	$.ajax({
+		type:'post',
+		dataType:'text',
+		data: 'email='+email,
+		url: '/BBS/joinCheck',
+		success: function(rData, textStatus, xhr){
+			if(rData == 1){
+				$("#email").css("border-bottom-color", "red");
+				$("#joinErr").text("이미 등록된 이메일입니다.");
+				$("#joinEmailDummy").val("false");
+			}else{
+				$("#email").css("border-bottom-color", "#6A679E");
+				$("#joinErr").text(" ");
+				$("#joinEmailDummy").val("true");
+				return true;
 			}
-		});
-	} else if (agent.indexOf("firefox") == -1) {
-		$.ajax({
-			type:'post',
-			dataType:'text',
-			data: 'email='+email,
-			url: '../joinCheck',
-			success: function(rData, textStatus, xhr){
-				if(rData == 1){
-					$("#email").css("border-bottom-color", "red");
-					$("#joinErr").text("이미 등록된 이메일입니다.");
-					$("#joinEmailDummy").val("false");
-				}else{
-					$("#email").css("border-bottom-color", "#6A679E");
-					$("#joinErr").text(" ");
-					$("#joinEmailDummy").val("true");
-					return true;
-				}
-			},
-			error: function(xhr, status, e){
-				alert("문제 발생 : " + e);
-			}
-		});
-	}
+		},
+		error: function(xhr, status, e){
+			alert("문제 발생 : " + e);
+		}
+	});
 }
 
 function checkBirth() {
