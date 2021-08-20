@@ -61,6 +61,11 @@ table {
 			<th style="width: 46%">제목</th>
 		</tr>
 		
+		<c:if test="${empty page.content}">
+						<tr>
+							<td colspan="4" style="text-align:center;">게시글이 없습니다.</td>
+						</tr>
+		</c:if>
 		
 		<c:forEach var="offmeet" items="${page.content }">
 			<tr id="contentN">
