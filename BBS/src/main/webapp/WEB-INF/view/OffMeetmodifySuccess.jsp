@@ -9,8 +9,7 @@
 <body>
 	게시글을 수정했습니다.
 	<br>
-	${ctxPath = pageContext.request.contextPath }
-	<a href="${ctxPath }/offmeet/list.do">[게시글목록보기]</a>
-	<a href="${ctxPath }/offmeet/read.do?no=${modReq.offmeetNo }">[게시글목록보기]</a>
+	<%-- ${ctxPath = pageContext.request.contextPath } --%>
+	<a href="${ctxPath }list.do">[게시글목록보기]</a>
 </body>
 </html>

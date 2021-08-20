@@ -75,10 +75,10 @@ function btnclick(){
 						<div id="pagination" ></div>
 					</div>
 				</div>
-				<div id=ddd style="float:right;">
+				<div id=ddd style="float:right; color: white;">
 				<p onclick="location.href='/BBS/offmeet/list.do'">[게시판으로]</p>
 				</div>
-				<div id=ddd style="float:right;">
+				<div id=ddd style="float:right; color: white;">
 				<p onclick="btnclick()">[글쓰기]&nbsp&nbsp</p>
 				</div> 
 				

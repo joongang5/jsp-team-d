@@ -87,7 +87,7 @@ public class ModifyOffMeetHandler extends CommandHandler {
 		}
 		try {
 			modifyService.modify(modReq);
-			return"/WEB-INF/view/modifySucess.jsp";
+			return"/WEB-INF/view/OffMeetmodifySuccess.jsp";
 		} catch (OffMeetNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
