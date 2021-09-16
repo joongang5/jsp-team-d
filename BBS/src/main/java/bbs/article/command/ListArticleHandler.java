@@ -20,7 +20,6 @@ public class ListArticleHandler extends CommandHandler {
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		return null;
 	}
-
 	private void conflictTest() {
 		sysout("test");
 	}
