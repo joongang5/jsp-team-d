@@ -20,9 +20,11 @@ public class ListArticleHandler extends CommandHandler {
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		return null;
 	}
+
 	
-	public void conflictFunction() {
-		int a = 0;
+	private void conflictTest() {
+		sysout("test");
+
 	}
 	
 	@Override
