@@ -20,10 +20,11 @@ public class ListArticleHandler extends CommandHandler {
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		return null;
 	}
-	private void conflictTest() {
-		sysout("test");
+	
+	public void conflictFunction() {
+		int a = 0;
 	}
-
+	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String pageNoVal = req.getParameter("pageNo");
