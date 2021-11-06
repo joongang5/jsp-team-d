@@ -9,7 +9,7 @@ import bbs.logic.page.Page;
 import bbs.logic.service.PageListService;
 import bbs.movie.dao.ReservedMovieViewDao;
 import bbs.movie.model.ReservedMovieView;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class ListBoxOfficeHandler extends CommandHandler {
 	

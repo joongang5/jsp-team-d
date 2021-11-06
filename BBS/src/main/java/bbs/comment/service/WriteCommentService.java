@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 import bbs.comment.dao.CommentDao;
 import bbs.comment.model.Comment;
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class WriteCommentService {
 

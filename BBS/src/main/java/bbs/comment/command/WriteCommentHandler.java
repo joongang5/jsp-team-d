@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import bbs.auth.model.User;
 import bbs.comment.model.Comment;
 import bbs.comment.service.WriteCommentService;
-import bbs.mvc.command.CommandHandler;
 import bbs.util.Util;
+import dev.core.command.CommandHandler;
 
 public class WriteCommentHandler extends CommandHandler {
 

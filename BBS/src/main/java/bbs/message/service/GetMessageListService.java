@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.message.dao.MessageDao;
 import bbs.message.model.Message;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class GetMessageListService {
 
@@ -47,7 +47,7 @@ public class GetMessageListService {
 			return new MessageListView(messageList, messageTotalCount, currentPageNumber, MESSAGE_COUNT_PER_PAGE,
 					firstRow, endRow);
 		} catch (SQLException e) {
-			throw new ServiceException("¸ñ·Ï ±¸ÇÏ±â ½ÇÆÐ:" + e.getMessage(), e);
+			throw new ServiceException("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½:" + e.getMessage(), e);
 		} finally {
 			JdbcUtil.close(conn);
 		}

@@ -7,10 +7,10 @@ import bbs.auth.model.User;
 import bbs.member.model.Member;
 import bbs.member.service.MemberNotFoundException;
 import bbs.member.service.ReadMyOffMeetService;
-import bbs.mvc.command.CommandHandler;
 import bbs.offmeet.model.OffMeet;
+import dev.core.command.CommandHandler;
 
-public class MyOffMeetHandler extends CommandHandler { // 20210810 ÀÌÇö¾Æ°¡ »ý¼º 
+public class MyOffMeetHandler extends CommandHandler { // 20210810 ï¿½ï¿½ï¿½ï¿½ï¿½Æ°ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	
 	private ReadMyOffMeetService readMyoffMeet = new ReadMyOffMeetService();
 	

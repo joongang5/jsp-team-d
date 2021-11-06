@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import bbs.jdbc.JdbcUtil;
 import bbs.message.model.Message;
+import dev.jdbc.JdbcUtil;
 
 public class MessageDao {
 

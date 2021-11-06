@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import bbs.jdbc.JdbcUtil;
 import bbs.offmeet.model.OffMeet;
 import bbs.offmeet.model.Writer;
+import dev.jdbc.JdbcUtil;
 
 public class OffMeetDao {
 	public OffMeet insert(Connection conn, OffMeet offmeet) throws SQLException {

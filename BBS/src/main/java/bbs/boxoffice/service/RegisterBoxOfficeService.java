@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import bbs.boxoffice.dao.BoxOfficeDao;
 import bbs.boxoffice.model.BoxOffice;
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.member.service.DuplicateIdException;
 import bbs.movie.model.BaseMovie;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class RegisterBoxOfficeService {
 

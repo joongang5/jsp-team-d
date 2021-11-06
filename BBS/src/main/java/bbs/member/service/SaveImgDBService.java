@@ -3,13 +3,13 @@ package bbs.member.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class SaveImgDBService {
-	public static Member modify(ModifyRequest modiReq) { //20210808 Çö
+	public static Member modify(ModifyRequest modiReq) { //20210808 ï¿½ï¿½
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();

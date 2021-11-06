@@ -15,8 +15,7 @@ import bbs.member.service.MemberNotFoundException;
 
 import bbs.member.service.ReadMyPageService;
 import bbs.member.service.ValidEmailService;
-
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 
 public class MyPageHandler extends CommandHandler { 

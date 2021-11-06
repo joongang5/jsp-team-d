@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import bbs.jdbc.ConnectionProvider;
 import bbs.review.dao.ReviewDao;
 import bbs.review.model.Review;
+import dev.jdbc.ConnectionProvider;
 
 public class ListReviewService {
 
@@ -15,11 +15,11 @@ public class ListReviewService {
 
 	public ReviewPage getReviewPage(int pageNum) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			//ÀüÃ¼ °Ô½Ã±ÛÀÇ °³¼ö¸¦ ±¸ÇÑ´Ù.
+			//ï¿½ï¿½Ã¼ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 			int total = reviewDao.selectCount(conn);
-			//pageNum¿¡ ÇØ´çÇÏ´Â °Ô½Ã±Û ¸ñ·ÏÀ» ±¸ÇÑ´Ù.
+			//pageNumï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 			List<Review> content = reviewDao.select(conn, (pageNum - 1) * size, size);
-			//review °´Ã¼¸¦ ¸®ÅÏÇÑ´Ù.
+			//review ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 			return new ReviewPage(total, pageNum, size, content);
 
 		} catch (SQLException e) {

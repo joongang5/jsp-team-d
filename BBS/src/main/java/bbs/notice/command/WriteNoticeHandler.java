@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bbs.auth.model.User;
-import bbs.mvc.command.CommandHandler;
 import bbs.notice.model.Writer;
 import bbs.notice.service.WriteNoticeService;
 import bbs.notice.service.WriteRequest;
+import dev.core.command.CommandHandler;
 
 public class WriteNoticeHandler extends CommandHandler {
 

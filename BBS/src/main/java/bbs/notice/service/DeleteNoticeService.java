@@ -3,10 +3,10 @@ package bbs.notice.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.notice.dao.NoticeContentDao;
 import bbs.notice.dao.NoticeDao;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class DeleteNoticeService {
 

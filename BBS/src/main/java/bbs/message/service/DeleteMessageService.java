@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 import bbs.message.dao.MessageDao;
 import bbs.message.model.Message;
-import bbs.jdbc.JdbcUtil;
-import bbs.jdbc.ConnectionProvider;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class DeleteMessageService {
 
@@ -29,7 +29,7 @@ public class DeleteMessageService {
 			MessageDao messageDao = MessageDao.getInstance();
 			Message message = messageDao.select(conn, messageId);
 			if (message == null) {
-				throw new MessageNotFoundException("¸Þ½ÃÁö ¾øÀ½");
+				throw new MessageNotFoundException("ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 			if (!message.matchPassword(password)) {
 				throw new InvalidPasswordException("bad password");
@@ -39,7 +39,7 @@ public class DeleteMessageService {
 			conn.commit();
 		} catch (SQLException ex) {
 			JdbcUtil.rollBack(conn);
-			throw new ServiceException("»èÁ¦ ½ÇÆÐ:" + ex.getMessage(), ex);
+			throw new ServiceException("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½:" + ex.getMessage(), ex);
 		} catch (InvalidPasswordException | MessageNotFoundException ex) {
 			JdbcUtil.rollBack(conn);
 			throw ex;

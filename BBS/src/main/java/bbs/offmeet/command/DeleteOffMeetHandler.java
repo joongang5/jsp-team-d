@@ -4,9 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bbs.auth.model.User;
-import bbs.mvc.command.CommandHandler;
 import bbs.offmeet.service.DeleteOffMeetService;
 import bbs.util.Util;
+import dev.core.command.CommandHandler;
 
 public class DeleteOffMeetHandler extends CommandHandler {
 

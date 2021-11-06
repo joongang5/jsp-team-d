@@ -7,7 +7,7 @@ import bbs.auth.model.User;
 import bbs.auth.service.HashService;
 import bbs.member.service.SetNewPasswordService;
 import bbs.member.service.YesOrNoService;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class SetNewPasswordHandler extends CommandHandler { // 유저가 등록한 인증키가 들어왔다 나가는 곳
 

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bbs.article.service.ArticlePage;
 import bbs.article.service.ListArticleService;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class ListArticleHandler extends CommandHandler {
 
@@ -21,12 +21,6 @@ public class ListArticleHandler extends CommandHandler {
 		return null;
 	}
 
-	
-	private void conflictTest() {
-		sysout("test");
-
-	}
-	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String pageNoVal = req.getParameter("pageNo");

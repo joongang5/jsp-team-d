@@ -13,8 +13,8 @@ import bbs.article.service.ModifyArticleService;
 import bbs.article.service.ModifyRequest;
 import bbs.article.service.ReadArticleService;
 import bbs.auth.model.User;
-import bbs.mvc.command.CommandHandler;
 import bbs.util.PermissionChecker;
+import dev.core.command.CommandHandler;
 
 public class ModifyArticleHandler extends CommandHandler {
 

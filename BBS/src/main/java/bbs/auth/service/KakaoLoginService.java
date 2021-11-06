@@ -16,9 +16,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import bbs.jdbc.ConnectionProvider;
 import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
+import dev.jdbc.ConnectionProvider;
 
 public class KakaoLoginService {
 

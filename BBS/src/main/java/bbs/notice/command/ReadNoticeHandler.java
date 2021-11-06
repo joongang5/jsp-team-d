@@ -7,12 +7,12 @@ import bbs.comment.dao.CommentViewDao;
 import bbs.comment.model.CommentView;
 import bbs.logic.page.Page;
 import bbs.logic.service.PageListService;
-import bbs.mvc.command.CommandHandler;
 import bbs.notice.service.NoticeContentNotFoundException;
 import bbs.notice.service.NoticeData;
 import bbs.notice.service.NoticeNotFoundException;
 import bbs.notice.service.ReadNoticeService;
 import bbs.util.Util;
+import dev.core.command.CommandHandler;
 
 public class ReadNoticeHandler extends CommandHandler {
 

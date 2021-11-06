@@ -14,8 +14,8 @@ import bbs.auth.service.LoginFailException;
 import bbs.auth.service.LoginService;
 import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
-import bbs.mvc.command.CommandHandler;
 import bbs.util.ErrorUtil;
+import dev.core.command.CommandHandler;
 
 public class LoginHandler extends CommandHandler {
 

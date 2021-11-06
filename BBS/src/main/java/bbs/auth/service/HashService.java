@@ -7,9 +7,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import bbs.auth.model.User;
-import bbs.jdbc.ConnectionProvider;
 import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
+import dev.jdbc.ConnectionProvider;
 
 public class HashService {
 

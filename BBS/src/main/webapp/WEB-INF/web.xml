@@ -6,7 +6,7 @@
 	</welcome-file-list>
 
 	<listener>
-		<listener-class>bbs.jdbc.DBCPInitListener</listener-class>
+		<listener-class>dev.jdbc.DBCPInitListener</listener-class>
 	</listener>
 
 	<listener>
@@ -17,9 +17,9 @@
 		<param-name>poolConfig</param-name>
 		<param-value>
 			jdbcdriver=org.mariadb.jdbc.Driver
-			jdbcUrl=jdbc:mariadb://220.70.33.29:3306/d?characterEncoding=utf8
-			dbUser=d
-			dbPass=01234567
+			jdbcUrl=jdbc:mariadb://127.0.0.1:3306/d_movie?characterEncoding=utf8
+			dbUser=root
+			dbPass=whdtjd2
 			validationQuery=select 1
 			minIdle=3
 			maxTotal=30
@@ -73,7 +73,7 @@
 	
 	<servlet>
 		<servlet-name>ControllerUsingURI</servlet-name>
-		<servlet-class>bbs.mvc.controller.ControllerUsingURI</servlet-class>
+		<servlet-class>dev.core.controller.ControllerUsingURI</servlet-class>
 		<init-param>
 			<param-name>configFile</param-name>
 			<param-value>

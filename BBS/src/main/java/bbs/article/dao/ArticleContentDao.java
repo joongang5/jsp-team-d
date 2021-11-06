@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import bbs.article.model.ArticleContent;
-import bbs.jdbc.JdbcUtil;
+import dev.jdbc.JdbcUtil;
 
 public class ArticleContentDao {
 

@@ -7,7 +7,7 @@ import bbs.logic.page.Page;
 import bbs.logic.service.PageListService;
 import bbs.movie.dao.MovieDao;
 import bbs.movie.model.Movie;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class ListReservedMovieHandler extends CommandHandler {
 

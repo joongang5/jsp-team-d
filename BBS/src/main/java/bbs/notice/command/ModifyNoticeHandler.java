@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bbs.auth.model.User;
-import bbs.mvc.command.CommandHandler;
 import bbs.notice.service.ModifyNoticeService;
 import bbs.notice.service.ModifyRequest;
 import bbs.notice.service.NoticeData;
 import bbs.notice.service.NoticeNotFoundException;
 import bbs.notice.service.PermissionDeniedException;
 import bbs.notice.service.ReadNoticeService;
+import dev.core.command.CommandHandler;
 
 public class ModifyNoticeHandler extends CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/noticeModifyForm.jsp";

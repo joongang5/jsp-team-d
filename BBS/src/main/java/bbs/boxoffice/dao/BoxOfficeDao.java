@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import bbs.boxoffice.model.BoxOffice;
-import bbs.jdbc.JdbcUtil;
 import bbs.logic.dao.BasePagingDao;
+import dev.jdbc.JdbcUtil;
 
 public class BoxOfficeDao<T extends BoxOffice> extends BasePagingDao<T> {
 

@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import bbs.article.service.ArticleNotFoundException;
-import bbs.jdbc.ConnectionProvider;
 import bbs.movie.dao.MovieViewDao;
 import bbs.movie.model.MovieView;
+import dev.jdbc.ConnectionProvider;
 
 public class ReadMovieService {
 

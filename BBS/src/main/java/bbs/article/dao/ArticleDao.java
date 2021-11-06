@@ -11,7 +11,7 @@ import java.util.List;
 
 import bbs.article.model.Article;
 import bbs.article.model.Writer;
-import bbs.jdbc.JdbcUtil;
+import dev.jdbc.JdbcUtil;
 
 public class ArticleDao {
 	

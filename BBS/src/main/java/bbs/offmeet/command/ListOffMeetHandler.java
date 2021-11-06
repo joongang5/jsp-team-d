@@ -4,9 +4,9 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bbs.mvc.command.CommandHandler;
 import bbs.offmeet.service.ListOffMeetService;
 import bbs.offmeet.service.OffMeetPage;
+import dev.core.command.CommandHandler;
 
 public class ListOffMeetHandler extends CommandHandler {
 

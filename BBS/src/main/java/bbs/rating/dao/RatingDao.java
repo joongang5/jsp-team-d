@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import bbs.jdbc.JdbcUtil;
 import bbs.logic.dao.BasePagingDao;
 import bbs.rating.model.Rating;
+import dev.jdbc.JdbcUtil;
 
 
 public class RatingDao<T extends Rating> extends BasePagingDao<T>  {

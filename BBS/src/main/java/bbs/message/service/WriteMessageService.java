@@ -3,13 +3,13 @@ package bbs.message.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.message.dao.MessageDao;
 import bbs.message.model.Message;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 
-//½Ì±ÛÅæ ÆÐÅÏÀ» ±¸ÇöÇÑ´Ù.
+//ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 public class WriteMessageService {
 	private static WriteMessageService instance = new WriteMessageService();
 	
@@ -26,10 +26,10 @@ public class WriteMessageService {
 			conn = ConnectionProvider.getConnection();
 			MessageDao messageDao = MessageDao.getInstance();
 			messageDao.insert(conn, message);
-			//insert¸Þ¼­µå¸¦ ÀÌ¿ëÇØ¼­ ¸Þ½ÃÁö¸¦ Å×ÀÌºí¿¡ Ãß°¡ÇÑ´Ù.
+			//insertï¿½Þ¼ï¿½ï¿½å¸¦ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 			
 		} catch (SQLException e) {
-			throw new ServiceException("¸Þ½ÃÁö µî·Ï ½ÇÆÐ:" + e.getMessage(), e);
+			throw new ServiceException("ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½:" + e.getMessage(), e);
 		} finally {
 			JdbcUtil.close(conn);
 		}

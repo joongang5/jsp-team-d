@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import bbs.jdbc.JdbcUtil;
 import bbs.notice.model.Notice;
 import bbs.notice.model.Writer;
+import dev.jdbc.JdbcUtil;
 
 public class NoticeDao {
 	

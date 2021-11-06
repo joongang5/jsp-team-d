@@ -3,9 +3,9 @@ package bbs.notice.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bbs.mvc.command.CommandHandler;
 import bbs.notice.service.ListNoticeService;
 import bbs.notice.service.NoticePage;
+import dev.core.command.CommandHandler;
 
 public class ListNoticeHandler extends CommandHandler {
 

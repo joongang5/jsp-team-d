@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import bbs.jdbc.ConnectionProvider;
 import bbs.offmeet.dao.OffMeetDao;
 import bbs.offmeet.model.OffMeet;
+import dev.jdbc.ConnectionProvider;
 
 public class ListOffMeetService {
 	

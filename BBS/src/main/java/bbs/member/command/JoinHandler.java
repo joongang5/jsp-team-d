@@ -12,7 +12,7 @@ import bbs.auth.service.HashService;
 import bbs.member.service.DuplicateIdException;
 import bbs.member.service.JoinRequest;
 import bbs.member.service.JoinService;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class JoinHandler extends CommandHandler {
 

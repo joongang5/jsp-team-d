@@ -7,7 +7,7 @@ import bbs.article.dao.ArticleContentDao;
 import bbs.article.dao.ArticleDao;
 import bbs.article.model.Article;
 import bbs.article.model.ArticleContent;
-import bbs.jdbc.ConnectionProvider;
+import dev.jdbc.ConnectionProvider;
 
 public class ReadArticleService {
 	

@@ -2,11 +2,11 @@ package bbs.offmeet.service;
 
 import java.sql.Connection;
 
-import bbs.jdbc.ConnectionProvider;
 import bbs.offmeet.dao.OffMeetContentDao;
 import bbs.offmeet.dao.OffMeetDao;
 import bbs.offmeet.model.OffMeet;
 import bbs.offmeet.model.OffMeetContent;
+import dev.jdbc.ConnectionProvider;
 
 public class ReadOffMeetService {
 	private OffMeetDao offmeetDao = new OffMeetDao() ;

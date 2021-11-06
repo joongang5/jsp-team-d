@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Date;
 
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.offmeet.dao.OffMeetContentDao;
 import bbs.offmeet.dao.OffMeetDao;
 import bbs.offmeet.model.OffMeet;
 import bbs.offmeet.model.OffMeetContent;
 import bbs.offmeet.model.kakao;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class WriteOffMeetService {
 	

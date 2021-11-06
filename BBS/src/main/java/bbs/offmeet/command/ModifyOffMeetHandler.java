@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import bbs.article.command.PermissionDeniedException;
 import bbs.auth.model.User;
-import bbs.mvc.command.CommandHandler;
 import bbs.offmeet.service.ModifyOffMeetService;
 import bbs.offmeet.service.ModifyRequest;
 import bbs.offmeet.service.OffMeetData;
 import bbs.offmeet.service.OffMeetNotFoundException;
 import bbs.offmeet.service.ReadOffMeetService;
+import dev.core.command.CommandHandler;
 
 public class ModifyOffMeetHandler extends CommandHandler {
 

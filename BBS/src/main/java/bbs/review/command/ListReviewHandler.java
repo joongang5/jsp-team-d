@@ -5,8 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bbs.review.service.ListReviewService;
 import bbs.review.service.ReviewPage;
-
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class ListReviewHandler extends CommandHandler {
 
@@ -33,13 +32,13 @@ public class ListReviewHandler extends CommandHandler {
 		return getFormViewName();
 	}
 	
-	// get È£Ãâ
+	// get È£ï¿½ï¿½
 	@Override
 	protected String processForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		return null;
 	}
 	
-	// post È£Ãâ
+	// post È£ï¿½ï¿½
 	@Override
 	protected String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		// TODO Auto-generated method stub

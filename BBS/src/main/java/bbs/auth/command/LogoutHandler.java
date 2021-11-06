@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class LogoutHandler extends CommandHandler {
 

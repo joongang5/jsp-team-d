@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import bbs.auth.model.User;
 import bbs.logic.page.Page;
 import bbs.logic.service.PageListService;
-import bbs.mvc.command.CommandHandler;
 import bbs.rating.dao.RatingDao;
 import bbs.rating.model.Rating;
 import bbs.rating.service.WriteRatingService;
 import bbs.util.ErrorUtil;
+import dev.core.command.CommandHandler;
 
 public class RatingHandler extends CommandHandler {
 
@@ -70,7 +70,7 @@ public class RatingHandler extends CommandHandler {
 
 		int movieYearVale = Integer.parseInt(movieYear);
 
-		// µ¥ÀÌÅÍ°¡ Á¤»óÀÏ °æ¿ì
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		Rating rating = new Rating(
 				-1,
 				userID,

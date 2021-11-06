@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import bbs.article.service.ArticleNotFoundException;
 import bbs.movie.model.MovieView;
 import bbs.movie.service.ReadMovieService;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class ReadMovieHandler extends CommandHandler {
 

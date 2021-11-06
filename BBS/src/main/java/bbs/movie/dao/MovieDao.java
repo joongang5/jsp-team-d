@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import bbs.jdbc.JdbcUtil;
 import bbs.logic.dao.BasePagingDao;
 import bbs.movie.model.BaseMovie;
 import bbs.movie.model.Movie;
+import dev.jdbc.JdbcUtil;
 
 public class MovieDao<T extends Movie> extends BasePagingDao<T> {
 

@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 import bbs.auth.model.User;
 import bbs.logic.page.Page;
 import bbs.logic.service.PageListService;
-import bbs.mvc.command.CommandHandler;
 import bbs.offmeet.dao.PageOffMeetDao;
 import bbs.offmeet.model.OffMeet;
+import dev.core.command.CommandHandler;
 
 
 public class ListMyOffMeetHandler extends CommandHandler {

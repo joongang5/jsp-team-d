@@ -12,7 +12,7 @@ import bbs.member.model.Member;
 import bbs.member.service.FileUploadService;
 import bbs.member.service.ModifyRequest;
 import bbs.member.service.SaveImgDBService;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class ImageUploadHandler extends CommandHandler { //현
 

@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import bbs.jdbc.JdbcUtil;
 import bbs.notice.model.NoticeContent;
+import dev.jdbc.JdbcUtil;
 
 public class NoticeContentDao {
 

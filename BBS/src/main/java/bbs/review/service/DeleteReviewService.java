@@ -3,11 +3,11 @@ package bbs.review.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.review.dao.ReviewDao;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
-public class DeleteReviewService { //20210809 ÀÌÇö¾Æ
+public class DeleteReviewService { //20210809 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	public void deleteReview(int reviewNo) {
 		Connection conn = null;
@@ -19,7 +19,7 @@ public class DeleteReviewService { //20210809 ÀÌÇö¾Æ
 			ReviewDao reviewDao = new ReviewDao();
 			
 			reviewDao.DeleteReview(conn, reviewNo);
-			System.out.println("»èÁ¦ ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			conn.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollBack(conn);

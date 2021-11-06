@@ -6,7 +6,7 @@ import java.util.List;
 
 import bbs.article.dao.ArticleDao;
 import bbs.article.model.Article;
-import bbs.jdbc.ConnectionProvider;
+import dev.jdbc.ConnectionProvider;
 
 public class ListArticleService {
 

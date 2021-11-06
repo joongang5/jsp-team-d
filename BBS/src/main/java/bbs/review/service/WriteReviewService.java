@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.review.dao.ReviewContentDao;
 import bbs.review.dao.ReviewDao;
 import bbs.review.model.Review;
 import bbs.review.model.ReviewContent;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class WriteReviewService {
 

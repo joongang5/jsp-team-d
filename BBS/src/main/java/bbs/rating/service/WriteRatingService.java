@@ -3,10 +3,10 @@ package bbs.rating.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.rating.dao.RatingDao;
 import bbs.rating.model.Rating;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class WriteRatingService {
 	

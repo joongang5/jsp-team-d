@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import bbs.jdbc.JdbcUtil;
 import bbs.offmeet.model.OffMeetContent;
+import dev.jdbc.JdbcUtil;
 
 public class OffMeetContentDao {
 	public OffMeetContent insert(Connection conn, OffMeetContent content) throws SQLException{

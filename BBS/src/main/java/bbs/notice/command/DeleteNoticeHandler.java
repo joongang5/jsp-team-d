@@ -4,9 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bbs.auth.model.User;
-import bbs.mvc.command.CommandHandler;
 import bbs.notice.service.DeleteNoticeService;
 import bbs.util.Util;
+import dev.core.command.CommandHandler;
 
 public class DeleteNoticeHandler extends CommandHandler {
 
@@ -25,10 +25,10 @@ public class DeleteNoticeHandler extends CommandHandler {
 		int result = deleteService.delete(no, user.getId());
 		System.out.println(result);
 		if(result == 1) {
-			//Á¤»ó »èÁ¦
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return "list.do";
 		}else {
-			//»èÁ¦ ½ÇÆÐ
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return "read.do";
 		}
 	}

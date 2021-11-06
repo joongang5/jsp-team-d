@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import bbs.jdbc.ConnectionProvider;
 import bbs.logic.dao.BasePagingDao;
 import bbs.logic.page.Page;
+import dev.jdbc.ConnectionProvider;
 
 public class PageListService<T> {
 

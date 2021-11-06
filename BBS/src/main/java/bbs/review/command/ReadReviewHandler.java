@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import bbs.review.service.ReviewContentNotFoundException;
 import bbs.review.service.ReviewData;
 import bbs.review.service.ReviewNotFoundException;
+import dev.core.command.CommandHandler;
 import bbs.review.service.ReadReviewService;
-import bbs.mvc.command.CommandHandler;
 
 public class ReadReviewHandler extends CommandHandler {
 

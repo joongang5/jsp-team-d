@@ -7,7 +7,7 @@ import bbs.article.service.ArticleContentNotFoundException;
 import bbs.article.service.ArticleData;
 import bbs.article.service.ArticleNotFoundException;
 import bbs.article.service.ReadArticleService;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class ReadArticleHandler extends CommandHandler {
 

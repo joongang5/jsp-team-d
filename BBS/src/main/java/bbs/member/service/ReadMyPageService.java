@@ -3,9 +3,9 @@ package bbs.member.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import bbs.jdbc.ConnectionProvider;
 import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
+import dev.jdbc.ConnectionProvider;
 
 public class ReadMyPageService {
 	// 20210802

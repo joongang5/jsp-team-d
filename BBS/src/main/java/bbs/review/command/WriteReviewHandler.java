@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import bbs.auth.model.User;
 import bbs.member.service.MyPointService;
-import bbs.mvc.command.CommandHandler;
 import bbs.review.model.Writer;
 import bbs.review.service.WriteRequest;
 import bbs.review.service.WriteReviewService;
+import dev.core.command.CommandHandler;
 
 
 

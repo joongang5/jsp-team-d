@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.movie.dao.MoviePosterDao;
 import bbs.movie.model.BaseMovie;
 import bbs.movie.model.MoviePoster;
 import bbs.util.api.APIHelper;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class RegisterMoviePosterService {
 

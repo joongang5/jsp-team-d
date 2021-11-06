@@ -3,12 +3,12 @@ package bbs.member.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import bbs.jdbc.ConnectionProvider;
 import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
 import bbs.offmeet.dao.OffMeetDao;
 import bbs.offmeet.model.OffMeet;
 import bbs.offmeet.service.OffMeetNotFoundException;
+import dev.jdbc.ConnectionProvider;
 
 public class ReadMyOffMeetService {
 	private OffMeetDao offMeetDao = new OffMeetDao();

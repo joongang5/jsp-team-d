@@ -7,11 +7,11 @@ import bbs.comment.dao.CommentViewDao;
 import bbs.comment.model.CommentView;
 import bbs.logic.page.Page;
 import bbs.logic.service.PageListService;
-import bbs.mvc.command.CommandHandler;
 import bbs.offmeet.service.OffMeetData;
 import bbs.offmeet.service.OffMeetNotFoundException;
 import bbs.offmeet.service.ReadOffMeetService;
 import bbs.util.Util;
+import dev.core.command.CommandHandler;
 
 public class ReadOffMeetHandler extends CommandHandler {
 	

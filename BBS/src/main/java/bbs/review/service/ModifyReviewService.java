@@ -3,11 +3,11 @@ package bbs.review.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import bbs.jdbc.ConnectionProvider;
-import bbs.jdbc.JdbcUtil;
 import bbs.review.dao.ReviewContentDao;
 import bbs.review.dao.ReviewDao;
 import bbs.review.model.Review;
+import dev.jdbc.ConnectionProvider;
+import dev.jdbc.JdbcUtil;
 
 public class ModifyReviewService {
 

@@ -12,8 +12,8 @@ import bbs.member.dao.MemberDao;
 import bbs.member.service.ChangePasswordService;
 import bbs.member.service.InvalidPasswordException;
 import bbs.member.service.MemberNotFoundException;
-import bbs.mvc.command.CommandHandler;
 import bbs.util.ErrorUtil;
+import dev.core.command.CommandHandler;
 
 public class ChangePasswordHandler extends CommandHandler {
 

@@ -7,7 +7,7 @@ import bbs.auth.model.User;
 import bbs.member.service.ChangeEmailService;
 import bbs.member.service.ModifyRequest;
 import bbs.member.service.YesOrNoService;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class ChangeEmailHandler extends CommandHandler { //유저가 등록한 인증키가 들어왔다 나가는 곳
 

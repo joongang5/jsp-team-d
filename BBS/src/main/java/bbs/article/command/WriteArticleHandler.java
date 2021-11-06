@@ -10,7 +10,7 @@ import bbs.article.model.Writer;
 import bbs.article.service.WriteArticleService;
 import bbs.article.service.WriteRequest;
 import bbs.auth.model.User;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
 
 public class WriteArticleHandler extends CommandHandler {
 

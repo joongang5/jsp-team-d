@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import bbs.boxoffice.model.BoxOffice;
 import bbs.boxoffice.service.RegisterBoxOfficeService;
-import bbs.jdbc.ConnectionProvider;
 import bbs.member.service.DuplicateIdException;
 import bbs.movie.dao.MovieDao;
 import bbs.movie.model.BaseMovie;
 import bbs.movie.model.Movie;
 import bbs.movie.service.RegisterMoviePosterService;
 import bbs.movie.service.RegisterMovieService;
-import bbs.mvc.command.CommandHandler;
 import bbs.util.api.APIHelper;
+import dev.core.command.CommandHandler;
+import dev.jdbc.ConnectionProvider;
 
 public class AdminHandler extends CommandHandler {
 

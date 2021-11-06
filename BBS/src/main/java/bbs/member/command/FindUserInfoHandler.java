@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bbs.auth.model.User;
-import bbs.jdbc.ConnectionProvider;
 import bbs.member.dao.MemberDao;
 import bbs.member.model.Member;
 import bbs.member.service.ValidEmailService;
-import bbs.mvc.command.CommandHandler;
+import dev.core.command.CommandHandler;
+import dev.jdbc.ConnectionProvider;
 
 public class FindUserInfoHandler extends CommandHandler { // 유저가 등록한 인증키가 들어왔다 나가는 곳
 

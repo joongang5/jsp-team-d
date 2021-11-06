@@ -6,7 +6,7 @@ import java.util.List;
 
 import bbs.notice.dao.NoticeDao;
 import bbs.notice.model.Notice;
-import bbs.jdbc.ConnectionProvider;
+import dev.jdbc.ConnectionProvider;
 
 public class ListNoticeService {
 
