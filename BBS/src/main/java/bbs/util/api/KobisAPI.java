@@ -11,7 +11,7 @@ import org.json.simple.parser.ParseException;
 import bbs.boxoffice.model.BoxOffice;
 import bbs.movie.model.BaseMovie;
 import bbs.movie.model.Movie;
-import bbs.util.HttpURLConnUtil;
+import dev.util.HttpURLConnUtil;
 
 public class KobisAPI {
 	private String boxOfficeUrl;
